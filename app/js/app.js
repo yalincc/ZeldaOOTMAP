@@ -757,17 +757,22 @@
 
     if (mode === "world") {
       var wi = $("worldImg");
+      var wl = $("worldLoading");
       var loadWorld = function () {
+        if (wl) wl.hidden = true;
         layoutWorldBase();
         fitWorld();
         renderWorldPins();
       };
       if (wi && !wi.getAttribute("src")) {
+        if (wl) wl.hidden = false;
         wi.onload = loadWorld;
+        wi.onerror = function () { if (wl) { wl.hidden = false; wl.textContent = "全图载入失败"; } };
         wi.src = wi.getAttribute("data-src");
       } else if (wi && wi.complete && wi.naturalWidth) {
         loadWorld();
       } else if (wi) {
+        if (wl) wl.hidden = false;
         wi.addEventListener("load", loadWorld, { once: true });
       }
       renderRegionList();
@@ -2304,6 +2309,16 @@
   // -------------------------------------------------------------
   // 程序入口
   // -------------------------------------------------------------
+  function prefetchWorldImage() {
+    var wi = $("worldImg");
+    if (!wi || wi.getAttribute("src")) return;
+    setTimeout(function () {
+      if (!wi || wi.getAttribute("src")) return;
+      wi.src = wi.getAttribute("data-src");
+      if (wi.decode) wi.decode().catch(function () {});
+    }, 2200);
+  }
+
   function init() {
     initStorage();
     initResponsiveShell();
@@ -2373,6 +2388,7 @@
         }
       }
     } catch (e) {}
+    prefetchWorldImage();
   }
 
   window.addEventListener("DOMContentLoaded", init);
