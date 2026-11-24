@@ -50,7 +50,7 @@
 
   // 状态管理
   var state = {
-    mode: "region", // region | topology
+    mode: "region", // region | topology | world
     era: "Child", // Child | Adult | All
     lang: "zh",   // 默认简体中文，支持一键切 EN
     hideDone: false,
@@ -70,6 +70,24 @@
     regionDragStartY: 0,
     regionCamStartX: 0,
     regionCamStartY: 0,
+
+    // 全图层
+    worldZoom: 1,
+    worldTx: 0,
+    worldTy: 0,
+    worldDragging: false,
+    worldDragMoved: false,
+    worldDragStartX: 0,
+    worldDragStartY: 0,
+    worldCamStartX: 0,
+    worldCamStartY: 0,
+
+    // 三层缩放换层
+    levelTimer: null,
+    levelLockUntil: 0,
+    levelFrom: "",
+    levelFocusX: undefined,
+    levelFocusY: undefined,
 
     // 画布与相机
     zoom: 1,
@@ -141,7 +159,7 @@
       var hd = localStorage.getItem(KEY_HIDE_DONE);
       if (hd !== null) state.hideDone = (hd === "1");
       var vw = localStorage.getItem(KEY_VIEW);
-      if (vw === "region" || vw === "topology") state.mode = vw;
+      if (vw === "region" || vw === "topology" || vw === "world") state.mode = vw;
       var ar = localStorage.getItem(KEY_AREA);
       if (ar) state.area = ar;
     } catch (e) {}
@@ -219,8 +237,11 @@
     state.zoom = newZoom;
     state.tx = px - wx * newZoom;
     state.ty = py - wy * newZoom;
+    state.levelFocusX = clientX;
+    state.levelFocusY = clientY;
 
     updateCamera();
+    if (state.mode === "topology") scheduleLevelCheck();
   }
 
   // 平滑聚焦到某个节点
@@ -230,7 +251,7 @@
 
     var stage = $("mapStage");
     var sw = stage.clientWidth || (window.innerWidth - 320);
-    var sh = stage.clientHeight || (window.innerHeight - 56);
+    var sh = stage.clientHeight || window.innerHeight;
     var z = targetZoom || 1.1;
 
     state.zoom = z;
@@ -306,7 +327,7 @@
 
     stage.addEventListener("dblclick", function (e) {
       if (state.mode !== "topology") return;
-      if (e.target.closest(".map-pin") || e.target.closest(".detail-card")) return;
+      if (e.target.closest(".map-pin") || e.target.closest(".node-card") || e.target.closest(".detail-card")) return;
       zoomAt(1.5, e.clientX, e.clientY);
     });
 
@@ -363,13 +384,19 @@
     });
 
     $("btnZoomIn").addEventListener("click", function () {
-      if (state.mode === "region") regionZoomAt(1.25); else zoomAt(1.25);
+      if (state.mode === "region") regionZoomAt(1.25);
+      else if (state.mode === "world") worldZoomAt(1.18);
+      else zoomAt(1.25);
     });
     $("btnZoomOut").addEventListener("click", function () {
-      if (state.mode === "region") regionZoomAt(0.8); else zoomAt(0.8);
+      if (state.mode === "region") regionZoomAt(0.8);
+      else if (state.mode === "world") worldZoomAt(0.85);
+      else zoomAt(0.8);
     });
     $("btnZoomFit").addEventListener("click", function () {
-      if (state.mode === "region") fitRegion(); else fitCamera();
+      if (state.mode === "region") fitRegion();
+      else if (state.mode === "world") fitWorld();
+      else fitCamera();
     });
   }
 
@@ -582,14 +609,17 @@
     var px = (clientX !== undefined ? clientX - rect.left : rect.width / 2);
     var py = (clientY !== undefined ? clientY - rect.top : rect.height / 2);
     var oldZoom = state.regionZoom;
-    var newZoom = Math.max(0.55, Math.min(5, oldZoom * factor));
+    var newZoom = Math.max(0.28, Math.min(5, oldZoom * factor));
     if (Math.abs(newZoom - oldZoom) < 0.001) return;
     var wx = (px - regionBase.left - state.regionTx) / oldZoom;
     var wy = (py - regionBase.top - state.regionTy) / oldZoom;
     state.regionZoom = newZoom;
     state.regionTx = px - regionBase.left - wx * newZoom;
     state.regionTy = py - regionBase.top - wy * newZoom;
+    state.levelFocusX = clientX;
+    state.levelFocusY = clientY;
     applyRegionCam();
+    scheduleLevelCheck();
   }
 
   function pinOnFloor(pin, floor) {
@@ -664,6 +694,10 @@
     state.selectedPinId = null;
     closeDetailCard();
     saveStorage();
+    if (state.mode !== "region") {
+      setMode("region");
+      return;
+    }
     renderRegionList();
     updateRegionHead(r);
     buildRegionFloorBar(r);
@@ -703,22 +737,43 @@
 
   function setMode(mode) {
     state.mode = mode;
+    closeDetailCard();
     saveStorage();
     document.body.setAttribute("data-view", mode);
     var regionBoard = $("regionBoard");
     var mindmap = $("mindmapBoard");
+    var worldBoard = $("worldBoard");
     var rp = $("regionPanel");
     var js = $("jumpSection");
     if (regionBoard) regionBoard.hidden = (mode !== "region");
     if (mindmap) mindmap.hidden = (mode !== "topology");
-    if (rp) rp.hidden = (mode !== "region");
+    if (worldBoard) worldBoard.hidden = (mode !== "world");
+    if (rp) rp.hidden = (mode === "topology");
     if (js) js.hidden = (mode !== "topology");
 
-    document.querySelectorAll("#viewSeg button").forEach(function (b) {
+    document.querySelectorAll("#viewTabs .view-tab").forEach(function (b) {
       b.classList.toggle("on", b.getAttribute("data-view") === mode);
     });
-    var fab = $("modeFab");
-    if (fab) fab.textContent = mode === "region" ? "拓扑导图" : "区域地图";
+
+    if (mode === "world") {
+      var wi = $("worldImg");
+      var loadWorld = function () {
+        layoutWorldBase();
+        fitWorld();
+        renderWorldPins();
+      };
+      if (wi && !wi.getAttribute("src")) {
+        wi.onload = loadWorld;
+        wi.src = wi.getAttribute("data-src");
+      } else if (wi && wi.complete && wi.naturalWidth) {
+        loadWorld();
+      } else if (wi) {
+        wi.addEventListener("load", loadWorld, { once: true });
+      }
+      renderRegionList();
+      updateUrl();
+      return;
+    }
 
     if (mode === "region") {
       renderRegionList();
@@ -731,7 +786,7 @@
         updateRegionHead(r);
         buildRegionFloorBar(r);
         if (!regionFile) loadRegionMap(r, false);
-        else { layoutRegionBase(); applyRegionCam(); renderRegionPins(); }
+        else { layoutRegionBase(); fitRegion(); renderRegionPins(); }
       }
       applyRegionCam();
     } else {
@@ -750,6 +805,9 @@
       if (state.mode === "region") {
         p.set("area", state.area);
         if (state.floor && state.floor !== "All") p.set("floor", state.floor); else p.delete("floor");
+      } else {
+        p.delete("area");
+        p.delete("floor");
       }
       if (pinId) p.set("pin", pinId); else p.delete("pin");
       history.replaceState(null, "", window.location.pathname + "?" + p.toString());
@@ -822,6 +880,298 @@
     }, { passive: false });
 
     board.addEventListener("touchend", function () { pinchDist = 0; }, { passive: true });
+  }
+
+  // -------------------------------------------------------------
+  // 全图层：官方手绘全图 + 21 区域印章 + 10 迷宫入口
+  // -------------------------------------------------------------
+  var worldBase = { w: 0, h: 0, left: 0, top: 0 };
+
+  function availableRegion(id) {
+    return REGIONS.find(function (r) { return r.id === id; });
+  }
+
+  function layoutWorldBase() {
+    var board = $("worldBoard");
+    var img = $("worldImg");
+    var canvas = $("worldCanvas");
+    if (!board || !img || !canvas) return;
+    var W = board.clientWidth;
+    var H = board.clientHeight;
+    if (!W || !H) return;
+    var iw = img.naturalWidth || 4608;
+    var ih = img.naturalHeight || 3360;
+    var s = Math.min(W / iw, H / ih);
+    worldBase.w = iw * s;
+    worldBase.h = ih * s;
+    var spareX = Math.max(0, (W - worldBase.w) / 2);
+    var sideW = $("sidebar") ? $("sidebar").offsetWidth : 0;
+    var desktopOpen = window.innerWidth > 900 && !document.body.classList.contains("side-collapsed");
+    var shift = desktopOpen ? Math.min(sideW / 2, spareX) : 0;
+    worldBase.left = spareX + shift;
+    worldBase.top = (H - worldBase.h) / 2;
+    canvas.style.width = worldBase.w + "px";
+    canvas.style.height = worldBase.h + "px";
+    canvas.style.left = worldBase.left + "px";
+    canvas.style.top = worldBase.top + "px";
+  }
+
+  function applyWorldCam() {
+    var canvas = $("worldCanvas");
+    if (!canvas) return;
+    canvas.style.transform = "translate3d(" + state.worldTx + "px," + state.worldTy + "px,0) scale(" + state.worldZoom + ")";
+    var zp = $("zoomPercent");
+    if (zp && state.mode === "world") zp.textContent = Math.round(state.worldZoom * 100) + "%";
+  }
+
+  function fitWorld() {
+    state.worldZoom = 1;
+    state.worldTx = 0;
+    state.worldTy = 0;
+    applyWorldCam();
+  }
+
+  function worldZoomAt(factor, clientX, clientY) {
+    var board = $("worldBoard");
+    if (!board) return;
+    var rect = board.getBoundingClientRect();
+    var px = (clientX !== undefined ? clientX - rect.left : rect.width / 2);
+    var py = (clientY !== undefined ? clientY - rect.top : rect.height / 2);
+    var oldZoom = state.worldZoom;
+    var newZoom = Math.max(0.85, Math.min(worldInThreshold() + 0.01, oldZoom * factor));
+    if (Math.abs(newZoom - oldZoom) < 0.001) return;
+    var wx = (px - worldBase.left - state.worldTx) / oldZoom;
+    var wy = (py - worldBase.top - state.worldTy) / oldZoom;
+    state.worldZoom = newZoom;
+    state.worldTx = px - worldBase.left - wx * newZoom;
+    state.worldTy = py - worldBase.top - wy * newZoom;
+    state.levelFocusX = clientX;
+    state.levelFocusY = clientY;
+    applyWorldCam();
+    scheduleLevelCheck();
+  }
+
+  function renderWorldPins() {
+    var box = $("worldPins");
+    if (!box || !window.OOT_WORLD) return;
+    box.innerHTML = "";
+    var sub = $("worldCaptionSub");
+    if (sub) {
+      sub.textContent = state.lang === "zh"
+        ? "21 区域 · 10 迷宫入口 · 点印章进区域"
+        : "21 regions · 10 dungeon entrances · click a seal";
+    }
+
+    window.OOT_WORLD.fields.forEach(function (f) {
+      var r = availableRegion(f.id);
+      if (!r || !isRegionAvailable(r)) return;
+      var list = regionPinsForEra(r);
+      var done = list.filter(function (p) { return !!state.donePins[p.id]; }).length;
+      var total = list.length;
+      var pct = total ? Math.round(done / total * 100) : 0;
+      var seal = document.createElement("div");
+      seal.className = "world-seal";
+      seal.style.left = (f.x * 100) + "%";
+      seal.style.top = (f.y * 100) + "%";
+      seal.style.setProperty("--pct", pct);
+      seal.setAttribute("role", "button");
+      seal.setAttribute("tabindex", "0");
+      seal.setAttribute("aria-label", (state.lang === "zh" ? r.zh : r.en) + " " + done + "/" + total);
+      seal.innerHTML = '<span class="ws-mark">' + (state.lang === "zh" ? r.zh.slice(0, 1) : r.en.slice(0, 1)) + '</span>' +
+        '<span class="ws-label"><em>' + (state.lang === "zh" ? r.zh : r.en) + '</em><b>' + done + '/' + total + '</b></span>';
+      seal.title = (state.lang === "zh" ? r.zh : r.en) + " · " + done + "/" + total;
+      seal.addEventListener("click", function (e) {
+        e.stopPropagation();
+        openRegion(f.id);
+      });
+      seal.addEventListener("keydown", function (e) {
+        if (e.key === "Enter" || e.key === " ") { e.preventDefault(); openRegion(f.id); }
+      });
+      box.appendChild(seal);
+    });
+
+    window.OOT_WORLD.dungeons.forEach(function (d) {
+      var r = availableRegion(d.id);
+      if (!r || !isRegionAvailable(r)) return;
+      var host = availableRegion(d.host);
+      var mark = document.createElement("div");
+      mark.className = "world-entry";
+      mark.style.left = (d.x * 100) + "%";
+      mark.style.top = (d.y * 100) + "%";
+      mark.setAttribute("role", "button");
+      mark.setAttribute("tabindex", "0");
+      mark.setAttribute("aria-label", (state.lang === "zh" ? r.zh : r.en));
+      mark.innerHTML = '<span class="we-mark">◆</span>' +
+        '<span class="ws-label"><em>' + (state.lang === "zh" ? r.zh : r.en) + '</em><b>入口</b></span>';
+      mark.title = (state.lang === "zh" ? r.zh : r.en) + (host ? " · 进入 " + (state.lang === "zh" ? host.zh : host.en) : "");
+      mark.addEventListener("click", function (e) {
+        e.stopPropagation();
+        openRegion(d.host || d.id);
+      });
+      mark.addEventListener("keydown", function (e) {
+        if (e.key === "Enter" || e.key === " ") { e.preventDefault(); openRegion(d.host || d.id); }
+      });
+      box.appendChild(mark);
+    });
+  }
+
+  function bindWorldEvents() {
+    var board = $("worldBoard");
+    if (!board) return;
+
+    board.addEventListener("pointerdown", function (e) {
+      if (state.mode !== "world") return;
+      if (e.button !== undefined && e.button !== 0) return;
+      if (e.target.closest(".world-seal") || e.target.closest(".world-entry") ||
+          e.target.closest(".zoom-controls") || e.target.closest(".world-caption")) return;
+      state.worldDragging = true;
+      state.worldDragMoved = false;
+      state.worldDragStartX = e.clientX;
+      state.worldDragStartY = e.clientY;
+      state.worldCamStartX = state.worldTx;
+      state.worldCamStartY = state.worldTy;
+      board.classList.add("dragging");
+    });
+
+    window.addEventListener("pointermove", function (e) {
+      if (!state.worldDragging) return;
+      var dx = e.clientX - state.worldDragStartX;
+      var dy = e.clientY - state.worldDragStartY;
+      if (Math.hypot(dx, dy) > 4) state.worldDragMoved = true;
+      state.worldTx = state.worldCamStartX + dx;
+      state.worldTy = state.worldCamStartY + dy;
+      applyWorldCam();
+    });
+
+    window.addEventListener("pointerup", function () {
+      if (state.worldDragging) {
+        state.worldDragging = false;
+        board.classList.remove("dragging");
+      }
+    });
+
+    board.addEventListener("wheel", function (e) {
+      if (state.mode !== "world") return;
+      e.preventDefault();
+      worldZoomAt(e.deltaY < 0 ? 1.18 : 0.88, e.clientX, e.clientY);
+    }, { passive: false });
+
+    board.addEventListener("dblclick", function (e) {
+      if (state.mode !== "world") return;
+      if (e.target.closest(".world-seal") || e.target.closest(".world-entry")) return;
+      var hit = nearestWorldFieldAt(e.clientX, e.clientY, 120);
+      if (hit) { openRegion(hit.id); return; }
+      worldZoomAt(1.3, e.clientX, e.clientY);
+    });
+
+    var pinchDist = 0;
+    board.addEventListener("touchstart", function (e) {
+      if (state.mode !== "world") return;
+      if (e.touches.length === 2) {
+        pinchDist = Math.hypot(e.touches[0].clientX - e.touches[1].clientX, e.touches[0].clientY - e.touches[1].clientY);
+      }
+    }, { passive: true });
+
+    board.addEventListener("touchmove", function (e) {
+      if (state.mode !== "world" || e.touches.length !== 2) return;
+      e.preventDefault();
+      var d = Math.hypot(e.touches[0].clientX - e.touches[1].clientX, e.touches[0].clientY - e.touches[1].clientY);
+      if (pinchDist > 0) {
+        var mx = (e.touches[0].clientX + e.touches[1].clientX) / 2;
+        var my = (e.touches[0].clientY + e.touches[1].clientY) / 2;
+        worldZoomAt(d / pinchDist, mx, my);
+      }
+      pinchDist = d;
+    }, { passive: false });
+
+    board.addEventListener("touchend", function () { pinchDist = 0; }, { passive: true });
+  }
+
+  // -------------------------------------------------------------
+  // 三层缩放换层：区域 ≤33% → 拓扑；拓扑 ≤17% → 全图；
+  // 全图 ≥150% → 拓扑；拓扑 ≥200% → 区域（手势停 140ms 判定，换层锁 550ms）
+  // -------------------------------------------------------------
+  var LEVEL = { regionOut: 0.33, topoOut: 0.17, worldIn: 1.5, topoIn: 2.0, settle: 140, lock: 550 };
+
+  function worldInThreshold() {
+    return window.innerWidth <= 900 ? 2.6 : LEVEL.worldIn;
+  }
+
+  function scheduleLevelCheck() {
+    clearTimeout(state.levelTimer);
+    state.levelTimer = setTimeout(checkLevelThresholds, LEVEL.settle);
+  }
+
+  function nearestNodeAt(clientX, clientY, maxScreenDist) {
+    var stage = $("mapStage");
+    var rect = stage.getBoundingClientRect();
+    var lx = (clientX !== undefined ? clientX - rect.left : rect.width / 2);
+    var ly = (clientY !== undefined ? clientY - rect.top : rect.height / 2);
+    var best = null;
+    var bestD = Infinity;
+    NODES.forEach(function (n) {
+      var cx = state.tx + (n.x + state.originOffsetX + n.w / 2) * state.zoom;
+      var cy = state.ty + (n.y + state.originOffsetY + n.h / 2) * state.zoom;
+      var d = Math.hypot(cx - lx, cy - ly);
+      if (d < bestD) { bestD = d; best = n; }
+    });
+    if (best && bestD <= (maxScreenDist || Infinity)) return best;
+    return null;
+  }
+
+  function nearestWorldFieldAt(clientX, clientY, maxScreenDist) {
+    if (!window.OOT_WORLD) return null;
+    var stage = $("mapStage");
+    var rect = stage.getBoundingClientRect();
+    var lx = (clientX !== undefined ? clientX - rect.left : rect.width / 2);
+    var ly = (clientY !== undefined ? clientY - rect.top : rect.height / 2);
+    var best = null;
+    var bestD = Infinity;
+    window.OOT_WORLD.fields.forEach(function (f) {
+      var r = availableRegion(f.id);
+      if (!r || !isRegionAvailable(r)) return;
+      var cx = worldBase.left + state.worldTx + f.x * worldBase.w * state.worldZoom;
+      var cy = worldBase.top + state.worldTy + f.y * worldBase.h * state.worldZoom;
+      var d = Math.hypot(cx - lx, cy - ly);
+      if (d < bestD) { bestD = d; best = f; }
+    });
+    if (best && bestD <= (maxScreenDist || Infinity)) return best;
+    return null;
+  }
+
+  function checkLevelThresholds() {
+    if (Date.now() < state.levelLockUntil) return;
+    var fx = state.levelFocusX;
+    var fy = state.levelFocusY;
+
+    if (state.mode === "region" && state.regionZoom <= LEVEL.regionOut) {
+      state.levelLockUntil = Date.now() + LEVEL.lock;
+      var fromArea = state.area;
+      setMode("topology");
+      focusNode(NODES.some(function (n) { return n.id === fromArea; }) ? fromArea : "HyruleField", 0.52);
+      return;
+    }
+
+    if (state.mode === "topology" && state.zoom <= LEVEL.topoOut) {
+      state.levelLockUntil = Date.now() + LEVEL.lock;
+      setMode("world");
+      return;
+    }
+
+    if (state.mode === "topology" && state.zoom >= LEVEL.topoIn) {
+      var node = nearestNodeAt(fx, fy, 240);
+      if (!node) return;
+      state.levelLockUntil = Date.now() + LEVEL.lock;
+      openRegion(node.id);
+      return;
+    }
+
+    if (state.mode === "world" && state.worldZoom >= worldInThreshold()) {
+      var field = nearestWorldFieldAt(fx, fy);
+      state.levelLockUntil = Date.now() + LEVEL.lock;
+      setMode("topology");
+      focusNode(field ? field.id : "HyruleField", 1.0);
+    }
   }
 
   // -------------------------------------------------------------
@@ -997,6 +1347,13 @@
         if (state.dragMoved) return;
         if (e.target.closest(".map-pin") || e.target.closest(".map-gateway") || e.target.closest(".floor-btn")) return;
         focusNode(node.id, 1.25);
+      });
+
+      // 双击节点卡片：进入该区域单图
+      card.addEventListener("dblclick", function (e) {
+        if (e.target.closest(".map-pin") || e.target.closest(".map-gateway") || e.target.closest(".floor-btn")) return;
+        e.stopPropagation();
+        openRegion(node.id);
       });
 
       nodesLayer.appendChild(card);
@@ -1401,6 +1758,7 @@
     });
 
     if (state.mode === "region") renderRegionPins();
+    renderWorldPins();
   }
 
   function selectPin(pin) {
@@ -1627,7 +1985,7 @@
 
           var hostId = (m.map && m.map !== "hyrule") ? m.map : m.area;
           var floor = (m.map && m.map !== "hyrule") ? (m.area === "0F" ? "1F" : m.area) : "All";
-          if (state.mode === "region") {
+          if (state.mode === "region" || state.mode === "world") {
             openRegion(hostId, { floor: floor });
             setTimeout(function () { selectPin(m); }, 180);
           } else {
@@ -1651,25 +2009,46 @@
   // 顶栏与交互绑定
   // -------------------------------------------------------------
   function bindUI() {
-    $("sidebarToggle").addEventListener("click", function () {
-      $("sidebar").classList.toggle("collapsed");
+    function refreshMapAfterShell() {
       setTimeout(function () {
         if (state.mode === "region") { layoutRegionBase(); applyRegionCam(); }
-        else fitCamera();
+        else if (state.mode === "topology") fitCamera();
+        else if (state.mode === "world") applyWorldCam();
       }, 300);
+    }
+
+    $("sidebarToggle").addEventListener("click", function () {
+      $("sidebar").classList.add("collapsed");
+      document.body.classList.add("side-collapsed");
+      refreshMapAfterShell();
+    });
+    $("sidebarOpen").addEventListener("click", function () {
+      $("sidebar").classList.remove("collapsed");
+      document.body.classList.remove("side-collapsed");
+      refreshMapAfterShell();
     });
 
-    // 视图模式：区域地图 / 拓扑导图
-    document.querySelectorAll("#viewSeg button").forEach(function (btn) {
+    // 视图 tabs：区域 / 拓扑 / 全图
+    document.querySelectorAll("#viewTabs .view-tab").forEach(function (btn) {
       btn.addEventListener("click", function () {
         setMode(btn.getAttribute("data-view"));
       });
     });
-    var modeFab = $("modeFab");
-    if (modeFab) {
-      modeFab.addEventListener("click", function () {
-        setMode(state.mode === "region" ? "topology" : "region");
+
+    // 左下角设置面板
+    var settingsBtn = $("settingsBtn");
+    var settingsPanel = $("settingsPanel");
+    var settingsClose = $("settingsClose");
+    if (settingsBtn && settingsPanel) {
+      settingsBtn.addEventListener("click", function (e) {
+        e.stopPropagation();
+        settingsPanel.hidden = !settingsPanel.hidden;
       });
+      settingsPanel.addEventListener("click", function (e) { e.stopPropagation(); });
+      document.addEventListener("click", function () {
+        if (!settingsPanel.hidden) settingsPanel.hidden = true;
+      });
+      if (settingsClose) settingsClose.addEventListener("click", function () { settingsPanel.hidden = true; });
     }
 
     // 分类与区域列表折叠（TOTKmap 式收起/展开）
@@ -1827,6 +2206,7 @@
     renderCategoriesSidebar();
     renderJumpChips();
     renderRegionList();
+    renderWorldPins();
     var rHead = currentRegion();
     if (rHead) updateRegionHead(rHead);
 
@@ -1909,10 +2289,15 @@
   function initResponsiveShell() {
     var sb = $("sidebar");
     if (!sb) return;
-    // 小屏默认收起侧栏，由顶栏汉堡键按 .collapsed 切换滑出
-    if (window.innerWidth <= 900) sb.classList.add("collapsed");
+    // 小屏默认收起侧栏；收起后由浮动按钮展开
+    var collapsed = window.innerWidth <= 900;
+    sb.classList.toggle("collapsed", collapsed);
+    document.body.classList.toggle("side-collapsed", collapsed);
     window.addEventListener("resize", function () {
-      if (window.innerWidth > 900) sb.classList.remove("collapsed");
+      if (window.innerWidth > 900) {
+        sb.classList.remove("collapsed");
+        document.body.classList.remove("side-collapsed");
+      }
     });
   }
 
@@ -1924,6 +2309,7 @@
     initResponsiveShell();
     bindCameraEvents();
     bindRegionEvents();
+    bindWorldEvents();
     bindUI();
     bindSearch();
     renderVersion();
@@ -1938,7 +2324,7 @@
       var params = new URLSearchParams(window.location.search);
       var qNode = params.get("node");
       var qPin = params.get("pin");
-      var qMode = params.get("mode");
+      var qMode = params.get("mode") || params.get("view");
       var qArea = params.get("area");
       var qFloor = params.get("floor");
       var qEra = params.get("era");
@@ -1951,7 +2337,7 @@
         updateCategoriesCount();
         updateProgress();
       }
-      if (qMode === "region" || qMode === "topology") state.mode = qMode;
+      if (qMode === "region" || qMode === "topology" || qMode === "world") state.mode = qMode;
       if (qNode) state.mode = "topology";
       if (qArea && REGIONS.some(function (r) { return r.id === qArea; })) state.area = qArea;
       if (qFloor) state.floor = qFloor;

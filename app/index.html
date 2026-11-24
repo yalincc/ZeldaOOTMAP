@@ -4,70 +4,32 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#18110b">
-<title>塞尔达传说：时之笛 区域探索地图 · Zelda OoT Interactive Map</title>
-<link rel="stylesheet" href="css/style.css?v=3">
+<title>塞尔达传说：时之笛 全能互动地图 · Zelda OoT Interactive Map</title>
+<link rel="stylesheet" href="css/style.css?v=4">
 </head>
 <body>
 
-<!-- 顶栏导航 -->
-<header class="topbar">
-  <div class="topbar-left">
-    <button class="icon-toggle" id="sidebarToggle" title="切换分类筛选栏">
-      <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
-        <path d="M4 6h16M4 12h16M4 18h16"/>
-      </svg>
-    </button>
-    <div class="logo">
-      <svg viewBox="0 0 24 24" width="22" height="22" fill="#eab308">
-        <polygon points="12,2 22,19 2,19" fill="#eab308"/>
-        <polygon points="12,19 7,10.5 17,10.5" fill="#15130e"/>
-      </svg>
-      <div class="logo-text">
-        <span class="logo-title">时之笛<em>区域探索地图</em></span>
-        <span class="logo-sub">Region Map · Topology</span>
-      </div>
-    </div>
-    <!-- 视图模式切换：默认区域地图，拓扑导图作为第二模式 -->
-    <div class="view-seg" id="viewSeg">
-      <button data-view="region" class="on">区域地图</button>
-      <button data-view="topology">拓扑导图</button>
-    </div>
-  </div>
-
-  <!-- 时代切换药丸 (Child / Adult / All) -->
-  <div class="era-seg" id="eraSeg">
-    <button data-era="All" class="era-btn">全部</button>
-    <button data-era="Child" class="era-btn on">童年</button>
-    <button data-era="Adult" class="era-btn">成年</button>
-  </div>
-
-  <!-- 全收集进度指示条 -->
-  <div class="progress-box" id="progressBox" title="全收集进度">
-    <div class="progress-info">
-      <span class="prog-txt">已完成</span>
-      <span class="prog-num" id="progNum">0 / 0</span>
-      <span class="prog-pct" id="progPct">0%</span>
-    </div>
-    <div class="progress-bar-bg">
-      <div class="progress-bar-fill" id="progBar"></div>
-    </div>
-  </div>
-
-  <div class="topbar-right">
-    <a class="btn-guide" href="../docs/oot100-guide.html" title="查看 100% 全收集攻略（243 项 / 14 大类）">📖 全收集攻略</a>
-    <button class="btn-edit-mode" id="btnEditMode" title="开启点位微调校准模式：可自由拖动图标对齐到地图地标">✏️ 校准点位</button>
-    <label class="toggle-done-lbl" title="在地图上隐藏已收集的点位">
-      <input type="checkbox" id="hideDoneChk">
-      <span>隐藏已收集</span>
-    </label>
-    <button class="btn-lang" id="langBtn" title="Switch Language">中 / EN</button>
-  </div>
-</header>
-
-<!-- 主工作区 -->
 <div class="main-wrap">
-  <!-- 左侧分类过滤面板 (GamerGuides 架构) -->
+  <!-- 左侧栏：品牌 / 搜索 / 视图 tabs / 时代 tabs / 列表 / 分类 / 进度 -->
   <aside class="sidebar" id="sidebar">
+    <div class="side-brand">
+      <div class="logo">
+        <svg viewBox="0 0 24 24" width="22" height="22" fill="#eab308" aria-hidden="true">
+          <polygon points="12,2 22,19 2,19" fill="#eab308"/>
+          <polygon points="12,19 7,10.5 17,10.5" fill="#15130e"/>
+        </svg>
+        <div class="logo-text">
+          <span class="logo-title">时之笛<em>全能地图</em></span>
+          <span class="logo-sub">OOT INTERACTIVE MAP</span>
+        </div>
+      </div>
+      <button class="icon-toggle" id="sidebarToggle" title="收起侧栏" aria-label="收起侧栏">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M4 6h16M4 12h16M4 18h16"/>
+        </svg>
+      </button>
+    </div>
+
     <!-- 实时搜索栏 -->
     <div class="search-box">
       <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
@@ -77,7 +39,46 @@
       <div class="search-results" id="searchResults" hidden></div>
     </div>
 
-    <!-- 区域列表（区域模式专用，按野外 / 迷宫分组） -->
+    <!-- 视图 tabs：区域 / 拓扑 / 全图 -->
+    <nav class="view-tabs" id="viewTabs" aria-label="地图视图">
+      <button class="view-tab on" data-view="region">
+        <span class="vt-ico" aria-hidden="true">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.7">
+            <path d="M4 6.5 9 4l6 2.5L20 4v13.5L15 20l-6-2.5L4 20z"/><path d="M9 4v13.5M15 6.5V20"/>
+          </svg>
+        </span>
+        <span class="vt-copy"><b>区域地图</b><small>单区查漏 · 楼层</small></span>
+        <span class="vt-meta" id="viewRegionMeta">31 区</span>
+      </button>
+      <button class="view-tab" data-view="topology">
+        <span class="vt-ico" aria-hidden="true">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.7">
+            <circle cx="6" cy="6" r="2.2"/><circle cx="18" cy="6" r="2.2"/><circle cx="12" cy="18" r="2.2"/>
+            <path d="M8.2 6h7.6M7 8l4 8M17 8l-4 8"/>
+          </svg>
+        </span>
+        <span class="vt-copy"><b>拓扑图</b><small>出入口 · 近道</small></span>
+        <span class="vt-meta" id="viewTopologyMeta">31 节点</span>
+      </button>
+      <button class="view-tab" data-view="world">
+        <span class="vt-ico" aria-hidden="true">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.7">
+            <circle cx="12" cy="12" r="8"/><path d="M4 12h16M12 4c3 3.2 3 12.8 0 16M12 4c-3 3.2-3 12.8 0 16"/>
+          </svg>
+        </span>
+        <span class="vt-copy"><b>全图</b><small>海拉鲁总览 · 完成度</small></span>
+        <span class="vt-meta" id="viewWorldMeta">21+10</span>
+      </button>
+    </nav>
+
+    <!-- 时代 tabs -->
+    <div class="era-seg side-era" id="eraSeg" aria-label="林克时代">
+      <button data-era="All" class="era-btn">全部</button>
+      <button data-era="Child" class="era-btn on">童年</button>
+      <button data-era="Adult" class="era-btn">成年</button>
+    </div>
+
+    <!-- 区域列表（区域 / 全图共用；按野外 / 迷宫分组） -->
     <div class="region-panel" id="regionPanel">
       <div class="panel-head">
         <span class="action-title">区域 · <em id="regionEraLbl">童年</em></span>
@@ -93,7 +94,7 @@
     </div>
 
     <!-- 批量控制 -->
-    <div class="filter-actions">
+    <div class="filter-actions" id="filterActions">
       <span class="action-title">分类筛选</span>
       <div class="action-btns">
         <button id="btnSelectAll">全选</button>
@@ -107,17 +108,34 @@
 
     <!-- 地标快速跳转 -->
     <div class="jump-section" id="jumpSection">
-      <div class="jump-header">
-        <span>出入口节点直达</span>
-      </div>
+      <div class="jump-header"><span>出入口节点直达</span></div>
       <div class="jump-chips" id="jumpChips"></div>
     </div>
+
+    <!-- 侧栏底部：总进度 -->
+    <div class="side-foot">
+      <div class="progress-box" id="progressBox" title="全收集进度">
+        <div class="progress-info">
+          <span class="prog-txt">全收集进度</span>
+          <span class="prog-num" id="progNum">0 / 0</span>
+          <span class="prog-pct" id="progPct">0%</span>
+        </div>
+        <div class="progress-bar-bg"><div class="progress-bar-fill" id="progBar"></div></div>
+      </div>
+    </div>
   </aside>
+
+  <!-- 侧栏收起后的浮动打开按钮 -->
+  <button class="side-open" id="sidebarOpen" title="展开侧栏" aria-label="展开侧栏">
+    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
+      <path d="M4 6h16M4 12h16M4 18h16"/>
+    </svg>
+  </button>
 
   <!-- 地图画板视口 -->
   <main class="map-stage" id="mapStage">
     <div class="map-viewport" id="mapViewport">
-      <!-- 区域单图模式：官方区域底图铺满 + 密集点位 + 楼层切换 -->
+      <!-- 区域单图模式 -->
       <div class="region-board" id="regionBoard" hidden>
         <div class="region-world" id="regionWorld">
           <img id="regionImg" alt="区域地图" draggable="false">
@@ -133,11 +151,23 @@
       </div>
 
       <!-- 拓扑导图大画布 -->
-      <div class="mindmap-board" id="mindmapBoard">
-        <!-- SVG 连线层 -->
+      <div class="mindmap-board" id="mindmapBoard" hidden>
         <svg class="topology-svg" id="topologySvg"></svg>
-        <!-- 节点层 -->
         <div class="nodes-layer" id="nodesLayer"></div>
+      </div>
+
+      <!-- 全图层：官方手绘全图 + 21 区域印章 + 10 迷宫入口 -->
+      <div class="world-board" id="worldBoard" hidden>
+        <div class="world-viewport" id="worldViewport">
+          <div class="world-canvas" id="worldCanvas">
+            <img id="worldImg" alt="海拉鲁全图" draggable="false" data-src="assets/ui/basemap_4608.webp">
+            <div class="world-pins" id="worldPins"></div>
+          </div>
+        </div>
+        <div class="world-caption">
+          <span>海拉鲁全境</span>
+          <small id="worldCaptionSub">21 区域 · 10 迷宫入口 · 点印章进区域</small>
+        </div>
       </div>
     </div>
 
@@ -149,7 +179,7 @@
       <button id="btnZoomFit" title="自适应全景 (⤢)">⤢</button>
     </div>
 
-    <!-- 出入口与近道悬浮说明卡片 (可点击双向跳转) -->
+    <!-- 出入口与近道悬浮说明卡片 -->
     <div class="edge-tooltip" id="edgeTooltip" hidden>
       <div class="edge-tt-header">
         <span class="edge-tt-badge" id="edgeTtBadge">近道暗道</span>
@@ -162,16 +192,16 @@
 
     <!-- 点位校准模式悬浮提示条 -->
     <div class="calibration-toast" id="calibrationToast" hidden>
-      <span class="cal-title">🛠️ 点位校准模式已开启</span>
-      <span class="cal-desc">直接拖拽任意图标至地图精确地标处 | 点击下方按钮导出最新坐标</span>
+      <span class="cal-title">点位校准模式已开启</span>
+      <span class="cal-desc">拖拽图标到精确地标；完成后导出坐标</span>
       <div class="cal-actions">
-        <button id="btnExportPins">📋 复制坐标数据</button>
-        <button id="btnDownloadPins">📥 下载更新文件 (pins_data.js)</button>
+        <button id="btnExportPins">复制坐标数据</button>
+        <button id="btnDownloadPins">下载 pins_data.js</button>
         <button id="btnExitCalMode">完成并退出</button>
       </div>
     </div>
 
-    <!-- 点位详情卡片 (GamerGuides 风格) -->
+    <!-- 点位详情卡片 -->
     <div class="detail-card" id="detailCard" hidden>
       <button class="card-close" id="cardClose" aria-label="关闭详情卡">×</button>
       <div class="card-header">
@@ -186,7 +216,6 @@
           <div class="card-area" id="cardArea">—</div>
         </div>
       </div>
-
       <div class="card-body">
         <div class="card-req-row" id="cardReqRow" hidden>
           <span class="req-label">前置要求:</span>
@@ -194,7 +223,6 @@
         </div>
         <div class="card-desc" id="cardDesc">—</div>
       </div>
-
       <div class="card-footer">
         <label class="card-collect-btn">
           <input type="checkbox" id="cardDoneChk">
@@ -202,17 +230,40 @@
         </label>
       </div>
     </div>
-    <!-- 页脚版本徽章（内容由 app.js 的 APP_VERSION 渲染） -->
-    <button class="mode-fab" id="modeFab" title="切换区域地图 / 拓扑导图">拓扑导图</button>
-    <div class="ver-badge" id="verBadge">ZELDA OOT MAP</div>
+
+    <!-- 左下角设置 -->
+    <button class="settings-btn" id="settingsBtn" title="设置" aria-label="设置">
+      <svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.7">
+        <circle cx="12" cy="12" r="3.2"/>
+        <path d="M12 4v2.2M12 17.8V20M4 12h2.2M17.8 12H20M6.3 6.3l1.6 1.6M16.1 16.1l1.6 1.6M17.7 6.3l-1.6 1.6M7.9 16.1l-1.6 1.6"/>
+      </svg>
+    </button>
+
+    <div class="settings-panel" id="settingsPanel" hidden>
+      <div class="settings-head">
+        <span>设置</span>
+        <button id="settingsClose" aria-label="关闭设置">×</button>
+      </div>
+      <label class="setting-row">
+        <span>隐藏已收集</span>
+        <input type="checkbox" id="hideDoneChk">
+      </label>
+      <button class="setting-row" id="langBtn">
+        <span>语言</span><em>中 / EN</em>
+      </button>
+      <button class="setting-row" id="btnEditMode">
+        <span>点位校准</span><em>高级</em>
+      </button>
+      <div class="settings-version" id="verBadge">ZELDA OOT MAP</div>
+    </div>
   </main>
 </div>
 
 <script src="js/icons.js?v=2"></script>
 <script src="data/topology_data.js?v=2"></script>
 <script src="data/regions.js?v=3"></script>
+<script src="data/world_data.js?v=2"></script>
 <script src="data/pins_data.js?v=2"></script>
-<script src="js/app.js?v=3"></script>
+<script src="js/app.js?v=5"></script>
 </body>
 </html>
-

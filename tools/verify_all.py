@@ -67,6 +67,32 @@ def check_data() -> None:
           f"{guide.stat().st_size if guide.exists() else 0} bytes")
     check("攻略口径 243 项", guide.exists() and "243" in guide.read_text(encoding="utf-8"))
     check_regions(pins)
+    check_world_anchors()
+
+
+def check_world_anchors() -> None:
+    """全图层锚点：21 野外 + 10 迷宫入口，且 id 全部能在 regions.js 找到。"""
+    world_path = APP / "data" / "world_data.js"
+    if not world_path.exists():
+        check("全图锚点 world_data.js 存在", False)
+        return
+    txt = world_path.read_text(encoding="utf-8")
+    doc = json.loads(re.search(r"window\.OOT_WORLD\s*=\s*({.*?});", txt, re.S).group(1))
+    fields = doc.get("fields", [])
+    dungeons = doc.get("dungeons", [])
+    check("全图野外锚点 = 21", len(fields) == 21, f"实际 {len(fields)}")
+    check("全图迷宫入口 = 10", len(dungeons) == 10, f"实际 {len(dungeons)}")
+
+    reg_txt = (APP / "data" / "regions.js").read_text(encoding="utf-8")
+    reg = json.loads(re.search(r"window\.OOT_REGIONS\s*=\s*({.*?});", reg_txt, re.S).group(1))
+    by_id = {a["id"]: a for a in reg["areas"]}
+    bad = [f["id"] for f in fields if f["id"] not in by_id or by_id[f["id"]]["kind"] != "field"]
+    bad += [d["id"] for d in dungeons if d["id"] not in by_id or by_id[d["id"]]["kind"] != "dungeon"]
+    bad += [d["host"] for d in dungeons if d["host"] not in by_id or by_id[d["host"]]["kind"] != "field"]
+    check("全图锚点 id 全部有效", not bad, f"无效 {bad}")
+    coords_bad = [x["id"] for x in fields + dungeons
+                  if not (0 <= x["x"] <= 1 and 0 <= x["y"] <= 1)]
+    check("全图锚点坐标在 0-1 内", not coords_bad, f"越界 {coords_bad}")
 
 
 def check_regions(pins: list[dict]) -> None:
@@ -125,7 +151,7 @@ def check_assets() -> None:
         return
 
     refs = set()
-    for name in ("topology_data.js", "pins_data.js", "regions.js", "maps_config.js"):
+    for name in ("topology_data.js", "pins_data.js", "regions.js", "maps_config.js", "world_data.js"):
         p = APP / "data" / name
         if not p.exists():
             continue
