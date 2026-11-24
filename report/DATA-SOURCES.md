@@ -4,11 +4,12 @@
 
 | 项 | 值 |
 |---|---|
-| 文件 | `app/assets/ui/basemap_4608.webp`（4608×3360，4.5 MB） |
+| 页面生效 | `app/assets/ui/basemap_2400.webp`（2400×1750，q85，1.37 MB） |
+| 重建源 | `app/assets/ui/basemap_4608.webp`（4608×3360，5.16 MB） |
 | 原名 | `MapTexWorldAll_00` |
 | 来源 | `UI/Layout2Archive/Common.Product.100.Nin_Ounce_NVN2.bntx` 内的一张 ASTC 4×4 纹理 |
 | 解码 | `tools/nvn_swizzle.py` 做 Switch 2 GOB 反交错 + `texture2ddecoder.decode_astc` |
-| 低带宽备选 | `app/assets/ui/basemap_2560.webp`（2560×1866，1.6 MB） |
+| 2400 派生 | 由 4608 原图等比缩放后 WebP q85 导出；锚点仍按同一 0–1 百分比，无需重算 |
 
 **这是游戏内那张官方海拉鲁全图本身**，不是社区重绘、不是截图拼接。
 

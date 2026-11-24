@@ -1870,7 +1870,7 @@ body.side-collapsed .side-open { display: grid; }
   position: absolute;
   width: 32px;
   height: 32px;
-  margin: -16px 0 0 -16px;
+  margin: 0;
   border-radius: 50%;
   display: grid;
   place-items: center;
@@ -1878,6 +1878,8 @@ body.side-collapsed .side-open { display: grid; }
   --pct: 0;
   background: conic-gradient(var(--gold) calc(var(--pct) * 1%), rgba(234, 179, 8, .2) 0);
   box-shadow: 0 2px 8px rgba(0, 0, 0, .75);
+  transform: translate(-50%, -50%) scale(var(--world-inv, 1));
+  transform-origin: 50% 50%;
   transition: transform .15s;
 }
 .world-seal::before {
@@ -1894,7 +1896,7 @@ body.side-collapsed .side-open { display: grid; }
   font: 700 10px/1 var(--font-ui, "Noto Sans SC", sans-serif);
   color: var(--gold);
 }
-.world-seal:hover { transform: scale(1.14); }
+.world-seal:hover { transform: translate(-50%, -50%) scale(calc(var(--world-inv, 1) * 1.14)); }
 .ws-label {
   position: absolute;
   left: 50%;
@@ -1924,10 +1926,12 @@ body.side-collapsed .side-open { display: grid; }
   position: absolute;
   width: 22px;
   height: 22px;
-  margin: -11px 0 0 -11px;
+  margin: 0;
   border: none;
   background: transparent;
   cursor: pointer;
+  transform: translate(-50%, -50%) scale(var(--world-inv, 1));
+  transform-origin: 50% 50%;
   transition: transform .15s;
   z-index: 2;
 }
@@ -1940,7 +1944,7 @@ body.side-collapsed .side-open { display: grid; }
   transform: rotate(45deg);
   box-shadow: 0 2px 7px rgba(0, 0, 0, .8);
 }
-.world-entry:hover { transform: scale(1.16); }
+.world-entry:hover { transform: translate(-50%, -50%) scale(calc(var(--world-inv, 1) * 1.16)); }
 .world-entry .we-mark {
   position: relative;
   display: grid;
@@ -2140,10 +2144,10 @@ body.side-collapsed .world-caption { left: 64px; }
   .side-open { left: 12px; top: 12px; }
   body.side-collapsed .region-head { left: 60px; top: 14px; }
   body.side-collapsed .world-caption { left: 60px; bottom: 16px; }
-  .world-seal { width: 24px; height: 24px; margin: -12px 0 0 -12px; }
+  .world-seal { width: 24px; height: 24px; margin: 0; }
   .world-seal::before { inset: 3px; }
   .world-seal .ws-mark { font-size: 8px; }
-  .world-entry { width: 17px; height: 17px; margin: -8.5px 0 0 -8.5px; }
+  .world-entry { width: 17px; height: 17px; margin: 0; }
   .world-entry .we-mark { font-size: 7px; }
   .world-caption { max-width: calc(100vw - 84px); padding: 7px 10px; }
   .world-caption span { font-size: 13px; }

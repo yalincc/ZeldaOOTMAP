@@ -158,8 +158,6 @@
       if (e === "All" || e === "Child" || e === "Adult") state.era = e;
       var hd = localStorage.getItem(KEY_HIDE_DONE);
       if (hd !== null) state.hideDone = (hd === "1");
-      var vw = localStorage.getItem(KEY_VIEW);
-      if (vw === "region" || vw === "topology" || vw === "world") state.mode = vw;
       var ar = localStorage.getItem(KEY_AREA);
       if (ar) state.area = ar;
     } catch (e) {}
@@ -171,7 +169,6 @@
       localStorage.setItem(KEY_LANG, state.lang);
       localStorage.setItem(KEY_ERA, state.era);
       localStorage.setItem(KEY_HIDE_DONE, state.hideDone ? "1" : "0");
-      localStorage.setItem(KEY_VIEW, state.mode);
       localStorage.setItem(KEY_AREA, state.area);
     } catch (e) {}
   }
@@ -761,7 +758,7 @@
       var loadWorld = function () {
         if (wl) wl.hidden = true;
         layoutWorldBase();
-        fitWorld();
+        enterWorldDefault();
         renderWorldPins();
       };
       if (wi && !wi.getAttribute("src")) {
@@ -891,6 +888,7 @@
   // 全图层：官方手绘全图 + 21 区域印章 + 10 迷宫入口
   // -------------------------------------------------------------
   var worldBase = { w: 0, h: 0, left: 0, top: 0 };
+  var worldZoomRaf = 0;
 
   function availableRegion(id) {
     return REGIONS.find(function (r) { return r.id === id; });
@@ -925,15 +923,66 @@
     var canvas = $("worldCanvas");
     if (!canvas) return;
     canvas.style.transform = "translate3d(" + state.worldTx + "px," + state.worldTy + "px,0) scale(" + state.worldZoom + ")";
+    var pins = $("worldPins");
+    if (pins) pins.style.setProperty("--world-inv", (1 / state.worldZoom).toFixed(4));
     var zp = $("zoomPercent");
     if (zp && state.mode === "world") zp.textContent = Math.round(state.worldZoom * 100) + "%";
   }
 
+  function focusWorldPoint(x, y, z) {
+    var board = $("worldBoard");
+    if (!board || !worldBase.w) return;
+    if (worldZoomRaf) { cancelAnimationFrame(worldZoomRaf); worldZoomRaf = 0; }
+    var W = board.clientWidth;
+    var H = board.clientHeight;
+    state.worldZoom = z;
+    state.worldTx = W / 2 - worldBase.left - x * worldBase.w * z;
+    state.worldTy = H / 2 - worldBase.top - y * worldBase.h * z;
+    applyWorldCam();
+  }
+
+  function enterWorldDefault() {
+    if (window.innerWidth <= 900 && window.OOT_WORLD) {
+      var f = window.OOT_WORLD.fields.find(function (x) { return x.id === "HyruleField"; });
+      if (f) { focusWorldPoint(f.x, f.y, 2.0); return; }
+    }
+    fitWorld();
+  }
+
   function fitWorld() {
+    if (worldZoomRaf) { cancelAnimationFrame(worldZoomRaf); worldZoomRaf = 0; }
     state.worldZoom = 1;
     state.worldTx = 0;
     state.worldTy = 0;
     applyWorldCam();
+  }
+
+  function animateWorldCam(targetZ, targetX, targetY) {
+    if (worldZoomRaf) cancelAnimationFrame(worldZoomRaf);
+    var z0 = state.worldZoom;
+    var x0 = state.worldTx;
+    var y0 = state.worldTy;
+    if (Math.abs(targetZ - z0) < 0.0005) {
+      state.worldTx = targetX;
+      state.worldTy = targetY;
+      applyWorldCam();
+      return;
+    }
+    var t0 = performance.now();
+    var step = function (now) {
+      var p = Math.min(1, (now - t0) / 90);
+      var e = 1 - Math.pow(1 - p, 3);
+      state.worldZoom = z0 + (targetZ - z0) * e;
+      state.worldTx = x0 + (targetX - x0) * e;
+      state.worldTy = y0 + (targetY - y0) * e;
+      applyWorldCam();
+      if (p < 1) {
+        worldZoomRaf = requestAnimationFrame(step);
+      } else {
+        worldZoomRaf = 0;
+      }
+    };
+    worldZoomRaf = requestAnimationFrame(step);
   }
 
   function worldZoomAt(factor, clientX, clientY) {
@@ -947,12 +996,11 @@
     if (Math.abs(newZoom - oldZoom) < 0.001) return;
     var wx = (px - worldBase.left - state.worldTx) / oldZoom;
     var wy = (py - worldBase.top - state.worldTy) / oldZoom;
-    state.worldZoom = newZoom;
-    state.worldTx = px - worldBase.left - wx * newZoom;
-    state.worldTy = py - worldBase.top - wy * newZoom;
+    var nx = px - worldBase.left - wx * newZoom;
+    var ny = py - worldBase.top - wy * newZoom;
     state.levelFocusX = clientX;
     state.levelFocusY = clientY;
-    applyWorldCam();
+    animateWorldCam(newZoom, nx, ny);
     scheduleLevelCheck();
   }
 
@@ -960,16 +1008,13 @@
     var box = $("worldPins");
     if (!box || !window.OOT_WORLD) return;
     box.innerHTML = "";
-    var sub = $("worldCaptionSub");
-    if (sub) {
-      sub.textContent = state.lang === "zh"
-        ? "21 区域 · 10 迷宫入口 · 点印章进区域"
-        : "21 regions · 10 dungeon entrances · click a seal";
-    }
+    var fieldCount = 0;
+    var entryCount = 0;
 
     window.OOT_WORLD.fields.forEach(function (f) {
       var r = availableRegion(f.id);
       if (!r || !isRegionAvailable(r)) return;
+      fieldCount++;
       var list = regionPinsForEra(r);
       var done = list.filter(function (p) { return !!state.donePins[p.id]; }).length;
       var total = list.length;
@@ -998,6 +1043,7 @@
     window.OOT_WORLD.dungeons.forEach(function (d) {
       var r = availableRegion(d.id);
       if (!r || !isRegionAvailable(r)) return;
+      entryCount++;
       var host = availableRegion(d.host);
       var mark = document.createElement("div");
       mark.className = "world-entry";
@@ -1018,6 +1064,16 @@
       });
       box.appendChild(mark);
     });
+
+    var sub = $("worldCaptionSub");
+    if (sub) {
+      var mobile = window.innerWidth <= 900;
+      sub.textContent = state.lang === "zh"
+        ? (mobile ? fieldCount + "+" + entryCount + " · 双指缩放 · ⤢ 总览 · 点印章进区域"
+                  : fieldCount + " 区域 · " + entryCount + " 迷宫入口 · 点印章进区域")
+        : (mobile ? fieldCount + "+" + entryCount + " · pinch · ⤢ overview · tap a seal"
+                  : fieldCount + " regions · " + entryCount + " dungeon entrances · click a seal");
+    }
   }
 
   function bindWorldEvents() {
@@ -1029,6 +1085,7 @@
       if (e.button !== undefined && e.button !== 0) return;
       if (e.target.closest(".world-seal") || e.target.closest(".world-entry") ||
           e.target.closest(".zoom-controls") || e.target.closest(".world-caption")) return;
+      if (worldZoomRaf) { cancelAnimationFrame(worldZoomRaf); worldZoomRaf = 0; }
       state.worldDragging = true;
       state.worldDragMoved = false;
       state.worldDragStartX = e.clientX;

@@ -177,6 +177,11 @@ def check_pages() -> None:
     check("版本徽章存在", 'id="verBadge"' in html)
     app_js = (APP / "js" / "app.js").read_text(encoding="utf-8")
     check("APP_VERSION 单一真源", 'APP_VERSION = "' in app_js)
+    check("默认视图 = 区域图", 'mode: "region"' in app_js)
+    check("三层阈值常量完整",
+          all(t in app_js for t in ("regionOut: 0.33", "topoOut: 0.17", "worldIn: 1.5", "topoIn: 2.0")))
+    check("全图移动端阈值 2.6", 'window.innerWidth <= 900 ? 2.6 : LEVEL.worldIn' in app_js)
+    check("全图 URL 路由", 'qMode === "world"' in app_js and 'data-view="world"' in html)
     check("未残留旧数据脚本 grid_layout.js / pins.js",
           "grid_layout.js" not in html and 'src="data/pins.js"' not in html)
 

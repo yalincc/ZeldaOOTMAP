@@ -12,7 +12,7 @@
       zh: "海拉鲁全境大世界",
       en: "Hyrule Overworld",
       type: "overworld",
-      file: "assets/ui/basemap_4608.webp",
+      file: "assets/ui/basemap_2400.webp",
       w: 4608,
       h: 3360,
       eras: ["Child", "Adult", "Both"]
