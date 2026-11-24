@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#18110b">
+<title>塞尔达传说：时之笛 拓扑思维导图互动地图 · Zelda OoT Interactive Mindmap</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- 顶栏导航 -->
+<header class="topbar">
+  <div class="topbar-left">
+    <button class="icon-toggle" id="sidebarToggle" title="切换分类筛选栏">
+      <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M4 6h16M4 12h16M4 18h16"/>
+      </svg>
+    </button>
+    <div class="logo">
+      <svg viewBox="0 0 24 24" width="22" height="22" fill="#eab308">
+        <polygon points="12,2 22,19 2,19" fill="#eab308"/>
+        <polygon points="12,19 7,10.5 17,10.5" fill="#15130e"/>
+      </svg>
+      <div class="logo-text">
+        <span class="logo-title">时之笛<em>出入口拓扑导图</em></span>
+        <span class="logo-sub">Hyrule Topological Mindmap</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 时代切换药丸 (Child / Adult / All) -->
+  <div class="era-seg" id="eraSeg">
+    <button data-era="All" class="era-btn">全部</button>
+    <button data-era="Child" class="era-btn on">童年</button>
+    <button data-era="Adult" class="era-btn">成年</button>
+  </div>
+
+  <!-- 全收集进度指示条 -->
+  <div class="progress-box" id="progressBox" title="全收集进度">
+    <div class="progress-info">
+      <span class="prog-txt">已完成</span>
+      <span class="prog-num" id="progNum">0 / 0</span>
+      <span class="prog-pct" id="progPct">0%</span>
+    </div>
+    <div class="progress-bar-bg">
+      <div class="progress-bar-fill" id="progBar"></div>
+    </div>
+  </div>
+
+  <div class="topbar-right">
+    <a class="btn-guide" href="../docs/oot100-guide.html" title="查看 100% 全收集攻略（243 项 / 14 大类）">📖 全收集攻略</a>
+    <button class="btn-edit-mode" id="btnEditMode" title="开启点位微调校准模式：可自由拖动图标对齐到地图地标">✏️ 校准点位</button>
+    <label class="toggle-done-lbl" title="在地图上隐藏已收集的点位">
+      <input type="checkbox" id="hideDoneChk">
+      <span>隐藏已收集</span>
+    </label>
+    <button class="btn-lang" id="langBtn" title="Switch Language">中 / EN</button>
+  </div>
+</header>
+
+<!-- 主工作区 -->
+<div class="main-wrap">
+  <!-- 左侧分类过滤面板 (GamerGuides 架构) -->
+  <aside class="sidebar" id="sidebar">
+    <!-- 实时搜索栏 -->
+    <div class="search-box">
+      <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
+        <circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/>
+      </svg>
+      <input type="search" id="searchInput" placeholder="搜索点位、物品、地点..." autocomplete="off">
+      <div class="search-results" id="searchResults" hidden></div>
+    </div>
+
+    <!-- 批量控制 -->
+    <div class="filter-actions">
+      <span class="action-title">分类筛选</span>
+      <div class="action-btns">
+        <button id="btnSelectAll">全选</button>
+        <button id="btnDeselectAll">清空</button>
+      </div>
+    </div>
+
+    <!-- 分类列表 (带自制矢量图标与计数) -->
+    <div class="cat-list" id="catList"></div>
+
+    <!-- 地标快速跳转 -->
+    <div class="jump-section" id="jumpSection">
+      <div class="jump-header">
+        <span>出入口节点直达</span>
+      </div>
+      <div class="jump-chips" id="jumpChips"></div>
+    </div>
+  </aside>
+
+  <!-- 地图画板视口 -->
+  <main class="map-stage" id="mapStage">
+    <div class="map-viewport" id="mapViewport">
+      <!-- 拓扑导图大画布 -->
+      <div class="mindmap-board" id="mindmapBoard">
+        <!-- SVG 连线层 -->
+        <svg class="topology-svg" id="topologySvg"></svg>
+        <!-- 节点层 -->
+        <div class="nodes-layer" id="nodesLayer"></div>
+      </div>
+    </div>
+
+    <!-- 缩放悬浮控制器 -->
+    <div class="zoom-controls">
+      <button id="btnZoomIn" title="放大 (+)">+</button>
+      <span id="zoomPercent">100%</span>
+      <button id="btnZoomOut" title="缩小 (−)">−</button>
+      <button id="btnZoomFit" title="自适应全景 (⤢)">⤢</button>
+    </div>
+
+    <!-- 出入口与近道悬浮说明卡片 (可点击双向跳转) -->
+    <div class="edge-tooltip" id="edgeTooltip" hidden>
+      <div class="edge-tt-header">
+        <span class="edge-tt-badge" id="edgeTtBadge">近道暗道</span>
+        <span class="edge-tt-title" id="edgeTtTitle">水下潜水近道</span>
+      </div>
+      <div class="edge-tt-route" id="edgeTtRoute">迷失森林 ⟷ 卓拉河</div>
+      <div class="edge-tt-desc" id="edgeTtDesc">迷失森林水池深潜直通卓拉河（需银之鳞片）</div>
+      <div class="edge-tt-hint">💡 点击连线即可在两地之间来回跳转</div>
+    </div>
+
+    <!-- 点位校准模式悬浮提示条 -->
+    <div class="calibration-toast" id="calibrationToast" hidden>
+      <span class="cal-title">🛠️ 点位校准模式已开启</span>
+      <span class="cal-desc">直接拖拽任意图标至地图精确地标处 | 点击下方按钮导出最新坐标</span>
+      <div class="cal-actions">
+        <button id="btnExportPins">📋 复制坐标数据</button>
+        <button id="btnDownloadPins">📥 下载更新文件 (pins_data.js)</button>
+        <button id="btnExitCalMode">完成并退出</button>
+      </div>
+    </div>
+
+    <!-- 点位详情卡片 (GamerGuides 风格) -->
+    <div class="detail-card" id="detailCard" hidden>
+      <button class="card-close" id="cardClose" aria-label="关闭详情卡">×</button>
+      <div class="card-header">
+        <div class="card-icon-wrap" id="cardIconWrap"></div>
+        <div class="card-titles">
+          <div class="card-tags">
+            <span class="tag-cat" id="cardCatTag">心之碎片</span>
+            <span class="tag-era" id="cardEraTag">童年</span>
+            <span class="tag-time" id="cardTimeTag">白天</span>
+          </div>
+          <h2 class="card-title" id="cardTitle">—</h2>
+          <div class="card-area" id="cardArea">—</div>
+        </div>
+      </div>
+
+      <div class="card-body">
+        <div class="card-req-row" id="cardReqRow" hidden>
+          <span class="req-label">前置要求:</span>
+          <span class="req-val" id="cardReqVal">—</span>
+        </div>
+        <div class="card-desc" id="cardDesc">—</div>
+      </div>
+
+      <div class="card-footer">
+        <label class="card-collect-btn">
+          <input type="checkbox" id="cardDoneChk">
+          <span class="collect-text">标记为已收集</span>
+        </label>
+      </div>
+    </div>
+  </main>
+</div>
+
+<script src="js/icons.js"></script>
+<script src="data/topology_data.js"></script>
+<script src="data/pins_data.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#18110b">
+<title>时之笛 100% 全收集攻略 · OoT 100% Guide</title>
+<style>
+  :root{
+    --bg:#171208; --bg2:#221a0e; --card:#2a2113; --card2:#352a18;
+    --gold:#d4af37; --gold2:#f3dd97; --line:#5a4522; --line2:#3d2f18;
+    --text:#efe6d2; --muted:#b0a07c;
+    --child:#8fd08a; --adult:#8fc0e8; --either:#e8cd72; --night:#c29ad9;
+    --radius:14px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+  body{
+    background:var(--bg);color:var(--text);
+    font-family:system-ui,-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;
+    line-height:1.55;min-height:100vh;
+    background-image:radial-gradient(1100px 520px at 82% -8%,rgba(212,175,55,.11),transparent 60%),
+                     radial-gradient(900px 500px at -5% 30%,rgba(212,175,55,.05),transparent 60%);
+  }
+  a{color:var(--gold2)}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 16px 90px}
+
+  header.top{position:sticky;top:0;z-index:30;background:rgba(23,18,8,.95);backdrop-filter:blur(9px);border-bottom:1px solid var(--line)}
+  .top-inner{max-width:1180px;margin:0 auto;padding:11px 16px}
+  .title-row{display:flex;align-items:center;gap:11px;flex-wrap:wrap}
+  .title-row h1{font-size:17px;font-weight:900;color:var(--gold2);letter-spacing:.4px}
+  .title-row .sub{font-size:11px;color:var(--muted)}
+  .spacer{flex:1}
+  .btn{border:1px solid var(--line);background:var(--card2);color:var(--text);border-radius:10px;padding:7px 12px;font-size:12.5px;cursor:pointer;font-family:inherit;text-decoration:none;display:inline-flex;align-items:center;gap:5px;white-space:nowrap}
+  .btn:hover{border-color:var(--gold);color:var(--gold2)}
+  .btn.primary{border-color:var(--gold);color:var(--gold2)}
+  .progress-head{margin-top:9px}
+  .progress-meta{display:flex;justify-content:space-between;font-size:12.5px;color:var(--muted);margin-bottom:5px;flex-wrap:wrap;gap:6px}
+  .progress-meta b{color:var(--gold2);font-variant-numeric:tabular-nums}
+  .bar{height:10px;border-radius:99px;background:#0d0a05;overflow:hidden;border:1px solid var(--line)}
+  .bar>i{display:block;height:100%;width:0;background:linear-gradient(90deg,#8a6d1f,var(--gold),var(--gold2));border-radius:99px;transition:width .35s}
+
+  /* 主视图 tab */
+  .viewtabs{display:flex;gap:8px;margin:16px 0 4px;flex-wrap:wrap;border-bottom:1px solid var(--line2);padding-bottom:10px}
+  .viewtabs button{border:1px solid var(--line2);background:var(--card);color:var(--muted);border-radius:11px;padding:9px 16px;font-size:13.5px;font-weight:700;cursor:pointer;font-family:inherit}
+  .viewtabs button small{display:block;font-size:10.5px;font-weight:400;color:var(--muted);margin-top:2px}
+  .viewtabs button.on{background:linear-gradient(180deg,#3d2f18,#2a2113);border-color:var(--gold);color:var(--gold2)}
+  .viewtabs button.on small{color:var(--gold)}
+
+  .notice{margin:12px 0 4px;border:1px solid var(--line);background:linear-gradient(180deg,rgba(212,175,55,.08),rgba(42,33,19,.5));border-radius:var(--radius);padding:11px 14px;font-size:12.5px;color:var(--muted)}
+  .notice b{color:var(--gold2)}
+
+  .toolbar{display:flex;flex-wrap:wrap;gap:9px;align-items:center;margin:14px 0}
+  .toolbar label.lbl{font-size:12px;color:var(--muted);white-space:nowrap}
+  input[type=search],select{background:var(--card);border:1px solid var(--line);color:var(--text);border-radius:10px;padding:7px 10px;font-size:12.5px;font-family:inherit;min-width:130px}
+  input[type=search]{flex:1;min-width:170px}
+  .chips{display:flex;flex-wrap:wrap;gap:6px}
+  .chip{border:1px solid var(--line);background:var(--card);color:var(--muted);border-radius:99px;padding:5px 11px;font-size:11.5px;cursor:pointer;font-family:inherit}
+  .chip.on{background:var(--card2);border-color:var(--gold);color:var(--gold2)}
+
+  /* —— 时间线 —— */
+  .timeline{position:relative;margin-top:8px;padding-left:40px}
+  .timeline::before{content:"";position:absolute;left:14px;top:6px;bottom:6px;width:2px;background:linear-gradient(180deg,var(--gold),var(--line),var(--gold))}
+  .phase{position:relative;margin-bottom:18px;scroll-margin-top:130px}
+  .phase::before{content:"";position:absolute;left:-33px;top:18px;width:14px;height:14px;border-radius:50%;background:var(--bg);border:3px solid var(--gold);box-shadow:0 0 0 4px rgba(212,175,55,.12)}
+  .phase.era-child::before{border-color:var(--child);box-shadow:0 0 0 4px rgba(143,208,138,.12)}
+  .phase.era-adult::before{border-color:var(--adult);box-shadow:0 0 0 4px rgba(143,192,232,.12)}
+  .phase-card{background:var(--card);border:1px solid var(--line2);border-radius:var(--radius);padding:15px 17px}
+  .phase-head{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:8px}
+  .phase-no{font-size:11px;color:var(--gold);font-weight:800;border:1px solid var(--line);border-radius:7px;padding:2px 8px}
+  .phase-head h2{font-size:15px;color:var(--gold2)}
+  .era-badge{font-size:10.5px;border-radius:6px;padding:2px 8px;border:1px solid var(--line2)}
+  .era-child .era-badge{color:var(--child);border-color:#3c6b3a}
+  .era-adult .era-badge{color:var(--adult);border-color:#3a5c78}
+  .era-both .era-badge{color:var(--either);border-color:#7a6428}
+  .phase-story{font-size:12.5px;color:var(--text);margin-bottom:10px}
+  .phase-row{display:flex;gap:9px;margin:7px 0;font-size:12px}
+  .phase-row .tagk{flex:0 0 62px;color:var(--gold);font-weight:700}
+  .phase-row .tagv{color:var(--muted)}
+  .phase-row.todo{display:block}
+  .phase-row.todo ul{margin:5px 0 0 18px;color:var(--muted)}
+  .phase-row.todo li{margin:3px 0}
+  .phase-jump{display:flex;flex-wrap:wrap;gap:6px;margin-top:11px;border-top:1px dashed var(--line2);padding-top:10px}
+  .phase-jump .lead{font-size:11px;color:var(--muted);align-self:center;margin-right:2px}
+  .jump-btn{border:1px solid var(--line);background:var(--card2);color:var(--gold2);border-radius:99px;padding:4px 10px;font-size:11px;cursor:pointer;font-family:inherit}
+  .jump-btn:hover{border-color:var(--gold)}
+  .phase-prog{font-size:11px;color:var(--muted);margin-left:auto;align-self:center}
+
+  /* —— 主线导图（默认视图） —— */
+  .mg-intro{margin:10px 0 4px;font-size:12.5px;color:var(--muted)}
+  .mg-intro b{color:var(--gold2)}
+  .mg-rail{display:flex;gap:0;overflow-x:auto;margin:14px 0 20px;padding:6px 4px 14px;position:relative}
+  .mg-rail::before{content:"";position:absolute;left:24px;right:24px;top:20px;height:2px;background:linear-gradient(90deg,var(--child),var(--gold),var(--adult))}
+  .mg-node{flex:0 0 104px;position:relative;text-align:center;cursor:pointer;padding-top:0;background:none;border:0;font-family:inherit}
+  .mg-dot{width:16px;height:16px;border-radius:50%;margin:12px auto 8px;background:var(--bg);border:3px solid var(--gold);position:relative;z-index:2;box-shadow:0 0 0 4px var(--bg);transition:transform .15s}
+  .mg-node.child .mg-dot{border-color:var(--child)}
+  .mg-node.adult .mg-dot{border-color:var(--adult)}
+  .mg-node.both .mg-dot{border-color:var(--either)}
+  .mg-node.on .mg-dot{transform:scale(1.45);box-shadow:0 0 0 5px rgba(212,175,55,.18),0 0 12px var(--gold)}
+  .mg-node .mg-lb{font-size:11.5px;color:var(--muted);line-height:1.3}
+  .mg-node.on .mg-lb{color:var(--gold2);font-weight:800}
+  .mg-node .mg-no{font-size:10px;color:var(--gold);opacity:.75}
+  .mg-focus{margin-top:6px;border:1px solid var(--line);border-radius:var(--radius);background:linear-gradient(180deg,rgba(212,175,55,.06),rgba(42,33,19,.3));padding:16px 18px;scroll-margin-top:130px}
+  .mg-focus-head{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:7px}
+  .mg-focus-head h2{font-size:16px;color:var(--gold2)}
+  .mg-focus-head .mg-fprog{margin-left:auto;font-size:11.5px;color:var(--muted)}
+  .mg-story{font-size:12.5px;color:var(--text);margin-bottom:4px}
+  .mg-unlock{font-size:12px;color:var(--muted);margin-bottom:16px}
+  .mg-unlock b{color:var(--gold2);font-weight:700}
+  .mg-branch{position:relative;margin-top:12px}
+  .mg-spine{height:4px;border-radius:4px;background:linear-gradient(90deg,var(--gold),transparent);position:relative}
+  .mg-spine::after{content:"▶";position:absolute;right:-4px;top:-9px;color:var(--gold);font-size:12px}
+  .mg-locs{display:flex;flex-wrap:wrap;gap:12px;margin-top:18px;position:relative;z-index:2}
+  .mg-loc{flex:1 1 190px;max-width:280px;background:var(--card);border:1px solid var(--line2);border-radius:12px;padding:11px 13px;transition:border-color .15s}
+  .mg-loc:hover{border-color:#7a5f2c}
+  .mg-kind{display:inline-block;font-size:10px;border-radius:6px;padding:2px 8px;margin-bottom:6px;font-weight:700}
+  .mg-kind.main{color:var(--gold2);background:rgba(212,175,55,.14);border:1px solid var(--line)}
+  .mg-kind.boss{color:#f0b98a;background:rgba(217,119,61,.14);border:1px solid #6b4526}
+  .mg-kind.col{color:var(--child);background:rgba(143,208,138,.12);border:1px solid #3c6b3a}
+  .mg-kind.side{color:var(--adult);background:rgba(143,192,232,.12);border:1px solid #3a5c78}
+  .mg-loc h3{font-size:13px;color:var(--text);margin-bottom:6px}
+  .mg-loc ul{margin:0;padding-left:16px}
+  .mg-loc li{font-size:11.5px;color:var(--muted);margin:4px 0;line-height:1.5}
+  .mg-tip{margin-top:8px;font-size:11px;color:#f0b98a;border-top:1px dashed var(--line2);padding-top:6px}
+  .mg-loc.opens{cursor:pointer}
+  .mg-loc.opens:hover{border-color:var(--gold)}
+  .mg-lochead{display:flex;align-items:center;gap:8px}
+  .mg-lochead .caret{font-size:11px;color:var(--muted);transition:transform .15s;margin-left:auto}
+  .mg-loc.open .mg-lochead .caret{transform:rotate(90deg)}
+  .mg-detail{margin-top:10px;border-top:1px dashed var(--line2);padding-top:8px}
+  .mg-drow{display:flex;gap:9px;align-items:flex-start;padding:6px 0;border-bottom:1px solid rgba(90,69,34,.22)}
+  .mg-drow:last-child{border-bottom:0}
+  .mg-dcheck{flex:0 0 18px;width:18px;height:18px;margin-top:1px;cursor:pointer;border:1.5px solid var(--line);border-radius:5px;background:#0d0a05;display:grid;place-items:center;color:var(--gold2);font-size:11px;user-select:none}
+  .mg-drow.done .mg-dcheck{background:var(--gold);border-color:var(--gold);color:#171208}
+  .mg-drow.done .mg-dname{text-decoration:line-through;color:var(--muted)}
+  .mg-dmeta{flex:1;min-width:0}
+  .mg-dname{font-size:12px;color:var(--text);font-weight:700}
+  .mg-dname .dno{font-size:10.5px;color:var(--gold);margin-right:5px;font-variant-numeric:tabular-nums}
+  .mg-dage{font-size:10px;border-radius:5px;padding:1px 5px;margin-left:5px;border:1px solid var(--line2);color:var(--muted)}
+  .mg-dage.child{color:var(--child);border-color:#3c6b3a}
+  .mg-dage.adult{color:var(--adult);border-color:#3a5c78}
+  .mg-dage.night{color:var(--night);border-color:#5f4775}
+  .mg-ddesc{font-size:11px;color:var(--muted);line-height:1.5;margin-top:2px}
+  .mg-dempty{font-size:11px;color:var(--muted);line-height:1.5;padding:4px 0}
+  .mg-locimg{margin-top:7px;border:1px solid var(--line2);border-radius:9px;overflow:hidden;background:#0d0a05;position:relative;line-height:0}
+  .mg-locimg img{width:100%;height:auto;display:block;object-fit:contain;max-height:190px}
+  .mg-locimg .pin{position:absolute;width:22px;height:22px;transform:translate(-50%,-50%);pointer-events:none}
+  .mg-locimg .pin::before{content:"";position:absolute;left:50%;top:50%;width:15px;height:15px;transform:translate(-50%,-50%);background:var(--gold);border:2px solid #171208;border-radius:50%;box-shadow:0 0 0 2px var(--gold2),0 0 10px rgba(212,175,55,.8)}
+  .mg-locimg .pin::after{content:"";position:absolute;left:50%;top:50%;width:5px;height:5px;transform:translate(-50%,-50%);background:#171208;border-radius:50%;z-index:2}
+  .mg-locimg .lbl{position:absolute;left:6px;top:6px;line-height:1.3;font-size:10px;color:var(--gold2);background:rgba(23,18,8,.88);border:1px solid var(--line);border-radius:6px;padding:2px 7px}
+  .mg-locimg img.broken{display:none}
+  .mg-lines{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:1;overflow:visible}
+  .mg-jump{margin-top:14px;border-top:1px dashed var(--line2);padding-top:11px;display:flex;flex-wrap:wrap;gap:7px;align-items:center}
+  .mg-jump .lead{font-size:11px;color:var(--muted);margin-right:2px}
+  .mg-nav{display:flex;gap:9px;margin-top:16px}
+  .mg-nav button{flex:1;border:1px solid var(--line);background:var(--card);color:var(--gold2);border-radius:10px;padding:9px;font-size:12.5px;cursor:pointer;font-family:inherit}
+  .mg-nav button:hover{border-color:var(--gold)}
+  .mg-nav button:disabled{opacity:.35;cursor:default}
+  /* —— 任务线 / 清单 —— */
+  .track-intro{margin:10px 0 4px;font-size:12.5px;color:var(--muted)}
+  section.cat{margin-top:24px;scroll-margin-top:130px}
+  .cat-head{display:flex;align-items:center;gap:10px;margin-bottom:11px;flex-wrap:wrap;border-bottom:1px solid var(--line2);padding-bottom:8px}
+  .cat-head .icon{font-size:19px}
+  .cat-head h2{font-size:15px;font-weight:800;color:var(--gold2)}
+  .cat-head .count{font-size:11.5px;color:var(--muted);font-variant-numeric:tabular-nums}
+  .cat-head .cat-bar{flex:1;min-width:70px;height:6px;border-radius:99px;background:#0d0a05;border:1px solid var(--line);overflow:hidden;max-width:200px}
+  .cat-head .cat-bar i{display:block;height:100%;background:var(--gold);width:0;transition:width .35s}
+  .cat-head .mini{border:1px solid var(--line2);background:var(--card);color:var(--muted);border-radius:8px;padding:4px 9px;font-size:11px;cursor:pointer;font-family:inherit}
+  .cat-head .mini:hover{border-color:var(--gold);color:var(--gold2)}
+  .track-head{display:flex;align-items:center;gap:12px;margin:30px 0 6px;padding:14px 16px;background:linear-gradient(180deg,rgba(212,175,55,.07),rgba(42,33,19,.35));border:1px solid var(--line);border-radius:var(--radius);scroll-margin-top:130px}
+  .track-head .icon{font-size:24px}
+  .track-head h2{font-size:16px;color:var(--gold2)}
+  .track-head p{font-size:12px;color:var(--muted);margin-top:3px}
+  .track-head .tpct{margin-left:auto;font-size:13px;color:var(--gold2);font-weight:700;font-variant-numeric:tabular-nums;white-space:nowrap}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(310px,1fr));gap:11px}
+  .card{background:var(--card);border:1px solid var(--line2);border-radius:var(--radius);padding:12px 13px;display:flex;gap:11px;transition:border-color .15s,opacity .15s}
+  .card:hover{border-color:#7a5f2c}
+  .card.done{opacity:.5}
+  .card.key{border-left:3px solid var(--gold)}
+  .check{flex:0 0 22px;width:22px;height:22px;margin-top:2px;cursor:pointer;border:2px solid var(--line);border-radius:7px;background:#0d0a05;display:grid;place-items:center;color:var(--gold2);font-size:13px;user-select:none}
+  .card.done .check{background:var(--gold);border-color:var(--gold);color:#171208}
+  .card-body{flex:1;min-width:0}
+  .card-top{display:flex;gap:8px;align-items:baseline;flex-wrap:wrap}
+  .no{font-size:11.5px;color:var(--gold);font-weight:700;font-variant-numeric:tabular-nums}
+  .name{font-size:13.5px;font-weight:700;color:var(--text)}
+  .card.done .name{text-decoration:line-through;color:var(--muted)}
+  .tags{display:flex;flex-wrap:wrap;gap:5px;margin:6px 0}
+  .tag{font-size:10.5px;border-radius:6px;padding:2px 7px;border:1px solid var(--line2);color:var(--muted)}
+  .tag.age-child{color:var(--child);border-color:#3c6b3a}
+  .tag.age-adult{color:var(--adult);border-color:#3a5c78}
+  .tag.age-either{color:var(--either);border-color:#7a6428}
+  .tag.time-night{color:var(--night);border-color:#5f4775}
+  .tag.group{color:var(--muted)}
+  .desc{font-size:12px;color:var(--muted);margin-top:3px}
+  .reward{font-size:11.5px;color:var(--gold2);margin-top:6px}
+
+  .info{margin-top:28px;border:1px solid var(--line);border-radius:var(--radius);background:var(--card);padding:15px 17px}
+  .info h2{font-size:14px;color:var(--gold2);margin-bottom:9px}
+  .info p,.info li{font-size:12.5px;color:var(--muted)}
+  .info ul,.info ol{margin-left:20px}
+  .info li{margin:4px 0}
+  .info b{color:var(--text)}
+  .info table{width:100%;border-collapse:collapse;margin-top:8px;font-size:12.5px}
+  .info th,.info td{border:1px solid var(--line2);padding:6px 9px;text-align:left;color:var(--muted)}
+  .info th{color:var(--gold2);background:rgba(212,175,55,.06)}
+  details{margin-top:14px}
+  details summary{cursor:pointer;color:var(--gold2);font-size:13px;font-weight:700;list-style:none}
+  details summary::-webkit-details-marker{display:none}
+  details summary::before{content:"▸ ";color:var(--gold)}
+  details[open] summary::before{content:"▾ "}
+  details .info{margin-top:9px}
+  .empty{padding:40px 0;text-align:center;color:var(--muted);font-size:14px}
+  footer{margin-top:42px;font-size:11.5px;color:var(--muted);border-top:1px solid var(--line2);padding-top:15px;line-height:1.7}
+  @media(max-width:640px){
+    .grid{grid-template-columns:1fr}
+    .title-row h1{font-size:15px}
+    input[type=search]{min-width:100%}
+    .timeline{padding-left:28px}
+    .phase::before{left:-21px}
+  }
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="top-inner">
+    <div class="title-row">
+      <h1>🗡️ 时之笛 · 100% 全收集攻略</h1>
+      <span class="sub">Switch 2 重制版口径 · 进度自动保存在本机</span>
+      <div class="spacer"></div>
+      <a class="btn primary" href="../app/index.html">🗺️ 返回地图</a>
+      <button class="btn" id="exportBtn">📤 导出进度</button>
+      <button class="btn" id="resetBtn">清空勾选</button>
+    </div>
+    <div class="progress-head">
+      <div class="progress-meta">
+        <span>总完成度 <b id="doneCount">0</b> / <span id="totalCount">0</span> · 目标 100% 收集</span>
+        <span id="pctText">0%</span>
+      </div>
+      <div class="bar"><i id="totalBar"></i></div>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+  <div class="viewtabs" id="viewtabs">
+    <button data-view="map" class="on">🌳 主线导图<small>主线主干 → 地点 → 任务 / 收集</small></button>
+    <button data-view="timeline">🕰️ 剧情时间线<small>什么时候做什么、收什么</small></button>
+    <button data-view="track">🧭 任务线<small>按目标归类，逐条查漏</small></button>
+    <button data-view="list">📋 全部分类<small>原 14 类 243 项</small></button>
+  </div>
+
+  <div class="notice" id="notice">
+    📌 <b>版本口径</b>：按 <b>Switch 2 重制版（2026）</b> 编写；与 N64 / 3DS 老版有差异（蜘蛛奖励改响音石、第 5 瓶靠卖大魄、猫头鹰像为新增）。来源：QuestFern / Zelda Central / 游侠网 / GAMES.GG 四源交叉核对，共 <b>243 项 / 14 类</b>。
+  </div>
+
+  <div class="toolbar" id="toolbar">
+    <input type="search" id="search" placeholder="搜索名称 / 地点 / 前置道具…">
+    <select id="regionFilter"><option value="">全部地区</option></select>
+    <div class="chips" id="ageChips">
+      <button class="chip on" data-age="">全部时期</button>
+      <button class="chip" data-age="child">幼年</button>
+      <button class="chip" data-age="adult">成年</button>
+    </div>
+    <div class="chips" id="timeChips">
+      <button class="chip on" data-time="">不限昼夜</button>
+      <button class="chip" data-time="night">仅夜晚</button>
+    </div>
+  </div>
+
+  <main id="list"></main>
+
+  <details>
+    <summary>🎯 蜘蛛里程碑奖励 &amp; 效率提示（点击展开）</summary>
+    <div class="info">
+      <h2>黄金骷髅蜘蛛 · 累计奖励</h2>
+      <table>
+        <tr><th>累计</th><th>奖励</th></tr>
+        <tr><td>10 枚</td><td>大人钱包（上限 500 卢比）</td></tr>
+        <tr><td>20 枚</td><td><b>响音石</b>（回声宝石，探测附近蜘蛛）</td></tr>
+        <tr><td>30 枚</td><td>巨人钱包（上限 1000 卢比）</td></tr>
+        <tr><td>40 枚</td><td>炸弹鼠 ×20</td></tr>
+        <tr><td>50 枚</td><td>心之碎片 ×1</td></tr>
+        <tr><td>100 枚</td><td>金卢比 200（解除诅咒，之后可重复领取）</td></tr>
+      </table>
+      <p style="margin-top:10px">💡 野外露天蜘蛛只在夜晚出现（太阳之歌切换）；软土坑倒虫引出另一批；打死一定要捡代币。魔法豆幼年种、成年长藤。拿到响音石（20 枚）后找剩余蜘蛛省心很多。</p>
+    </div>
+  </details>
+
+  <details>
+    <summary>📎 不计入 100% 的参考项（查漏用，点击展开）</summary>
+    <div class="info">
+      <p>游戏本身没有完成度百分比，本清单以「能留在身上的物品」自定义 100% 目标。下列项目不进 243 行，但影响漏点排查：</p>
+      <table>
+        <tr><th>项</th><th>数量</th><th>说明</th></tr>
+        <tr><td>隐藏洞穴</td><td>36</td><td>内含物品已计入清单，位置独立整理</td></tr>
+        <tr><td>小贩果地点</td><td>7</td><td>购买容量升级的地方</td></tr>
+        <tr><td>乳牛</td><td>6</td><td>吹伊波娜之歌取奶</td></tr>
+        <tr><td>闲语石</td><td>32</td><td>靠近触发提示</td></tr>
+        <tr><td>魔法豆种植点</td><td>10</td><td>关联碎片与蜘蛛</td></tr>
+        <tr><td>迷宫地图 / 罗盘 / 钥匙</td><td>—</td><td>仅迷宫内有效</td></tr>
+      </table>
+    </div>
+  </details>
+
+  <footer>
+    数据来源：QuestFern 100% 清单（2026-11-14）、Zelda Central 重制版清单、游侠网中文攻略、GAMES.GG，四源交叉核对。<br>
+    勾选进度仅存于当前浏览器 localStorage，与地图进度相互独立。如个别点位与实机不符，以实机为准。全站素材版权归任天堂所有，非官方粉丝项目。
+  </footer>
+</div>
+
+<script>
+const CATEGORIES=[{"id": "heart-piece", "name": "心之碎片", "total": 36, "icon": "❤️"}, {"id": "boss-container", "name": "Boss 心之容器", "total": 8, "icon": "🫀"}, {"id": "skulltula", "name": "黄金骷髅蜘蛛", "total": 100, "icon": "🕷️"}, {"id": "song", "name": "歌曲", "total": 13, "icon": "🎵"}, {"id": "stone-medal", "name": "精灵石 / 勋章", "total": 9, "icon": "🔷"}, {"id": "item", "name": "战斗道具", "total": 17, "icon": "🗡️"}, {"id": "equipment", "name": "装备（剑 / 盾 / 服 / 靴）", "total": 11, "icon": "🛡️"}, {"id": "upgrade", "name": "容量 / 力气升级", "total": 16, "icon": "🎒"}, {"id": "bottle", "name": "瓶子", "total": 5, "icon": "🧴"}, {"id": "fairy", "name": "大妖精奖励", "total": 6, "icon": "🧚"}, {"id": "mask", "name": "面具", "total": 5, "icon": "🎭"}, {"id": "poe", "name": "大魄（魂魄）", "total": 10, "icon": "👻"}, {"id": "owl", "name": "万魔殿猫头鹰像", "total": 3, "icon": "🦉"}, {"id": "other", "name": "其他奖励", "total": 4, "icon": "🎁"}];
+const TRACKS=[{"id": "heart", "name": "心之容器线", "icon": "❤️", "desc": "4 片心之碎片拼 1 心，8 座迷宫 Boss 各给 1 个，凑满 20 心上限。", "cats": ["heart-piece", "boss-container"]}, {"id": "token", "name": "讨伐证明线", "icon": "🕷️", "desc": "100 只黄金骷髅蜘蛛，打死要捡代币。累计可换钱包、响音石、心碎、金卢比。", "cats": ["skulltula"]}, {"id": "story", "name": "主线剧情线", "icon": "📜", "desc": "跟着剧情自然拿到：精灵石勋章、13 首歌曲、关键道具与剑盾服靴。", "cats": ["stone-medal", "song", "item", "equipment"]}, {"id": "capacity", "name": "成长强化线", "icon": "📈", "desc": "钱包、炸弹袋、箭袋、鳞片、手套等容量与力气升级，多为小游戏 / 购买。", "cats": ["upgrade"]}, {"id": "side", "name": "支线任务线", "icon": "🎯", "desc": "靠跑腿、小游戏、交易、大妖精奉献获得的奖励与瓶子、面具、大魄。", "cats": ["bottle", "fairy", "mask", "poe", "other"]}, {"id": "challenge", "name": "挑战试炼线", "icon": "🏆", "desc": "通关前后的高阶挑战：万魔殿石像 / 银像 / 金像三连战。", "cats": ["owl"]}];
+const PHASES=[{"id": "p0", "no": 1, "era": "child", "title": "苏醒 · 科奇里森林", "story": "林克在科奇里森林醒来，莎莉亚引路；走出森林与塞尔达相遇，得知神灵的召唤。", "unlock": "德库木棒、德库坚果、妖精弹弓、科奇里之剑、德库木盾、妖精之笛", "todos": ["敲开德库树进洞，打倒哥马拿翡翠与心之容器", "迷途森林找骷髅小子学莎莉亚之歌", "童年限定：森林一带的碎片与蜘蛛先扫"], "cats": ["item", "song", "boss-container", "heart-piece", "skulltula"], "key_ids": ["item-1", "item-2", "item-3", "item-4", "equipment-1", "equipment-5", "song-3", "boss-container-1", "stone-medal-1"]}, {"id": "p1", "no": 2, "era": "child", "title": "城邑 · 海拉鲁平原", "story": "初到城邑，塞尔达逃离城堡；英帕授予摇篮曲，得知需要三颗精灵石。", "unlock": "时之笛、塞尔达摇篮曲、时之歌；炸弹鼠、射击场等小游戏", "todos": ["夜晚逛城邑与平原，捡露天蜘蛛（太阳之歌切夜）", "面具店借面具跑腿交易", "城邑射击场 / 炸弹鼠保龄球拿容量升级"], "cats": ["song", "item", "upgrade", "mask", "heart-piece", "skulltula"], "key_ids": ["item-5", "song-1", "song-5", "item-7", "upgrade-4", "upgrade-5"]}, {"id": "p2", "no": 3, "era": "child", "title": "三精灵石 · 童年最后一站", "story": "死亡山、卓拉领地、加卜加卜腹中拿齐三石；此时是清童年收集的最后机会。", "unlock": "炸弹袋、回旋镖、魔法豆、鼓隆手环、鼓隆红宝石、卓拉蓝宝石", "todos": ["多东哥洞窟与加卜加卜各拿一颗精灵石 + 心容器", "死亡山、卓拉河、海利亚湖、格鲁德谷的童年碎片 / 蜘蛛", "魔法豆幼年先种下，成年才长藤——别漏", "井底拿真实眼镜"], "cats": ["stone-medal", "boss-container", "item", "heart-piece", "skulltula", "upgrade"], "key_ids": ["item-6", "item-8", "item-9", "item-10", "stone-medal-2", "stone-medal-3", "boss-container-2", "boss-container-3", "upgrade-14"]}, {"id": "p3", "no": 4, "era": "child", "title": "时之神殿 · 拔出大师剑", "story": "集齐三精灵石，将剑插入剑座，林克长大成人，时光流逝七年。", "unlock": "大师之剑（成年形态开启）", "todos": ["拔剑前再回头确认童年限定项已清完", "记忆点：时之神殿可插回 / 拔出剑来回切换时代"], "cats": ["equipment"], "key_ids": ["equipment-2"]}, {"id": "p4", "no": 5, "era": "adult", "title": "七年后 · 归来", "story": "成年林克回到时之神殿见到塞尔达，得知加侬多夫的阴谋，希克开始指引。", "unlock": "光之勋章、钩索（墓地丹培赛跑）、希克传送曲", "todos": ["墓地丹培赛跑首胜拿钩索，成年收集的关键道具", "成年形态重新扫一遍屋顶 / 高处的蜘蛛与碎片", "时之神殿学光之前奏曲"], "cats": ["stone-medal", "item", "song", "skulltula", "heart-piece"], "key_ids": ["stone-medal-4", "item-11", "song-12", "song-6"]}, {"id": "p5", "no": 6, "era": "adult", "title": "森之神殿", "story": "穿过迷途森林的腐化，进入森之神殿。", "unlock": "妖精之弓、森之勋章、心之容器", "todos": ["打倒幻影加侬拿勋章与心容器", "稻草人之歌：幼年编曲、成年再吹，开钩索支点", "神殿内 5 只蜘蛛顺手收"], "cats": ["boss-container", "stone-medal", "item", "skulltula"], "key_ids": ["boss-container-4", "stone-medal-5", "item-13", "song-7"]}, {"id": "p6", "no": 7, "era": "adult", "title": "死亡山 · 火之神殿", "story": "登顶死亡火山，灼热之中攻略火之神殿。", "unlock": "万吨锤、鼓隆服、火之勋章、心之容器、火之波丽露舞曲", "todos": ["打倒瓦尔巴基亚", "死亡山火山口成年大妖精泉（奉献 200）", "鼓隆城 / 火山口的成年蜘蛛与碎片"], "cats": ["boss-container", "stone-medal", "item", "equipment", "fairy", "skulltula"], "key_ids": ["boss-container-5", "stone-medal-6", "item-14", "equipment-8", "song-8"]}, {"id": "p7", "no": 8, "era": "adult", "title": "卓拉 · 冰之洞窟 · 水之神殿", "story": "冰封的卓拉领地，解冻并深入水之神殿。", "unlock": "卓拉服、重铁靴、长钩索、水之勋章、心之容器、水之小夜曲", "todos": ["冰之洞窟通关后卓拉王赠卓拉服", "打倒魔发拿长钩索，开启大量成年高处点位", "卓拉之泉第 100 只蜘蛛留到配合响音石收"], "cats": ["boss-container", "stone-medal", "item", "equipment", "skulltula"], "key_ids": ["boss-container-6", "stone-medal-7", "item-12", "equipment-9", "equipment-10", "song-9"]}, {"id": "p8", "no": 9, "era": "adult", "title": "暗之神殿 · 卡卡利科", "story": "影子世界的暗之神殿，真实之镜是通关关键。", "unlock": "浮空靴、暗之勋章、心之容器、暗之梦幻曲", "todos": ["打倒崩鼓崩鼓", "拿到真实眼镜 / 真实面具后回头查漏隐藏点位", "夜晚卡卡利科屋顶蜘蛛"], "cats": ["boss-container", "stone-medal", "equipment", "song", "mask", "skulltula"], "key_ids": ["boss-container-7", "stone-medal-8", "equipment-11", "song-10"]}, {"id": "p9", "no": 10, "era": "adult", "title": "魂之神殿 · 格鲁德沙漠", "story": "幻影沙漠与巨大邪神像，灵魂的神殿考验勇气。", "unlock": "镜盾、魂之勋章、心之容器、魂之慰灵曲、格鲁德许可证、银手套（童年线）", "todos": ["打倒双子妖婆", "格鲁德要塞救木匠拿许可证，开马上射箭", "插回大师剑变童年，去魂之神殿拿银手套再变回"], "cats": ["boss-container", "stone-medal", "equipment", "item", "song", "other", "upgrade"], "key_ids": ["boss-container-8", "stone-medal-9", "equipment-7", "item-17", "song-11"]}, {"id": "p10", "no": 11, "era": "adult", "title": "决战 · 加侬多夫城堡", "story": "六勋章齐备，攻入加侬多夫城堡迎来决战。", "unlock": "光箭、金手套；城堡附近最终大妖精泉（500 卢比，伤害减半）", "todos": ["决战前先拿光箭与金手套，补满大妖精强化", "通关解锁万魔殿金像试炼"], "cats": ["item", "upgrade", "fairy", "owl"], "key_ids": ["item-17", "upgrade-16", "fairy-6", "owl-3"]}, {"id": "p11", "no": 12, "era": "both", "title": "100% 补完 · 查漏收尾", "story": "主线通关后，回头把散落海拉鲁的收集凑齐。", "unlock": "响音石（20 枚蜘蛛）辅助找剩余蜘蛛；稻草人支点、魔法豆藤已就位", "todos": ["黄金蜘蛛凑满 100（野外多需夜晚 / 软土倒虫）", "心之碎片凑满 36 片", "大魄 10 只卖幽灵商店换第 5 个瓶子", "6 座大妖精泉奉献、面具交易链、容量升级、万魔殿三连战"], "cats": ["skulltula", "heart-piece", "poe", "fairy", "mask", "bottle", "upgrade", "owl", "other"], "key_ids": []}];
+const PHASE_LOCS={"p0": [{"n": "科奇里森林", "k": "main", "v": ["科奇里之剑 / 德库木盾", "德库木棒 / 德库坚果", "妖精弹弓 / 妖精之笛"], "items": ["equipment-1", "equipment-5", "item-1", "item-2", "item-3", "item-4", "skulltula-15", "skulltula-16", "skulltula-46"]}, {"n": "德库树体内", "k": "boss", "v": ["打倒哥马 → 科奇里翡翠 + 心之容器"], "items": ["boss-container-1", "stone-medal-1", "skulltula-1", "skulltula-2", "skulltula-3", "skulltula-4"]}, {"n": "森之圣域", "k": "side", "v": ["骷髅小子 → 莎莉亚之歌"], "items": ["song-3", "skulltula-48"]}, {"n": "迷途森林", "k": "col", "v": ["童年限定碎片 / 蜘蛛先扫"], "items": ["heart-piece-7", "heart-piece-8", "skulltula-17", "skulltula-18", "skulltula-47"]}], "p1": [{"n": "海拉鲁城堡中庭", "k": "main", "v": ["英帕 → 塞尔达摇篮曲"], "items": ["song-1"]}, {"n": "城邑", "k": "side", "v": ["塞尔达留言 → 时之歌", "借面具跑腿交易", "射击场 / 炸弹鼠 → 容量升级"], "items": ["song-5", "item-5", "mask-1", "mask-2", "mask-3", "mask-4", "upgrade-4", "upgrade-5", "skulltula-6"]}, {"n": "海拉鲁平原", "k": "col", "v": ["夜晚露天蜘蛛（太阳之歌切夜）"], "items": ["skulltula-5", "skulltula-27", "skulltula-55", "heart-piece-14", "heart-piece-25"]}], "p2": [{"n": "多东哥洞窟", "k": "boss", "v": ["打多东哥王 → 鼓隆红宝石 + 心容器"], "items": ["boss-container-2", "stone-medal-2", "skulltula-20", "skulltula-21", "skulltula-22", "skulltula-23", "skulltula-56"]}, {"n": "加卜加卜腹中", "k": "boss", "v": ["打啪哩内德 → 卓拉蓝宝石 + 心容器", "炸弹袋 / 回旋镖 / 魔法豆"], "items": ["boss-container-3", "stone-medal-3", "item-6", "item-8", "item-9", "skulltula-33", "skulltula-34", "skulltula-35", "skulltula-36"], "tip": "魔法豆幼年先种、成年才长藤——别漏"}, {"n": "死亡山·卓拉河·海利亚湖·格鲁德谷", "k": "col", "v": ["童年碎片 / 蜘蛛全扫"], "items": ["heart-piece-26", "heart-piece-15", "heart-piece-16", "heart-piece-31", "heart-piece-32", "heart-piece-23", "heart-piece-24", "heart-piece-4", "heart-piece-5", "skulltula-19", "skulltula-24", "skulltula-28", "skulltula-29", "skulltula-66", "skulltula-67", "skulltula-30", "skulltula-31", "skulltula-43", "skulltula-78", "skulltula-41", "skulltula-42", "skulltula-87", "skulltula-88"]}, {"n": "井底", "k": "side", "v": ["真实眼镜"], "items": ["item-10", "skulltula-79", "skulltula-80", "skulltula-81"]}], "p3": [{"n": "时之神殿", "k": "main", "v": ["集齐三石插剑 → 大师之剑", "拔剑前确认童年限定项已清完"], "items": ["equipment-2"], "tip": "拔剑前回头确认童年限定项已清完"}], "p4": [{"n": "时之神殿", "k": "main", "v": ["见塞尔达、希克指引", "光之勋章 / 光之前奏曲"], "items": ["stone-medal-4", "song-12"]}, {"n": "墓地 · 丹培赛跑", "k": "side", "v": ["丹培赛跑首胜 → 钩索"], "items": ["item-11", "heart-piece-20", "heart-piece-1", "heart-piece-2", "heart-piece-18"]}, {"n": "海拉鲁全境", "k": "col", "v": ["成年形态重扫屋顶 / 高处蜘蛛与碎片"], "items": [], "tip": "泛指全境高处点位，逐项见「全部分类」视图按地区筛查"}], "p5": [{"n": "森之神殿", "k": "boss", "v": ["打幻影加侬 → 森之勋章 + 心容器", "妖精之弓 / 神殿内 5 蜘蛛"], "items": ["boss-container-4", "stone-medal-5", "item-13", "skulltula-49", "skulltula-50", "skulltula-51", "skulltula-52", "skulltula-53"]}, {"n": "迷途森林", "k": "side", "v": ["稻草人之歌：幼年编曲、成年吹 → 开钩索支点"], "items": ["song-13"]}], "p6": [{"n": "火之神殿", "k": "boss", "v": ["打瓦尔巴基亚 → 火之勋章 + 心容器", "万吨锤 / 鼓隆服 / 火之波丽露"], "items": ["boss-container-5", "stone-medal-6", "item-14", "equipment-8", "song-8", "skulltula-59", "skulltula-60", "skulltula-61", "skulltula-62", "skulltula-63"]}, {"n": "死亡山火山口", "k": "col", "v": ["成年蜘蛛 / 碎片", "大妖精泉奉献 200"], "items": ["heart-piece-11", "heart-piece-27", "heart-piece-29", "skulltula-26", "skulltula-58", "fairy-4"]}, {"n": "鼓隆城", "k": "col", "v": ["成年蜘蛛 / 碎片"], "items": ["heart-piece-10", "skulltula-25", "skulltula-57"]}], "p7": [{"n": "冰之洞窟", "k": "main", "v": ["通关 → 卓拉王赠卓拉服"], "items": ["equipment-9", "skulltula-69", "skulltula-70", "skulltula-71"]}, {"n": "水之神殿", "k": "boss", "v": ["打魔发 → 水之勋章 + 心容器", "重铁靴 / 长钩索 / 水之小夜曲"], "items": ["boss-container-6", "stone-medal-7", "equipment-10", "item-12", "song-9", "skulltula-73", "skulltula-74", "skulltula-75", "skulltula-76", "skulltula-77"]}, {"n": "卓拉之泉", "k": "col", "v": ["第 100 只蜘蛛留到拿响音石后收"], "items": ["skulltula-32", "skulltula-37", "skulltula-100", "heart-piece-28", "heart-piece-30", "fairy-3"]}], "p8": [{"n": "暗之神殿", "k": "boss", "v": ["打崩鼓崩鼓 → 暗之勋章 + 心容器", "浮空靴 / 暗之梦幻曲"], "items": ["boss-container-7", "stone-medal-8", "equipment-11", "song-10", "skulltula-82", "skulltula-83", "skulltula-84", "skulltula-85", "skulltula-86"]}, {"n": "卡卡利科村", "k": "col", "v": ["夜晚屋顶蜘蛛", "拿真实眼镜 / 面具后回头查漏"], "items": ["skulltula-9", "skulltula-10", "skulltula-11", "skulltula-12", "skulltula-13", "skulltula-44", "heart-piece-12", "heart-piece-21", "heart-piece-22"]}], "p9": [{"n": "魂之神殿", "k": "boss", "v": ["打双子妖婆 → 魂之勋章 + 心容器", "镜盾 / 魂之慰灵曲"], "items": ["boss-container-8", "stone-medal-9", "equipment-7", "song-11", "skulltula-94", "skulltula-95", "skulltula-96", "skulltula-98", "skulltula-99"]}, {"n": "格鲁德要塞", "k": "side", "v": ["救木匠 → 许可证 / 马上射箭"], "items": ["other-3", "skulltula-89", "skulltula-90", "heart-piece-34", "heart-piece-35"]}, {"n": "魂之神殿（童年）", "k": "side", "v": ["插回大师剑变童年 → 银手套"], "items": ["upgrade-15"]}], "p10": [{"n": "加侬多夫城堡", "k": "main", "v": ["光箭 / 金手套", "六勋章齐 → 决战"], "items": ["item-17", "upgrade-16", "skulltula-45"]}, {"n": "城堡附近泉", "k": "side", "v": ["大妖精泉奉献 500 → 伤害减半"], "items": ["fairy-6"]}, {"n": "万魔殿", "k": "side", "v": ["通关解锁金像试炼"], "items": ["owl-3"]}], "p11": [{"n": "全海拉鲁", "k": "col", "v": ["蜘蛛凑满 100（夜晚 / 软土倒虫）", "心之碎片凑满 36"], "items": [], "tip": "这是查漏收尾阶段，具体点位见「全部分类」视图按地区筛查"}, {"n": "城邑幽灵商店", "k": "side", "v": ["大魄 10 只 → 换第 5 瓶"], "items": ["bottle-5", "poe-1", "poe-2", "poe-3", "poe-4", "poe-5", "poe-6", "poe-7", "poe-8", "poe-9", "poe-10"]}, {"n": "6 座大妖精泉", "k": "side", "v": ["全部奉献开启"], "items": ["fairy-1", "fairy-2", "fairy-3", "fairy-4", "fairy-5", "fairy-6"]}, {"n": "面具 / 容量", "k": "side", "v": ["面具交易链 / 容量升级"], "items": ["mask-1", "mask-2", "mask-3", "mask-4", "mask-5", "upgrade-1", "upgrade-2", "upgrade-3", "upgrade-4", "upgrade-5", "upgrade-6", "upgrade-7", "upgrade-8", "upgrade-9", "upgrade-10", "upgrade-11", "upgrade-12", "upgrade-13", "upgrade-14", "upgrade-15", "upgrade-16"]}, {"n": "万魔殿", "k": "side", "v": ["石像 → 银像 → 金像三连战"], "items": ["owl-1", "owl-2", "owl-3"]}]};
+const PIN_IMAGES={"heart-piece-1": {"x": 75.0, "y": 42.0, "img": "../app/assets/maps/field/Graveyard_Child_00.webp", "area": "卡卡利科墓地", "pinId": "HP-10"}, "heart-piece-2": {"x": 82.0, "y": 65.0, "img": "../app/assets/maps/field/KakarikoVillage_Child_00.webp", "area": "卡卡利科村", "pinId": "HP-09"}, "heart-piece-3": {"x": 39.5, "y": 54.0, "img": "../app/assets/maps/field/LonLonRanch_Child_00.webp", "area": "隆隆牧场", "pinId": "HP-32"}, "heart-piece-4": {"x": 42.0, "y": 72.0, "img": "../app/assets/maps/field/GerudoValley_Child_00.webp", "area": "格鲁德峡谷", "pinId": "HP-28"}, "heart-piece-5": {"x": 45.0, "y": 48.0, "img": "../app/assets/maps/field/GerudoValley_Child_00.webp", "area": "格鲁德峡谷", "pinId": "HP-27"}, "heart-piece-6": {"x": 88.0, "y": 38.0, "img": "../app/assets/maps/field/LakeHylia_Child_00.webp", "area": "海利亚湖", "pinId": "HP-24"}, "heart-piece-7": {"x": 71.5, "y": 63.8, "img": "../app/assets/maps/field/KokiriForest_Child_00.webp", "area": "科吉里森林", "pinId": "HP-02"}, "heart-piece-8": {"x": 72.8, "y": 68.2, "img": "../app/assets/maps/field/KokiriForest_Child_00.webp", "area": "科吉里森林", "pinId": "HP-01"}, "heart-piece-9": {"x": 72.0, "y": 65.0, "img": "../app/assets/maps/field/Market_Child_00.webp", "area": "城下町集市", "pinId": "HP-33"}, "heart-piece-10": {"x": 52.0, "y": 55.0, "img": "../app/assets/maps/field/GoronCity_Child_00.webp", "area": "哥隆城", "pinId": "HP-14"}, "heart-piece-11": {"x": 38.0, "y": 45.0, "img": "../app/assets/maps/field/DeathMountainCrater_Child_00.webp", "area": "死亡山火山口", "pinId": "HP-15"}, "heart-piece-12": {"x": 76.0, "y": 35.0, "img": "../app/assets/maps/field/KakarikoVillage_Child_00.webp", "area": "卡卡利科村", "pinId": "HP-07"}, "heart-piece-13": {"x": 68.0, "y": 35.0, "img": "../app/assets/maps/field/Market_Child_00.webp", "area": "城下町集市", "pinId": "HP-34"}, "heart-piece-15": {"x": 35.0, "y": 48.0, "img": "../app/assets/maps/field/ZoraRiver_Child_00.webp", "area": "佐拉河", "pinId": "HP-17"}, "heart-piece-16": {"x": 85.0, "y": 45.0, "img": "../app/assets/maps/field/ZoraRiver_Child_00.webp", "area": "佐拉河", "pinId": "HP-18"}, "heart-piece-17": {"x": 48.0, "y": 58.0, "img": "../app/assets/maps/field/ZoraDomain_Child_00.webp", "area": "佐拉族领地", "pinId": "HP-21"}, "heart-piece-18": {"x": 45.0, "y": 28.0, "img": "../app/assets/maps/field/Graveyard_Adult_00.webp", "area": "卡卡利科墓地", "pinId": "HP-11"}, "heart-piece-20": {"x": 35.0, "y": 38.0, "img": "../app/assets/maps/field/Graveyard_Adult_00.webp", "area": "卡卡利科墓地", "pinId": "HP-12"}, "heart-piece-21": {"x": 48.0, "y": 42.0, "img": "../app/assets/maps/field/KakarikoVillage_Adult_00.webp", "area": "卡卡利科村", "pinId": "HP-08"}, "heart-piece-24": {"x": 28.0, "y": 35.0, "img": "../app/assets/maps/field/LakeHylia_Adult_00.webp", "area": "海利亚湖", "pinId": "HP-25"}, "heart-piece-26": {"x": 48.0, "y": 52.0, "img": "../app/assets/maps/field/DeathMountainTrail_Child_00.webp", "area": "死亡山山道", "pinId": "HP-13"}, "heart-piece-27": {"x": 54.0, "y": 52.0, "img": "../app/assets/maps/field/DeathMountainCrater_Adult_00.webp", "area": "死亡山火山口", "pinId": "HP-16"}, "heart-piece-28": {"x": 42.0, "y": 62.0, "img": "../app/assets/maps/field/ZoraFountain_Adult_00.webp", "area": "佐拉之泉", "pinId": "HP-22"}, "heart-piece-30": {"x": 48.0, "y": 75.0, "img": "../app/assets/maps/field/ZoraFountain_Adult_00.webp", "area": "佐拉之泉", "pinId": "HP-23"}, "heart-piece-31": {"x": 58.0, "y": 42.0, "img": "../app/assets/maps/field/ZoraRiver_Child_00.webp", "area": "佐拉河", "pinId": "HP-19"}, "heart-piece-32": {"x": 58.0, "y": 46.0, "img": "../app/assets/maps/field/ZoraRiver_Child_00.webp", "area": "佐拉河", "pinId": "HP-20"}, "heart-piece-33": {"x": 32.0, "y": 35.0, "img": "../app/assets/maps/field/Market_Child_00.webp", "area": "城下町集市", "pinId": "HP-35"}, "heart-piece-34": {"x": 42.0, "y": 32.0, "img": "../app/assets/maps/field/GerudoFortress_Adult_00.webp", "area": "格鲁德要塞", "pinId": "HP-29"}, "heart-piece-35": {"x": 78.0, "y": 62.0, "img": "../app/assets/maps/field/GerudoFortress_Adult_00.webp", "area": "格鲁德要塞", "pinId": "HP-30"}, "heart-piece-36": {"x": 62.0, "y": 42.0, "img": "../app/assets/maps/field/DesertColossus_Adult_00.webp", "area": "沙漠巨像", "pinId": "HP-31"}, "fairy-1": {"x": 35.0, "y": 15.0, "img": "../app/assets/maps/field/DeathMountainTrail_Child_00.webp", "area": "死亡山山道", "pinId": "GF-02"}, "fairy-2": {"x": 68.0, "y": 38.0, "img": "../app/assets/maps/field/HyruleCastle_Child_00.webp", "area": "海拉鲁城堡", "pinId": "GF-01"}, "fairy-3": {"x": 78.0, "y": 35.0, "img": "../app/assets/maps/field/ZoraFountain_Child_00.webp", "area": "佐拉之泉", "pinId": "GF-03"}, "fairy-4": {"x": 25.0, "y": 35.0, "img": "../app/assets/maps/field/DeathMountainCrater_Adult_00.webp", "area": "死亡山火山口", "pinId": "GF-04"}, "fairy-5": {"x": 35.0, "y": 25.0, "img": "../app/assets/maps/field/DesertColossus_Adult_00.webp", "area": "沙漠巨像", "pinId": "GF-05"}, "fairy-6": {"x": 75.0, "y": 22.0, "img": "../app/assets/maps/field/HyruleCastle_Child_00.webp", "area": "海拉鲁城堡", "pinId": "GF-06"}, "poe-1": {"x": 43.5, "y": 36.5, "img": "../app/assets/maps/field/HyruleField_Adult_00.webp", "area": "海拉鲁平原", "pinId": "POE-01"}, "poe-2": {"x": 46.2, "y": 45.0, "img": "../app/assets/maps/field/HyruleField_Adult_00.webp", "area": "海拉鲁平原", "pinId": "POE-02"}, "poe-3": {"x": 41.0, "y": 52.0, "img": "../app/assets/maps/field/HyruleField_Adult_00.webp", "area": "海拉鲁平原", "pinId": "POE-10"}, "poe-4": {"x": 37.0, "y": 58.0, "img": "../app/assets/maps/field/HyruleField_Adult_00.webp", "area": "海拉鲁平原", "pinId": "POE-04"}, "poe-5": {"x": 32.5, "y": 46.5, "img": "../app/assets/maps/field/HyruleField_Adult_00.webp", "area": "海拉鲁平原", "pinId": "POE-08"}, "poe-6": {"x": 36.5, "y": 48.5, "img": "../app/assets/maps/field/HyruleField_Adult_00.webp", "area": "海拉鲁平原", "pinId": "POE-03"}, "poe-7": {"x": 49.0, "y": 42.0, "img": "../app/assets/maps/field/HyruleField_Adult_00.webp", "area": "海拉鲁平原", "pinId": "POE-09"}, "poe-8": {"x": 43.0, "y": 66.5, "img": "../app/assets/maps/field/HyruleField_Adult_00.webp", "area": "海拉鲁平原", "pinId": "POE-05"}, "poe-9": {"x": 52.5, "y": 62.0, "img": "../app/assets/maps/field/HyruleField_Adult_00.webp", "area": "海拉鲁平原", "pinId": "POE-06"}, "poe-10": {"x": 55.0, "y": 48.0, "img": "../app/assets/maps/field/HyruleField_Adult_00.webp", "area": "海拉鲁平原", "pinId": "POE-07"}, "bottle-2": {"x": 68.0, "y": 55.0, "img": "../app/assets/maps/field/KakarikoVillage_Child_00.webp", "area": "卡卡利科村", "pinId": "BT-02"}, "bottle-3": {"x": 38.2, "y": 53.0, "img": "../app/assets/maps/field/LonLonRanch_Child_00.webp", "area": "隆隆牧场", "pinId": "BT-01"}, "bottle-4": {"x": 65.0, "y": 52.0, "img": "../app/assets/maps/field/LakeHylia_Child_00.webp", "area": "海利亚湖", "pinId": "BT-03"}, "bottle-5": {"x": 48.0, "y": 82.0, "img": "../app/assets/maps/field/Market_Adult_00.webp", "area": "城下町集市", "pinId": "BT-04"}, "skulltula-15": {"x": 73.8, "y": 71.0, "img": "../app/assets/maps/field/KokiriForest_Child_00.webp", "area": "科吉里森林", "pinId": "GS-01"}, "skulltula-16": {"x": 72.2, "y": 70.2, "img": "../app/assets/maps/field/KokiriForest_Child_00.webp", "area": "科吉里森林", "pinId": "GS-02"}, "skulltula-46": {"x": 74.5, "y": 68.5, "img": "../app/assets/maps/field/KokiriForest_Adult_00.webp", "area": "科吉里森林", "pinId": "GS-03"}, "skulltula-17": {"x": 68.5, "y": 63.5, "img": "../app/assets/maps/field/LostWood_Child_00.webp", "area": "迷失森林", "pinId": "GS-04"}, "skulltula-18": {"x": 67.2, "y": 61.2, "img": "../app/assets/maps/field/LostWood_Child_00.webp", "area": "迷失森林", "pinId": "GS-05"}, "skulltula-47": {"x": 69.0, "y": 60.5, "img": "../app/assets/maps/field/LostWood_Adult_00.webp", "area": "迷失森林", "pinId": "GS-06"}, "skulltula-48": {"x": 62.8, "y": 58.5, "img": "../app/assets/maps/field/SacredForestMeadow_Child_00.webp", "area": "圣域森林草原", "pinId": "GS-07"}, "skulltula-9": {"x": 65.0, "y": 70.0, "img": "../app/assets/maps/field/KakarikoVillage_Child_00.webp", "area": "卡卡利科村", "pinId": "GS-09"}, "skulltula-10": {"x": 35.0, "y": 58.0, "img": "../app/assets/maps/field/KakarikoVillage_Child_00.webp", "area": "卡卡利科村", "pinId": "GS-10"}, "skulltula-11": {"x": 58.0, "y": 44.0, "img": "../app/assets/maps/field/KakarikoVillage_Child_00.webp", "area": "卡卡利科村", "pinId": "GS-11"}, "skulltula-12": {"x": 85.0, "y": 56.0, "img": "../app/assets/maps/field/KakarikoVillage_Child_00.webp", "area": "卡卡利科村", "pinId": "GS-12"}, "skulltula-13": {"x": 48.0, "y": 62.0, "img": "../app/assets/maps/field/KakarikoVillage_Child_00.webp", "area": "卡卡利科村", "pinId": "GS-13"}, "skulltula-44": {"x": 82.0, "y": 72.0, "img": "../app/assets/maps/field/KakarikoVillage_Adult_00.webp", "area": "卡卡利科村", "pinId": "GS-14"}, "skulltula-14": {"x": 44.0, "y": 62.0, "img": "../app/assets/maps/field/Graveyard_Child_00.webp", "area": "卡卡利科墓地", "pinId": "GS-15"}, "skulltula-40": {"x": 52.0, "y": 35.0, "img": "../app/assets/maps/field/Graveyard_Child_00.webp", "area": "卡卡利科墓地", "pinId": "GS-16"}, "skulltula-19": {"x": 68.0, "y": 28.0, "img": "../app/assets/maps/field/DeathMountainTrail_Child_00.webp", "area": "死亡山山道", "pinId": "GS-17"}, "skulltula-24": {"x": 52.0, "y": 82.0, "img": "../app/assets/maps/field/DeathMountainTrail_Child_00.webp", "area": "死亡山山道", "pinId": "GS-18"}, "skulltula-25": {"x": 80.0, "y": 42.0, "img": "../app/assets/maps/field/GoronCity_Child_00.webp", "area": "哥隆城", "pinId": "GS-20"}, "skulltula-57": {"x": 72.0, "y": 35.0, "img": "../app/assets/maps/field/GoronCity_Adult_00.webp", "area": "哥隆城", "pinId": "GS-21"}, "skulltula-26": {"x": 28.0, "y": 65.0, "img": "../app/assets/maps/field/DeathMountainCrater_Child_00.webp", "area": "死亡山火山口", "pinId": "GS-22"}, "skulltula-58": {"x": 32.0, "y": 38.0, "img": "../app/assets/maps/field/DeathMountainCrater_Child_00.webp", "area": "死亡山火山口", "pinId": "GS-23"}, "skulltula-28": {"x": 25.0, "y": 36.0, "img": "../app/assets/maps/field/ZoraRiver_Child_00.webp", "area": "佐拉河", "pinId": "GS-24"}, "skulltula-29": {"x": 56.0, "y": 68.0, "img": "../app/assets/maps/field/ZoraRiver_Child_00.webp", "area": "佐拉河", "pinId": "GS-25"}, "skulltula-66": {"x": 77.0, "y": 42.5, "img": "../app/assets/maps/field/ZoraRiver_Adult_00.webp", "area": "佐拉河", "pinId": "GS-26"}, "skulltula-68": {"x": 85.0, "y": 46.0, "img": "../app/assets/maps/field/ZoraDomain_Adult_00.webp", "area": "佐拉族领地", "pinId": "GS-27"}, "skulltula-32": {"x": 81.5, "y": 36.5, "img": "../app/assets/maps/field/ZoraFountain_Child_00.webp", "area": "佐拉之泉", "pinId": "GS-28"}, "skulltula-37": {"x": 38.0, "y": 55.0, "img": "../app/assets/maps/field/ZoraFountain_Child_00.webp", "area": "佐拉之泉", "pinId": "GS-29"}, "skulltula-100": {"x": 68.0, "y": 42.0, "img": "../app/assets/maps/field/ZoraFountain_Adult_00.webp", "area": "佐拉之泉", "pinId": "GS-30"}, "skulltula-30": {"x": 82.0, "y": 58.0, "img": "../app/assets/maps/field/LakeHylia_Child_00.webp", "area": "海利亚湖", "pinId": "GS-31"}, "skulltula-31": {"x": 24.0, "y": 58.0, "img": "../app/assets/maps/field/LakeHylia_Child_00.webp", "area": "海利亚湖", "pinId": "GS-32"}, "skulltula-43": {"x": 72.0, "y": 68.0, "img": "../app/assets/maps/field/LakeHylia_Child_00.webp", "area": "海利亚湖", "pinId": "GS-33"}, "skulltula-78": {"x": 42.5, "y": 82.0, "img": "../app/assets/maps/field/LakeHylia_Adult_00.webp", "area": "海利亚湖", "pinId": "GS-34"}, "skulltula-8": {"x": 38.8, "y": 52.2, "img": "../app/assets/maps/field/LonLonRanch_Child_00.webp", "area": "隆隆牧场", "pinId": "GS-36"}, "skulltula-38": {"x": 37.8, "y": 54.5, "img": "../app/assets/maps/field/LonLonRanch_Child_00.webp", "area": "隆隆牧场", "pinId": "GS-37"}, "skulltula-39": {"x": 40.2, "y": 53.5, "img": "../app/assets/maps/field/LonLonRanch_Child_00.webp", "area": "隆隆牧场", "pinId": "GS-38"}, "skulltula-41": {"x": 24.8, "y": 48.5, "img": "../app/assets/maps/field/GerudoValley_Child_00.webp", "area": "格鲁德峡谷", "pinId": "GS-40"}, "skulltula-42": {"x": 23.0, "y": 49.5, "img": "../app/assets/maps/field/GerudoValley_Child_00.webp", "area": "格鲁德峡谷", "pinId": "GS-41"}, "skulltula-87": {"x": 23.8, "y": 47.8, "img": "../app/assets/maps/field/GerudoValley_Adult_00.webp", "area": "格鲁德峡谷", "pinId": "GS-42"}, "skulltula-89": {"x": 18.2, "y": 30.0, "img": "../app/assets/maps/field/GerudoFortress_Adult_00.webp", "area": "格鲁德要塞", "pinId": "GS-43"}, "skulltula-90": {"x": 17.0, "y": 29.2, "img": "../app/assets/maps/field/GerudoFortress_Adult_00.webp", "area": "格鲁德要塞", "pinId": "GS-44"}, "skulltula-91": {"x": 14.8, "y": 33.5, "img": "../app/assets/maps/field/HountedWasteland_Child_00.webp", "area": "魂之荒地", "pinId": "GS-45"}, "skulltula-92": {"x": 12.8, "y": 24.5, "img": "../app/assets/maps/field/DesertColossus_Child_00.webp", "area": "沙漠巨像", "pinId": "GS-46"}, "skulltula-93": {"x": 11.5, "y": 25.0, "img": "../app/assets/maps/field/DesertColossus_Adult_00.webp", "area": "沙漠巨像", "pinId": "GS-47"}, "skulltula-97": {"x": 13.5, "y": 23.2, "img": "../app/assets/maps/field/DesertColossus_Adult_00.webp", "area": "沙漠巨像", "pinId": "GS-48"}, "skulltula-1": {"x": 48.0, "y": 30.0, "img": "../app/assets/maps/dungeon/InsideTheDekuTree_All.webp", "area": "德库树长老体内", "pinId": "DNGP-03"}, "skulltula-2": {"x": 65.0, "y": 50.0, "img": "../app/assets/maps/dungeon/InsideTheDekuTree_All.webp", "area": "德库树长老体内", "pinId": "DNGP-04"}, "skulltula-56": {"x": 70.0, "y": 35.0, "img": "../app/assets/maps/dungeon/DodongoCavern_2F_Main.webp", "area": "多东哥洞穴", "pinId": "DNGP-07"}};
+const ITEMS=[{"id": "heart-piece-1", "cat": "heart-piece", "no": 1, "name": "心之碎片 #1", "region": "墓地", "age": "either", "time": "any", "desc": "后排墓碑推开进洞，太阳之歌定住亡灵，开宝箱", "reward": "", "group": "2.1 卡卡利科村与墓地"}, {"id": "heart-piece-2", "cat": "heart-piece", "no": 2, "name": "心之碎片 #2", "region": "墓地", "age": "child", "time": "night", "desc": "夜晚；付卢比给丹培挖坟，随机挖出（18–21 点）", "reward": "", "group": "2.1 卡卡利科村与墓地"}, {"id": "heart-piece-12", "cat": "heart-piece", "no": 12, "name": "心之碎片 #12", "region": "卡卡利科村", "age": "child", "time": "any", "desc": "搭猫头鹰飞到英帕家屋顶，屋内牛旁边", "reward": "", "group": "2.1 卡卡利科村与墓地"}, {"id": "heart-piece-18", "cat": "heart-piece", "no": 18, "name": "心之碎片 #18", "region": "墓地", "age": "either", "time": "any", "desc": "魔法豆：幼年种下，成年长藤搭叶子平台跳过去", "reward": "", "group": "2.1 卡卡利科村与墓地"}, {"id": "heart-piece-19", "cat": "heart-piece", "no": 19, "name": "心之碎片 #19", "region": "卡卡利科村风车小屋", "age": "adult", "time": "any", "desc": "打完丹培赛跑后用时光歌移开石块爬上去", "reward": "", "group": "2.1 卡卡利科村与墓地"}, {"id": "heart-piece-20", "cat": "heart-piece", "no": 20, "name": "心之碎片 #20", "region": "墓地", "age": "adult", "time": "any", "desc": "丹培赛跑 1 分钟内跑完奖励", "reward": "", "group": "2.1 卡卡利科村与墓地"}, {"id": "heart-piece-21", "cat": "heart-piece", "no": 21, "name": "心之碎片 #21", "region": "卡卡利科村", "age": "child", "time": "any", "desc": "咕咕鸡跳上蓝屋顶药铺房顶，找屋顶上的男子", "reward": "", "group": "2.1 卡卡利科村与墓地"}, {"id": "heart-piece-22", "cat": "heart-piece", "no": 22, "name": "心之碎片 #22", "region": "卡卡利科村", "age": "either", "time": "any", "desc": "蜘蛛之家 50 枚讨伐证明兑换", "reward": "", "group": "2.1 卡卡利科村与墓地"}, {"id": "heart-piece-3", "cat": "heart-piece", "no": 3, "name": "心之碎片 #3", "region": "荣蓉牧场", "age": "child", "time": "any", "desc": "牧场后方塔楼，推开干草堆箱子爬进墙洞", "reward": "", "group": "2.2 城邑 / 海拉鲁平原 / 荣蓉牧场"}, {"id": "heart-piece-9", "cat": "heart-piece", "no": 9, "name": "心之碎片 #9", "region": "城邑", "age": "child", "time": "night", "desc": "夜晚；小巷丢狗妇人，找回白色小狗", "reward": "", "group": "2.2 城邑 / 海拉鲁平原 / 荣蓉牧场"}, {"id": "heart-piece-13", "cat": "heart-piece", "no": 13, "name": "心之碎片 #13", "region": "城邑", "age": "child", "time": "any", "desc": "炸弹鼠保龄球小游戏奖励（每局 10 卢比）", "reward": "", "group": "2.2 城邑 / 海拉鲁平原 / 荣蓉牧场"}, {"id": "heart-piece-14", "cat": "heart-piece", "no": 14, "name": "心之碎片 #14", "region": "海拉鲁平原", "age": "child", "time": "any", "desc": "暗号；围栏内炸开地洞，向小贩果 100 卢比购买", "reward": "", "group": "2.2 城邑 / 海拉鲁平原 / 荣蓉牧场"}, {"id": "heart-piece-25", "cat": "heart-piece", "no": 25, "name": "心之碎片 #25", "region": "海拉鲁平原", "age": "either", "time": "any", "desc": "需先以成年来过（读过妖精留言）再回来开箱", "reward": "", "group": "2.2 城邑 / 海拉鲁平原 / 荣蓉牧场"}, {"id": "heart-piece-33", "cat": "heart-piece", "no": 33, "name": "心之碎片 #33", "region": "城邑", "age": "child", "time": "night", "desc": "夜晚；真实眼镜看穿，卢比购买", "reward": "", "group": "2.2 城邑 / 海拉鲁平原 / 荣蓉牧场"}, {"id": "heart-piece-7", "cat": "heart-piece", "no": 7, "name": "心之碎片 #7", "region": "迷途森林", "age": "child", "time": "any", "desc": "笛子；双骷髅小子记忆游戏连赢三次", "reward": "", "group": "2.3 迷途森林"}, {"id": "heart-piece-8", "cat": "heart-piece", "no": 8, "name": "心之碎片 #8", "region": "迷途森林", "age": "child", "time": "any", "desc": "莎莉亚之歌；独坐的骷髅小子听完给", "reward": "", "group": "2.3 迷途森林"}, {"id": "heart-piece-10", "cat": "heart-piece", "no": 10, "name": "心之碎片 #10", "region": "鼓隆城", "age": "child", "time": "any", "desc": "炸弹；点燃底层火炬，炸弹花投入转盘停在笑脸", "reward": "", "group": "2.4 死亡之山一带"}, {"id": "heart-piece-11", "cat": "heart-piece", "no": 11, "name": "心之碎片 #11", "region": "死亡之山火山口", "age": "child", "time": "any", "desc": "火山口内取得", "reward": "", "group": "2.4 死亡之山一带"}, {"id": "heart-piece-26", "cat": "heart-piece", "no": 26, "name": "心之碎片 #26", "region": "死亡之山登山道", "age": "adult", "time": "any", "desc": "魔法豆；多东哥洞窟门口软土种豆，成年骑平台上去", "reward": "", "group": "2.4 死亡之山一带"}, {"id": "heart-piece-27", "cat": "heart-piece", "no": 27, "name": "心之碎片 #27", "region": "死亡之山火山口", "age": "adult", "time": "any", "desc": "火之波丽露舞曲、魔法豆；骑叶子到烟雾高台", "reward": "", "group": "2.4 死亡之山一带"}, {"id": "heart-piece-29", "cat": "heart-piece", "no": 29, "name": "心之碎片 #29", "region": "死亡之山火山口", "age": "child", "time": "any", "desc": "100 卢比向小贩果购买", "reward": "", "group": "2.4 死亡之山一带"}, {"id": "heart-piece-15", "cat": "heart-piece", "no": 15, "name": "心之碎片 #15", "region": "卓拉河", "age": "child", "time": "any", "desc": "咕咕鸡滑翔 + 炸弹类击破中央石柱", "reward": "", "group": "2.5 卓拉河 / 卓拉领地 / 卓拉之泉"}, {"id": "heart-piece-16", "cat": "heart-piece", "no": 16, "name": "心之碎片 #16", "region": "卓拉河", "age": "child", "time": "any", "desc": "咕咕鸡滑翔到瀑布前平台", "reward": "", "group": "2.5 卓拉河 / 卓拉领地 / 卓拉之泉"}, {"id": "heart-piece-17", "cat": "heart-piece", "no": 17, "name": "心之碎片 #17", "region": "卓拉领地", "age": "child", "time": "any", "desc": "德库木棒；点燃王座厅到瀑布的火炬链", "reward": "", "group": "2.5 卓拉河 / 卓拉领地 / 卓拉之泉"}, {"id": "heart-piece-28", "cat": "heart-piece", "no": 28, "name": "心之碎片 #28", "region": "卓拉之泉", "age": "adult", "time": "any", "desc": "泉边直接取得", "reward": "", "group": "2.5 卓拉河 / 卓拉领地 / 卓拉之泉"}, {"id": "heart-piece-30", "cat": "heart-piece", "no": 30, "name": "心之碎片 #30", "region": "卓拉之泉", "age": "adult", "time": "any", "desc": "卓拉服；水中取得", "reward": "", "group": "2.5 卓拉河 / 卓拉领地 / 卓拉之泉"}, {"id": "heart-piece-31", "cat": "heart-piece", "no": 31, "name": "心之碎片 #31", "region": "卓拉河", "age": "child", "time": "any", "desc": "暴风雨之歌；给青蛙奏曲后取得", "reward": "", "group": "2.5 卓拉河 / 卓拉领地 / 卓拉之泉"}, {"id": "heart-piece-32", "cat": "heart-piece", "no": 32, "name": "心之碎片 #32", "region": "卓拉河", "age": "child", "time": "any", "desc": "笛子曲子；青蛙五重奏达标", "reward": "", "group": "2.5 卓拉河 / 卓拉领地 / 卓拉之泉"}, {"id": "heart-piece-6", "cat": "heart-piece", "no": 6, "name": "心之碎片 #6", "region": "钓鱼池", "age": "child", "time": "any", "desc": "10 卢比；钓到 10 磅以上的鱼", "reward": "", "group": "2.6 海利亚湖"}, {"id": "heart-piece-23", "cat": "heart-piece", "no": 23, "name": "心之碎片 #23", "region": "海利亚湖石塔", "age": "either", "time": "any", "desc": "魔法豆；幼年石塔旁种豆，成年上塔", "reward": "", "group": "2.6 海利亚湖"}, {"id": "heart-piece-24", "cat": "heart-piece", "no": 24, "name": "心之碎片 #24", "region": "湖畔研究所", "age": "adult", "time": "any", "desc": "金色鳞片；潜入内池触底后与研究员对话", "reward": "", "group": "2.6 海利亚湖"}, {"id": "heart-piece-4", "cat": "heart-piece", "no": 4, "name": "心之碎片 #4", "region": "格鲁德之谷", "age": "child", "time": "any", "desc": "咕咕鸡滑翔到瀑布后方夹层", "reward": "", "group": "2.7 格鲁德之谷 / 要塞 / 沙漠"}, {"id": "heart-piece-5", "cat": "heart-piece", "no": 5, "name": "心之碎片 #5", "region": "格鲁德之谷", "age": "child", "time": "any", "desc": "咕咕鸡滑翔到崖边木箱，击破", "reward": "", "group": "2.7 格鲁德之谷 / 要塞 / 沙漠"}, {"id": "heart-piece-34", "cat": "heart-piece", "no": 34, "name": "心之碎片 #34", "region": "格鲁德要塞", "age": "adult", "time": "any", "desc": "稻草人之歌、长钩索；中间建筑屋顶宝箱", "reward": "", "group": "2.7 格鲁德之谷 / 要塞 / 沙漠"}, {"id": "heart-piece-35", "cat": "heart-piece", "no": 35, "name": "心之碎片 #35", "region": "马上射箭场", "age": "adult", "time": "any", "desc": "伊波娜、妖精之弓、30 卢比；得分 ≥1000", "reward": "", "group": "2.7 格鲁德之谷 / 要塞 / 沙漠"}, {"id": "heart-piece-36", "cat": "heart-piece", "no": 36, "name": "心之碎片 #36", "region": "巨大邪神像", "age": "adult", "time": "any", "desc": "魂之慰灵曲、魔法豆；入口左肥沃土种豆，跳到石拱顶", "reward": "", "group": "2.7 格鲁德之谷 / 要塞 / 沙漠"}, {"id": "boss-container-1", "cat": "boss-container", "no": 1, "name": "哥马（Queen Gohma）", "region": "德库树长老体内", "age": "child", "time": "any", "desc": "位于德库树长老体内，打倒头目后掉落心之容器（走进蓝光前先拾取）", "reward": "", "group": ""}, {"id": "boss-container-2", "cat": "boss-container", "no": 2, "name": "多东哥王（King Dodongo）", "region": "多东哥洞窟", "age": "child", "time": "any", "desc": "位于多东哥洞窟，打倒头目后掉落心之容器（走进蓝光前先拾取）", "reward": "", "group": ""}, {"id": "boss-container-3", "cat": "boss-container", "no": 3, "name": "啪哩内德（Barinade）", "region": "加卜加卜大人腹中", "age": "child", "time": "any", "desc": "位于加卜加卜大人腹中，打倒头目后掉落心之容器（走进蓝光前先拾取）", "reward": "", "group": ""}, {"id": "boss-container-4", "cat": "boss-container", "no": 4, "name": "幻影加侬（Phantom Ganon）", "region": "森之神殿", "age": "adult", "time": "any", "desc": "位于森之神殿，打倒头目后掉落心之容器（走进蓝光前先拾取）", "reward": "", "group": ""}, {"id": "boss-container-5", "cat": "boss-container", "no": 5, "name": "瓦尔巴基亚（Volvagia）", "region": "火之神殿", "age": "adult", "time": "any", "desc": "位于火之神殿，打倒头目后掉落心之容器（走进蓝光前先拾取）", "reward": "", "group": ""}, {"id": "boss-container-6", "cat": "boss-container", "no": 6, "name": "魔发（Morpha）", "region": "水之神殿", "age": "adult", "time": "any", "desc": "位于水之神殿，打倒头目后掉落心之容器（走进蓝光前先拾取）", "reward": "", "group": ""}, {"id": "boss-container-7", "cat": "boss-container", "no": 7, "name": "崩鼓崩鼓（Bongo Bongo）", "region": "暗之神殿", "age": "adult", "time": "any", "desc": "位于暗之神殿，打倒头目后掉落心之容器（走进蓝光前先拾取）", "reward": "", "group": ""}, {"id": "boss-container-8", "cat": "boss-container", "no": 8, "name": "双子妖婆（Twinrova）", "region": "魂之神殿", "age": "adult", "time": "any", "desc": "位于魂之神殿，打倒头目后掉落心之容器（走进蓝光前先拾取）", "reward": "", "group": ""}, {"id": "skulltula-1", "cat": "skulltula", "no": 1, "name": "黄金蜘蛛 #1", "region": "德库树长老体内", "age": "child", "time": "any", "desc": "无需道具", "reward": "", "group": "4.1 幼年迷宫"}, {"id": "skulltula-2", "cat": "skulltula", "no": 2, "name": "黄金蜘蛛 #2", "region": "德库树长老体内", "age": "child", "time": "any", "desc": "妖精弹弓", "reward": "", "group": "4.1 幼年迷宫"}, {"id": "skulltula-3", "cat": "skulltula", "no": 3, "name": "黄金蜘蛛 #3", "region": "德库树长老体内", "age": "child", "time": "any", "desc": "妖精弹弓", "reward": "", "group": "4.1 幼年迷宫"}, {"id": "skulltula-4", "cat": "skulltula", "no": 4, "name": "黄金蜘蛛 #4", "region": "德库树长老体内", "age": "child", "time": "any", "desc": "德库木棒、妖精弹弓", "reward": "", "group": "4.1 幼年迷宫"}, {"id": "skulltula-20", "cat": "skulltula", "no": 20, "name": "黄金蜘蛛 #20", "region": "多东哥洞窟", "age": "child", "time": "any", "desc": "炸弹，或引幼年多东哥自爆", "reward": "", "group": "4.1 幼年迷宫"}, {"id": "skulltula-21", "cat": "skulltula", "no": 21, "name": "黄金蜘蛛 #21", "region": "多东哥洞窟", "age": "child", "time": "any", "desc": "鼓隆手环、妖精弹弓", "reward": "", "group": "4.1 幼年迷宫"}, {"id": "skulltula-22", "cat": "skulltula", "no": 22, "name": "黄金蜘蛛 #22", "region": "多东哥洞窟", "age": "child", "time": "any", "desc": "炸弹", "reward": "", "group": "4.1 幼年迷宫"}, {"id": "skulltula-23", "cat": "skulltula", "no": 23, "name": "黄金蜘蛛 #23", "region": "多东哥洞窟", "age": "child", "time": "any", "desc": "炸弹", "reward": "", "group": "4.1 幼年迷宫"}, {"id": "skulltula-56", "cat": "skulltula", "no": 56, "name": "黄金蜘蛛 #56", "region": "多东哥洞窟", "age": "either", "time": "any", "desc": "稻草人之歌、钩索", "reward": "", "group": "4.1 幼年迷宫"}, {"id": "skulltula-33", "cat": "skulltula", "no": 33, "name": "黄金蜘蛛 #33", "region": "加卜加卜大人腹中", "age": "child", "time": "any", "desc": "无需道具", "reward": "", "group": "4.1 幼年迷宫"}, {"id": "skulltula-34", "cat": "skulltula", "no": 34, "name": "黄金蜘蛛 #34", "region": "加卜加卜大人腹中", "age": "child", "time": "any", "desc": "回旋镖", "reward": "", "group": "4.1 幼年迷宫"}, {"id": "skulltula-35", "cat": "skulltula", "no": 35, "name": "黄金蜘蛛 #35", "region": "加卜加卜大人腹中", "age": "child", "time": "any", "desc": "回旋镖", "reward": "", "group": "4.1 幼年迷宫"}, {"id": "skulltula-36", "cat": "skulltula", "no": 36, "name": "黄金蜘蛛 #36", "region": "加卜加卜大人腹中", "age": "child", "time": "any", "desc": "回旋镖 或 妖精弹弓", "reward": "", "group": "4.1 幼年迷宫"}, {"id": "skulltula-79", "cat": "skulltula", "no": 79, "name": "黄金蜘蛛 #79", "region": "井底", "age": "child", "time": "any", "desc": "真实眼镜、回旋镖", "reward": "", "group": "4.1 幼年迷宫"}, {"id": "skulltula-80", "cat": "skulltula", "no": 80, "name": "黄金蜘蛛 #80", "region": "井底", "age": "child", "time": "any", "desc": "小钥匙、真实眼镜", "reward": "", "group": "4.1 幼年迷宫"}, {"id": "skulltula-81", "cat": "skulltula", "no": 81, "name": "黄金蜘蛛 #81", "region": "井底", "age": "child", "time": "any", "desc": "小钥匙", "reward": "", "group": "4.1 幼年迷宫"}, {"id": "skulltula-9", "cat": "skulltula", "no": 9, "name": "黄金蜘蛛 #9", "region": "卡卡利科村", "age": "child", "time": "any", "desc": "村广场树上（撞树）", "reward": "", "group": "4.2 卡卡利科村与墓地"}, {"id": "skulltula-10", "cat": "skulltula", "no": 10, "name": "黄金蜘蛛 #10", "region": "卡卡利科村", "age": "child", "time": "night", "desc": "骷髅蜘蛛之家外墙（最易漏）", "reward": "", "group": "4.2 卡卡利科村与墓地"}, {"id": "skulltula-11", "cat": "skulltula", "no": 11, "name": "黄金蜘蛛 #11", "region": "卡卡利科村", "age": "child", "time": "night", "desc": "风车梯子附近", "reward": "", "group": "4.2 卡卡利科村与墓地"}, {"id": "skulltula-12", "cat": "skulltula", "no": 12, "name": "黄金蜘蛛 #12", "region": "卡卡利科村", "age": "child", "time": "night", "desc": "妖精弹弓", "reward": "", "group": "4.2 卡卡利科村与墓地"}, {"id": "skulltula-13", "cat": "skulltula", "no": 13, "name": "黄金蜘蛛 #13", "region": "卡卡利科村", "age": "child", "time": "night", "desc": "蓝门旁墙面", "reward": "", "group": "4.2 卡卡利科村与墓地"}, {"id": "skulltula-44", "cat": "skulltula", "no": 44, "name": "黄金蜘蛛 #44", "region": "卡卡利科村", "age": "adult", "time": "night", "desc": "钩索（屋顶）", "reward": "", "group": "4.2 卡卡利科村与墓地"}, {"id": "skulltula-14", "cat": "skulltula", "no": 14, "name": "黄金蜘蛛 #14", "region": "墓地", "age": "child", "time": "any", "desc": "倒虫（墙边软土）", "reward": "", "group": "4.2 卡卡利科村与墓地"}, {"id": "skulltula-40", "cat": "skulltula", "no": 40, "name": "黄金蜘蛛 #40", "region": "墓地", "age": "either", "time": "night", "desc": "丹培小屋后墙；幼年回旋镖 / 成年钩索", "reward": "", "group": "4.2 卡卡利科村与墓地"}, {"id": "skulltula-5", "cat": "skulltula", "no": 5, "name": "黄金蜘蛛 #5", "region": "海拉鲁平原", "age": "child", "time": "any", "desc": "孤树撞树掉落", "reward": "", "group": "4.3 海拉鲁平原 / 城邑 / 城堡 / 荣蓉牧场"}, {"id": "skulltula-27", "cat": "skulltula", "no": 27, "name": "黄金蜘蛛 #27", "region": "海拉鲁平原", "age": "either", "time": "any", "desc": "炸弹；幼年回旋镖 / 成年钩索", "reward": "", "group": "4.3 海拉鲁平原 / 城邑 / 城堡 / 荣蓉牧场"}, {"id": "skulltula-55", "cat": "skulltula", "no": 55, "name": "黄金蜘蛛 #55", "region": "海拉鲁平原", "age": "either", "time": "any", "desc": "炸弹；需先幼年再来成年（沼泽地洞）", "reward": "", "group": "4.3 海拉鲁平原 / 城邑 / 城堡 / 荣蓉牧场"}, {"id": "skulltula-6", "cat": "skulltula", "no": 6, "name": "黄金蜘蛛 #6", "region": "城邑", "age": "child", "time": "any", "desc": "城门守卫室木箱", "reward": "", "group": "4.3 海拉鲁平原 / 城邑 / 城堡 / 荣蓉牧场"}, {"id": "skulltula-7", "cat": "skulltula", "no": 7, "name": "黄金蜘蛛 #7", "region": "海拉鲁城堡", "age": "child", "time": "any", "desc": "城堡花园棕榈树", "reward": "", "group": "4.3 海拉鲁平原 / 城邑 / 城堡 / 荣蓉牧场"}, {"id": "skulltula-54", "cat": "skulltula", "no": 54, "name": "黄金蜘蛛 #54", "region": "海拉鲁城堡", "age": "child", "time": "any", "desc": "暴风雨之歌、炸弹、回旋镖", "reward": "", "group": "4.3 海拉鲁平原 / 城邑 / 城堡 / 荣蓉牧场"}, {"id": "skulltula-45", "cat": "skulltula", "no": 45, "name": "黄金蜘蛛 #45", "region": "加侬多夫城堡外", "age": "adult", "time": "any", "desc": "钩索（废墟路面）", "reward": "", "group": "4.3 海拉鲁平原 / 城邑 / 城堡 / 荣蓉牧场"}, {"id": "skulltula-8", "cat": "skulltula", "no": 8, "name": "黄金蜘蛛 #8", "region": "荣蓉牧场", "age": "child", "time": "any", "desc": "石墙旁孤立树（白天撞树）", "reward": "", "group": "4.3 海拉鲁平原 / 城邑 / 城堡 / 荣蓉牧场"}, {"id": "skulltula-38", "cat": "skulltula", "no": 38, "name": "黄金蜘蛛 #38", "region": "荣蓉牧场", "age": "child", "time": "night", "desc": "回旋镖", "reward": "", "group": "4.3 海拉鲁平原 / 城邑 / 城堡 / 荣蓉牧场"}, {"id": "skulltula-39", "cat": "skulltula", "no": 39, "name": "黄金蜘蛛 #39", "region": "荣蓉牧场", "age": "either", "time": "night", "desc": "回旋镖", "reward": "", "group": "4.3 海拉鲁平原 / 城邑 / 城堡 / 荣蓉牧场"}, {"id": "skulltula-15", "cat": "skulltula", "no": 15, "name": "黄金蜘蛛 #15", "region": "科奇里森林", "age": "child", "time": "any", "desc": "倒虫（科奇里商店后软土）", "reward": "", "group": "4.4 科奇里森林 / 迷途森林 / 森之圣域"}, {"id": "skulltula-16", "cat": "skulltula", "no": 16, "name": "黄金蜘蛛 #16", "region": "科奇里森林", "age": "child", "time": "night", "desc": "村边大树干", "reward": "", "group": "4.4 科奇里森林 / 迷途森林 / 森之圣域"}, {"id": "skulltula-46", "cat": "skulltula", "no": 46, "name": "黄金蜘蛛 #46", "region": "科奇里森林", "age": "adult", "time": "night", "desc": "钩索", "reward": "", "group": "4.4 科奇里森林 / 迷途森林 / 森之圣域"}, {"id": "skulltula-17", "cat": "skulltula", "no": 17, "name": "黄金蜘蛛 #17", "region": "迷途森林", "age": "child", "time": "any", "desc": "倒虫", "reward": "", "group": "4.4 科奇里森林 / 迷途森林 / 森之圣域"}, {"id": "skulltula-18", "cat": "skulltula", "no": 18, "name": "黄金蜘蛛 #18", "region": "迷途森林", "age": "child", "time": "any", "desc": "倒虫（第二个小贩果旁软土）", "reward": "", "group": "4.4 科奇里森林 / 迷途森林 / 森之圣域"}, {"id": "skulltula-47", "cat": "skulltula", "no": 47, "name": "黄金蜘蛛 #47", "region": "迷途森林", "age": "adult", "time": "any", "desc": "魔法豆长藤上去", "reward": "", "group": "4.4 科奇里森林 / 迷途森林 / 森之圣域"}, {"id": "skulltula-48", "cat": "skulltula", "no": 48, "name": "黄金蜘蛛 #48", "region": "森之圣域", "age": "adult", "time": "night", "desc": "钩索", "reward": "", "group": "4.4 科奇里森林 / 迷途森林 / 森之圣域"}, {"id": "skulltula-19", "cat": "skulltula", "no": 19, "name": "黄金蜘蛛 #19", "region": "死亡之山登山道", "age": "child", "time": "any", "desc": "鼓隆手环、倒虫", "reward": "", "group": "4.5 死亡之山"}, {"id": "skulltula-24", "cat": "skulltula", "no": 24, "name": "黄金蜘蛛 #24", "region": "死亡之山登山道", "age": "either", "time": "any", "desc": "炸弹（红岩洞软土旁）", "reward": "", "group": "4.5 死亡之山"}, {"id": "skulltula-64", "cat": "skulltula", "no": 64, "name": "黄金蜘蛛 #64", "region": "死亡之山登山道", "age": "adult", "time": "night", "desc": "万吨锤", "reward": "", "group": "4.5 死亡之山"}, {"id": "skulltula-65", "cat": "skulltula", "no": 65, "name": "黄金蜘蛛 #65", "region": "死亡之山登山道", "age": "adult", "time": "night", "desc": "万吨锤", "reward": "", "group": "4.5 死亡之山"}, {"id": "skulltula-25", "cat": "skulltula", "no": 25, "name": "黄金蜘蛛 #25", "region": "鼓隆城", "age": "child", "time": "any", "desc": "炸弹", "reward": "", "group": "4.5 死亡之山"}, {"id": "skulltula-57", "cat": "skulltula", "no": 57, "name": "黄金蜘蛛 #57", "region": "鼓隆城", "age": "adult", "time": "any", "desc": "钩索", "reward": "", "group": "4.5 死亡之山"}, {"id": "skulltula-26", "cat": "skulltula", "no": 26, "name": "黄金蜘蛛 #26", "region": "死亡之山火山口", "age": "child", "time": "any", "desc": "火山口取", "reward": "", "group": "4.5 死亡之山"}, {"id": "skulltula-58", "cat": "skulltula", "no": 58, "name": "黄金蜘蛛 #58", "region": "死亡之山火山口", "age": "child", "time": "any", "desc": "火之波丽露舞曲、倒虫", "reward": "", "group": "4.5 死亡之山"}, {"id": "skulltula-28", "cat": "skulltula", "no": 28, "name": "黄金蜘蛛 #28", "region": "卓拉河", "age": "child", "time": "any", "desc": "倒虫", "reward": "", "group": "4.6 卓拉河 / 卓拉领地 / 卓拉之泉 / 冰之洞窟"}, {"id": "skulltula-29", "cat": "skulltula", "no": 29, "name": "黄金蜘蛛 #29", "region": "卓拉河", "age": "child", "time": "night", "desc": "河流墙边", "reward": "", "group": "4.6 卓拉河 / 卓拉领地 / 卓拉之泉 / 冰之洞窟"}, {"id": "skulltula-66", "cat": "skulltula", "no": 66, "name": "黄金蜘蛛 #66", "region": "卓拉河", "age": "adult", "time": "night", "desc": "钩索", "reward": "", "group": "4.6 卓拉河 / 卓拉领地 / 卓拉之泉 / 冰之洞窟"}, {"id": "skulltula-67", "cat": "skulltula", "no": 67, "name": "黄金蜘蛛 #67", "region": "卓拉河", "age": "adult", "time": "night", "desc": "钩索", "reward": "", "group": "4.6 卓拉河 / 卓拉领地 / 卓拉之泉 / 冰之洞窟"}, {"id": "skulltula-68", "cat": "skulltula", "no": 68, "name": "黄金蜘蛛 #68", "region": "卓拉领地", "age": "adult", "time": "any", "desc": "钩索（冻结桥柱）", "reward": "", "group": "4.6 卓拉河 / 卓拉领地 / 卓拉之泉 / 冰之洞窟"}, {"id": "skulltula-32", "cat": "skulltula", "no": 32, "name": "黄金蜘蛛 #32", "region": "卓拉之泉", "age": "child", "time": "any", "desc": "直接取", "reward": "", "group": "4.6 卓拉河 / 卓拉领地 / 卓拉之泉 / 冰之洞窟"}, {"id": "skulltula-37", "cat": "skulltula", "no": 37, "name": "黄金蜘蛛 #37", "region": "卓拉之泉", "age": "child", "time": "night", "desc": "回旋镖", "reward": "", "group": "4.6 卓拉河 / 卓拉领地 / 卓拉之泉 / 冰之洞窟"}, {"id": "skulltula-100", "cat": "skulltula", "no": 100, "name": "黄金蜘蛛 #100", "region": "卓拉之泉", "age": "adult", "time": "night", "desc": "银手套、长钩索；建议带真实眼镜（第 100 只）", "reward": "", "group": "4.6 卓拉河 / 卓拉领地 / 卓拉之泉 / 冰之洞窟"}, {"id": "skulltula-69", "cat": "skulltula", "no": 69, "name": "黄金蜘蛛 #69", "region": "冰之洞窟", "age": "adult", "time": "any", "desc": "钩索", "reward": "", "group": "4.6 卓拉河 / 卓拉领地 / 卓拉之泉 / 冰之洞窟"}, {"id": "skulltula-70", "cat": "skulltula", "no": 70, "name": "黄金蜘蛛 #70", "region": "冰之洞窟", "age": "adult", "time": "any", "desc": "蓝色火焰、钩索", "reward": "", "group": "4.6 卓拉河 / 卓拉领地 / 卓拉之泉 / 冰之洞窟"}, {"id": "skulltula-71", "cat": "skulltula", "no": 71, "name": "黄金蜘蛛 #71", "region": "冰之洞窟", "age": "adult", "time": "any", "desc": "蓝色火焰、钩索", "reward": "", "group": "4.6 卓拉河 / 卓拉领地 / 卓拉之泉 / 冰之洞窟"}, {"id": "skulltula-30", "cat": "skulltula", "no": 30, "name": "黄金蜘蛛 #30", "region": "海利亚湖", "age": "child", "time": "any", "desc": "倒虫", "reward": "", "group": "4.7 海利亚湖"}, {"id": "skulltula-31", "cat": "skulltula", "no": 31, "name": "黄金蜘蛛 #31", "region": "海利亚湖", "age": "child", "time": "any", "desc": "直接取", "reward": "", "group": "4.7 海利亚湖"}, {"id": "skulltula-43", "cat": "skulltula", "no": 43, "name": "黄金蜘蛛 #43", "region": "海利亚湖", "age": "child", "time": "night", "desc": "回旋镖", "reward": "", "group": "4.7 海利亚湖"}, {"id": "skulltula-72", "cat": "skulltula", "no": 72, "name": "黄金蜘蛛 #72", "region": "湖畔研究所", "age": "adult", "time": "any", "desc": "重铁靴、钩索", "reward": "", "group": "4.7 海利亚湖"}, {"id": "skulltula-78", "cat": "skulltula", "no": 78, "name": "黄金蜘蛛 #78", "region": "海利亚湖", "age": "adult", "time": "night", "desc": "长钩索", "reward": "", "group": "4.7 海利亚湖"}, {"id": "skulltula-41", "cat": "skulltula", "no": 41, "name": "黄金蜘蛛 #41", "region": "格鲁德之谷", "age": "child", "time": "night", "desc": "回旋镖", "reward": "", "group": "4.8 格鲁德之谷与沙漠"}, {"id": "skulltula-42", "cat": "skulltula", "no": 42, "name": "黄金蜘蛛 #42", "region": "格鲁德之谷", "age": "child", "time": "any", "desc": "倒虫、咕咕鸡", "reward": "", "group": "4.8 格鲁德之谷与沙漠"}, {"id": "skulltula-87", "cat": "skulltula", "no": 87, "name": "黄金蜘蛛 #87", "region": "格鲁德之谷", "age": "adult", "time": "night", "desc": "过断桥需伊波娜或长钩索", "reward": "", "group": "4.8 格鲁德之谷与沙漠"}, {"id": "skulltula-88", "cat": "skulltula", "no": 88, "name": "黄金蜘蛛 #88", "region": "格鲁德之谷", "age": "adult", "time": "night", "desc": "万吨锤、钩索", "reward": "", "group": "4.8 格鲁德之谷与沙漠"}, {"id": "skulltula-89", "cat": "skulltula", "no": 89, "name": "黄金蜘蛛 #89", "region": "格鲁德要塞", "age": "adult", "time": "night", "desc": "长钩索", "reward": "", "group": "4.8 格鲁德之谷与沙漠"}, {"id": "skulltula-90", "cat": "skulltula", "no": 90, "name": "黄金蜘蛛 #90", "region": "格鲁德要塞", "age": "adult", "time": "night", "desc": "格鲁德许可证、长钩索", "reward": "", "group": "4.8 格鲁德之谷与沙漠"}, {"id": "skulltula-91", "cat": "skulltula", "no": 91, "name": "黄金蜘蛛 #91", "region": "幻影沙漠", "age": "adult", "time": "any", "desc": "沙漠中直接取", "reward": "", "group": "4.8 格鲁德之谷与沙漠"}, {"id": "skulltula-92", "cat": "skulltula", "no": 92, "name": "黄金蜘蛛 #92", "region": "巨大邪神像", "age": "adult", "time": "night", "desc": "长钩索", "reward": "", "group": "4.8 格鲁德之谷与沙漠"}, {"id": "skulltula-93", "cat": "skulltula", "no": 93, "name": "黄金蜘蛛 #93", "region": "巨大邪神像", "age": "child", "time": "any", "desc": "魂之慰灵曲、倒虫", "reward": "", "group": "4.8 格鲁德之谷与沙漠"}, {"id": "skulltula-97", "cat": "skulltula", "no": 97, "name": "黄金蜘蛛 #97", "region": "巨大邪神像", "age": "adult", "time": "night", "desc": "魔法豆", "reward": "", "group": "4.8 格鲁德之谷与沙漠"}, {"id": "skulltula-49", "cat": "skulltula", "no": 49, "name": "黄金蜘蛛 #49", "region": "森之神殿", "age": "adult", "time": "any", "desc": "钩索", "reward": "", "group": "4.9 成年神殿"}, {"id": "skulltula-50", "cat": "skulltula", "no": 50, "name": "黄金蜘蛛 #50", "region": "森之神殿", "age": "adult", "time": "any", "desc": "钩索", "reward": "", "group": "4.9 成年神殿"}, {"id": "skulltula-51", "cat": "skulltula", "no": 51, "name": "黄金蜘蛛 #51", "region": "森之神殿", "age": "adult", "time": "any", "desc": "钩索、妖精之弓", "reward": "", "group": "4.9 成年神殿"}, {"id": "skulltula-52", "cat": "skulltula", "no": 52, "name": "黄金蜘蛛 #52", "region": "森之神殿", "age": "adult", "time": "any", "desc": "钩索、稻草人之歌", "reward": "", "group": "4.9 成年神殿"}, {"id": "skulltula-53", "cat": "skulltula", "no": 53, "name": "黄金蜘蛛 #53", "region": "森之神殿", "age": "adult", "time": "any", "desc": "钩索", "reward": "", "group": "4.9 成年神殿"}, {"id": "skulltula-59", "cat": "skulltula", "no": 59, "name": "黄金蜘蛛 #59", "region": "火之神殿", "age": "adult", "time": "any", "desc": "时之歌", "reward": "", "group": "4.9 成年神殿"}, {"id": "skulltula-60", "cat": "skulltula", "no": 60, "name": "黄金蜘蛛 #60", "region": "火之神殿", "age": "adult", "time": "any", "desc": "炸弹", "reward": "", "group": "4.9 成年神殿"}, {"id": "skulltula-61", "cat": "skulltula", "no": 61, "name": "黄金蜘蛛 #61", "region": "火之神殿", "age": "adult", "time": "any", "desc": "钩索、稻草人之歌", "reward": "", "group": "4.9 成年神殿"}, {"id": "skulltula-62", "cat": "skulltula", "no": 62, "name": "黄金蜘蛛 #62", "region": "火之神殿", "age": "adult", "time": "any", "desc": "钩索、稻草人之歌", "reward": "", "group": "4.9 成年神殿"}, {"id": "skulltula-63", "cat": "skulltula", "no": 63, "name": "黄金蜘蛛 #63", "region": "火之神殿", "age": "adult", "time": "any", "desc": "万吨锤", "reward": "", "group": "4.9 成年神殿"}, {"id": "skulltula-73", "cat": "skulltula", "no": 73, "name": "黄金蜘蛛 #73", "region": "水之神殿", "age": "adult", "time": "any", "desc": "重铁靴、钩索", "reward": "", "group": "4.9 成年神殿"}, {"id": "skulltula-74", "cat": "skulltula", "no": 74, "name": "黄金蜘蛛 #74", "region": "水之神殿", "age": "adult", "time": "any", "desc": "重铁靴、炸弹", "reward": "", "group": "4.9 成年神殿"}, {"id": "skulltula-75", "cat": "skulltula", "no": 75, "name": "黄金蜘蛛 #75", "region": "水之神殿", "age": "adult", "time": "any", "desc": "重铁靴、长钩索", "reward": "", "group": "4.9 成年神殿"}, {"id": "skulltula-76", "cat": "skulltula", "no": 76, "name": "黄金蜘蛛 #76", "region": "水之神殿", "age": "adult", "time": "any", "desc": "长钩索", "reward": "", "group": "4.9 成年神殿"}, {"id": "skulltula-77", "cat": "skulltula", "no": 77, "name": "黄金蜘蛛 #77", "region": "水之神殿", "age": "adult", "time": "any", "desc": "长钩索", "reward": "", "group": "4.9 成年神殿"}, {"id": "skulltula-82", "cat": "skulltula", "no": 82, "name": "黄金蜘蛛 #82", "region": "暗之神殿", "age": "adult", "time": "any", "desc": "真实眼镜、浮空靴", "reward": "", "group": "4.9 成年神殿"}, {"id": "skulltula-83", "cat": "skulltula", "no": 83, "name": "黄金蜘蛛 #83", "region": "暗之神殿", "age": "adult", "time": "any", "desc": "真实眼镜", "reward": "", "group": "4.9 成年神殿"}, {"id": "skulltula-84", "cat": "skulltula", "no": 84, "name": "黄金蜘蛛 #84", "region": "暗之神殿", "age": "adult", "time": "any", "desc": "重铁靴、长钩索", "reward": "", "group": "4.9 成年神殿"}, {"id": "skulltula-85", "cat": "skulltula", "no": 85, "name": "黄金蜘蛛 #85", "region": "暗之神殿", "age": "adult", "time": "any", "desc": "稻草人之歌、长钩索", "reward": "", "group": "4.9 成年神殿"}, {"id": "skulltula-86", "cat": "skulltula", "no": 86, "name": "黄金蜘蛛 #86", "region": "暗之神殿", "age": "adult", "time": "any", "desc": "炸弹、真实眼镜", "reward": "", "group": "4.9 成年神殿"}, {"id": "skulltula-94", "cat": "skulltula", "no": 94, "name": "黄金蜘蛛 #94", "region": "魂之神殿", "age": "either", "time": "any", "desc": "回旋镖", "reward": "", "group": "4.9 成年神殿"}, {"id": "skulltula-95", "cat": "skulltula", "no": 95, "name": "黄金蜘蛛 #95", "region": "魂之神殿", "age": "either", "time": "any", "desc": "直接取", "reward": "", "group": "4.9 成年神殿"}, {"id": "skulltula-96", "cat": "skulltula", "no": 96, "name": "黄金蜘蛛 #96", "region": "魂之神殿", "age": "either", "time": "any", "desc": "回旋镖", "reward": "", "group": "4.9 成年神殿"}, {"id": "skulltula-98", "cat": "skulltula", "no": 98, "name": "黄金蜘蛛 #98", "region": "魂之神殿", "age": "adult", "time": "any", "desc": "银手套", "reward": "", "group": "4.9 成年神殿"}, {"id": "skulltula-99", "cat": "skulltula", "no": 99, "name": "黄金蜘蛛 #99", "region": "魂之神殿", "age": "adult", "time": "any", "desc": "稻草人之歌、钩索", "reward": "", "group": "4.9 成年神殿"}, {"id": "song-1", "cat": "song", "no": 1, "name": "塞尔达摇篮曲", "region": "海拉鲁城堡中庭（英帕）", "age": "child", "time": "any", "desc": "在海拉鲁城堡中庭（英帕）习得", "reward": "", "group": ""}, {"id": "song-2", "cat": "song", "no": 2, "name": "伊波娜之歌", "region": "荣蓉牧场（玛蓉）", "age": "child", "time": "any", "desc": "在荣蓉牧场（玛蓉）习得", "reward": "", "group": ""}, {"id": "song-3", "cat": "song", "no": 3, "name": "莎莉亚之歌", "region": "森之圣域（莎莉亚）", "age": "child", "time": "any", "desc": "在森之圣域（莎莉亚）习得", "reward": "", "group": ""}, {"id": "song-4", "cat": "song", "no": 4, "name": "太阳之歌", "region": "卡卡利科墓地·王族墓穴石碑", "age": "either", "time": "any", "desc": "在卡卡利科墓地·王族墓穴石碑习得", "reward": "", "group": ""}, {"id": "song-5", "cat": "song", "no": 5, "name": "时之歌", "region": "城邑外（塞尔达留言）", "age": "child", "time": "any", "desc": "在城邑外（塞尔达留言）习得", "reward": "", "group": ""}, {"id": "song-6", "cat": "song", "no": 6, "name": "暴风雨之歌", "region": "卡卡利科风车小屋（音乐叔叔）", "age": "adult", "time": "any", "desc": "在卡卡利科风车小屋（音乐叔叔）习得", "reward": "", "group": ""}, {"id": "song-7", "cat": "song", "no": 7, "name": "森之小步舞曲", "region": "森之圣域（希克）", "age": "adult", "time": "any", "desc": "在森之圣域（希克）习得", "reward": "", "group": ""}, {"id": "song-8", "cat": "song", "no": 8, "name": "火之波丽露舞曲", "region": "死亡之山火山口（希克）", "age": "adult", "time": "any", "desc": "在死亡之山火山口（希克）习得", "reward": "", "group": ""}, {"id": "song-9", "cat": "song", "no": 9, "name": "水之小夜曲", "region": "冰之洞窟（希克）", "age": "adult", "time": "any", "desc": "在冰之洞窟（希克）习得", "reward": "", "group": ""}, {"id": "song-10", "cat": "song", "no": 10, "name": "暗之梦幻曲", "region": "卡卡利科村（希克）", "age": "adult", "time": "any", "desc": "在卡卡利科村（希克）习得", "reward": "", "group": ""}, {"id": "song-11", "cat": "song", "no": 11, "name": "魂之慰灵曲", "region": "巨大邪神像（希克）", "age": "adult", "time": "any", "desc": "在巨大邪神像（希克）习得", "reward": "", "group": ""}, {"id": "song-12", "cat": "song", "no": 12, "name": "光之前奏曲", "region": "时之神殿（希克）", "age": "adult", "time": "any", "desc": "在时之神殿（希克）习得", "reward": "", "group": ""}, {"id": "song-13", "cat": "song", "no": 13, "name": "稻草人之歌", "region": "海利亚湖（波努鲁）", "age": "either", "time": "any", "desc": "在海利亚湖（波努鲁）习得", "reward": "", "group": ""}, {"id": "stone-medal-1", "cat": "stone-medal", "no": 1, "name": "科奇里翡翠", "region": "", "age": "child", "time": "any", "desc": "德库树长老体内，打倒哥马", "reward": "", "group": ""}, {"id": "stone-medal-2", "cat": "stone-medal", "no": 2, "name": "鼓隆红宝石", "region": "", "age": "child", "time": "any", "desc": "多东哥洞窟，打倒多东哥王后", "reward": "", "group": ""}, {"id": "stone-medal-3", "cat": "stone-medal", "no": 3, "name": "卓拉蓝宝石", "region": "", "age": "child", "time": "any", "desc": "加卜加卜大人腹中，打倒啪哩内德", "reward": "", "group": ""}, {"id": "stone-medal-4", "cat": "stone-medal", "no": 4, "name": "光之勋章", "region": "", "age": "adult", "time": "any", "desc": "时之神殿，劳鲁授予", "reward": "", "group": ""}, {"id": "stone-medal-5", "cat": "stone-medal", "no": 5, "name": "森之勋章", "region": "", "age": "adult", "time": "any", "desc": "森之神殿，打倒幻影加侬", "reward": "", "group": ""}, {"id": "stone-medal-6", "cat": "stone-medal", "no": 6, "name": "火之勋章", "region": "", "age": "adult", "time": "any", "desc": "火之神殿，打倒瓦尔巴基亚", "reward": "", "group": ""}, {"id": "stone-medal-7", "cat": "stone-medal", "no": 7, "name": "水之勋章", "region": "", "age": "adult", "time": "any", "desc": "水之神殿，打倒魔发", "reward": "", "group": ""}, {"id": "stone-medal-8", "cat": "stone-medal", "no": 8, "name": "暗之勋章", "region": "", "age": "adult", "time": "any", "desc": "暗之神殿，打倒崩鼓崩鼓", "reward": "", "group": ""}, {"id": "stone-medal-9", "cat": "stone-medal", "no": 9, "name": "魂之勋章", "region": "", "age": "adult", "time": "any", "desc": "魂之神殿，打倒双子妖婆", "reward": "", "group": ""}, {"id": "item-1", "cat": "item", "no": 1, "name": "德库木棒", "region": "", "age": "child", "time": "any", "desc": "德库巴巴；科奇里商店", "reward": "", "group": ""}, {"id": "item-2", "cat": "item", "no": 2, "name": "德库坚果", "region": "", "age": "child", "time": "any", "desc": "德库巴巴", "reward": "", "group": ""}, {"id": "item-3", "cat": "item", "no": 3, "name": "妖精弹弓", "region": "", "age": "child", "time": "any", "desc": "德库树长老体内", "reward": "", "group": ""}, {"id": "item-4", "cat": "item", "no": 4, "name": "妖精之笛", "region": "", "age": "child", "time": "any", "desc": "走出科奇里森林，莎莉亚赠送", "reward": "", "group": ""}, {"id": "item-5", "cat": "item", "no": 5, "name": "时之笛", "region": "", "age": "child", "time": "any", "desc": "城堡护城河（塞尔达逃离后）", "reward": "", "group": ""}, {"id": "item-6", "cat": "item", "no": 6, "name": "炸弹袋", "region": "", "age": "child", "time": "any", "desc": "多东哥洞窟", "reward": "", "group": ""}, {"id": "item-7", "cat": "item", "no": 7, "name": "炸弹鼠", "region": "", "age": "child", "time": "any", "desc": "炸弹鼠保龄球场首个奖品；或 40 枚蜘蛛", "reward": "", "group": ""}, {"id": "item-8", "cat": "item", "no": 8, "name": "回旋镖", "region": "", "age": "child", "time": "any", "desc": "加卜加卜大人腹中", "reward": "", "group": ""}, {"id": "item-9", "cat": "item", "no": 9, "name": "魔法豆", "region": "", "age": "child", "time": "any", "desc": "卓拉河商人，首颗 10 卢比", "reward": "", "group": ""}, {"id": "item-10", "cat": "item", "no": 10, "name": "真实眼镜", "region": "", "age": "child", "time": "any", "desc": "井底", "reward": "", "group": ""}, {"id": "item-11", "cat": "item", "no": 11, "name": "钩索", "region": "", "age": "adult", "time": "any", "desc": "墓地丹培赛跑首胜", "reward": "", "group": ""}, {"id": "item-12", "cat": "item", "no": 12, "name": "长钩索", "region": "", "age": "adult", "time": "any", "desc": "水之神殿", "reward": "", "group": ""}, {"id": "item-13", "cat": "item", "no": 13, "name": "妖精之弓", "region": "", "age": "adult", "time": "any", "desc": "森之神殿", "reward": "", "group": ""}, {"id": "item-14", "cat": "item", "no": 14, "name": "万吨锤", "region": "", "age": "adult", "time": "any", "desc": "火之神殿", "reward": "", "group": ""}, {"id": "item-15", "cat": "item", "no": 15, "name": "火箭", "region": "", "age": "adult", "time": "any", "desc": "海利亚湖：打完水之神殿后朝日出射箭，游到落点拾取", "reward": "", "group": ""}, {"id": "item-16", "cat": "item", "no": 16, "name": "冰箭", "region": "", "age": "adult", "time": "any", "desc": "格鲁德训练场最后的宝箱", "reward": "", "group": ""}, {"id": "item-17", "cat": "item", "no": 17, "name": "光箭", "region": "", "age": "adult", "time": "any", "desc": "魂之神殿之后，时之神殿取得", "reward": "", "group": ""}, {"id": "equipment-1", "cat": "equipment", "no": 1, "name": "科奇里之剑", "region": "", "age": "child", "time": "any", "desc": "科奇里森林练习场旁隧道", "reward": "", "group": ""}, {"id": "equipment-2", "cat": "equipment", "no": 2, "name": "大师之剑", "region": "", "age": "either", "time": "any", "desc": "时之神殿（集齐三精灵石）", "reward": "", "group": ""}, {"id": "equipment-3", "cat": "equipment", "no": 3, "name": "巨人小刀", "region": "", "age": "adult", "time": "any", "desc": "鼓隆城 200 卢比（易断，非大鼓隆剑）", "reward": "", "group": ""}, {"id": "equipment-4", "cat": "equipment", "no": 4, "name": "大鼓隆之剑", "region": "", "age": "adult", "time": "any", "desc": "成年换物任务（11 步交易链）终点", "reward": "", "group": ""}, {"id": "equipment-5", "cat": "equipment", "no": 5, "name": "德库木盾", "region": "", "age": "child", "time": "any", "desc": "科奇里商店 40 卢比", "reward": "", "group": ""}, {"id": "equipment-6", "cat": "equipment", "no": 6, "name": "海利亚盾", "region": "", "age": "child", "time": "any", "desc": "城邑市集 80 卢比；或墓地宝箱免费", "reward": "", "group": ""}, {"id": "equipment-7", "cat": "equipment", "no": 7, "name": "镜盾", "region": "", "age": "adult", "time": "any", "desc": "魂之神殿", "reward": "", "group": ""}, {"id": "equipment-8", "cat": "equipment", "no": 8, "name": "鼓隆服", "region": "", "age": "adult", "time": "any", "desc": "鼓隆城（小鼓隆赠 / 商店 600 卢比）", "reward": "", "group": ""}, {"id": "equipment-9", "cat": "equipment", "no": 9, "name": "卓拉服", "region": "", "age": "adult", "time": "any", "desc": "冰之洞窟通关后卓拉王赠", "reward": "", "group": ""}, {"id": "equipment-10", "cat": "equipment", "no": 10, "name": "重铁靴", "region": "", "age": "adult", "time": "any", "desc": "冰之洞窟", "reward": "", "group": ""}, {"id": "equipment-11", "cat": "equipment", "no": 11, "name": "浮空靴", "region": "", "age": "adult", "time": "any", "desc": "暗之神殿", "reward": "", "group": ""}, {"id": "upgrade-1", "cat": "upgrade", "no": 1, "name": "大人钱包（500）", "region": "", "age": "either", "time": "any", "desc": "蜘蛛之家 10 枚", "reward": "", "group": ""}, {"id": "upgrade-2", "cat": "upgrade", "no": 2, "name": "巨人钱包（1000）", "region": "", "age": "either", "time": "any", "desc": "蜘蛛之家 30 枚", "reward": "", "group": ""}, {"id": "upgrade-3", "cat": "upgrade", "no": 3, "name": "炸弹袋（30）", "region": "", "age": "child", "time": "any", "desc": "鼓隆城，炸弹让滚动鼓隆族停下", "reward": "", "group": ""}, {"id": "upgrade-4", "cat": "upgrade", "no": 4, "name": "炸弹袋（40）", "region": "", "age": "child", "time": "any", "desc": "城邑炸弹鼠保龄球第二奖品", "reward": "", "group": ""}, {"id": "upgrade-5", "cat": "upgrade", "no": 5, "name": "种子袋（40）", "region": "", "age": "child", "time": "any", "desc": "城邑射击场全中 10 靶", "reward": "", "group": ""}, {"id": "upgrade-6", "cat": "upgrade", "no": 6, "name": "种子袋（50）", "region": "", "age": "child", "time": "any", "desc": "迷途森林吊靶", "reward": "", "group": ""}, {"id": "upgrade-7", "cat": "upgrade", "no": 7, "name": "箭袋（40）", "region": "", "age": "adult", "time": "any", "desc": "卡卡利科射击场全中 10 靶", "reward": "", "group": ""}, {"id": "upgrade-8", "cat": "upgrade", "no": 8, "name": "箭袋（50）", "region": "", "age": "adult", "time": "any", "desc": "格鲁德要塞马上射箭 1400 分", "reward": "", "group": ""}, {"id": "upgrade-9", "cat": "upgrade", "no": 9, "name": "德库木棒袋（20）", "region": "", "age": "child", "time": "any", "desc": "迷途森林小贩果 40 卢比", "reward": "", "group": ""}, {"id": "upgrade-10", "cat": "upgrade", "no": 10, "name": "德库坚果袋（30）", "region": "", "age": "child", "time": "any", "desc": "迷途森林裂石洞内小贩果 40 卢比", "reward": "", "group": ""}, {"id": "upgrade-11", "cat": "upgrade", "no": 11, "name": "德库坚果袋（40）", "region": "", "age": "child", "time": "any", "desc": "迷途森林地下舞台，戴真实面具与大德库族交谈", "reward": "", "group": ""}, {"id": "upgrade-12", "cat": "upgrade", "no": 12, "name": "银色鳞片", "region": "", "age": "child", "time": "any", "desc": "卓拉领地潜水游戏", "reward": "", "group": ""}, {"id": "upgrade-13", "cat": "upgrade", "no": 13, "name": "金色鳞片", "region": "", "age": "adult", "time": "any", "desc": "海利亚湖钓鱼池钓 60cm 以上", "reward": "", "group": ""}, {"id": "upgrade-14", "cat": "upgrade", "no": 14, "name": "鼓隆手环", "region": "", "age": "child", "time": "any", "desc": "鼓隆城达鲁尼亚", "reward": "", "group": ""}, {"id": "upgrade-15", "cat": "upgrade", "no": 15, "name": "银手套", "region": "", "age": "child", "time": "any", "desc": "魂之神殿幼年路线", "reward": "", "group": ""}, {"id": "upgrade-16", "cat": "upgrade", "no": 16, "name": "金手套", "region": "", "age": "adult", "time": "any", "desc": "加侬多夫城堡", "reward": "", "group": ""}, {"id": "bottle-1", "cat": "bottle", "no": 1, "name": "空瓶 #1 · 城邑药铺", "region": "城邑药铺", "age": "child", "time": "any", "desc": "用店主借出的瓶子抓回逃跑的虫", "reward": "", "group": ""}, {"id": "bottle-2", "cat": "bottle", "no": 2, "name": "空瓶 #2 · 卡卡利科村", "region": "卡卡利科村", "age": "child", "time": "any", "desc": "把 7 只咕咕鸡全部送回围栏", "reward": "", "group": ""}, {"id": "bottle-3", "cat": "bottle", "no": 3, "name": "空瓶 #3 · 荣蓉牧场", "region": "荣蓉牧场", "age": "child", "time": "any", "desc": "30 秒内找出 3 只指定咕咕鸡", "reward": "", "group": ""}, {"id": "bottle-4", "cat": "bottle", "no": 4, "name": "空瓶 #4 · 海利亚湖→卓拉领地", "region": "海利亚湖→卓拉领地", "age": "child", "time": "any", "desc": "取得露朵的信，交给卓拉王", "reward": "", "group": ""}, {"id": "bottle-5", "cat": "bottle", "no": 5, "name": "空瓶 #5 · 城邑幽灵商店", "region": "城邑幽灵商店", "age": "adult", "time": "any", "desc": "卖大魄累计 500 点", "reward": "", "group": ""}, {"id": "fairy-1", "cat": "fairy", "no": 1, "name": "大妖精泉 · 死亡之山山顶", "region": "死亡之山山顶", "age": "child", "time": "any", "desc": "幼年；炸弹、塞尔达摇篮曲；奉献 25 卢比", "reward": "魔力槽 + 迪荧之火", "group": ""}, {"id": "fairy-2", "cat": "fairy", "no": 2, "name": "大妖精泉 · 海拉鲁城堡周边", "region": "海拉鲁城堡周边", "age": "child", "time": "any", "desc": "幼年；炸弹；奉献 50 卢比", "reward": "强化回旋斩", "group": ""}, {"id": "fairy-3", "cat": "fairy", "no": 3, "name": "大妖精泉 · 卓拉之泉", "region": "卓拉之泉", "age": "child", "time": "any", "desc": "幼年；通过卓拉王、炸弹；奉献 100 卢比", "reward": "花柔之风", "group": ""}, {"id": "fairy-4", "cat": "fairy", "no": 4, "name": "大妖精泉 · 死亡之山火山口", "region": "死亡之山火山口", "age": "adult", "time": "any", "desc": "成年；钩索、万吨锤；奉献 200 卢比", "reward": "魔力容量加倍", "group": ""}, {"id": "fairy-5", "cat": "fairy", "no": 5, "name": "大妖精泉 · 巨大邪神像", "region": "巨大邪神像", "age": "adult", "time": "any", "desc": "成年；过沙漠、万吨锤；奉献 300 卢比", "reward": "娜如之爱", "group": ""}, {"id": "fairy-6", "cat": "fairy", "no": 6, "name": "大妖精泉 · 加侬多夫城堡附近", "region": "加侬多夫城堡附近", "age": "adult", "time": "any", "desc": "成年；解除 4 道结界后抵达；奉献 500 卢比", "reward": "承受伤害减半", "group": ""}, {"id": "mask-1", "cat": "mask", "no": 1, "name": "奇坦面具", "region": "卡卡利科村登山入口守卫", "age": "child", "time": "any", "desc": "卡卡利科村登山入口守卫，售价 15 卢比", "reward": "", "group": ""}, {"id": "mask-2", "cat": "mask", "no": 2, "name": "骷髅面具", "region": "迷途森林的骷髅小子", "age": "child", "time": "any", "desc": "迷途森林的骷髅小子，售价 10 卢比", "reward": "", "group": ""}, {"id": "mask-3", "cat": "mask", "no": 3, "name": "恐怖面具", "region": "墓地小男孩", "age": "child", "time": "any", "desc": "墓地小男孩，售价 50 卢比", "reward": "", "group": ""}, {"id": "mask-4", "cat": "mask", "no": 4, "name": "兔子头箍", "region": "海拉鲁平原马拉松人", "age": "child", "time": "any", "desc": "海拉鲁平原马拉松人，售价 200 卢比", "reward": "", "group": ""}, {"id": "mask-5", "cat": "mask", "no": 5, "name": "真实面具", "region": "付清兔子头箍钱后店主借给", "age": "child", "time": "any", "desc": "付清兔子头箍钱后店主借给，售价 — 卢比", "reward": "", "group": ""}, {"id": "poe-1", "cat": "poe", "no": 1, "name": "大魄 #1", "region": "城邑吊桥西侧", "age": "adult", "time": "night", "desc": "成年骑伊波娜，带妖精之弓；夜晚出没，射杀后装瓶卖城邑幽灵商店", "reward": "", "group": ""}, {"id": "poe-2", "cat": "poe", "no": 2, "name": "大魄 #2", "region": "吊桥南边", "age": "adult", "time": "night", "desc": "成年骑伊波娜，带妖精之弓；夜晚出没，射杀后装瓶卖城邑幽灵商店", "reward": "", "group": ""}, {"id": "poe-3", "cat": "poe", "no": 3, "name": "大魄 #3", "region": "荣蓉牧场北边", "age": "adult", "time": "night", "desc": "成年骑伊波娜，带妖精之弓；夜晚出没，射杀后装瓶卖城邑幽灵商店", "reward": "", "group": ""}, {"id": "poe-4", "cat": "poe", "no": 4, "name": "大魄 #4", "region": "荣蓉牧场西北", "age": "adult", "time": "night", "desc": "成年骑伊波娜，带妖精之弓；夜晚出没，射杀后装瓶卖城邑幽灵商店", "reward": "", "group": ""}, {"id": "poe-5", "cat": "poe", "no": 5, "name": "大魄 #5", "region": "格鲁德之谷入口", "age": "adult", "time": "night", "desc": "成年骑伊波娜，带妖精之弓；夜晚出没，射杀后装瓶卖城邑幽灵商店", "reward": "", "group": ""}, {"id": "poe-6", "cat": "poe", "no": 6, "name": "大魄 #6", "region": "格鲁德之谷与牧场之间", "age": "adult", "time": "night", "desc": "成年骑伊波娜，带妖精之弓；夜晚出没，射杀后装瓶卖城邑幽灵商店", "reward": "", "group": ""}, {"id": "poe-7", "cat": "poe", "no": 7, "name": "大魄 #7", "region": "荣蓉牧场南边", "age": "adult", "time": "night", "desc": "成年骑伊波娜，带妖精之弓；夜晚出没，射杀后装瓶卖城邑幽灵商店", "reward": "", "group": ""}, {"id": "poe-8", "cat": "poe", "no": 8, "name": "大魄 #8", "region": "海利亚湖入口东北", "age": "adult", "time": "night", "desc": "成年骑伊波娜，带妖精之弓；夜晚出没，射杀后装瓶卖城邑幽灵商店", "reward": "", "group": ""}, {"id": "poe-9", "cat": "poe", "no": 9, "name": "大魄 #9", "region": "科奇里森林入口西南", "age": "adult", "time": "night", "desc": "成年骑伊波娜，带妖精之弓；夜晚出没，射杀后装瓶卖城邑幽灵商店", "reward": "", "group": ""}, {"id": "poe-10", "cat": "poe", "no": 10, "name": "大魄 #10", "region": "荣蓉牧场东边", "age": "adult", "time": "night", "desc": "成年骑伊波娜，带妖精之弓；夜晚出没，射杀后装瓶卖城邑幽灵商店", "reward": "", "group": ""}, {"id": "owl-1", "cat": "owl", "no": 1, "name": "石像", "region": "", "age": "either", "time": "any", "desc": "三块精灵石", "reward": "", "group": ""}, {"id": "owl-2", "cat": "owl", "no": 2, "name": "银像", "region": "", "age": "either", "time": "any", "desc": "五贤者的觉醒", "reward": "", "group": ""}, {"id": "owl-3", "cat": "owl", "no": 3, "name": "金像", "region": "", "age": "either", "time": "any", "desc": "时之勇者的觉醒～决战", "reward": "", "group": ""}, {"id": "other-1", "cat": "other", "no": 1, "name": "响音石", "region": "", "age": "either", "time": "any", "desc": "蜘蛛之家 20 枚讨伐证明", "reward": "", "group": ""}, {"id": "other-2", "cat": "other", "no": 2, "name": "伊波娜", "region": "", "age": "adult", "time": "any", "desc": "成年在荣蓉牧场赢下印格赛马", "reward": "", "group": ""}, {"id": "other-3", "cat": "other", "no": 3, "name": "格鲁德许可证", "region": "", "age": "either", "time": "any", "desc": "格鲁德要塞救出四名木匠", "reward": "", "group": ""}, {"id": "other-4", "cat": "other", "no": 4, "name": "林克家的乳牛", "region": "", "age": "either", "time": "any", "desc": "荣蓉牧场打破玛蓉 40 秒纪录", "reward": "", "group": ""}];
+
+const STORE_KEY='oot-100-guide-v1';
+const state={view:'map',mapPhase:0,openLocs:{},search:'',region:'',age:'',time:'',catFocus:[],
+  checked:(()=>{try{return JSON.parse(localStorage.getItem(STORE_KEY))||{}}catch(e){return{}}})()};
+const catMap=Object.fromEntries(CATEGORIES.map(c=>[c.id,c]));
+const itemById=Object.fromEntries(ITEMS.map(i=>[i.id,i]));
+const regions=[...new Set(ITEMS.map(i=>i.region))].filter(Boolean).sort();
+function save(){localStorage.setItem(STORE_KEY,JSON.stringify(state.checked))}
+function ageLabel(a){return a==='child'?'幼年':a==='adult'?'成年':'均可'}
+function eraLabel(e){return e==='child'?'童年':e==='adult'?'成年':'跨时代'}
+function doneOf(ids){return ids.filter(id=>state.checked[id]).length}
+
+function match(it){
+  if(state.age&&it.age!==state.age)return false;
+  if(state.time==='night'&&it.time!=='night')return false;
+  if(state.region&&it.region!==state.region)return false;
+  if(state.catFocus.length&&!state.catFocus.includes(it.cat))return false;
+  if(state.search){const q=state.search.toLowerCase();if(![it.name,it.region,it.desc,it.reward].join(' ').toLowerCase().includes(q))return false}
+  return true;
+}
+function visible(){return ITEMS.filter(match)}
+
+function render(){
+  // 地区下拉
+  const sel=document.getElementById('regionFilter');
+  if(sel.options.length<=1){regions.forEach(r=>{const o=document.createElement('option');o.value=r;o.textContent=r;sel.appendChild(o)})}
+  // 总进度 (不受筛选影响)
+  const done=ITEMS.filter(i=>state.checked[i.id]).length;
+  const pct=ITEMS.length?Math.round(done/ITEMS.length*100):0;
+  document.getElementById('doneCount').textContent=done;
+  document.getElementById('totalCount').textContent=ITEMS.length;
+  document.getElementById('pctText').textContent=pct+'%';
+  document.getElementById('totalBar').style.width=pct+'%';
+  // 搜索/地区提示
+  const main=document.getElementById('list');
+  if(state.view==='map'){main.innerHTML=renderMap();drawMapLines()}
+  else if(state.view==='timeline'){main.innerHTML=renderTimeline()}
+  else if(state.view==='track'){main.innerHTML=renderTracks()}
+  else{main.innerHTML=renderList()}
+}
+
+const KINDNAME={main:'主线',boss:'Boss',col:'收集',side:'支线'};
+function renderMap(){
+  const p=PHASES[state.mapPhase];
+  const locs=PHASE_LOCS[p.id]||[];
+  // 主线时间轴（主干）
+  const rail=PHASES.map((x,i)=>{
+    const cls=i===state.mapPhase?'on':x.era;
+    const lb=x.title.split('·')[0].trim();
+    return `<button class="mg-node ${i===state.mapPhase?'on':x.era}" data-phase="${i}" title="${x.title}">
+      <div class="mg-dot"></div><div class="mg-no">${x.no}</div><div class="mg-lb">${lb}</div></button>`;
+  }).join('');
+  // 地点枝（点标题展开关联条目的详细攻略）
+  const branchHtml=locs.map((l,li)=>{
+    const key=state.mapPhase+'-'+li;
+    const isOpen=!!state.openLocs[key];
+    const liHtml=l.v.map(x=>`<li>${x}</li>`).join('');
+    const tip=l.tip?`<div class="mg-tip">⚠ ${l.tip}</div>`:'';
+    const refs=(l.items||[]).filter(id=>itemById[id]);
+    const dn=refs.filter(id=>state.checked[id]).length;
+    const count=refs.length?`<span class="cnt" style="font-size:10px;color:var(--muted);margin-left:6px">${dn}/${refs.length}</span>`:'';
+    let detail='';
+    if(isOpen){
+      if(refs.length){
+        detail=`<div class="mg-detail">`+refs.map(id=>{
+          const it=itemById[id];const done=!!state.checked[id];
+          const ageTag=`<span class="mg-dage ${it.age}">${ageLabel(it.age)}</span>`;
+          const nightTag=it.time==='night'?`<span class="mg-dage night">夜晚</span>`:'';
+          const geo=PIN_IMAGES[id];
+          const mini=geo?`<div class="mg-locimg" title="该地点的局部地图，金色圆点为收集位置">
+            <img src="${geo.img}" alt="${geo.area}" loading="lazy" onerror="this.classList.add('broken')">
+            <span class="pin" style="left:${geo.x}%;top:${geo.y}%"></span>
+            <span class="lbl">📍 ${geo.area}</span></div>`:'';
+          return `<div class="mg-drow ${done?'done':''}" data-did="${id}">
+            <div class="mg-dcheck" role="checkbox" aria-checked="${done}">${done?'✔':''}</div>
+            <div class="mg-dmeta"><div class="mg-dname"><span class="dno">#${it.no}</span>${it.name}${ageTag}${nightTag}</div>
+            <div class="mg-ddesc">${it.desc||'—'}${it.reward?' · 🎁 '+it.reward:''}</div>${mini}</div></div>`;
+        }).join('')+`</div>`;
+      }else{
+        detail=`<div class="mg-detail"><div class="mg-dempty">${l.tip?'这是剧情 / 收尾节点，逐项点位见下方「全部分类」或直接翻 tip 提示。':'这一枝是流程提示，具体点位见「全部分类」视图。'} <button class="jump-btn" data-jump="${p.cats[0]||''}" style="margin-left:4px">去清单查看 →</button></div></div>`;
+      }
+    }
+    return `<div class="mg-loc ${isOpen?'open':''}" data-loc="${key}">
+      <div class="mg-lochead opens" data-toggle="${key}"><span class="mg-kind ${l.k}">${KINDNAME[l.k]}</span><h3 style="margin:0;font-size:13px;color:var(--text)">${l.n}</h3>${count}<span class="caret">▶</span></div>
+      <ul style="margin:6px 0 0;padding-left:16px">${liHtml}</ul>${tip}${detail}</div>`;
+  }).join('');
+  // 本阶段进度（key_ids 命中）
+  const ids=p.key_ids.filter(id=>itemById[id]);
+  const d=doneOf(ids);
+  const prog=ids.length?`本阶段关键项 ${d}/${ids.length}`:'补完阶段 · 见全清单';
+  const jumps=p.cats.map(c=>`<button class="jump-btn" data-jump="${c}">${catMap[c].icon} ${catMap[c].name}</button>`).join('');
+  const navPrev=state.mapPhase>0?`<button data-nav="-1">← 上一阶段</button>`:`<button disabled>← 上一阶段</button>`;
+  const navNext=state.mapPhase<PHASES.length-1?`<button data-nav="1">下一阶段 →</button>`:`<button disabled>已到最后</button>`;
+  return `<div class="mg-intro">🌳 <b>主线是主干</b>：点上方任一时间点，主干就往下长出这一步能去的<b>地点</b>，地点上挂着此时能做的<b>任务和收集</b>。同一地点在后面阶段还有内容，会再拉一次。</div>
+    <div class="mg-rail" id="mgRail">${rail}</div>
+    <section class="mg-focus" id="mgFocus">
+      <div class="mg-focus-head"><span class="phase-no">阶段 ${p.no}</span><h2>${p.title}</h2><span class="era-badge">${eraLabel(p.era)}</span><span class="mg-fprog">${prog}</span></div>
+      <div class="mg-story">📖 ${p.story}</div>
+      <div class="mg-unlock"><b>🔓 本阶段解锁：</b>${p.unlock}</div>
+      <div class="mg-branch" id="mgBranch">
+        <svg class="mg-lines" id="mgLines"></svg>
+        <div class="mg-spine"></div>
+        <div class="mg-locs">${branchHtml}</div>
+      </div>
+      <div class="mg-jump"><span class="lead">逐条勾选 / 查漏 →</span>${jumps}</div>
+    </section>
+    <div class="mg-nav">${navPrev}${navNext}</div>`;
+}
+function drawMapLines(){
+  const box=document.getElementById('mgBranch');
+  if(!box)return;
+  const br=box.getBoundingClientRect();
+  const sp=box.querySelector('.mg-spine').getBoundingClientRect();
+  const x0=sp.left-br.left+Math.min(sp.width*0.5,90),y0=sp.bottom-br.top;
+  const cards=[...box.querySelectorAll('.mg-loc')];
+  const svg=document.getElementById('mgLines');
+  svg.setAttribute('viewBox',`0 0 ${br.width} ${br.height}`);
+  svg.innerHTML=cards.map(c=>{
+    const r=c.getBoundingClientRect();
+    const x1=r.left-br.left+r.width/2,y1=r.top-br.top;
+    const bend=(y1-y0)*0.55;
+    return `<path d="M${x0} ${y0} C${x0} ${y0+bend},${x1} ${y1-bend},${x1} ${y1}" fill="none" stroke="#7a5f2c" stroke-width="1.4" opacity="0.9"/>`;
+  }).join('');
+}
+window.addEventListener('resize',()=>{if(state.view==='map')drawMapLines()});
+
+function renderTimeline(){
+  // 阶段涉及条目 = key_ids + 分类命中(受筛选); 用于进度与跳转
+  return `<div class="track-intro">按主线剧情推进排列。每个阶段给出「剧情节点 → 解锁 → 此时可做」，点分类标签可跳到清单并筛选该阶段内容。</div><div class="timeline">`+
+  PHASES.map(p=>{
+    const ids=new Set(p.key_ids.filter(id=>itemById[id]));
+    if(state.catFocus.length){ITEMS.filter(i=>p.cats.includes(i.cat)).forEach(i=>ids.add(i.id))}
+    const d=doneOf([...ids]);
+    const jumps=p.cats.map(c=>`<button class="jump-btn" data-jump="${c}">${catMap[c].icon} ${catMap[c].name}</button>`).join('');
+    const todos=p.todos.map(t=>`<li>${t}</li>`).join('');
+    return `<section class="phase era-${p.era}" id="${p.id}">
+      <div class="phase-card">
+        <div class="phase-head"><span class="phase-no">阶段 ${p.no}</span><h2>${p.title}</h2><span class="era-badge">${eraLabel(p.era)}</span>
+          <span class="phase-prog">${ids.size?`本阶段 ${d}/${ids.size}`:'补完阶段 · 见全清单'}</span></div>
+        <div class="phase-story">📖 ${p.story}</div>
+        <div class="phase-row"><span class="tagk">🔓 解锁</span><span class="tagv">${p.unlock}</span></div>
+        <div class="phase-row todo"><span class="tagk">🎯 此时可做</span><ul>${todos}</ul></div>
+        <div class="phase-jump"><span class="lead">查看收集 →</span>${jumps}</div>
+      </div></section>`;
+  }).join('')+`</div>`;
+}
+
+function renderTracks(){
+  const list=visible();
+  let html='<div class="track-intro">14 类归并为 6 条任务线，按目标推进；勾选与全清单同步。</div>';
+  TRACKS.forEach(t=>{
+    const ids=ITEMS.filter(i=>t.cats.includes(i.cat)).map(i=>i.id);
+    const d=doneOf(ids);
+    html+=`<div class="track-head" id="track-${t.id}"><span class="icon">${t.icon}</span><div><h2>${t.name}</h2><p>${t.desc}</p></div><span class="tpct">${d}/${ids.length}</span></div>`;
+    t.cats.forEach(c=>{
+      const items=list.filter(i=>i.cat===c);
+      if(!items.length)return;
+      const total=cMapTotal(c);
+      const cd=items.filter(i=>state.checked[i.id]).length;
+      html+=`<section class="cat"><div class="cat-head"><span class="icon">${catMap[c].icon}</span><h2>${catMap[c].name}</h2>
+        <span class="count">${cd}/${total}</span><div class="cat-bar"><i style="width:${total?cd/total*100:0}%"></i></div></div>
+        <div class="grid">${items.map(cardHtml).join('')}</div></section>`;
+    });
+  });
+  return html||'<div class="empty">没有符合筛选条件的收集物</div>';
+}
+function cMapTotal(c){const x=CATEGORIES.find(x=>x.id===c);return x?x.total:0}
+
+function renderList(){
+  const list=visible();
+  if(!list.length)return '<div class="empty">没有符合筛选条件的收集物</div>';
+  let html='';
+  CATEGORIES.forEach(c=>{
+    const items=list.filter(i=>i.cat===c.id);
+    if(!items.length)return;
+    const d=items.filter(i=>state.checked[i.id]).length;
+    html+=`<section class="cat" id="cat-${c.id}"><div class="cat-head"><span class="icon">${c.icon}</span><h2>${c.name}</h2>
+      <span class="count">${d}/${c.total}</span><div class="cat-bar"><i style="width:${c.total?d/c.total*100:0}%"></i></div>
+      <button class="mini" data-all="${c.id}">全选本类</button></div>
+      <div class="grid">${items.map(cardHtml).join('')}</div></section>`;
+  });
+  return html;
+}
+
+function cardHtml(it){
+  const done=!!state.checked[it.id];
+  const showRegion=state.view!=='timeline'?it.region:'';
+  const tags=[`<span class="tag age-${it.age}">${ageLabel(it.age)}</span>`,
+    it.time==='night'?`<span class="tag time-night">夜晚</span>`:'',
+    showRegion?`<span class="tag group">${showRegion}</span>`:''].join('');
+  const reward=it.reward?`<div class="reward">🎁 ${it.reward}</div>`:'';
+  return `<div class="card ${done?'done':''}" data-id="${it.id}">
+    <div class="check" role="checkbox" aria-checked="${done}">${done?'✔':''}</div>
+    <div class="card-body"><div class="card-top"><span class="no">#${it.no}</span><span class="name">${it.name}</span></div>
+      <div class="tags">${tags}</div>${it.desc?`<div class="desc">${it.desc}</div>`:''}${reward}</div></div>`;
+}
+
+/* 事件 */
+document.getElementById('viewtabs').addEventListener('click',e=>{
+  const b=e.target.closest('button');if(!b)return;
+  state.view=b.dataset.view;state.catFocus=[];
+  [...e.currentTarget.children].forEach(x=>x.classList.toggle('on',x===b));render();
+});
+document.getElementById('list').addEventListener('click',e=>{
+  const node=e.target.closest('[data-phase]');
+  if(node){
+    state.mapPhase=+node.dataset.phase;render();
+    const f=document.getElementById('mgFocus');if(f)f.scrollIntoView({block:'start',behavior:'smooth'});
+    return;
+  }
+  const nav=e.target.closest('[data-nav]');
+  if(nav){
+    state.mapPhase=Math.max(0,Math.min(PHASES.length-1,state.mapPhase+ +nav.dataset.nav));render();
+    const f=document.getElementById('mgFocus');if(f)f.scrollIntoView({block:'start',behavior:'smooth'});
+    return;
+  }
+  const tog=e.target.closest('[data-toggle]');
+  if(tog){
+    const k=tog.dataset.toggle;state.openLocs[k]=!state.openLocs[k];
+    render();
+    // 展开后保持该地点卡片在视野内
+    const el=document.querySelector(`[data-loc="${k}"]`);if(el)el.scrollIntoView({block:'nearest',behavior:'smooth'});
+    return;
+  }
+  const drow=e.target.closest('.mg-dcheck');
+  if(drow){
+    const parent=drow.closest('[data-did]');
+    if(parent){
+      const id=parent.dataset.did;
+      if(state.checked[id])delete state.checked[id];else state.checked[id]=true;
+      save();render();
+      const el=document.querySelector(`[data-loc="${parent.closest('[data-loc]').dataset.loc}"]`);
+      if(el)el.scrollIntoView({block:'nearest'});
+    }
+    return;
+  }
+  const jump=e.target.closest('[data-jump]');
+  if(jump){
+    state.catFocus=[jump.dataset.jump];state.view='list';
+    [...document.getElementById('viewtabs').children].forEach(x=>x.classList.toggle('on',x.dataset.view==='list'));
+    render();window.scrollTo({top:0,behavior:'smooth'});return;
+  }
+  const all=e.target.closest('[data-all]');
+  if(all){
+    const cid=all.dataset.all;
+    const ids=ITEMS.filter(i=>i.cat===cid).map(i=>i.id);
+    const allDone=ids.every(id=>state.checked[id]);
+    ids.forEach(id=>{if(allDone)delete state.checked[id];else state.checked[id]=true});
+    save();render();return;
+  }
+  const card=e.target.closest('.card');if(!card)return;
+  const id=card.dataset.id;
+  if(state.checked[id])delete state.checked[id];else state.checked[id]=true;
+  save();render();
+});
+document.getElementById('search').addEventListener('input',e=>{state.search=e.target.value;render()});
+document.getElementById('regionFilter').addEventListener('change',e=>{state.region=e.target.value;render()});
+document.getElementById('ageChips').addEventListener('click',e=>{
+  const b=e.target.closest('.chip');if(!b)return;state.age=b.dataset.age;
+  [...e.currentTarget.children].forEach(x=>x.classList.toggle('on',x===b));render();
+});
+document.getElementById('timeChips').addEventListener('click',e=>{
+  const b=e.target.closest('.chip');if(!b)return;state.time=b.dataset.time;
+  [...e.currentTarget.children].forEach(x=>x.classList.toggle('on',x===b));render();
+});
+document.getElementById('resetBtn').addEventListener('click',()=>{
+  if(confirm('确定清空全部勾选记录？')){state.checked={};save();render()}
+});
+document.getElementById('exportBtn').addEventListener('click',()=>{
+  const done=ITEMS.filter(i=>state.checked[i.id]);
+  const text='时之笛 100% 全收集进度\n'+done.length+' / '+ITEMS.length+'\n\n'+
+    TRACKS.map(t=>{
+      const ds=done.filter(i=>t.cats.includes(i.cat));
+      return `【${t.name}】${ds.length}/${ITEMS.filter(i=>t.cats.includes(i.cat)).length}`+(ds.length?'\n'+ds.map(i=>`  - #${i.no} ${i.name}（${i.region}）`).join('\n'):'');
+    }).join('\n\n');
+  const blob=new Blob([text],{type:'text/plain;charset=utf-8'});
+  const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='oot100-progress.txt';a.click();URL.revokeObjectURL(a.href);
+});
+render();
+</script>
+</body>
+</html>

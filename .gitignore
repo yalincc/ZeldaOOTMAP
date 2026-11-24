@@ -1,0 +1,30 @@
+# 大体积可再生产物：解码自官方 romfs（F:\SWITCH2\ZeldaOOT-RomFS），用 tools 重跑即可重建，不入库
+app/assets/**/*.png
+app/assets/**/*.webp
+app/assets/**/*.jpg
+tools/_vendor/
+tools/__pycache__/
+**/__pycache__/
+*.pyc
+
+# 归档、本地过程截图与备份
+归档/
+report/*.png
+preview_*.png
+test_*.png
+*.bak
+*.bak-*
+*_backup_*
+*_backup-*
+
+# 系统与编辑器
+Thumbs.db
+.DS_Store
+desktop.ini
+.vscode/
+
+# 运行时临时产物
+*.log
+*.tmp
+*.zip
+release/

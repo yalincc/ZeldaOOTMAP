@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>时之笛 重制版 · 100% 全收集攻略</title>
+<link rel="stylesheet" href="https://miaoda.feishu.cn/fonts/css2?family=Noto+Sans+SC:wght@400;500;700;900&display=swap">
+<style>
+  :root{
+    --bg:#17120a; --bg2:#221a10; --card:#2b2115; --card2:#352818;
+    --gold:#d4af37; --gold2:#f0d98c; --line:#5a4522;
+    --text:#ece3d0; --muted:#b3a37f;
+    --child:#7fc97f; --adult:#7fb2d9; --either:#d4af37; --night:#b58fd6;
+    --radius:14px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{-webkit-text-size-adjust:100%}
+  body{
+    background:var(--bg); color:var(--text);
+    font-family:"Noto Sans SC",system-ui,-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;
+    line-height:1.55; min-height:100vh;
+    background-image:radial-gradient(1200px 600px at 80% -10%, rgba(212,175,55,.10), transparent 60%);
+  }
+  .wrap{max-width:1180px;margin:0 auto;padding:0 16px 80px}
+
+  /* ===== 顶部 ===== */
+  header.top{
+    position:sticky;top:0;z-index:30;
+    background:rgba(23,18,10,.92);backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line);
+  }
+  .top-inner{max-width:1180px;margin:0 auto;padding:14px 16px}
+  .title-row{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+  .title-row h1{font-size:18px;font-weight:900;color:var(--gold2);letter-spacing:.5px}
+  .title-row .sub{font-size:12px;color:var(--muted)}
+  .spacer{flex:1}
+  .btn{
+    border:1px solid var(--line);background:var(--card2);color:var(--text);
+    border-radius:10px;padding:7px 12px;font-size:13px;cursor:pointer;font-family:inherit;
+  }
+  .btn:hover{border-color:var(--gold);color:var(--gold2)}
+  .progress-head{margin-top:10px}
+  .progress-meta{display:flex;justify-content:space-between;font-size:13px;color:var(--muted);margin-bottom:6px}
+  .progress-meta b{color:var(--gold2)}
+  .bar{height:10px;border-radius:99px;background:#0f0c06;overflow:hidden;border:1px solid var(--line)}
+  .bar > i{display:block;height:100%;width:0;background:linear-gradient(90deg,#8a6d1f,var(--gold),var(--gold2));border-radius:99px;transition:width .3s}
+
+  /* ===== 工具栏 ===== */
+  .toolbar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:16px 0}
+  .toolbar label{font-size:12px;color:var(--muted)}
+  .seg{display:flex;border:1px solid var(--line);border-radius:10px;overflow:hidden}
+  .seg button{background:var(--card);color:var(--muted);border:0;padding:8px 14px;font-size:13px;cursor:pointer;font-family:inherit}
+  .seg button.on{background:var(--card2);color:var(--gold2);font-weight:700}
+  input[type=search],select{
+    background:var(--card);border:1px solid var(--line);color:var(--text);
+    border-radius:10px;padding:8px 10px;font-size:13px;font-family:inherit;min-width:150px;
+  }
+  input[type=search]{flex:1;min-width:160px}
+  .chips{display:flex;flex-wrap:wrap;gap:6px}
+  .chip{
+    border:1px solid var(--line);background:var(--card);color:var(--muted);
+    border-radius:99px;padding:6px 12px;font-size:12px;cursor:pointer;font-family:inherit;
+  }
+  .chip.on{background:var(--card2);border-color:var(--gold);color:var(--gold2)}
+
+  /* ===== 分类节 ===== */
+  section.cat{margin-top:26px}
+  .cat-head{display:flex;align-items:baseline;gap:10px;margin-bottom:12px;flex-wrap:wrap}
+  .cat-head .icon{font-size:18px}
+  .cat-head h2{font-size:16px;font-weight:700;color:var(--gold2)}
+  .cat-head .count{font-size:12px;color:var(--muted)}
+  .cat-head .cat-bar{flex:1;min-width:80px;height:6px;border-radius:99px;background:#0f0c06;border:1px solid var(--line);overflow:hidden}
+  .cat-head .cat-bar i{display:block;height:100%;background:var(--gold);width:0}
+
+  /* ===== 卡片网格 ===== */
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(330px,1fr));gap:12px}
+  .card{
+    background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+    padding:13px 14px;display:flex;gap:12px;transition:border-color .15s;
+  }
+  .card:hover{border-color:#7a5f2c}
+  .card.done{opacity:.55}
+  .check{
+    flex:0 0 22px;width:22px;height:22px;margin-top:2px;cursor:pointer;
+    border:2px solid var(--line);border-radius:7px;background:#0f0c06;display:grid;place-items:center;
+    color:var(--gold2);font-size:14px;user-select:none;
+  }
+  .card.done .check{background:var(--gold);border-color:var(--gold);color:#17120a}
+  .card-body{flex:1;min-width:0}
+  .card-top{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+  .no{font-size:12px;color:var(--muted);font-variant-numeric:tabular-nums}
+  .name{font-size:14px;font-weight:700;color:var(--text)}
+  .card.done .name{text-decoration:line-through}
+  .tags{display:flex;flex-wrap:wrap;gap:5px;margin:7px 0}
+  .tag{font-size:11px;border-radius:6px;padding:2px 7px;border:1px solid var(--line)}
+  .tag.age-child{color:var(--child);border-color:#3f6b3f}
+  .tag.age-adult{color:var(--adult);border-color:#3f5f7a}
+  .tag.age-either{color:var(--either);border-color:#7a6428}
+  .tag.time-night{color:var(--night);border-color:#5f4775}
+  .tag.region{color:var(--muted)}
+  .desc{font-size:12.5px;color:var(--muted);margin-top:4px}
+  .desc b{color:var(--text);font-weight:500}
+  .reward{font-size:12px;color:var(--gold2);margin-top:6px}
+  .prereq{font-size:11.5px;color:#c9b98f;margin-top:4px}
+
+  /* 占位卡 */
+  .placeholder{
+    border:1px dashed var(--line);border-radius:var(--radius);padding:18px 16px;
+    color:var(--muted);font-size:13px;background:rgba(43,33,21,.5)
+  }
+  .placeholder h3{color:var(--gold2);font-size:14px;margin-bottom:6px}
+  .placeholder ul{margin:8px 0 0 18px;font-size:12.5px}
+  .placeholder li{margin:3px 0}
+
+  .empty{padding:40px 0;text-align:center;color:var(--muted);font-size:14px}
+  footer{margin-top:40px;font-size:12px;color:var(--muted);border-top:1px solid var(--line);padding-top:16px}
+
+  @media (max-width:640px){
+    .grid{grid-template-columns:1fr}
+    .title-row h1{font-size:16px}
+    input[type=search]{min-width:100%}
+  }
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="top-inner">
+    <div class="title-row">
+      <h1>🗡️ 时之笛 重制版 · 100% 全收集攻略</h1>
+      <span class="sub">Switch 2 重制版口径 · 进度保存在本机浏览器</span>
+      <div class="spacer"></div>
+      <button class="btn" id="resetBtn">清空勾选</button>
+    </div>
+    <div class="progress-head">
+      <div class="progress-meta">
+        <span>总完成度（已实装条目）</span>
+        <span><b id="doneCount">0</b> / <span id="totalCount">0</span></span>
+      </div>
+      <div class="bar"><i id="totalBar"></i></div>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+  <div class="toolbar">
+    <div class="seg" id="viewSeg">
+      <button data-view="category" class="on">按分类</button>
+      <button data-view="region">按地区</button>
+    </div>
+    <input type="search" id="search" placeholder="搜索名称 / 地点 / 前置道具…">
+    <select id="regionFilter"><option value="">全部地区</option></select>
+  </div>
+  <div class="toolbar">
+    <span style="font-size:12px;color:var(--muted)">时期</span>
+    <div class="chips" id="ageChips">
+      <button class="chip on" data-age="">不限</button>
+      <button class="chip" data-age="child">幼年林克</button>
+      <button class="chip" data-age="adult">成年林克</button>
+      <button class="chip" data-age="either">均可</button>
+    </div>
+    <span style="font-size:12px;color:var(--muted)">昼夜</span>
+    <div class="chips" id="timeChips">
+      <button class="chip on" data-time="">不限</button>
+      <button class="chip" data-time="night">仅夜晚</button>
+      <button class="chip" data-time="day">白天/不限</button>
+    </div>
+  </div>
+
+  <main id="list"></main>
+
+  <footer>
+    说明：游戏本身无完成度百分比，本清单按「能留在身上的物品」自定 100% 目标。
+    黄金骷髅蜘蛛 100 只、心之碎片 36 片的逐条点位正在补全；其余类目已实装。
+    每条预留地图坐标字段（x/y），后续合并到地图时直接填入即可。
+  </footer>
+</div>
+
+<script>
+/* ============================================================
+ * 数据层：后续合并地图时，每条可直接补 x / y 坐标
+ * age: child 幼年 | adult 成年 | either 均可
+ * time: any 不限 | day 白天 | night 夜晚
+ * ============================================================ */
+
+const CATEGORIES = [
+  { id:'heart-piece',  name:'心之碎片',       total:36,  icon:'❤️', pending:true,  note:'36 片，4 片拼 1 心；逐条点位整理中' },
+  { id:'boss-container',name:'Boss 心之容器', total:8,   icon:'🫀' },
+  { id:'skulltula',    name:'黄金骷髅蜘蛛',   total:100, icon:'🕷️', pending:true,  note:'100 只讨伐证明；分幼年/成年，野外多数仅夜晚，软土坑放虫；逐条点位整理中' },
+  { id:'song',         name:'歌曲',           total:13,  icon:'🎵' },
+  { id:'stone-medal',  name:'精灵石 / 勋章',  total:9,   icon:'🔷' },
+  { id:'item',         name:'战斗道具',       total:17,  icon:'🗡️' },
+  { id:'equipment',    name:'装备（剑/盾/服/靴）', total:11, icon:'🛡️' },
+  { id:'upgrade',      name:'容量 / 力气升级', total:16, icon:'🎒' },
+  { id:'bottle',       name:'瓶子',           total:5,   icon:'🧴' },
+  { id:'fairy',        name:'大妖精奖励',     total:6,   icon:'🧚' },
+  { id:'mask',         name:'面具',           total:5,   icon:'🎭' },
+  { id:'poe',          name:'大魄（魂魄）',   total:10,  icon:'👻' },
+  { id:'owl',          name:'万魔殿猫头鹰像', total:3,   icon:'🦉' },
+  { id:'other',        name:'其他奖励',       total:4,   icon:'🎁' },
+];
+
+const ITEMS = [
+  /* ---------- Boss 心之容器（8） ---------- */
+  { id:'bc-1', cat:'boss-container', no:1, name:'哥马（Queen Gohma）', region:'德库树长老体内', age:'child', time:'any',
+    desc:'德库树长老体内迷宫头目，打倒后掉落心之容器。', reward:'心之容器 ×1' },
+  { id:'bc-2', cat:'boss-container', no:2, name:'多东哥王后（King Dodongo）', region:'多东哥洞窟', age:'child', time:'any',
+    desc:'多东哥洞窟头目，打倒后掉落心之容器。', reward:'心之容器 ×1' },
+  { id:'bc-3', cat:'boss-container', no:3, name:'啪哩内德（Barinade）', region:'加卜加卜大人腹中', age:'child', time:'any',
+    desc:'加卜加卜大人腹中头目，打倒后掉落心之容器。', reward:'心之容器 ×1' },
+  { id:'bc-4', cat:'boss-container', no:4, name:'幻影加侬（Phantom Ganon）', region:'森之神殿', age:'adult', time:'any',
+    desc:'森之神殿头目，打倒后掉落心之容器。', reward:'心之容器 ×1' },
+  { id:'bc-5', cat:'boss-container', no:5, name:'瓦尔巴基亚（Volvagia）', region:'火之神殿', age:'adult', time:'any',
+    desc:'火之神殿头目，打倒后掉落心之容器。', reward:'心之容器 ×1' },
+  { id:'bc-6', cat:'boss-container', no:6, name:'魔发（Morpha）', region:'水之神殿', age:'adult', time:'any',
+    desc:'水之神殿头目，打倒后掉落心之容器。', reward:'心之容器 ×1' },
+  { id:'bc-7', cat:'boss-container', no:7, name:'崩鼓崩鼓（Bongo Bongo）', region:'暗之神殿', age:'adult', time:'any',
+    desc:'暗之神殿头目，打倒后掉落心之容器。', reward:'心之容器 ×1' },
+  { id:'bc-8', cat:'boss-container', no:8, name:'双子妖婆（Twinrova）', region:'魂之神殿', age:'adult', time:'any',
+    desc:'魂之神殿头目，打倒后掉落心之容器。', reward:'心之容器 ×1' },
+
+  /* ---------- 歌曲（13） ---------- */
+  { id:'sg-1', cat:'song', no:1, name:'塞尔达摇篮曲', region:'海拉鲁城堡', age:'child', time:'any',
+    desc:'英帕在海拉鲁城堡中庭传授。大妖精之泉开门曲。', prereq:'' },
+  { id:'sg-2', cat:'song', no:2, name:'伊波娜之歌', region:'隆隆牧场', age:'child', time:'any',
+    desc:'玛蓉在隆隆牧场传授，可召唤伊波娜。', prereq:'' },
+  { id:'sg-3', cat:'song', no:3, name:'莎莉亚之歌', region:'森之圣域', age:'child', time:'any',
+    desc:'莎莉亚在森之圣域传授，可与她通话。', prereq:'' },
+  { id:'sg-4', cat:'song', no:4, name:'太阳之歌', region:'卡卡利科村 · 王族墓穴', age:'either', time:'any',
+    desc:'王族墓穴内石碑习得，切换昼夜、定住亡灵。', prereq:'' },
+  { id:'sg-5', cat:'song', no:5, name:'时之歌', region:'海拉鲁城邑外', age:'child', time:'any',
+    desc:'取回时之笛后，塞尔达留下的留言传授。', prereq:'时之笛' },
+  { id:'sg-6', cat:'song', no:6, name:'暴风雨之歌', region:'卡卡利科村 · 风车小屋', age:'adult', time:'any',
+    desc:'风车小屋的音乐叔叔传授，可降雨、冲开井底。', prereq:'' },
+  { id:'sg-7', cat:'song', no:7, name:'森之小步舞曲', region:'森之圣域', age:'adult', time:'any',
+    desc:'希克在森之圣域传授，传送至森之圣域。', prereq:'' },
+  { id:'sg-8', cat:'song', no:8, name:'火之波丽露舞曲', region:'死亡之山火山口', age:'adult', time:'any',
+    desc:'希克在火山口传授，传送至火之神殿入口。', prereq:'' },
+  { id:'sg-9', cat:'song', no:9, name:'水之小夜曲', region:'冰之洞窟', age:'adult', time:'any',
+    desc:'希克在冰之洞窟传授，传送至卓拉之泉。', prereq:'' },
+  { id:'sg-10', cat:'song', no:10, name:'暗之梦幻曲', region:'卡卡利科村', age:'adult', time:'any',
+    desc:'希克在卡卡利科村传授，传送至暗之神殿入口。', prereq:'' },
+  { id:'sg-11', cat:'song', no:11, name:'魂之慰灵曲', region:'巨大邪神像', age:'adult', time:'any',
+    desc:'希克在巨大邪神像传授，传送至魂之神殿入口。', prereq:'' },
+  { id:'sg-12', cat:'song', no:12, name:'光之前奏曲', region:'时之神殿', age:'adult', time:'any',
+    desc:'希克在时之神殿传授，传送至时之神殿。', prereq:'' },
+  { id:'sg-13', cat:'song', no:13, name:'稻草人之歌', region:'海利亚湖', age:'either', time:'any',
+    desc:'先幼年在湖畔找波努鲁编曲，成年再回来吹奏；可召唤稻草人做钩索支点。', prereq:'先幼年、再成年' },
+
+  /* ---------- 精灵石 / 勋章（9） ---------- */
+  { id:'sm-1', cat:'stone-medal', no:1, name:'科奇里翡翠', region:'德库树长老体内', age:'child', time:'any',
+    desc:'打倒哥马后取得，三颗精灵石之一。', reward:'精灵石' },
+  { id:'sm-2', cat:'stone-medal', no:2, name:'鼓隆红宝石', region:'多东哥洞窟', age:'child', time:'any',
+    desc:'打倒多东哥王后取得，三颗精灵石之一。', reward:'精灵石' },
+  { id:'sm-3', cat:'stone-medal', no:3, name:'卓拉蓝宝石', region:'加卜加卜大人腹中', age:'child', time:'any',
+    desc:'打倒啪哩内德后取得，三颗精灵石之一。', reward:'精灵石' },
+  { id:'sm-4', cat:'stone-medal', no:4, name:'光之勋章', region:'时之神殿', age:'adult', time:'any',
+    desc:'第一次在时之神殿变为成年后，劳鲁授予。', reward:'勋章' },
+  { id:'sm-5', cat:'stone-medal', no:5, name:'森之勋章', region:'森之神殿', age:'adult', time:'any',
+    desc:'打倒幻影加侬后取得。', reward:'勋章' },
+  { id:'sm-6', cat:'stone-medal', no:6, name:'火之勋章', region:'火之神殿', age:'adult', time:'any',
+    desc:'打倒瓦尔巴基亚后取得。', reward:'勋章' },
+  { id:'sm-7', cat:'stone-medal', no:7, name:'水之勋章', region:'水之神殿', age:'adult', time:'any',
+    desc:'打倒魔发后取得。', reward:'勋章' },
+  { id:'sm-8', cat:'stone-medal', no:8, name:'暗之勋章', region:'暗之神殿', age:'adult', time:'any',
+    desc:'打倒崩鼓崩鼓后取得。', reward:'勋章' },
+  { id:'sm-9', cat:'stone-medal', no:9, name:'魂之勋章', region:'魂之神殿', age:'adult', time:'any',
+    desc:'打倒双子妖婆后取得。', reward:'勋章' },
+
+  /* ---------- 战斗道具（17） ---------- */
+  { id:'it-1', cat:'item', no:1, name:'德库木棒', region:'科奇里森林', age:'child', time:'any',
+    desc:'往德库树路上的德库巴巴掉落；之后科奇里商店也有售。' },
+  { id:'it-2', cat:'item', no:2, name:'德库坚果', region:'科奇里森林', age:'child', time:'any',
+    desc:'往德库树路上的德库巴巴掉落。' },
+  { id:'it-3', cat:'item', no:3, name:'妖精弹弓', region:'德库树长老体内', age:'child', time:'any',
+    desc:'德库树长老体内取得，幼年远程武器。' },
+  { id:'it-4', cat:'item', no:4, name:'妖精之笛', region:'科奇里森林', age:'child', time:'any',
+    desc:'走出科奇里森林出口后，莎莉亚赠送。' },
+  { id:'it-5', cat:'item', no:5, name:'时之笛', region:'海拉鲁城堡', age:'child', time:'any',
+    desc:'塞尔达逃出城堡后，在城堡护城河底取得。' },
+  { id:'it-6', cat:'item', no:6, name:'炸弹袋', region:'多东哥洞窟', age:'child', time:'any',
+    desc:'多东哥洞窟取得，可携带炸弹。' },
+  { id:'it-7', cat:'item', no:7, name:'炸弹鼠', region:'海拉鲁城邑', age:'child', time:'any',
+    desc:'炸弹鼠保龄球场第一个奖品；40 枚讨伐证明也奖励 20 个。' },
+  { id:'it-8', cat:'item', no:8, name:'回旋镖', region:'加卜加卜大人腹中', age:'child', time:'any',
+    desc:'加卜加卜大人腹中取得，可远程取回/打击高处目标。' },
+  { id:'it-9', cat:'item', no:9, name:'魔法豆', region:'卓拉河', age:'child', time:'any',
+    desc:'卓拉河魔法豆商人处购买，第一颗 10 卢比；种下后成年长藤蔓通路。' },
+  { id:'it-10', cat:'item', no:10, name:'真实眼镜（真实之镜）', region:'井底', age:'child', time:'any',
+    desc:'井底取得，可看见隐形敌人、暗门与幻象。' },
+  { id:'it-11', cat:'item', no:11, name:'钩索', region:'墓地 · 丹培墓穴', age:'adult', time:'any',
+    desc:'墓地底下丹培赛跑，第一次跑完获得。' },
+  { id:'it-12', cat:'item', no:12, name:'长钩索', region:'水之神殿', age:'adult', time:'any',
+    desc:'水之神殿内取得，钩索强化版，射程更长。' },
+  { id:'it-13', cat:'item', no:13, name:'妖精之弓', region:'森之神殿', age:'adult', time:'any',
+    desc:'森之神殿取得，成年远程武器。' },
+  { id:'it-14', cat:'item', no:14, name:'万吨锤', region:'火之神殿', age:'adult', time:'any',
+    desc:'火之神殿取得，可砸开银色石块、机关。' },
+  { id:'it-15', cat:'item', no:15, name:'火箭', region:'海利亚湖', age:'adult', time:'any',
+    desc:'打完水之神殿后，在石碑处朝升起的太阳射箭，再游到箭落下处拾取。' },
+  { id:'it-16', cat:'item', no:16, name:'冰箭', region:'格鲁德训练场', age:'adult', time:'any',
+    desc:'格鲁德训练场最后的宝箱内。' },
+  { id:'it-17', cat:'item', no:17, name:'光箭', region:'时之神殿', age:'adult', time:'any',
+    desc:'魂之神殿之后，在时之神殿取得；通关加侬必备。' },
+
+  /* ---------- 装备（11） ---------- */
+  { id:'eq-1', cat:'equipment', no:1, name:'科奇里之剑', region:'科奇里森林', age:'child', time:'any',
+    desc:'科奇里森林，从练习场旁的隧道钻过去取得。' },
+  { id:'eq-2', cat:'equipment', no:2, name:'大师之剑', region:'时之神殿', age:'either', time:'any',
+    desc:'集齐三颗精灵石后插入时之神殿剑座；拔剑后林克长大成人。' },
+  { id:'eq-3', cat:'equipment', no:3, name:'巨人小刀', region:'鼓隆城', age:'adult', time:'any',
+    desc:'鼓隆城 200 卢比购买；容易断裂，不是大鼓隆之剑。' },
+  { id:'eq-4', cat:'equipment', no:4, name:'大鼓隆之剑', region:'死亡之山一带', age:'adult', time:'any',
+    desc:'成年换物任务（11 步交易链）的最后一站，双手大剑。' },
+  { id:'eq-5', cat:'equipment', no:5, name:'德库木盾', region:'科奇里森林商店', age:'child', time:'any',
+    desc:'科奇里商店 40 卢比购买。' },
+  { id:'eq-6', cat:'equipment', no:6, name:'海利亚盾', region:'海拉鲁城邑 / 墓地', age:'child', time:'any',
+    desc:'城邑市集 80 卢比；或在墓地宝箱免费拿。' },
+  { id:'eq-7', cat:'equipment', no:7, name:'镜盾', region:'魂之神殿', age:'adult', time:'any',
+    desc:'魂之神殿内取得，可反射光线与魔法。' },
+  { id:'eq-8', cat:'equipment', no:8, name:'鼓隆服', region:'鼓隆城', age:'adult', time:'any',
+    desc:'鼓隆城小鼓隆免费给；或商店花 600 卢比买。防火耐热。' },
+  { id:'eq-9', cat:'equipment', no:9, name:'卓拉服', region:'卓拉领地', age:'adult', time:'any',
+    desc:'打完冰之洞窟后，卓拉王赠送；可在水中自由游动。' },
+  { id:'eq-10', cat:'equipment', no:10, name:'重铁靴', region:'冰之洞窟', age:'adult', time:'any',
+    desc:'冰之洞窟取得，可沉入水底。' },
+  { id:'eq-11', cat:'equipment', no:11, name:'浮空靴', region:'暗之神殿', age:'adult', time:'any',
+    desc:'暗之神殿取得，可悬浮行走。' },
+
+  /* ---------- 容量 / 力气升级（16） ---------- */
+  { id:'up-1', cat:'upgrade', no:1, name:'大人钱包（500 卢比）', region:'卡卡利科村 · 蜘蛛之家', age:'either', time:'any',
+    desc:'蜘蛛之家，累计 10 枚讨伐证明兑换。', prereq:'10 枚蜘蛛代币' },
+  { id:'up-2', cat:'upgrade', no:2, name:'巨人钱包（1000 卢比）', region:'卡卡利科村 · 蜘蛛之家', age:'either', time:'any',
+    desc:'蜘蛛之家，累计 30 枚讨伐证明兑换。', prereq:'30 枚蜘蛛代币' },
+  { id:'up-3', cat:'upgrade', no:3, name:'炸弹袋（30 颗）', region:'鼓隆城', age:'child', time:'any',
+    desc:'鼓隆城，用炸弹让滚动的鼓隆族停下后升级。' },
+  { id:'up-4', cat:'upgrade', no:4, name:'炸弹袋（40 颗）', region:'海拉鲁城邑', age:'child', time:'any',
+    desc:'城邑炸弹鼠保龄球场的第二个奖品。' },
+  { id:'up-5', cat:'upgrade', no:5, name:'种子袋（40 颗）', region:'海拉鲁城邑 · 射击场', age:'child', time:'any',
+    desc:'城邑射击场，10 个目标全中。' },
+  { id:'up-6', cat:'upgrade', no:6, name:'种子袋（50 颗）', region:'迷途森林', age:'child', time:'any',
+    desc:'迷途森林的吊靶小游戏。' },
+  { id:'up-7', cat:'upgrade', no:7, name:'箭袋（40 支）', region:'卡卡利科村 · 射击场', age:'adult', time:'any',
+    desc:'卡卡利科村射击场，10 个目标全中。' },
+  { id:'up-8', cat:'upgrade', no:8, name:'箭袋（50 支）', region:'格鲁德要塞 · 马上射箭', age:'adult', time:'any',
+    desc:'格鲁德要塞马上射箭小游戏，达到 1400 分。', prereq:'伊波娜、妖精之弓' },
+  { id:'up-9', cat:'upgrade', no:9, name:'德库木棒袋（20 根）', region:'迷途森林', age:'child', time:'any',
+    desc:'迷途森林小贩果处，40 卢比。' },
+  { id:'up-10', cat:'upgrade', no:10, name:'德库坚果袋（30 颗）', region:'迷途森林', age:'child', time:'any',
+    desc:'迷途森林裂石底下洞里的小贩果，40 卢比。' },
+  { id:'up-11', cat:'upgrade', no:11, name:'德库坚果袋（40 颗）', region:'迷途森林', age:'child', time:'any',
+    desc:'戴真实面具，与迷途森林地下舞台上体型较大的德库族交谈。', prereq:'真实面具' },
+  { id:'up-12', cat:'upgrade', no:12, name:'银色鳞片', region:'卓拉领地', age:'child', time:'any',
+    desc:'卓拉领地的潜水游戏获胜取得，潜水深度提升。' },
+  { id:'up-13', cat:'upgrade', no:13, name:'金色鳞片', region:'海利亚湖 · 钓鱼池', age:'adult', time:'any',
+    desc:'钓鱼池钓到 60 公分以上的鱼。' },
+  { id:'up-14', cat:'upgrade', no:14, name:'鼓隆手环', region:'鼓隆城', age:'child', time:'any',
+    desc:'鼓隆城达鲁尼亚授予，可拉起普通石块。' },
+  { id:'up-15', cat:'upgrade', no:15, name:'银手套', region:'魂之神殿', age:'child', time:'any',
+    desc:'魂之神殿幼年路线取得，可拉起银色巨石。' },
+  { id:'up-16', cat:'upgrade', no:16, name:'金手套', region:'加侬多夫城堡', age:'adult', time:'any',
+    desc:'加侬多夫城堡内取得，力气最终强化。' },
+
+  /* ---------- 瓶子（5） ---------- */
+  { id:'bt-1', cat:'bottle', no:1, name:'瓶子 · 城邑药铺', region:'海拉鲁城邑', age:'child', time:'any',
+    desc:'用店主借出的瓶子抓回逃跑的虫，瓶子留下。' },
+  { id:'bt-2', cat:'bottle', no:2, name:'瓶子 · 卡卡利科村咕咕鸡', region:'卡卡利科村', age:'child', time:'any',
+    desc:'把 7 只咕咕鸡全部送回围栏。' },
+  { id:'bt-3', cat:'bottle', no:3, name:'瓶子 · 隆隆牧场找鸡', region:'隆隆牧场', age:'child', time:'any',
+    desc:'在 30 秒内找出 3 只指定的咕咕鸡。' },
+  { id:'bt-4', cat:'bottle', no:4, name:'瓶子 · 露朵的信', region:'海利亚湖 → 卓拉领地', age:'child', time:'any',
+    desc:'取得露朵的信，交给卓拉王后获得瓶子。' },
+  { id:'bt-5', cat:'bottle', no:5, name:'瓶子 · 城邑幽灵商店', region:'海拉鲁城邑', age:'adult', time:'any',
+    desc:'成年后向幽灵商店卖出大魄，累计 500 点兑换第 5 个瓶子。', prereq:'大魄 ×5' },
+
+  /* ---------- 大妖精奖励（6） ---------- */
+  { id:'fy-1', cat:'fairy', no:1, name:'魔力槽 + 迪荧之火', region:'死亡之山山顶', age:'child', time:'any',
+    desc:'站在三角神力纹章吹奏塞尔达摇篮曲，奉献 25 卢比。', prereq:'炸弹、塞尔达摇篮曲', reward:'魔力槽、迪荧之火（火焰攻击）' },
+  { id:'fy-2', cat:'fairy', no:2, name:'强化回旋斩', region:'海拉鲁城堡周边', age:'child', time:'any',
+    desc:'奉献 50 卢比，强化回旋斩。', prereq:'炸弹', reward:'回旋斩强化' },
+  { id:'fy-3', cat:'fairy', no:3, name:'花柔之风（法罗尔之风）', region:'卓拉之泉', age:'child', time:'any',
+    desc:'通过卓拉王许可后进入，奉献 100 卢比。', prereq:'炸弹', reward:'花柔之风（护身风压）' },
+  { id:'fy-4', cat:'fairy', no:4, name:'魔力容量加倍', region:'死亡之山火山口', age:'adult', time:'any',
+    desc:'奉献 200 卢比，魔力槽上限翻倍。', prereq:'钩索、万吨锤', reward:'魔力容量 ×2' },
+  { id:'fy-5', cat:'fairy', no:5, name:'娜如之爱', region:'巨大邪神像', age:'adult', time:'any',
+    desc:'穿过沙漠后进入，奉献 300 卢比。', prereq:'万吨锤', reward:'娜如之爱（自动护身护盾）' },
+  { id:'fy-6', cat:'fairy', no:6, name:'承受伤害减半', region:'加侬多夫城堡附近', age:'adult', time:'any',
+    desc:'解除 4 道结界后抵达，奉献 500 卢比。', reward:'受伤减半' },
+
+  /* ---------- 面具（5） ---------- */
+  { id:'mk-1', cat:'mask', no:1, name:'奇坦面具（基顿面具）', region:'卡卡利科村 · 登山入口', age:'child', time:'any',
+    desc:'城邑面具店借来，卖给登山入口守卫，15 卢比。' },
+  { id:'mk-2', cat:'mask', no:2, name:'骷髅面具', region:'迷途森林', age:'child', time:'any',
+    desc:'卖给迷途森林的骷髅小子，10 卢比。' },
+  { id:'mk-3', cat:'mask', no:3, name:'恐怖面具（鬼面具）', region:'卡卡利科村 · 墓地', age:'child', time:'any',
+    desc:'卖给墓地里的小男孩，50 卢比。' },
+  { id:'mk-4', cat:'mask', no:4, name:'兔子头箍', region:'海拉鲁平原', age:'child', time:'any',
+    desc:'卖给海拉鲁平原的马拉松人，200 卢比。' },
+  { id:'mk-5', cat:'mask', no:5, name:'真实面具（真理面具）', region:'海拉鲁城邑 · 面具店', age:'child', time:'any',
+    desc:'付清兔子头箍的钱后，店主把真实面具借给你；可看穿真相。' },
+
+  /* ---------- 大魄（10） ---------- */
+  { id:'po-1', cat:'poe', no:1, name:'大魄 #1', region:'海拉鲁城邑 · 吊桥西侧', age:'adult', time:'night',
+    desc:'成年骑伊波娜，带妖精之弓与空瓶射杀，卖给城邑幽灵商店。', prereq:'伊波娜、妖精之弓、空瓶' },
+  { id:'po-2', cat:'poe', no:2, name:'大魄 #2', region:'海拉鲁平原 · 吊桥南边', age:'adult', time:'night',
+    desc:'吊桥南边野外。', prereq:'伊波娜、妖精之弓、空瓶' },
+  { id:'po-3', cat:'poe', no:3, name:'大魄 #3', region:'隆隆牧场 · 北边', age:'adult', time:'night',
+    desc:'牧场北边野外。', prereq:'伊波娜、妖精之弓、空瓶' },
+  { id:'po-4', cat:'poe', no:4, name:'大魄 #4', region:'隆隆牧场 · 西北', age:'adult', time:'night',
+    desc:'牧场西北方向。', prereq:'伊波娜、妖精之弓、空瓶' },
+  { id:'po-5', cat:'poe', no:5, name:'大魄 #5', region:'格鲁德之谷入口', age:'adult', time:'night',
+    desc:'峡谷入口附近。', prereq:'伊波娜、妖精之弓、空瓶' },
+  { id:'po-6', cat:'poe', no:6, name:'大魄 #6', region:'格鲁德之谷与牧场之间', age:'adult', time:'night',
+    desc:'谷与牧场中间地带。', prereq:'伊波娜、妖精之弓、空瓶' },
+  { id:'po-7', cat:'poe', no:7, name:'大魄 #7', region:'隆隆牧场 · 南边', age:'adult', time:'night',
+    desc:'牧场南边野外。', prereq:'伊波娜、妖精之弓、空瓶' },
+  { id:'po-8', cat:'poe', no:8, name:'大魄 #8', region:'海利亚湖入口东北', age:'adult', time:'night',
+    desc:'湖入口东北方向。', prereq:'伊波娜、妖精之弓、空瓶' },
+  { id:'po-9', cat:'poe', no:9, name:'大魄 #9', region:'科奇里森林入口西南', age:'adult', time:'night',
+    desc:'森林入口西南方向。', prereq:'伊波娜、妖精之弓、空瓶' },
+  { id:'po-10', cat:'poe', no:10, name:'大魄 #10', region:'隆隆牧场 · 东边', age:'adult', time:'night',
+    desc:'牧场东边野外。卖满 10 只奖励一枚 200 卢比金卢比。', prereq:'伊波娜、妖精之弓、空瓶' },
+
+  /* ---------- 万魔殿猫头鹰像（3） ---------- */
+  { id:'ow-1', cat:'owl', no:1, name:'石像 · 连战试炼「三块精灵石」', region:'万魔殿', age:'adult', time:'any',
+    desc:'能进入万魔殿时即可挑战。' },
+  { id:'ow-2', cat:'owl', no:2, name:'银像 · 连战试炼「五贤者的觉醒」', region:'万魔殿', age:'adult', time:'any',
+    desc:'打倒五座神殿的头目后解锁。' },
+  { id:'ow-3', cat:'owl', no:3, name:'金像 · 连战试炼「时之勇者的觉醒～决战」', region:'万魔殿', age:'adult', time:'any',
+    desc:'通关主线后解锁。' },
+
+  /* ---------- 其他奖励（4） ---------- */
+  { id:'ot-1', cat:'other', no:1, name:'回声宝石（20 枚蜘蛛奖励）', region:'卡卡利科村 · 蜘蛛之家', age:'either', time:'any',
+    desc:'累计 20 枚讨伐证明兑换；光影与声音探测附近黄金蜘蛛（重制版替代老版痛苦之石）。', prereq:'20 枚蜘蛛代币' },
+  { id:'ot-2', cat:'other', no:2, name:'炸弹鼠 ×20（40 枚蜘蛛奖励）', region:'卡卡利科村 · 蜘蛛之家', age:'either', time:'any',
+    desc:'累计 40 枚讨伐证明兑换。', prereq:'40 枚蜘蛛代币' },
+  { id:'ot-3', cat:'other', no:3, name:'心之碎片（50 枚蜘蛛奖励）', region:'卡卡利科村 · 蜘蛛之家', age:'either', time:'any',
+    desc:'累计 50 枚讨伐证明兑换心之碎片。', prereq:'50 枚蜘蛛代币' },
+  { id:'ot-4', cat:'other', no:4, name:'金卢比（100 枚蜘蛛奖励）', region:'卡卡利科村 · 蜘蛛之家', age:'either', time:'any',
+    desc:'凑满 100 枚后解除诅咒；之后每次找富豪对话可领一枚 200 卢比金卢比，可重复领取。', prereq:'100 枚蜘蛛代币' },
+];
+
+/* ==================== 逻辑层 ==================== */
+const STORE_KEY = 'oot-100-checklist-v1';
+const state = {
+  view:'category',
+  search:'',
+  region:'',
+  age:'',
+  time:'',
+  checked: loadChecked(),
+};
+
+function loadChecked(){
+  try{ return JSON.parse(localStorage.getItem(STORE_KEY)) || {}; }
+  catch(e){ return {}; }
+}
+function saveChecked(){
+  localStorage.setItem(STORE_KEY, JSON.stringify(state.checked));
+}
+
+const catMap = Object.fromEntries(CATEGORIES.map(c=>[c.id,c]));
+const regions = [...new Set(ITEMS.map(i=>i.region))].sort();
+
+function ageLabel(a){ return a==='child'?'幼年':a==='adult'?'成年':'均可'; }
+function timeLabel(t){ return t==='night'?'夜晚':t==='day'?'白天':'不限'; }
+
+function matchItem(it){
+  if(state.age && it.age!==state.age) return false;
+  if(state.time==='night' && it.time!=='night') return false;
+  if(state.time==='day' && it.time==='night') return false;
+  if(state.region && it.region!==state.region) return false;
+  if(state.search){
+    const q = state.search.toLowerCase();
+    const hay = [it.name,it.region,it.desc,it.prereq||''].join(' ').toLowerCase();
+    if(!hay.includes(q)) return false;
+  }
+  return true;
+}
+
+function filtered(){ return ITEMS.filter(matchItem); }
+
+function render(){
+  const list = filtered();
+  const main = document.getElementById('list');
+
+  // 地区下拉
+  const regionSel = document.getElementById('regionFilter');
+  if(regionSel.options.length <= 1){
+    regions.forEach(r=>{
+      const o=document.createElement('option'); o.value=r; o.textContent=r; regionSel.appendChild(o);
+    });
+  }
+
+  // 总进度（仅实装条目）
+  const active = ITEMS;
+  const done = active.filter(i=>state.checked[i.id]).length;
+  document.getElementById('doneCount').textContent = done;
+  document.getElementById('totalCount').textContent = active.length;
+  document.getElementById('totalBar').style.width = (active.length? done/active.length*100:0)+'%';
+
+  if(list.length===0){
+    main.innerHTML = '<div class="empty">没有符合筛选条件的收集物</div>';
+    return;
+  }
+
+  let html = '';
+  if(state.view==='category'){
+    CATEGORIES.forEach(cat=>{
+      const items = list.filter(i=>i.cat===cat.id);
+      if(cat.pending){
+        html += `<section class="cat">
+          <div class="cat-head"><span class="icon">${cat.icon}</span><h2>${cat.name}</h2>
+          <span class="count">目标 ${cat.total} 项</span></div>
+          <div class="placeholder">
+            <h3>📍 逐条点位整理中（${cat.total}）</h3>
+            <div>${cat.note}</div>
+            <ul>
+              <li>点位将按「幼年/成年、昼夜、前置道具、地区」逐条录入</li>
+              <li>录入后自动进入上方进度统计与筛选</li>
+            </ul>
+          </div>
+        </section>`;
+        return;
+      }
+      if(items.length===0) return;
+      const cDone = items.filter(i=>state.checked[i.id]).length;
+      html += `<section class="cat">
+        <div class="cat-head">
+          <span class="icon">${cat.icon}</span><h2>${cat.name}</h2>
+          <span class="count">${cDone}/${items.length}</span>
+          <div class="cat-bar"><i style="width:${items.length?cDone/items.length*100:0}%"></i></div>
+        </div>
+        <div class="grid">${items.map(cardHtml).join('')}</div>
+      </section>`;
+    });
+  } else {
+    const byRegion = {};
+    list.forEach(i=>{ (byRegion[i.region]=byRegion[i.region]||[]).push(i); });
+    Object.keys(byRegion).sort().forEach(r=>{
+      const items = byRegion[r];
+      const cDone = items.filter(i=>state.checked[i.id]).length;
+      html += `<section class="cat">
+        <div class="cat-head"><h2>${r}</h2><span class="count">${cDone}/${items.length}</span></div>
+        <div class="grid">${items.map(cardHtml).join('')}</div>
+      </section>`;
+    });
+  }
+  main.innerHTML = html;
+}
+
+function cardHtml(it){
+  const isDone = !!state.checked[it.id];
+  const tags = [
+    `<span class="tag age-${it.age}">${ageLabel(it.age)}</span>`,
+    it.time==='night' ? `<span class="tag time-night">夜晚</span>` : '',
+    `<span class="tag region">${catMap[it.cat].name}</span>`,
+  ].join('');
+  const prereq = it.prereq ? `<div class="prereq">前置：${it.prereq}</div>` : '';
+  const reward = it.reward ? `<div class="reward">🎁 ${it.reward}</div>` : '';
+  return `<div class="card ${isDone?'done':''}" data-id="${it.id}">
+    <div class="check" role="checkbox" aria-checked="${isDone}">${isDone?'✔':''}</div>
+    <div class="card-body">
+      <div class="card-top"><span class="no">#${it.no}</span><span class="name">${it.name}</span></div>
+      <div class="tags">${tags}</div>
+      <div class="desc">${it.desc}</div>
+      ${prereq}${reward}
+    </div>
+  </div>`;
+}
+
+/* 事件绑定 */
+document.getElementById('viewSeg').addEventListener('click', e=>{
+  const btn = e.target.closest('button'); if(!btn) return;
+  state.view = btn.dataset.view;
+  [...e.currentTarget.children].forEach(b=>b.classList.toggle('on', b===btn));
+  render();
+});
+document.getElementById('search').addEventListener('input', e=>{ state.search=e.target.value; render(); });
+document.getElementById('regionFilter').addEventListener('change', e=>{ state.region=e.target.value; render(); });
+document.getElementById('ageChips').addEventListener('click', e=>{
+  const btn=e.target.closest('.chip'); if(!btn) return;
+  state.age=btn.dataset.age;
+  [...e.currentTarget.children].forEach(b=>b.classList.toggle('on',b===btn));
+  render();
+});
+document.getElementById('timeChips').addEventListener('click', e=>{
+  const btn=e.target.closest('.chip'); if(!btn) return;
+  state.time=btn.dataset.time;
+  [...e.currentTarget.children].forEach(b=>b.classList.toggle('on',b===btn));
+  render();
+});
+document.getElementById('list').addEventListener('click', e=>{
+  const card = e.target.closest('.card'); if(!card) return;
+  const id = card.dataset.id;
+  state.checked[id] = !state.checked[id];
+  if(!state.checked[id]) delete state.checked[id];
+  saveChecked(); render();
+});
+document.getElementById('resetBtn').addEventListener('click', ()=>{
+  if(confirm('确定清空全部勾选记录？')){ state.checked={}; saveChecked(); render(); }
+});
+
+render();
+</script>
+</body>
+</html>

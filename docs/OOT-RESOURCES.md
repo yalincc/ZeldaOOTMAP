@@ -1,0 +1,177 @@
+# Ocarina of Time · 网站与资料索引
+
+> **整理日期**：2026-11-13
+> **所属项目**：`ZeldaOOTMAP`（时之笛交互式攻略地图）
+> **用途**：把项目引用过的外部网站、以及本地已归档的资料集中到一处，方便查阅与后续追加。
+> **说明**：外部链接只收录项目里确实引用过的，未自行扩展；正文中文，文件名保持英文。
+
+---
+
+## 一、网站速查表
+
+| # | 名称 | 链接 | 用途 | 核实状态 |
+| :-- | :--- | :--- | :--- | :--- |
+| 1 | GamerGuides · Hyrule Interactive Map | https://www.gamerguides.com/the-legend-of-zelda-ocarina-of-time/maps/hyrule | 交互地图对标站；点位分类 / 图例 / 详情卡的产品形态参考 | 2026-11-13 可访问 |
+| 2 | Ocarina of Time · Save Game Editor | https://onif.info/ocarina/ | Switch 2 版存档查看与修改；存档字段字典与「存档同步进度」设想的来源 | 2026-11-13 可访问 |
+| 3 | rastapasta (GitHub) | https://github.com/rastapasta | 上述存档修改器作者 | 项目文档记录，未单独复核 |
+| 4 | seedds/nxnative (GitHub) | https://github.com/seedds/nxnative | Switch 2 NVN2 / GOB 字节序技术参考，解出官方底图与图标的关键资料 | 2026-11-13 可访问 |
+| 5 | BNTX-Extractor | 无外部链接，本地副本见 `tools/BNTX-Extractor-master/` | BNTX 贴图提取上游工具（仅支持 Switch 1 格式） | 本地副本 |
+
+---
+
+## 二、GamerGuides · Hyrule 交互地图
+
+**页面标题**：`The Legend of Zelda: Ocarina of Time Interactive Map: Hyrule | Gamer Guides®`
+
+### 它是什么 / 长什么样
+
+- 一张海拉鲁大图上铺满密集的图标 pin，**左侧分类图例筛选 + 点 pin 弹详情卡**，顶部有 `Add to My Maps`、`Hide` 等控件。
+- 分类是三层结构：**主分区 → 筛选组 → 具体标记**，例如 `Items → Bottleable → Bug 25`。
+- 主分区包括：`Exploration`、`Items`、`Equipment`、`Collection`、`Quests`、`Enemies`、`Characters`、`Points of Interest`、`Navigation`。
+
+### 数量口径（重要，别混用）
+
+| 口径 | 数值 | 说明 |
+| :--- | :--- | :--- |
+| 页面筛选面板可见父级分组计数合计 | **877** | 由 `Puzzle 96 + Items 473 + Equipment 27 + Collection 181 + Gossip Quests 100` 相加；页面文本在 `Quests` 处被截断，另有 4 个主分区未显示计数，**不是全站总数** |
+| 本地抓取的完整 marker 数据 | **1,783 条** | 另含 35 个地区标签、61 条连线、7 条推荐路线，是本项目实际使用的数据口径 |
+
+代表性分类计数：`Consumables 172`、`Rupees 128`、`Collectibles 124`（其中 `Gold Skulltula Token 100`）、`Piece of Heart 36`、`Heart Container 8`、`Songs 13`、`Gossip Quests 100`、`Puzzle 96`。
+
+### 与本项目的关系
+
+- `README.md` 定位为「参考其地图架构深度复刻」，但**底图与图标均来自官方 romfs，并非取自该站**。
+- 项目决策记录：GamerGuides 的瓦片方案**已被否掉**（付费墙 + 官方资源已在手 + OoT 不是大地形瓦片），只作为产品形态参考。
+- 第三轮返工的教训：**给参考站时，第一件事是抄对「信息架构」**（什么东西在什么位置、点一下发生什么），前两版都是数据做对了、形态做错了。
+
+### 本地归档
+
+| 文件 | 内容 |
+| :--- | :--- |
+| `gamerguides_markers.json`（2.9 MB，2026-11-11 抓取） | 1,783 markers / 35 labels / 61 lines / 7 routes；每点含 `id`、`layerIds`、`origPoints`、`item.title`、`item.path`（站内攻略页路径）、`customIcon` 等 |
+| `tools/probe_gamerguides.py` | 页面抓取探针，保存 HTML 并定位内嵌数据 |
+| `tools/parse_gg_dom.py`、`analyze_gg_data.py`、`cluster_gg_markers.py`、`inspect_gg_*.py` | 解析、分类统计、坐标换算与校准 |
+| `tools/import_gamerguides_pins.py` | 把 GG 点位映射到项目内部地区节点，导入 `app/data/pins_data.js` |
+| `report/gamerguides_*.png`、根目录 `preview_gg_official.png` 等 | 对标过程截图 |
+| `app/data/pins_data.js` | 由 GG 点位转换形成的攻略点位库 |
+
+推荐路线（routes）共 7 条：Chasing Cuccos in Kakariko Village、Dancing Vessel Piece of Heart、Goron Bracelet and Opening Dodongo's Cavern、Happy Mask Shopkeeper、Saria's Song、Sneaking into Hyrule Castle、Sun's Song。
+
+---
+
+## 三、onif.info/ocarina · 存档修改器（老大说的「之前那个存档修改」）
+
+> **项目链接**：https://onif.info/ocarina/
+> **原作者**：https://github.com/rastapasta
+> **调研归档日期**：2026-11-12
+
+### 页面与功能
+
+页面标题 `Ocarina of Time - Save Game Editor`，首屏提供三种入口：
+
+- `Drop a Switch 2 slot_XX folder`
+- 或同时选择 `caption.sav` + `progress.sav`
+- `Load demo`（不导入存档时体验官方演示存档）
+
+核心能力（据 `docs/SAVE_EDITOR_RESEARCH.md`）：
+
+1. 纯 Web 操作，无需安装客户端；浏览器内拖拽导入存档。
+2. 基于 IndexedDB / LocalStorage 的多槽位草稿管理、变更对比、防丢失。
+3. **3,826 个可修改字段 / 9 大类**，覆盖生命、卢比、全道具、装备、迷宫钥匙、事件与 NPC 对话 Flags。
+4. 双向导入导出：由后端 / WASM 重算校验码后生成可替换的 `.sav`。
+
+### 存档文件规范（Switch 2 版）
+
+```
+slot_00/
+├── caption.sav    # 槽位元数据：缩略图、游玩时间、心数/卢比、当前地点（约 39~40 KB）
+└── progress.sav   # 游戏进度与世界状态：背包、剧情标记、装备等（约 117~121 KB）
+```
+
+二进制头部 Magic：`04 03 02 01`。
+
+### 九大类字段
+
+| 分类 ID | 模块 | 字段数 | 主要内容 |
+| :--- | :--- | ---: | :--- |
+| `link` | 林克状态 | 9 | 卢比、心数/上限、魔力槽 |
+| `inventory` | 背包物品 | 288 | 弹药容量、4 个空瓶、24 格物品栏 |
+| `equipment` | 装备与按键 | 73 | 剑盾衣服鞋子、C 键绑定 |
+| `quests` | 徽章与曲谱 | 42 | 六徽章、三精灵石、全曲谱 |
+| `dungeons` | 迷宫 | 56 | 14 个迷宫的地图/罗盘/钥匙 |
+| `statistics` | 冒险统计 | 24 | 游玩时间、死亡数、宝箱数 |
+| `world` | 世界坐标 | 38 | 存档点 XYZ、朝向、已探访地点 |
+| `history` | 事件与对话 | 3,288 | NPC 对话、剧情事件、黄金骷髅蜘蛛标记 |
+| `details` | 槽位信息 | 8 | 存档时间、展示地点文本 |
+
+### 本地归档
+
+| 文件 | 内容 |
+| :--- | :--- |
+| `docs/SAVE_EDITOR_RESEARCH.md` | 完整调研：架构、三个前端脚本、`/api/demo` `/api/import` `/api/export` `/api/item-limits` 接口、字段体系、复刻备忘 |
+| `docs/demo_save_structure.json`（1.6 MB） | 官方 Demo 存档全量结构：`fields_count: 3826`、`categories` 9 类、`fields` 明细、`slot_00` 元信息（KokiriForest / 3 心 / 0 卢比 / 缩略图） |
+
+> 注：原调研文档提到 `scratch/demo.json`，当前仓库并无 `scratch/` 目录，实际归档以 `docs/demo_save_structure.json` 为准。
+
+### 与地图联动的设想（尚未实现）
+
+- **阶段一（只读同步）**：地图增加「拖入 Switch 2 存档」，从 `progress.sav` 提取心之碎片、黄金骷髅蜘蛛、迷宫通关等标志位，自动点亮已完成点位，免去手动勾选。
+- **阶段二（读写）**：在地图里直接点选道具 / 心之碎片 / 卢比 / 曲谱，导出重算 Checksum 的 `progress.sav`。
+
+---
+
+## 四、技术资料与工具来源
+
+| 资料 | 说明 |
+| :--- | :--- |
+| `seedds/nxnative` | Switch / Switch 2 游戏在 Apple 芯片上原生运行的项目，已测试游戏表包含《The Legend of Zelda: Ocarina of Time》。其 `docs/reference/nvn-objects.md` 记录了 **Switch 2 GOB 内部字节序 `x5 y2 x4 y1 y0`**（Tegra X1 为 `x5 y2 y1 x4 y0`），本项目据此解出官方底图 `MapTexWorldAll_00` 与 90 张 `MapIcon*`。 |
+| `tools/nvn_swizzle.py` | 上述公式的本地实现；配合 `tools/export_ui_textures.py` 一次解出 181 张官方纹理，零失败。 |
+| TOTKmap 工具链 | Switch 2 版 OoT 的 romfs 顶层目录与 TOTK 完全同构（`Banc / RSDB / Mals / Scene / Pack / UI / Tex / TerrainArc …`），zstd 字典、BYML 解析、坐标管线可直接复用。 |
+| `tools/BNTX-Extractor-master/` | 上游 BNTX 提取器，只覆盖 Switch 1 格式；Switch 2 新增 `0x0A01` 格式不支持，需自研反交错。 |
+| 官方 romfs | 唯一权威数据源：`F:\SWITCH2\SHIZHID\room` 下 23.86 GiB 的 `.nup`（v2.0.0 首日补丁，base + update 两包内容基本重复），已选择性提取 436 个资源 / 802 MB 到 `F:\SWITCH2\ZeldaOOT-RomFS`，原文件只读未改动。 |
+
+---
+
+## 五、本地资料总表
+
+| 路径 | 内容 |
+| :--- | :--- |
+| `README.md` | 项目说明、核心特性、启动方式、目录结构 |
+| `docs/OOT-RESOURCES.md` | 本文档（网站与资料索引） |
+| `docs/SAVE_EDITOR_RESEARCH.md` | 存档修改器调研与复刻参考 |
+| `docs/demo_save_structure.json` | 存档字段字典（3,826 字段） |
+| `gamerguides_markers.json` | 对标站点位数据快照（1,783 markers） |
+| `report/DATA-SOURCES.md` | 底图 / 图标 / 官方数据来源、人工整理部分、待办 |
+| `report/ROMFS-SURVEY.md` | `.nup` 容器资源普查（两包各约 18.6 万文件 / 24.4 GB） |
+| `report/ROMFS-TARGETS.txt` | 提取目标清单（Mals / Banc / Game / UI 等） |
+| `report/*.png`、根目录 `preview_*.png` | 各轮预览与校准截图 |
+| `app/` | 成品纯静态站（`app/index.html` 可直接打开） |
+| `tools/` | 抓取、解包、解码、校准、构建全链路脚本 |
+| `.workbuddy/memory/2026-11-11.md` | 项目决策与三轮返工记录（含「先抄信息架构」教训） |
+
+---
+
+## 六、使用提醒
+
+1. **存档修改仅用于个人本地备份与研究**：改动前先备份原始 `.sav`；`onif.info` 是第三方在线服务，导入真实存档前请自行评估隐私风险。
+2. **数据是快照**：网页分类与计数为 2026-11-11 / 11-13 抓取结果，站点后续可能调整。
+3. **两个数字别混**：877 是页面可见筛选组计数之和（且被截断），1,783 是本地抓取到的完整 marker 条数。
+4. 全站素材版权归任天堂所有，本项目为非官方粉丝项目，不作商业用途。
+
+---
+
+## 七、后续追加记录模板
+
+发现新网站 / 资料时，按下表追加一行，并把详细归档文件放进 `docs/` 或 `report/`：
+
+| 日期 | 网站 / 资料 | 链接 | 用途 | 本地归档路径 |
+| :--- | :--- | :--- | :--- | :--- |
+|  |  |  |  |  |
+
+---
+
+### 附：本次整理范围
+
+- 已通读工作区 `README.md`、`docs/`、`report/` 全部文档，扫描 JSON 结构与 `tools/` 脚本头部注释。
+- 「之前那个存档修改」线索由 `docs/SAVE_EDITOR_RESEARCH.md` 定位，即 `onif.info/ocarina`。
+- 内部资料库检索命中的均为《王国之泪》TOTK 相关资料，无时之笛专属收藏；ima / 腾讯文档 / 腾讯网盘 / 腾讯会议 本次不可用，历史对话检索未返回有效结果。

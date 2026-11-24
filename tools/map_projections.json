@@ -1,0 +1,684 @@
+{
+  "DeathMountainCrater": {
+    "kind": "field",
+    "camX": -12.0,
+    "camZ": 12.0,
+    "captureHeight": 188.0,
+    "origW": 2000,
+    "origH": 1440,
+    "resizedW": 1600,
+    "resizedH": 1152,
+    "crop": [
+      286,
+      2,
+      1330,
+      1097
+    ],
+    "webpW": 1044,
+    "webpH": 1095,
+    "bancNames": [
+      "DeathMountainCrater_Child",
+      "DeathMountainCrater_Adult"
+    ]
+  },
+  "DeathMountainTrail": {
+    "kind": "field",
+    "camX": -21.0,
+    "camZ": -36.0,
+    "captureHeight": 390.0,
+    "origW": 2000,
+    "origH": 1440,
+    "resizedW": 1600,
+    "resizedH": 1152,
+    "crop": [
+      523,
+      18,
+      1008,
+      1098
+    ],
+    "webpW": 485,
+    "webpH": 1080,
+    "bancNames": [
+      "DeathMountainTrail_Child",
+      "DeathMountainTrail_Adult"
+    ]
+  },
+  "DesertColossus": {
+    "kind": "field",
+    "camX": -88.0,
+    "camZ": 12.0,
+    "captureHeight": 305.0,
+    "origW": 2000,
+    "origH": 1440,
+    "resizedW": 1600,
+    "resizedH": 1152,
+    "crop": [
+      157,
+      90,
+      1350,
+      1078
+    ],
+    "webpW": 1193,
+    "webpH": 988,
+    "bancNames": [
+      "DesertColossus_Child",
+      "DesertColossus_Adult"
+    ]
+  },
+  "GanonCastle": {
+    "kind": "field",
+    "camX": 61.0,
+    "camZ": 297.0,
+    "captureHeight": 268.0,
+    "origW": 2000,
+    "origH": 1440,
+    "resizedW": 1600,
+    "resizedH": 1152,
+    "crop": [
+      162,
+      0,
+      1230,
+      1086
+    ],
+    "webpW": 1068,
+    "webpH": 1086,
+    "bancNames": [
+      "GanonCastle",
+      "GanonCastle"
+    ]
+  },
+  "GerudoFortress": {
+    "kind": "field",
+    "camX": 86.0,
+    "camZ": -22.0,
+    "captureHeight": 340.0,
+    "origW": 2000,
+    "origH": 1440,
+    "resizedW": 1600,
+    "resizedH": 1152,
+    "crop": [
+      132,
+      42,
+      1450,
+      1152
+    ],
+    "webpW": 1318,
+    "webpH": 1110,
+    "bancNames": [
+      "GerudoFortress_Child",
+      "GerudoFortress_Adult"
+    ]
+  },
+  "GerudoValley": {
+    "kind": "field",
+    "camX": 0.0,
+    "camZ": -13.0,
+    "captureHeight": 240.0,
+    "origW": 2000,
+    "origH": 1440,
+    "resizedW": 1600,
+    "resizedH": 1152,
+    "crop": [
+      282,
+      2,
+      1414,
+      1152
+    ],
+    "webpW": 1132,
+    "webpH": 1150,
+    "bancNames": [
+      "GerudoValley_Child",
+      "GerudoValley_Adult"
+    ]
+  },
+  "GoronCity": {
+    "kind": "field",
+    "camX": -5.0,
+    "camZ": 0.0,
+    "captureHeight": 156.0,
+    "origW": 2000,
+    "origH": 1440,
+    "resizedW": 1600,
+    "resizedH": 1152,
+    "crop": [
+      267,
+      2,
+      1346,
+      1050
+    ],
+    "webpW": 1079,
+    "webpH": 1048,
+    "bancNames": [
+      "GoronCity_Child",
+      "GoronCity_Adult"
+    ]
+  },
+  "Graveyard": {
+    "kind": "field",
+    "camX": 18.0,
+    "camZ": 8.0,
+    "captureHeight": 148.0,
+    "origW": 2000,
+    "origH": 1440,
+    "resizedW": 1600,
+    "resizedH": 1152,
+    "crop": [
+      92,
+      222,
+      1598,
+      846
+    ],
+    "webpW": 1506,
+    "webpH": 624,
+    "bancNames": [
+      "Graveyard_Child",
+      "Graveyard_Adult"
+    ]
+  },
+  "HountedWasteland": {
+    "kind": "field",
+    "camX": 6.0,
+    "camZ": -52.0,
+    "captureHeight": 645.0,
+    "origW": 2000,
+    "origH": 1440,
+    "resizedW": 1600,
+    "resizedH": 1152,
+    "crop": [
+      304,
+      80,
+      1295,
+      1071
+    ],
+    "webpW": 991,
+    "webpH": 991,
+    "bancNames": [
+      "HountedWasteland_Child",
+      "HountedWasteland_Adult"
+    ]
+  },
+  "HyruleCastle": {
+    "kind": "field",
+    "camX": 0.0,
+    "camZ": -80.0,
+    "captureHeight": 242.0,
+    "origW": 2000,
+    "origH": 1440,
+    "resizedW": 1600,
+    "resizedH": 1152,
+    "crop": [
+      518,
+      6,
+      1301,
+      1134
+    ],
+    "webpW": 783,
+    "webpH": 1128,
+    "bancNames": [
+      "HyruleCastle",
+      "GanonCastle"
+    ]
+  },
+  "HyruleField": {
+    "kind": "field",
+    "camX": -23.0,
+    "camZ": 197.0,
+    "captureHeight": 736.0,
+    "origW": 2000,
+    "origH": 1440,
+    "resizedW": 1600,
+    "resizedH": 1152,
+    "crop": [
+      98,
+      78,
+      1402,
+      1117
+    ],
+    "webpW": 1304,
+    "webpH": 1039,
+    "bancNames": [
+      "HyruleField_Child",
+      "HyruleField_Adult"
+    ]
+  },
+  "KakarikoVillage": {
+    "kind": "field",
+    "camX": -50.0,
+    "camZ": 42.0,
+    "captureHeight": 246.0,
+    "origW": 2000,
+    "origH": 1440,
+    "resizedW": 1600,
+    "resizedH": 1152,
+    "crop": [
+      210,
+      42,
+      1346,
+      1146
+    ],
+    "webpW": 1136,
+    "webpH": 1104,
+    "bancNames": [
+      "KakarikoVillage_Child",
+      "KakarikoVillage_Adult"
+    ]
+  },
+  "KokiriForest": {
+    "kind": "field",
+    "camX": -5.0,
+    "camZ": -12.0,
+    "captureHeight": 300.0,
+    "origW": 2000,
+    "origH": 1440,
+    "resizedW": 1600,
+    "resizedH": 1152,
+    "crop": [
+      66,
+      206,
+      1588,
+      1014
+    ],
+    "webpW": 1522,
+    "webpH": 808,
+    "bancNames": [
+      "KokiriForest_Child",
+      "KokiriForest_Adult"
+    ]
+  },
+  "LakeHylia": {
+    "kind": "field",
+    "camX": -200.0,
+    "camZ": 490.0,
+    "captureHeight": 422.0,
+    "origW": 2000,
+    "origH": 1440,
+    "resizedW": 1600,
+    "resizedH": 1152,
+    "crop": [
+      234,
+      110,
+      1442,
+      1062
+    ],
+    "webpW": 1208,
+    "webpH": 952,
+    "bancNames": [
+      "LakeHylia_Child",
+      "LakeHylia_Adult"
+    ]
+  },
+  "LonLonRanch": {
+    "kind": "field",
+    "camX": -86.0,
+    "camZ": 239.0,
+    "captureHeight": 276.0,
+    "origW": 2000,
+    "origH": 1440,
+    "resizedW": 1600,
+    "resizedH": 1152,
+    "crop": [
+      299,
+      134,
+      1277,
+      1018
+    ],
+    "webpW": 978,
+    "webpH": 884,
+    "bancNames": [
+      "LonLonRanch_Child",
+      "LonLonRanch_Adult"
+    ]
+  },
+  "LostWood": {
+    "kind": "field",
+    "camX": 6.0,
+    "camZ": -1.0,
+    "captureHeight": 400.0,
+    "origW": 2000,
+    "origH": 1440,
+    "resizedW": 1600,
+    "resizedH": 1152,
+    "crop": [
+      304,
+      80,
+      1295,
+      1071
+    ],
+    "webpW": 991,
+    "webpH": 991,
+    "bancNames": [
+      "LostWood_Child",
+      "LostWood_Adult"
+    ]
+  },
+  "Market": {
+    "kind": "field",
+    "camX": 0.0,
+    "camZ": 3.0,
+    "captureHeight": 214.0,
+    "origW": 2000,
+    "origH": 1440,
+    "resizedW": 1600,
+    "resizedH": 1152,
+    "crop": [
+      146,
+      74,
+      1422,
+      1122
+    ],
+    "webpW": 1276,
+    "webpH": 1048,
+    "bancNames": [
+      "Market_Child",
+      "Market_Adult"
+    ]
+  },
+  "SacredForestMeadow": {
+    "kind": "field",
+    "camX": -12.0,
+    "camZ": -25.0,
+    "captureHeight": 317.0,
+    "origW": 2000,
+    "origH": 1440,
+    "resizedW": 1600,
+    "resizedH": 1152,
+    "crop": [
+      670,
+      0,
+      997,
+      1152
+    ],
+    "webpW": 327,
+    "webpH": 1152,
+    "bancNames": [
+      "SacredForestMeadow_Child",
+      "SacredForestMeadow_Adult"
+    ]
+  },
+  "ZoraDomain": {
+    "kind": "field",
+    "camX": 30.0,
+    "camZ": -14.0,
+    "captureHeight": 151.0,
+    "origW": 2000,
+    "origH": 1440,
+    "resizedW": 1600,
+    "resizedH": 1152,
+    "crop": [
+      70,
+      198,
+      1538,
+      1120
+    ],
+    "webpW": 1468,
+    "webpH": 922,
+    "bancNames": [
+      "ZoraDomain_Child",
+      "ZoraDomain_Adult"
+    ]
+  },
+  "ZoraFountain": {
+    "kind": "field",
+    "camX": 30.0,
+    "camZ": -13.0,
+    "captureHeight": 195.0,
+    "origW": 2000,
+    "origH": 1440,
+    "resizedW": 1600,
+    "resizedH": 1152,
+    "crop": [
+      294,
+      54,
+      1360,
+      1152
+    ],
+    "webpW": 1066,
+    "webpH": 1098,
+    "bancNames": [
+      "ZoraFountain_Child",
+      "ZoraFountain_Adult"
+    ]
+  },
+  "ZoraRiver": {
+    "kind": "field",
+    "camX": 20.0,
+    "camZ": -15.0,
+    "captureHeight": 265.0,
+    "origW": 2000,
+    "origH": 1440,
+    "resizedW": 1600,
+    "resizedH": 1152,
+    "crop": [
+      22,
+      218,
+      1594,
+      980
+    ],
+    "webpW": 1572,
+    "webpH": 762,
+    "bancNames": [
+      "ZoraRiver_Child",
+      "ZoraRiver_Adult"
+    ]
+  },
+  "BottomOfTheWell": {
+    "kind": "dungeon",
+    "camX": -12.0,
+    "camZ": -32.0,
+    "captureHeight": 238.0,
+    "origW": 2000,
+    "origH": 1440,
+    "resizedW": 1600,
+    "resizedH": 1152,
+    "crop": [
+      0,
+      0,
+      1154,
+      1143
+    ],
+    "webpW": 1154,
+    "webpH": 1143,
+    "bancNames": [
+      "BottomOfTheWell",
+      "BottomOfTheWell"
+    ]
+  },
+  "DodongoCavern": {
+    "kind": "dungeon",
+    "camX": 31.0,
+    "camZ": -30.0,
+    "captureHeight": 256.0,
+    "origW": 2000,
+    "origH": 1440,
+    "resizedW": 1600,
+    "resizedH": 1152,
+    "crop": [
+      0,
+      0,
+      1427,
+      1066
+    ],
+    "webpW": 1427,
+    "webpH": 1066,
+    "bancNames": [
+      "DodongoCavern",
+      "DodongoCavern"
+    ]
+  },
+  "FireTemple": {
+    "kind": "dungeon",
+    "camX": 17.0,
+    "camZ": -3.0,
+    "captureHeight": 220.0,
+    "origW": 2000,
+    "origH": 1440,
+    "resizedW": 1600,
+    "resizedH": 1152,
+    "crop": [
+      0,
+      0,
+      1561,
+      1028
+    ],
+    "webpW": 1561,
+    "webpH": 1028,
+    "bancNames": [
+      "FireTemple",
+      "FireTemple"
+    ]
+  },
+  "ForestTemple": {
+    "kind": "dungeon",
+    "camX": -3.0,
+    "camZ": 6.0,
+    "captureHeight": 245.0,
+    "origW": 2000,
+    "origH": 1440,
+    "resizedW": 1600,
+    "resizedH": 1152,
+    "crop": [
+      0,
+      0,
+      1292,
+      1085
+    ],
+    "webpW": 1292,
+    "webpH": 1085,
+    "bancNames": [
+      "ForestTemple",
+      "ForestTemple"
+    ]
+  },
+  "IceCavern": {
+    "kind": "dungeon",
+    "camX": 11.0,
+    "camZ": 12.0,
+    "captureHeight": 287.0,
+    "origW": 2000,
+    "origH": 1440,
+    "resizedW": 1600,
+    "resizedH": 1152,
+    "crop": [
+      0,
+      0,
+      1288,
+      1118
+    ],
+    "webpW": 1288,
+    "webpH": 1118,
+    "bancNames": [
+      "IceCavern",
+      "IceCavern"
+    ]
+  },
+  "InsideJabuJabuBelly": {
+    "kind": "dungeon",
+    "camX": -1.0,
+    "camZ": -92.0,
+    "captureHeight": 328.0,
+    "origW": 2000,
+    "origH": 1440,
+    "resizedW": 1600,
+    "resizedH": 1152,
+    "crop": [
+      0,
+      0,
+      1100,
+      1070
+    ],
+    "webpW": 1100,
+    "webpH": 1070,
+    "bancNames": [
+      "InsideJabuJabuBelly",
+      "InsideJabuJabuBelly"
+    ]
+  },
+  "InsideTheDekuTree": {
+    "kind": "dungeon",
+    "camX": -36.0,
+    "camZ": 18.0,
+    "captureHeight": 125.0,
+    "origW": 2000,
+    "origH": 1440,
+    "resizedW": 1600,
+    "resizedH": 1152,
+    "crop": [
+      0,
+      0,
+      1455,
+      1033
+    ],
+    "webpW": 1455,
+    "webpH": 1033,
+    "bancNames": [
+      "InsideTheDekuTree",
+      "InsideTheDekuTree"
+    ]
+  },
+  "ShadowTemple": {
+    "kind": "dungeon",
+    "camX": -22.0,
+    "camZ": 7.0,
+    "captureHeight": 433.0,
+    "origW": 2000,
+    "origH": 1440,
+    "resizedW": 1600,
+    "resizedH": 1152,
+    "crop": [
+      0,
+      0,
+      1595,
+      995
+    ],
+    "webpW": 1595,
+    "webpH": 995,
+    "bancNames": [
+      "ShadowTemple",
+      "ShadowTemple"
+    ]
+  },
+  "SpiritTemple": {
+    "kind": "dungeon",
+    "camX": 0.0,
+    "camZ": -24.0,
+    "captureHeight": 202.0,
+    "origW": 2000,
+    "origH": 1440,
+    "resizedW": 1600,
+    "resizedH": 1152,
+    "crop": [
+      0,
+      0,
+      1600,
+      1152
+    ],
+    "webpW": 1600,
+    "webpH": 1152,
+    "bancNames": [
+      "SpiritTemple",
+      "SpiritTemple"
+    ]
+  },
+  "WaterTemple": {
+    "kind": "dungeon",
+    "camX": -24.0,
+    "camZ": -45.0,
+    "captureHeight": 263.0,
+    "origW": 2000,
+    "origH": 1440,
+    "resizedW": 1600,
+    "resizedH": 1152,
+    "crop": [
+      0,
+      0,
+      1340,
+      1152
+    ],
+    "webpW": 1340,
+    "webpH": 1152,
+    "bancNames": [
+      "WaterTemple",
+      "WaterTemple"
+    ]
+  }
+}

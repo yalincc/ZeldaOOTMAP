@@ -1,0 +1,1245 @@
+/* ==========================================================================
+   The Legend of Zelda: Ocarina of Time Topological Mindmap
+   出入口拓扑导图样式与连接网络
+   ========================================================================== */
+
+:root {
+  --bg-deep: #160d08;
+  --bg-board: #20140c;
+  --cell-bg-grad: linear-gradient(145deg, #8a5f39, #6f4728);
+  --cell-border: #4a2f1a;
+  --dungeon-border: #881337;
+  --topbar-h: 56px;
+  --sidebar-w: 320px;
+  --gold: #eab308;
+  --gold-glow: rgba(234, 179, 8, 0.4);
+  --text-main: #f5eedb;
+  --text-dim: #b8ad96;
+  --text-mute: #7d725d;
+  --zoom-inv: 1;
+}
+
+* {
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background: var(--bg-deep);
+  color: var(--text-main);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+  overflow: hidden;
+  user-select: none;
+}
+
+button, input {
+  font-family: inherit;
+  color: inherit;
+}
+
+/* ---------------- 顶部导航栏 ---------------- */
+.topbar {
+  height: var(--topbar-h);
+  background: linear-gradient(180deg, #1c110a, #140c07);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 0 16px;
+  position: relative;
+  z-index: 50;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.7);
+}
+
+.topbar-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.icon-toggle {
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: #241710;
+  color: var(--text-dim);
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.icon-toggle:hover {
+  color: var(--gold);
+  background: #332015;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logo-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.logo-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: 0.5px;
+}
+
+.logo-title em {
+  font-style: normal;
+  color: var(--gold);
+  margin-left: 4px;
+}
+
+.logo-sub {
+  font-size: 10px;
+  color: var(--text-mute);
+  letter-spacing: 0.4px;
+}
+
+/* 时代切换 */
+.era-seg {
+  display: flex;
+  background: #110905;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  padding: 2px;
+}
+
+.era-btn {
+  padding: 5px 12px;
+  font-size: 12px;
+  color: var(--text-dim);
+  border: none;
+  background: transparent;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.era-btn:hover {
+  color: #fff;
+}
+
+.era-btn.on {
+  background: linear-gradient(180deg, #4d331c, #362211);
+  color: var(--gold);
+  font-weight: 700;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);
+}
+
+/* 全收集进度 */
+.progress-box {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 150px;
+}
+
+.progress-info {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+}
+
+.prog-txt {
+  color: var(--text-mute);
+}
+
+.prog-num {
+  font-weight: 700;
+  color: var(--gold);
+}
+
+.prog-pct {
+  margin-left: auto;
+  color: var(--text-dim);
+  font-size: 10px;
+}
+
+.progress-bar-bg {
+  width: 100%;
+  height: 5px;
+  background: #110905;
+  border-radius: 3px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  overflow: hidden;
+}
+
+.progress-bar-fill {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, #ca8a04, #facc15);
+  border-radius: 2px;
+  transition: width 0.3s ease;
+}
+
+.topbar-right {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.toggle-done-lbl {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  color: var(--text-dim);
+  cursor: pointer;
+}
+
+.toggle-done-lbl input {
+  accent-color: var(--gold);
+  cursor: pointer;
+}
+
+.btn-edit-mode {
+  padding: 5px 12px;
+  border-radius: 8px;
+  border: 1px solid rgba(234, 179, 8, 0.4);
+  background: #241710;
+  color: var(--gold);
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.btn-edit-mode:hover {
+  background: #3d2618;
+  border-color: var(--gold);
+  box-shadow: 0 0 10px rgba(234, 179, 8, 0.3);
+}
+
+.btn-edit-mode.on {
+  background: linear-gradient(180deg, #ca8a04, #a16207);
+  color: #fff;
+  border-color: #facc15;
+  box-shadow: 0 0 14px rgba(250, 204, 21, 0.6);
+}
+
+.btn-guide {
+  padding: 5px 12px;
+  border-radius: 8px;
+  border: 1px solid rgba(234, 179, 8, 0.55);
+  background: linear-gradient(180deg, #3a2a12, #241710);
+  color: var(--gold);
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  text-decoration: none;
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.15s ease;
+}
+
+.btn-guide:hover {
+  background: #3d2618;
+  border-color: var(--gold);
+  box-shadow: 0 0 10px rgba(234, 179, 8, 0.35);
+}
+
+.btn-lang {
+  padding: 5px 12px;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: #241710;
+  color: var(--text-dim);
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.btn-lang:hover {
+  color: var(--gold);
+}
+
+/* ---------------- 页面主体 ---------------- */
+.main-wrap {
+  display: flex;
+  height: calc(100% - var(--topbar-h));
+  position: relative;
+}
+
+/* ---------------- 左侧分类面板 (GamerGuides) ---------------- */
+.sidebar {
+  width: var(--sidebar-w);
+  flex: 0 0 var(--sidebar-w);
+  background: #18100a;
+  border-right: 1px solid rgba(255, 255, 255, 0.08);
+  display: flex;
+  flex-direction: column;
+  z-index: 30;
+  transition: margin-left 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 2px 0 16px rgba(0, 0, 0, 0.6);
+}
+
+.sidebar.collapsed {
+  margin-left: calc(-1 * var(--sidebar-w));
+}
+
+.search-box {
+  padding: 12px 14px 8px;
+  position: relative;
+}
+
+.search-box svg {
+  position: absolute;
+  left: 24px;
+  top: 22px;
+  color: var(--text-mute);
+  pointer-events: none;
+}
+
+.search-box input {
+  width: 100%;
+  height: 38px;
+  padding: 0 12px 0 34px;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: #0f0a06;
+  color: var(--text-main);
+  font-size: 12.5px;
+  outline: none;
+  transition: border-color 0.15s;
+}
+
+.search-box input:focus {
+  border-color: var(--gold);
+}
+
+.search-results {
+  position: absolute;
+  top: 54px;
+  left: 14px;
+  right: 14px;
+  background: #241710;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 8px;
+  max-height: 280px;
+  overflow-y: auto;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.8);
+  z-index: 100;
+}
+
+.search-item {
+  padding: 8px 12px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.search-item:hover {
+  background: #332015;
+}
+
+.search-item-info {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.search-item-title {
+  font-size: 12.5px;
+  font-weight: 600;
+  color: #fff;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.search-item-area {
+  font-size: 10.5px;
+  color: var(--gold);
+}
+
+.filter-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 6px 16px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.action-title {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--text-mute);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.action-btns button {
+  font-size: 11px;
+  background: transparent;
+  border: none;
+  color: var(--text-dim);
+  cursor: pointer;
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+.action-btns button:hover {
+  color: var(--gold);
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.cat-list {
+  flex: 1;
+  overflow-y: auto;
+  padding: 6px 10px 16px;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.15) transparent;
+}
+
+.cat-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.12s ease;
+  color: var(--text-dim);
+  margin-bottom: 3px;
+}
+
+.cat-item:hover {
+  background: #2a1a11;
+  color: #fff;
+}
+
+.cat-item.active {
+  color: #fff;
+}
+
+.cat-item input[type="checkbox"] {
+  accent-color: var(--gold);
+  cursor: pointer;
+}
+
+.cat-icon-slot {
+  width: 28px;
+  height: 28px;
+  display: grid;
+  place-items: center;
+  flex: 0 0 28px;
+}
+
+.cat-name {
+  flex: 1;
+  font-size: 13px;
+  font-weight: 500;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.cat-badge {
+  font-size: 11px;
+  padding: 2px 7px;
+  border-radius: 10px;
+  background: #110905;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: var(--gold);
+  font-weight: 600;
+}
+
+.jump-section {
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 10px 14px;
+  background: #140c07;
+}
+
+.jump-header {
+  font-size: 11px;
+  color: var(--text-mute);
+  font-weight: 700;
+  letter-spacing: 0.8px;
+  margin-bottom: 8px;
+  text-transform: uppercase;
+}
+
+.jump-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  max-height: 110px;
+  overflow-y: auto;
+}
+
+.jump-chip {
+  padding: 3px 8px;
+  border-radius: 12px;
+  background: #22150d;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  font-size: 11px;
+  color: var(--text-dim);
+  cursor: pointer;
+  transition: all 0.12s;
+}
+
+.jump-chip:hover {
+  color: var(--gold);
+  background: #332015;
+}
+
+/* ---------------- 地图画板与思维导图拓扑网络 ---------------- */
+.map-stage {
+  flex: 1;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+  background: var(--bg-board);
+  background-image: radial-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+  background-size: 32px 32px;
+  cursor: grab;
+}
+
+.map-stage:active {
+  cursor: grabbing;
+}
+
+.map-viewport {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  transform-origin: 0 0;
+  will-change: transform;
+}
+
+/* 拓扑导图大画布 */
+.mindmap-board {
+  position: absolute;
+  left: 0;
+  top: 0;
+  transform-origin: 0 0;
+  will-change: transform;
+  transform-style: flat;
+  backface-visibility: hidden;
+}
+
+/* SVG 连线层 */
+.topology-svg {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 10;
+  overflow: visible;
+}
+
+.edge-path {
+  fill: none;
+  vector-effect: non-scaling-stroke;
+  transition: stroke 0.2s, stroke-width 0.2s, filter 0.2s;
+  pointer-events: stroke;
+  cursor: pointer;
+}
+
+.edge-hitarea {
+  fill: none;
+  stroke: transparent;
+  stroke-width: 28px;
+  vector-effect: non-scaling-stroke;
+  pointer-events: stroke;
+  cursor: pointer;
+}
+
+.edge-path.main {
+  stroke: #d99a4e;
+  stroke-width: 4px;
+  stroke-linecap: round;
+}
+
+.edge-path.dungeon {
+  stroke: #f43f5e;
+  stroke-width: 4px;
+  stroke-dasharray: 8 5;
+  stroke-linecap: round;
+}
+
+.edge-path.shortcut {
+  stroke: #06b6d4;
+  stroke-width: 3.5px;
+  stroke-dasharray: 8 6;
+  animation: shortcutFlow 2s linear infinite;
+}
+
+@keyframes shortcutFlow {
+  from { stroke-dashoffset: 28; }
+  to { stroke-dashoffset: 0; }
+}
+
+.edge-path:hover,
+.edge-path.highlight {
+  stroke: var(--gold) !important;
+  stroke-width: 7px !important;
+  filter: drop-shadow(0 0 16px var(--gold)) !important;
+}
+
+/* 连线路标小标签 (出入口名称高亮徽章) */
+.edge-label-group {
+  pointer-events: all;
+  cursor: pointer;
+  transition: transform 0.15s ease;
+}
+
+.edge-label-group:hover {
+  filter: drop-shadow(0 0 12px var(--gold));
+}
+
+.edge-label-group:hover .edge-label-bg {
+  stroke: var(--gold);
+  stroke-width: 2px;
+}
+
+.edge-label {
+  font-size: 12.5px;
+  font-weight: 700;
+  fill: #fff;
+  text-anchor: middle;
+  dominant-baseline: central;
+  letter-spacing: 0.5px;
+}
+
+.edge-label-bg {
+  fill: rgba(14, 9, 5, 0.94);
+  stroke: rgba(234, 179, 8, 0.45);
+  stroke-width: 1.2px;
+  rx: 8;
+}
+
+/* 出入口与近道悬浮说明框 (双向跳转) */
+.edge-tooltip {
+  position: absolute;
+  z-index: 85;
+  background: rgba(18, 11, 7, 0.96);
+  border: 1.5px solid var(--gold);
+  border-radius: 10px;
+  padding: 12px 16px;
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.85), 0 0 18px var(--gold-glow);
+  pointer-events: none;
+  max-width: 320px;
+  transform: translate(-50%, -120%);
+  transition: opacity 0.15s ease, transform 0.15s ease;
+}
+
+.edge-tt-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 6px;
+}
+
+.edge-tt-badge {
+  font-size: 10px;
+  font-weight: 700;
+  padding: 2px 6px;
+  border-radius: 4px;
+  background: rgba(6, 182, 212, 0.25);
+  color: #38bdf8;
+  border: 1px solid rgba(6, 182, 212, 0.4);
+}
+
+.edge-tt-badge.main {
+  background: rgba(234, 179, 8, 0.2);
+  color: var(--gold);
+  border-color: rgba(234, 179, 8, 0.4);
+}
+
+.edge-tt-badge.dungeon {
+  background: rgba(244, 63, 94, 0.25);
+  color: #fda4af;
+  border-color: rgba(244, 63, 94, 0.4);
+}
+
+.edge-tt-title {
+  font-size: 14px;
+  font-weight: 700;
+  color: #fff;
+}
+
+.edge-tt-route {
+  font-size: 12px;
+  color: var(--gold);
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+.edge-tt-desc {
+  font-size: 11.5px;
+  color: var(--text-dim);
+  line-height: 1.45;
+  margin-bottom: 8px;
+}
+
+.edge-tt-hint {
+  font-size: 10.5px;
+  color: #38bdf8;
+  font-weight: 600;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  padding-top: 6px;
+}
+
+/* 点位校准模式工具条 */
+.calibration-toast {
+  position: absolute;
+  top: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(20, 12, 8, 0.96);
+  border: 2px solid var(--gold);
+  border-radius: 12px;
+  padding: 10px 20px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.9), 0 0 20px var(--gold-glow);
+  z-index: 100;
+  animation: slideDown 0.25s ease;
+}
+
+.cal-title {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--gold);
+}
+
+.cal-desc {
+  font-size: 11.5px;
+  color: var(--text-dim);
+}
+
+.cal-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-left: 8px;
+}
+
+.cal-actions button {
+  padding: 6px 12px;
+  font-size: 11.5px;
+  font-weight: 700;
+  border-radius: 6px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: #332015;
+  color: #fff;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.cal-actions button:hover {
+  background: var(--gold);
+  color: #1a0f07;
+}
+
+/* 处于校准模式时的 pin 交互样式 */
+body.cal-mode .map-pin {
+  cursor: grab !important;
+  filter: drop-shadow(0 0 8px #f59e0b) !important;
+}
+
+body.cal-mode .map-pin:active {
+  cursor: grabbing !important;
+  transform: translate(-50%, -50%) scale(1.35) !important;
+}
+
+/* 节点层 */
+.nodes-layer {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 20;
+}
+
+/* 单个区域与迷宫节点卡片 */
+.node-card {
+  position: absolute;
+  pointer-events: auto;
+  background: var(--cell-bg-grad);
+  border: 2px solid var(--cell-border);
+  box-shadow: inset 0 0 35px rgba(0, 0, 0, 0.4), 0 6px 20px rgba(0, 0, 0, 0.6);
+  border-radius: 6px;
+  overflow: visible;
+  transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
+  cursor: pointer;
+}
+
+.node-card:hover {
+  transform: translateY(-4px) scale(1.02);
+  border-color: var(--gold);
+  box-shadow: inset 0 0 25px rgba(0, 0, 0, 0.3), 0 12px 28px rgba(0, 0, 0, 0.8), 0 0 12px var(--gold-glow);
+  z-index: 35;
+}
+
+/* 中心海拉鲁平原突出加粗金边 */
+.node-card.type-hub {
+  border-color: #ca8a04;
+  box-shadow: inset 0 0 40px rgba(0, 0, 0, 0.45), 0 8px 24px rgba(0, 0, 0, 0.7), 0 0 16px rgba(202, 138, 4, 0.3);
+}
+
+/* 地下城神殿节点特别标识 (红宝石神殿边框与典雅羊皮纸底色) */
+.node-card.type-dungeon {
+  border-color: #e11d48;
+  background: linear-gradient(145deg, #6c422a, #4e2919);
+  box-shadow: inset 0 0 35px rgba(0, 0, 0, 0.5), 0 8px 24px rgba(0, 0, 0, 0.75), 0 0 16px rgba(225, 29, 72, 0.35);
+}
+
+/* 节点顶部胶囊标签 (自适应缩放保真，保证导图文字恒久清晰) */
+.node-header {
+  position: absolute;
+  top: -16px;
+  left: 50%;
+  transform: translateX(-50%) scale(clamp(1, calc(var(--zoom-inv) * 0.72), 2.2));
+  transform-origin: center bottom;
+  background: rgba(14, 9, 5, 0.95);
+  border: 1.5px solid rgba(255, 255, 255, 0.25);
+  color: #fff;
+  font-size: 13px;
+  font-weight: 700;
+  padding: 4px 14px;
+  border-radius: 14px;
+  white-space: nowrap;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.85);
+  z-index: 30;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  pointer-events: none;
+}
+
+.node-card.type-dungeon .node-header {
+  border-color: #f43f5e;
+  color: #fecdd3;
+  box-shadow: 0 4px 14px rgba(244, 63, 94, 0.35);
+}
+
+.node-badge-type {
+  font-size: 9.5px;
+  padding: 1px 5px;
+  border-radius: 4px;
+  background: rgba(234, 179, 8, 0.25);
+  color: var(--gold);
+  font-weight: 700;
+}
+
+.node-card.type-dungeon .node-badge-type {
+  background: rgba(244, 63, 94, 0.3);
+  color: #fda4af;
+}
+
+/* 神殿地下城楼层切换标签栏 (GamerGuides 风格) */
+.floor-bar {
+  position: absolute;
+  bottom: 8px;
+  left: 50%;
+  transform: translateX(-50%) scale(clamp(0.8, calc(var(--zoom-inv) * 0.6), 1.6));
+  transform-origin: center bottom;
+  display: flex;
+  background: rgba(14, 9, 5, 0.94);
+  border: 1.5px solid rgba(225, 29, 72, 0.5);
+  border-radius: 12px;
+  padding: 2px 4px;
+  gap: 3px;
+  z-index: 32;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.85);
+  pointer-events: auto;
+}
+
+.floor-btn {
+  padding: 3px 8px;
+  font-size: 11px;
+  font-weight: 700;
+  border: none;
+  background: transparent;
+  color: var(--text-dim);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.12s ease;
+}
+
+.floor-btn:hover {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.floor-btn.active {
+  background: linear-gradient(180deg, #e11d48, #9f1239);
+  color: #fff;
+  box-shadow: 0 1px 6px rgba(225, 29, 72, 0.6);
+}
+
+/* 区域地图原画 */
+.node-map-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+  pointer-events: none;
+  user-select: none;
+  -webkit-user-drag: none;
+  filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.3));
+}
+
+/* 节点内部点位层 */
+.node-pins {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 25;
+}
+
+/* Pin 点位标记 (合理限制最小与最大倍率，防止过大遮盖或过小看不清) */
+.map-pin {
+  position: absolute;
+  pointer-events: auto;
+  cursor: pointer;
+  transform: translate(-50%, -50%) scale(clamp(0.65, calc(var(--zoom-inv) * 0.45), 1.6));
+  transform-origin: 50% 50%;
+  transition: filter 0.15s ease, opacity 0.2s ease;
+  z-index: 30;
+}
+
+.map-pin:hover {
+  z-index: 45;
+  filter: drop-shadow(0 0 10px rgba(250, 204, 21, 0.95)) brightness(1.2);
+}
+
+.map-pin.selected {
+  z-index: 50;
+  filter: drop-shadow(0 0 14px #38bdf8) brightness(1.3);
+  animation: pinPulse 1.5s infinite;
+}
+
+.map-pin.done {
+  opacity: 0.35;
+  filter: grayscale(0.85);
+}
+
+.map-pin.done:hover {
+  opacity: 0.85;
+  filter: grayscale(0.2);
+}
+
+@keyframes pinPulse {
+  0%, 100% { transform: translate(-50%, -50%) scale(calc(clamp(0.65, calc(var(--zoom-inv) * 0.45), 1.6) * 1.15)); }
+  50% { transform: translate(-50%, -50%) scale(calc(clamp(0.65, calc(var(--zoom-inv) * 0.45), 1.6) * 1.35)); }
+}
+
+/* ---------------- 缩放控件 ---------------- */
+.zoom-controls {
+  position: absolute;
+  right: 18px;
+  bottom: 24px;
+  background: #1c110a;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.7);
+  z-index: 40;
+}
+
+.zoom-controls button {
+  width: 38px;
+  height: 36px;
+  border: none;
+  background: transparent;
+  color: var(--text-dim);
+  font-size: 16px;
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+  transition: all 0.12s;
+}
+
+.zoom-controls button:hover {
+  background: #2a1a11;
+  color: var(--gold);
+}
+
+#zoomPercent {
+  font-size: 10px;
+  color: var(--text-mute);
+  text-align: center;
+  padding: 2px 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  font-family: monospace;
+}
+
+/* ---------------- 详情卡片 ---------------- */
+.detail-card {
+  position: absolute;
+  right: 20px;
+  top: 20px;
+  width: 360px;
+  max-width: calc(100% - 40px);
+  background: rgba(28, 17, 11, 0.94);
+  border: 1px solid rgba(234, 179, 8, 0.35);
+  border-radius: 12px;
+  padding: 16px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.85);
+  z-index: 50;
+  animation: slideInCard 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  backdrop-filter: blur(10px);
+}
+
+@keyframes slideInCard {
+  from { opacity: 0; transform: translateY(-8px) scale(0.98); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.card-close {
+  position: absolute;
+  right: 12px;
+  top: 12px;
+  width: 28px;
+  height: 28px;
+  border-radius: 6px;
+  border: none;
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--text-dim);
+  font-size: 18px;
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+  transition: all 0.12s;
+}
+
+.card-close:hover {
+  background: rgba(255, 255, 255, 0.15);
+  color: #fff;
+}
+
+.card-header {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  margin-bottom: 12px;
+  padding-right: 24px;
+}
+
+.card-icon-wrap {
+  flex: 0 0 36px;
+  height: 36px;
+  display: grid;
+  place-items: center;
+}
+
+.card-titles {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  overflow: hidden;
+}
+
+.card-tags {
+  display: flex;
+  gap: 5px;
+  flex-wrap: wrap;
+  margin-bottom: 2px;
+}
+
+.tag-cat {
+  font-size: 10.5px;
+  font-weight: 700;
+  padding: 2px 7px;
+  border-radius: 4px;
+  background: rgba(234, 179, 8, 0.18);
+  color: var(--gold);
+}
+
+.tag-era, .tag-time {
+  font-size: 10px;
+  padding: 2px 6px;
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--text-dim);
+}
+
+.card-title {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 700;
+  color: #fff;
+  line-height: 1.3;
+}
+
+.card-area {
+  font-size: 11.5px;
+  color: var(--text-mute);
+}
+
+.card-body {
+  margin: 12px 0 16px;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  padding-top: 12px;
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--text-main);
+}
+
+.card-req-row {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+  background: rgba(234, 179, 8, 0.1);
+  border-left: 3px solid var(--gold);
+  padding: 6px 8px;
+  border-radius: 0 6px 6px 0;
+  margin-bottom: 10px;
+  font-size: 12px;
+}
+
+.req-label {
+  color: var(--gold);
+  font-weight: 600;
+}
+
+.req-val {
+  color: #fff;
+  font-weight: 500;
+}
+
+.card-desc {
+  color: var(--text-dim);
+  font-size: 12.5px;
+  white-space: pre-line;
+}
+
+.card-footer {
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  padding-top: 12px;
+}
+
+.card-collect-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--gold);
+  padding: 6px 10px;
+  border-radius: 6px;
+  background: rgba(234, 179, 8, 0.1);
+  border: 1px solid rgba(234, 179, 8, 0.2);
+  transition: all 0.15s;
+}
+
+.card-collect-btn:hover {
+  background: rgba(234, 179, 8, 0.2);
+}
+
+.card-collect-btn input {
+  accent-color: var(--gold);
+  cursor: pointer;
+  width: 16px;
+  height: 16px;
+}
+
+/* -------------------------------------------------------------
+   出入口与传送门标记 (Gateways / Portals)
+   ------------------------------------------------------------- */
+.node-gateways {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 26;
+}
+
+.map-gateway {
+  position: absolute;
+  pointer-events: auto;
+  cursor: pointer;
+  transform: translate(-50%, -50%) scale(clamp(0.7, calc(var(--zoom-inv) * 0.5), 1.3));
+  transform-origin: 50% 50%;
+  z-index: 32;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 8px;
+  background: rgba(15, 23, 42, 0.9);
+  border: 1.5px solid #d99a4e;
+  border-radius: 14px;
+  box-shadow: 0 0 10px rgba(217, 154, 78, 0.45), 0 2px 6px rgba(0, 0, 0, 0.6);
+  color: #fef08a;
+  font-size: 11px;
+  font-weight: 600;
+  white-space: nowrap;
+  user-select: none;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.map-gateway .gateway-icon {
+  font-size: 12px;
+  display: inline-block;
+  filter: drop-shadow(0 0 4px #eab308);
+}
+
+.map-gateway .gateway-label {
+  letter-spacing: 0.5px;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.8);
+}
+
+.map-gateway:hover {
+  z-index: 48;
+  background: rgba(30, 41, 59, 0.96);
+  border-color: #fde047;
+  color: #fff;
+  transform: translate(-50%, -50%) scale(calc(clamp(0.7, calc(var(--zoom-inv) * 0.5), 1.3) * 1.18));
+  box-shadow: 0 0 16px rgba(253, 224, 71, 0.85), 0 4px 12px rgba(0, 0, 0, 0.8);
+}
+
+.map-gateway.highlight {
+  border-color: #38bdf8;
+  color: #e0f2fe;
+  box-shadow: 0 0 20px rgba(56, 189, 248, 0.9);
+  animation: gatewayPulse 1.2s infinite;
+}
+
+@keyframes gatewayPulse {
+  0%, 100% { transform: translate(-50%, -50%) scale(calc(clamp(0.7, calc(var(--zoom-inv) * 0.5), 1.3) * 1.05)); }
+  50% { transform: translate(-50%, -50%) scale(calc(clamp(0.7, calc(var(--zoom-inv) * 0.5), 1.3) * 1.25)); }
+}
+
