@@ -1,7 +1,25 @@
 # CHANGELOG
 
 > 只追加，不散落成新文件。版本号语义见 `开发手册.md` §3.2。
-> 当前状态：**内测 V0.1.0 · 未发布**（三层地图 P1-P3 已本地提交，P4 已落地待提交；无 tag、无 Release、无在线站）。
+> 当前状态：**内测 V0.1.0 · 已上线**（`https://oot.yalin.site`；无 tag、无 Release）。
+
+## [未发布] · 2026-11-24 · 双远端 + EdgeOne 上线
+
+**新增**
+- GitHub `yalincc/ZeldaOOTMAP` 与 Gitee `yalincc/zeldaootmap` 双远端；`master` 推源码，`deploy` 推线上快照。
+- EdgeOne Pages 项目 `zeldaootmap` 关联 Gitee `deploy` 自动构建，输出 `app`，部署成功（33s）。
+- 自定义域名 `oot.yalin.site`：DNSPod CNAME 指向 `oot.yalin.site.pages.dnsoe6.com`；已完成归属验证与免费 HTTPS 证书申请。
+- `edgeone.json` 为 `assets/js/data/css` 增加一年缓存头。
+
+**工程**
+- `docs/部署与发布.md` 记录双分支原因、日常更新、域名证书、回滚与禁止事项。
+- `开发手册.md` §3.5 从“发布流程暂缓”改为落地链路；打包/tag/Release 仍需逐次确认。
+- `master` 保持 `app/assets` 不入库；`deploy` 分支 `d8ed4d4` 含 388 个资产（74.7MB）。
+
+**验收**
+- `https://oot.yalin.site` HTTP/HTTPS 均 200；首屏默认区域图、`style.css` / `app.js` / `pins_data.js` / `regions.js` / `basemap_2400.webp` 全部 200。
+- GitHub/Gitee `master` 均为 `c9105fe`，`deploy` 均为 `d8ed4d4`。
+- EdgeOne 免费 HTTPS 证书已签发生效。
 
 ## [未发布] · 2026-11-24 · 三层地图 P4 收口
 

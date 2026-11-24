@@ -21,6 +21,7 @@
 | 动点位 / 底图 / 投影数据 | `docs\地图数据与坐标口径.md` |
 | 动 UI / 样式 / 图标尺寸 | `docs\UI设计规范.md` |
 | 存档同步、改档器 | `docs\存档同步与改档-技术调研.md` + `data\demo_save_structure.json` |
+| 部署 / 线上更新 / 域名证书 | `docs\部署与发布.md` |
 | 外部站点 / romfs 来源 / 工具出处 | `docs\资源与外部资料索引.md` |
 | 新功能立项 / 待办划批 | `docs\backlog\BACKLOG.md` |
 | 验收 | `python tools\verify_all.py` |
