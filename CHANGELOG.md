@@ -18,8 +18,13 @@
 
 **验收**
 - `https://oot.yalin.site` HTTP/HTTPS 均 200；首屏默认区域图、`style.css` / `app.js` / `pins_data.js` / `regions.js` / `basemap_2400.webp` 全部 200。
-- GitHub/Gitee `master` 均为 `c9105fe`，`deploy` 均为 `d8ed4d4`。
+- GitHub/Gitee `master` 均为 `04747f3`，`deploy` 均为 `d8ed4d4`。
 - EdgeOne 免费 HTTPS 证书已签发生效。
+
+**收尾**
+- 两份已完成方案移入 `归档\开发计划\`：三层地图与界面重构、双模式区域地图；BACKLOG 候选池移除已完成项。
+- 归档索引、进度、BACKLOG 同步；根目录仍 5 个 md，符合 ≤10 红线。
+- 核心技术知识点整理进 Obsidian：`ZeldaOOTMAP-全能地图技术架构`、`ZeldaOOTMAP-EdgeOne双分支部署`。
 
 ## [未发布] · 2026-11-24 · 三层地图 P4 收口
 
