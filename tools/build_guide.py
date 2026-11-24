@@ -2,7 +2,7 @@
 """
 build_guide.py —— 从全收集攻略 Markdown 生成完整交互式 HTML 攻略文档
 
-数据源: docs/时之笛重制版-100全收集攻略.md (243 项 / 14 大类)
+数据源: data/时之笛重制版-100全收集攻略.md (243 项 / 14 大类)
 产出:   docs/oot100-guide.html (自包含, 无外部依赖, file:// 可直接打开)
 
 设计原则:
@@ -19,7 +19,7 @@ import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
-MD = ROOT / "docs" / "时之笛重制版-100全收集攻略.md"
+MD = ROOT / "data" / "时之笛重制版-100全收集攻略.md"
 OUT = ROOT / "docs" / "oot100-guide.html"
 PINS_JS = ROOT / "app" / "data" / "pins_data.js"
 REGIONS_JS = ROOT / "app" / "data" / "regions.js"

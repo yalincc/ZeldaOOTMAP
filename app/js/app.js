@@ -6,6 +6,9 @@
 (function () {
   "use strict";
 
+  // 版本号单一真源：页脚徽章由此渲染，不在 index.html 另写一处
+  var APP_VERSION = "0.1.0";
+
   var TOPOLOGY = window.OOT_TOPOLOGY;
   var NODES = TOPOLOGY.nodes;
   var EDGES = TOPOLOGY.edges;
@@ -1342,13 +1345,33 @@
   }
 
   // -------------------------------------------------------------
+  // 版本徽章 / 移动端侧栏初始态
+  // -------------------------------------------------------------
+  function renderVersion() {
+    var el = $("verBadge");
+    if (el) el.textContent = "ZELDA OOT MAP V" + APP_VERSION;
+  }
+
+  function initResponsiveShell() {
+    var sb = $("sidebar");
+    if (!sb) return;
+    // 小屏默认收起侧栏，由顶栏汉堡键按 .collapsed 切换滑出
+    if (window.innerWidth <= 900) sb.classList.add("collapsed");
+    window.addEventListener("resize", function () {
+      if (window.innerWidth > 900) sb.classList.remove("collapsed");
+    });
+  }
+
+  // -------------------------------------------------------------
   // 程序入口
   // -------------------------------------------------------------
   function init() {
     initStorage();
+    initResponsiveShell();
     bindCameraEvents();
     bindUI();
     bindSearch();
+    renderVersion();
     renderCategoriesSidebar();
     renderJumpChips();
     buildTopologyBoard();

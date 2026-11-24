@@ -1243,3 +1243,122 @@ body.cal-mode .map-pin:active {
   50% { transform: translate(-50%, -50%) scale(calc(clamp(0.7, calc(var(--zoom-inv) * 0.5), 1.3) * 1.25)); }
 }
 
+
+/* ==========================================================================
+   全局兜底：hidden 属性必须真正隐藏（曾因 .calibration-toast 的 display:flex
+   覆盖 [hidden]，导致校准提示条在首页常显）
+   ========================================================================== */
+[hidden] { display: none !important; }
+
+/* 页脚版本徽章（版本号由 app.js 的 APP_VERSION 单一真源渲染） */
+.ver-badge {
+  position: absolute;
+  left: 12px;
+  bottom: 8px;
+  font-size: 10px;
+  letter-spacing: .08em;
+  color: var(--text-mute);
+  background: rgba(20, 12, 8, .72);
+  border: 1px solid rgba(255, 255, 255, .08);
+  border-radius: 6px;
+  padding: 3px 8px;
+  z-index: 35;
+  pointer-events: none;
+}
+
+/* ==========================================================================
+   移动端第一版（≤900 抽屉侧栏 / 底部详情卡；≤600 精简顶栏）
+   ========================================================================== */
+@media (max-width: 900px) {
+  .main-wrap { height: calc(100% - var(--topbar-h)); }
+
+  .topbar {
+    gap: 8px;
+    padding: 0 8px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scrollbar-width: none;
+  }
+  .topbar::-webkit-scrollbar { display: none; }
+  .topbar-left { flex: 0 0 auto; }
+  .logo-text .logo-sub { display: none; }
+  .progress-box { flex: 0 0 auto; min-width: 104px; }
+  .topbar-right { margin-left: auto; flex: 0 0 auto; }
+
+  .sidebar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: min(86vw, 320px);
+    flex: 0 0 auto;
+    margin-left: 0;
+    transform: translateX(0);
+    transition: transform .25s cubic-bezier(.4, 0, .2, 1);
+    z-index: 60;
+  }
+  .sidebar.collapsed {
+    margin-left: 0;
+    transform: translateX(-100%);
+  }
+
+  .map-stage { width: 100%; }
+
+  .detail-card {
+    left: 8px;
+    right: 8px;
+    top: auto;
+    bottom: 8px;
+    width: auto;
+    max-width: none;
+    max-height: 46vh;
+    overflow-y: auto;
+    padding: 14px;
+  }
+
+  .zoom-controls { right: 10px; bottom: 44px; }
+  .zoom-controls button { width: 44px; height: 42px; }
+
+  .calibration-toast {
+    left: 8px;
+    right: 8px;
+    top: 8px;
+    transform: none;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+    padding: 10px 12px;
+  }
+  .cal-actions { flex-wrap: wrap; justify-content: center; }
+
+  .edge-tooltip { left: 8px !important; right: 8px; max-width: none; }
+  .ver-badge { left: 8px; bottom: 8px; }
+}
+
+@media (max-width: 600px) {
+  .logo-sub { display: none; }
+  .progress-info .prog-txt { display: none; }
+  .btn-guide, .btn-edit-mode, .btn-lang, .toggle-done-lbl {
+    font-size: 11px;
+    padding-left: 8px;
+    padding-right: 8px;
+  }
+  .jump-chips { flex-wrap: nowrap; overflow-x: auto; }
+  .detail-card { max-height: 52vh; }
+}
+
+/* 移动端顶栏收口（防止时代按钮被挤成竖排） */
+@media (max-width: 900px) {
+  .logo-title { white-space: nowrap; font-size: 12px; }
+  .logo-title em { display: none; }
+  .era-seg { flex: 0 0 auto; }
+  .era-btn { white-space: nowrap; }
+  .progress-box { flex: 0 0 auto; }
+  .topbar-right { flex: 0 0 auto; }
+}
+
+/* 详情卡窄屏收口：防止长坐标/英文实例名把卡片撑出屏幕 */
+@media (max-width: 900px) {
+  .detail-card { max-width: calc(100vw - 16px); }
+  .card-desc, .card-req-row { overflow-wrap: anywhere; word-break: break-word; }
+}

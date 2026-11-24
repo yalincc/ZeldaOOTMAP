@@ -991,8 +991,8 @@
             "All",
             "1F"
         ],
-        "childMap": "assets/maps/field/GerudoTrainingGround_Adult_00.webp",
-        "adultMap": "assets/maps/field/GerudoTrainingGround_Adult_00.webp",
+        "childMap": "assets/maps/dungeon/GerudoTrainingGround_All.webp",
+        "adultMap": "assets/maps/dungeon/GerudoTrainingGround_All.webp",
         "gateways": [
             {
                 "id": "gtg_to_gf",

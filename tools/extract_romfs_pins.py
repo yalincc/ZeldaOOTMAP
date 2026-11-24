@@ -14,7 +14,7 @@ Data sources (all authoritative, read-only):
       * Obj_GossipStone_A_01 / A_02          -> Surface Gossip Stones
       * Obj_*_WarpPoint_A_01 / A_02          -> Ocarina Warp Pads
       * Obj_TBox_*                           -> Exact chest drop contents
-  - tools/map_projections.json
+  - data/map_projections.json
       Exact world (X, Z) -> cropped .webp (u%, v%) projection:
         px = origW/2 + (X - camX) * (1920 / captureHeight)
         py = origH/2 + (Z - camZ) * (1920 / captureHeight)
@@ -44,7 +44,7 @@ import byml  # noqa: E402
 from decode_map_tex import decode as decode_bntx  # noqa: E402
 
 ROMFS = Path(r"F:\SWITCH2\ZeldaOOT-RomFS")
-PROJ_PATH = ROOT / "tools" / "map_projections.json"
+PROJ_PATH = ROOT / "data" / "map_projections.json"
 PINS_OUT = ROOT / "app" / "data" / "pins_data.js"
 TOPO_PATH = ROOT / "app" / "data" / "topology_data.js"
 

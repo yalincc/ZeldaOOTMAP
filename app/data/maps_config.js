@@ -25,11 +25,11 @@
       eras: ["Child"],
       floors: [
         { id: "All", zh: "全塔总览", en: "Overview", file: "assets/maps/dungeon/InsideTheDekuTree_All.webp" },
-        { id: "1F", zh: "1层 (1F)", en: "Floor 1F", file: "assets/maps/dungeon/InsideTheDekuTree_1F_Main.webp" },
-        { id: "2F", zh: "2层 (2F)", en: "Floor 2F", file: "assets/maps/dungeon/InsideTheDekuTree_2F_Main.webp" },
-        { id: "3F", zh: "3层 (3F)", en: "Floor 3F", file: "assets/maps/dungeon/InsideTheDekuTree_3F_Main.webp" },
-        { id: "B1", zh: "地下1层 (B1)", en: "Basement B1", file: "assets/maps/dungeon/InsideTheDekuTree_B1_Main.webp" },
-        { id: "B2", zh: "地下2层 (B2 - 首领房间)", en: "Basement B2 (Boss)", file: "assets/maps/dungeon/InsideTheDekuTree_B2_Main.webp" }
+        { id: "1F", zh: "1层 (1F)", en: "Floor 1F", file: "assets/maps/dungeon/InsideTheDekuTree_1F_State00_Main.webp" },
+        { id: "2F", zh: "2层 (2F)", en: "Floor 2F", file: "assets/maps/dungeon/InsideTheDekuTree_2F_State00_Main.webp" },
+        { id: "3F", zh: "3层 (3F)", en: "Floor 3F", file: "assets/maps/dungeon/InsideTheDekuTree_3F_State00_Main.webp" },
+        { id: "B1", zh: "地下1层 (B1)", en: "Basement B1", file: "assets/maps/dungeon/InsideTheDekuTree_B1_State00_Main.webp" },
+        { id: "B2", zh: "地下2层 (B2 - 首领房间)", en: "Basement B2 (Boss)", file: "assets/maps/dungeon/InsideTheDekuTree_B2_State00_Main.webp" }
       ]
     },
     {
@@ -94,10 +94,10 @@
       eras: ["Adult"],
       floors: [
         { id: "All", zh: "全神殿总览", en: "Overview", file: "assets/maps/dungeon/WaterTemple_All.webp" },
-        { id: "1F", zh: "1层 (1F)", en: "Floor 1F", file: "assets/maps/dungeon/WaterTemple_1F_State00_Main.webp" },
-        { id: "2F", zh: "2层 (2F)", en: "Floor 2F", file: "assets/maps/dungeon/WaterTemple_2F_State00_Main.webp" },
-        { id: "3F", zh: "3层 (3F)", en: "Floor 3F", file: "assets/maps/dungeon/WaterTemple_3F_State00_Main.webp" },
-        { id: "B1", zh: "地下1层 (B1)", en: "Basement B1", file: "assets/maps/dungeon/WaterTemple_B1_State00_Main.webp" }
+        { id: "1F", zh: "1层 (1F)", en: "Floor 1F", file: "assets/maps/dungeon/WaterTemple_1F_Lv1_State00_Main.webp" },
+        { id: "2F", zh: "2层 (2F)", en: "Floor 2F", file: "assets/maps/dungeon/WaterTemple_2F_Lv1_Main.webp" },
+        { id: "3F", zh: "3层 (3F)", en: "Floor 3F", file: "assets/maps/dungeon/WaterTemple_3F_Lv1_Main.webp" },
+        { id: "B1", zh: "地下1层 (B1)", en: "Basement B1", file: "assets/maps/dungeon/WaterTemple_B1_Lv1_Main.webp" }
       ]
     },
     {
@@ -111,7 +111,7 @@
         { id: "B1", zh: "地下1层 (B1)", en: "Basement B1", file: "assets/maps/dungeon/ShadowTemple_B1_Main.webp" },
         { id: "B2", zh: "地下2层 (B2)", en: "Basement B2", file: "assets/maps/dungeon/ShadowTemple_B2_Main.webp" },
         { id: "B3", zh: "地下3层 (B3)", en: "Basement B3", file: "assets/maps/dungeon/ShadowTemple_B3_Main.webp" },
-        { id: "B4", zh: "地下4层 (B4 - 首领房间)", en: "Basement B4 (Boss)", file: "assets/maps/dungeon/ShadowTemple_B4_Main.webp" }
+        { id: "B4", zh: "地下4层 (B4 - 首领房间)", en: "Basement B4 (Boss)", file: "assets/maps/dungeon/ShadowTemple_B4_State00_Main.webp" }
       ]
     },
     {
@@ -121,11 +121,11 @@
       type: "dungeon",
       eras: ["Both"],
       floors: [
-        { id: "All", zh: "全神殿总览", en: "Overview", file: "assets/maps/dungeon/SpiritTemple_All.webp" },
+        { id: "All", zh: "全神殿总览", en: "Overview", file: "assets/maps/dungeon/SpiritTemple_State00_All.webp" },
         { id: "1F", zh: "1层 (1F)", en: "Floor 1F", file: "assets/maps/dungeon/SpiritTemple_1F_Main.webp" },
         { id: "2F", zh: "2层 (2F)", en: "Floor 2F", file: "assets/maps/dungeon/SpiritTemple_2F_Main.webp" },
-        { id: "3F", zh: "3层 (3F)", en: "Floor 3F", file: "assets/maps/dungeon/SpiritTemple_3F_Main.webp" },
-        { id: "4F", zh: "4层 (4F)", en: "Floor 4F", file: "assets/maps/dungeon/SpiritTemple_4F_Main.webp" }
+        { id: "3F", zh: "3层 (3F)", en: "Floor 3F", file: "assets/maps/dungeon/SpiritTemple_3F_State00_Main.webp" },
+        { id: "4F", zh: "4层 (4F)", en: "Floor 4F", file: "assets/maps/dungeon/SpiritTemple_4F_State00_Main.webp" }
       ]
     },
     {
@@ -159,7 +159,7 @@
       eras: ["Adult"],
       floors: [
         { id: "All", zh: "全层总览", en: "Overview", file: "assets/maps/dungeon/GerudoTrainingGround_All.webp" },
-        { id: "1F", zh: "1层 (1F)", en: "Floor 1F", file: "assets/maps/dungeon/GerudoTrainingGround_1F_Main.webp" }
+        { id: "1F", zh: "1层 (1F)", en: "Floor 1F", file: "assets/maps/dungeon/GerudoTrainingGround_All.webp" }
       ]
     }
   ];

@@ -7,7 +7,7 @@ Reads:
   - E:\\WorkSpace\\ZeldaOOTMAP\\app\\assets\\maps\\{field,dungeon}\\*.webp
 
 Writes:
-  - E:\\WorkSpace\\ZeldaOOTMAP\\tools\\map_projections.json
+  - E:\\WorkSpace\\ZeldaOOTMAP\\data\\map_projections.json
 
 Replicates the exact resize (max_w=1600) + trim_maps.py (PAD=6) bbox computation so
 every world coordinate (X, Z) projects to the exact sub-pixel percentage on the
@@ -32,7 +32,7 @@ from decode_map_tex import decode as decode_bntx  # noqa: E402
 ROMFS = Path(r"F:\SWITCH2\ZeldaOOT-RomFS")
 BNTX_ROOT = ROMFS / "UI" / "CustomTex" / "Map"
 APP_MAPS = ROOT / "app" / "assets" / "maps"
-OUT_JSON = ROOT / "tools" / "map_projections.json"
+OUT_JSON = ROOT / "data" / "map_projections.json"
 
 MAX_W = 1600
 PAD = 6
