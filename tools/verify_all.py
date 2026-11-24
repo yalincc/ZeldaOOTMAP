@@ -66,6 +66,55 @@ def check_data() -> None:
     check("攻略产出存在且 >100KB", guide.exists() and guide.stat().st_size > 100_000,
           f"{guide.stat().st_size if guide.exists() else 0} bytes")
     check("攻略口径 243 项", guide.exists() and "243" in guide.read_text(encoding="utf-8"))
+    check_regions(pins)
+
+
+def check_regions(pins: list[dict]) -> None:
+    """区域单图模式基础校验：31 区域、楼层完整、点位都能归属到区域。"""
+    txt = (APP / "data" / "regions.js").read_text(encoding="utf-8")
+    doc = json.loads(re.search(r"window\.OOT_REGIONS\s*=\s*({.*?});", txt, re.S).group(1))
+    areas = doc["areas"]
+    fields = [r for r in areas if r.get("kind") == "field"]
+    dungeons = [r for r in areas if r.get("kind") == "dungeon"]
+    field_ids = {r["id"] for r in fields}
+    dungeon_ids = {r["id"] for r in dungeons}
+
+    check("区域 = 31（野外 21 + 迷宫 10）", len(fields) == 21 and len(dungeons) == 10,
+          f"野外 {len(fields)} / 迷宫 {len(dungeons)}")
+
+    missing_maps = []
+    for r in fields:
+        for era in r.get("eras", ["Child", "Adult"]):
+            if not (r.get("maps", {}).get(era) or []):
+                missing_maps.append(f"{r['id']}:{era}")
+    check("野外区域每个时代都有底图", not missing_maps, f"缺失 {missing_maps}")
+
+    missing_floors = []
+    for r in dungeons:
+        labels = [f.get("label") for f in (r.get("floors") or [])]
+        if "All" not in labels:
+            missing_floors.append(r["id"])
+    check("迷宫都有 All 复合层", not missing_floors, f"缺失 {missing_floors}")
+
+    orphans = []
+    for p in pins:
+        if p.get("map") == "hyrule":
+            if p.get("area") not in field_ids:
+                orphans.append(f"{p['id']}@{p.get('area')}")
+        else:
+            if p.get("map") not in dungeon_ids:
+                orphans.append(f"{p['id']}@{p.get('map')}")
+                continue
+            floors_r = next(r for r in dungeons if r["id"] == p["map"])
+            labels = {f.get("label") for f in (floors_r.get("floors") or [])}
+            if p.get("area") not in labels and not (p.get("area") == "0F" and "1F" in labels):
+                orphans.append(f"{p['id']}@{p['map']}/{p.get('area')}")
+    check("全部点位都能归属到区域 / 楼层", not orphans, f"异常 {len(orphans)}：{orphans[:5]}")
+
+    empty = [r["id"] for r in areas if not any(
+        (p.get("area") == r["id"] and p.get("map") == "hyrule") if r["kind"] == "field"
+        else (p.get("map") == r["id"]) for p in pins)]
+    check("每个区域至少 1 个点位", not empty, f"空区域 {empty}")
 
 
 def check_assets() -> None:

@@ -4,8 +4,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#18110b">
-<title>塞尔达传说：时之笛 拓扑思维导图互动地图 · Zelda OoT Interactive Mindmap</title>
-<link rel="stylesheet" href="css/style.css?v=2">
+<title>塞尔达传说：时之笛 区域探索地图 · Zelda OoT Interactive Map</title>
+<link rel="stylesheet" href="css/style.css?v=3">
 </head>
 <body>
 
@@ -23,9 +23,14 @@
         <polygon points="12,19 7,10.5 17,10.5" fill="#15130e"/>
       </svg>
       <div class="logo-text">
-        <span class="logo-title">时之笛<em>出入口拓扑导图</em></span>
-        <span class="logo-sub">Hyrule Topological Mindmap</span>
+        <span class="logo-title">时之笛<em>区域探索地图</em></span>
+        <span class="logo-sub">Region Map · Topology</span>
       </div>
+    </div>
+    <!-- 视图模式切换：默认区域地图，拓扑导图作为第二模式 -->
+    <div class="view-seg" id="viewSeg">
+      <button data-view="region" class="on">区域地图</button>
+      <button data-view="topology">拓扑导图</button>
     </div>
   </div>
 
@@ -72,12 +77,28 @@
       <div class="search-results" id="searchResults" hidden></div>
     </div>
 
+    <!-- 区域列表（区域模式专用，按野外 / 迷宫分组） -->
+    <div class="region-panel" id="regionPanel">
+      <div class="panel-head">
+        <span class="action-title">区域 · <em id="regionEraLbl">童年</em></span>
+        <button class="panel-toggle" id="regionToggle">收起</button>
+      </div>
+      <div id="regionBody">
+        <div class="region-group-title">野外 <span id="regionFieldCount">0</span></div>
+        <div class="region-list" id="regionFieldList"></div>
+        <div class="region-group-title">迷宫 <span id="regionDungeonCount">0</span></div>
+        <div class="region-list" id="regionDungeonList"></div>
+        <div class="region-note" id="regionEraNote"></div>
+      </div>
+    </div>
+
     <!-- 批量控制 -->
     <div class="filter-actions">
       <span class="action-title">分类筛选</span>
       <div class="action-btns">
         <button id="btnSelectAll">全选</button>
         <button id="btnDeselectAll">清空</button>
+        <button id="catToggle" class="cat-toggle">收起</button>
       </div>
     </div>
 
@@ -96,6 +117,21 @@
   <!-- 地图画板视口 -->
   <main class="map-stage" id="mapStage">
     <div class="map-viewport" id="mapViewport">
+      <!-- 区域单图模式：官方区域底图铺满 + 密集点位 + 楼层切换 -->
+      <div class="region-board" id="regionBoard" hidden>
+        <div class="region-world" id="regionWorld">
+          <img id="regionImg" alt="区域地图" draggable="false">
+          <div class="region-pins" id="regionPins"></div>
+        </div>
+        <div class="region-head">
+          <span class="region-kicker" id="regionKicker">FIELD REGION</span>
+          <h2 id="regionName">科吉里森林</h2>
+          <div class="region-sub" id="regionSub">—</div>
+        </div>
+        <div class="region-floor-bar" id="regionFloorBar" hidden></div>
+        <div class="region-empty" id="regionEmpty" hidden>当前时代无法进入该区域</div>
+      </div>
+
       <!-- 拓扑导图大画布 -->
       <div class="mindmap-board" id="mindmapBoard">
         <!-- SVG 连线层 -->
@@ -167,13 +203,16 @@
       </div>
     </div>
     <!-- 页脚版本徽章（内容由 app.js 的 APP_VERSION 渲染） -->
+    <button class="mode-fab" id="modeFab" title="切换区域地图 / 拓扑导图">拓扑导图</button>
     <div class="ver-badge" id="verBadge">ZELDA OOT MAP</div>
   </main>
 </div>
 
 <script src="js/icons.js?v=2"></script>
 <script src="data/topology_data.js?v=2"></script>
+<script src="data/regions.js?v=3"></script>
 <script src="data/pins_data.js?v=2"></script>
-<script src="js/app.js?v=2"></script>
+<script src="js/app.js?v=3"></script>
 </body>
 </html>
+

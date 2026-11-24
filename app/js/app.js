@@ -14,6 +14,7 @@
   var EDGES = TOPOLOGY.edges;
   var CATS = window.OOT_CATEGORIES || [];
   var PINS = window.OOT_PINS_DATA || [];
+  var REGIONS = (window.OOT_REGIONS && window.OOT_REGIONS.areas) || [];
   var ICONS = window.OOT_ICONS;
 
   var KEY_DONE = "oot_map_done_pins_v3";
@@ -21,6 +22,8 @@
   var KEY_ERA = "oot_map_era";
   var KEY_HIDE_DONE = "oot_map_hide_done";
   var KEY_CUSTOM_COORDS = "oot_map_custom_coords_v2";
+  var KEY_VIEW = "oot_map_view";
+  var KEY_AREA = "oot_map_area";
 
   // 计算 object-fit: contain 下底图在卡片内的实际渲染矩形
   function getNodeImageRect(node, imgEl) {
@@ -47,12 +50,26 @@
 
   // 状态管理
   var state = {
+    mode: "region", // region | topology
     era: "Child", // Child | Adult | All
     lang: "zh",   // 默认简体中文，支持一键切 EN
     hideDone: false,
     activeCats: new Set(CATS.map(function (c) { return c.id; })),
     donePins: {},
     selectedPinId: null,
+
+    // 区域模式
+    area: "KokiriForest",
+    floor: "All",
+    regionZoom: 1,
+    regionTx: 0,
+    regionTy: 0,
+    regionDragging: false,
+    regionDragMoved: false,
+    regionDragStartX: 0,
+    regionDragStartY: 0,
+    regionCamStartX: 0,
+    regionCamStartY: 0,
 
     // 画布与相机
     zoom: 1,
@@ -123,6 +140,10 @@
       if (e === "All" || e === "Child" || e === "Adult") state.era = e;
       var hd = localStorage.getItem(KEY_HIDE_DONE);
       if (hd !== null) state.hideDone = (hd === "1");
+      var vw = localStorage.getItem(KEY_VIEW);
+      if (vw === "region" || vw === "topology") state.mode = vw;
+      var ar = localStorage.getItem(KEY_AREA);
+      if (ar) state.area = ar;
     } catch (e) {}
   }
 
@@ -132,6 +153,8 @@
       localStorage.setItem(KEY_LANG, state.lang);
       localStorage.setItem(KEY_ERA, state.era);
       localStorage.setItem(KEY_HIDE_DONE, state.hideDone ? "1" : "0");
+      localStorage.setItem(KEY_VIEW, state.mode);
+      localStorage.setItem(KEY_AREA, state.area);
     } catch (e) {}
   }
 
@@ -224,6 +247,7 @@
     var stage = $("mapStage");
 
     stage.addEventListener("mousedown", function (e) {
+      if (state.mode !== "topology") return;
       if (e.button !== 0) return;
       if (e.target.closest(".map-pin") || e.target.closest(".detail-card") || e.target.closest(".zoom-controls") || e.target.closest(".floor-btn")) return;
       state.isDragging = true;
@@ -274,12 +298,14 @@
     });
 
     stage.addEventListener("wheel", function (e) {
+      if (state.mode !== "topology") return;
       e.preventDefault();
       var factor = e.deltaY < 0 ? 1.18 : 0.85;
       zoomAt(factor, e.clientX, e.clientY);
     }, { passive: false });
 
     stage.addEventListener("dblclick", function (e) {
+      if (state.mode !== "topology") return;
       if (e.target.closest(".map-pin") || e.target.closest(".detail-card")) return;
       zoomAt(1.5, e.clientX, e.clientY);
     });
@@ -287,6 +313,7 @@
     // 触屏手势
     var touchDist = 0;
     stage.addEventListener("touchstart", function (e) {
+      if (state.mode !== "topology") return;
       if (e.touches.length === 1) {
         if (e.target.closest(".map-pin") || e.target.closest(".detail-card")) return;
         state.isDragging = true;
@@ -303,6 +330,7 @@
     }, { passive: true });
 
     stage.addEventListener("touchmove", function (e) {
+      if (state.mode !== "topology") return;
       if (e.touches.length === 1 && state.isDragging) {
         var dx = e.touches[0].clientX - state.dragStartX;
         var dy = e.touches[0].clientY - state.dragStartY;
@@ -334,9 +362,466 @@
       }, 50);
     });
 
-    $("btnZoomIn").addEventListener("click", function () { zoomAt(1.25); });
-    $("btnZoomOut").addEventListener("click", function () { zoomAt(0.8); });
-    $("btnZoomFit").addEventListener("click", function () { fitCamera(); });
+    $("btnZoomIn").addEventListener("click", function () {
+      if (state.mode === "region") regionZoomAt(1.25); else zoomAt(1.25);
+    });
+    $("btnZoomOut").addEventListener("click", function () {
+      if (state.mode === "region") regionZoomAt(0.8); else zoomAt(0.8);
+    });
+    $("btnZoomFit").addEventListener("click", function () {
+      if (state.mode === "region") fitRegion(); else fitCamera();
+    });
+  }
+
+  // =============================================================
+  // 区域单图模式：区域列表 / 楼层 / 缩放 / 点位
+  // =============================================================
+
+  var regionFile = "";
+  var regionBase = { w: 0, h: 0, left: 0, top: 0 };
+
+  function currentRegion() {
+    return REGIONS.find(function (r) { return r.id === state.area; }) || REGIONS[0] || null;
+  }
+
+  function pinBelongsToRegion(pin, r) {
+    if (!r) return false;
+    if (r.kind === "field") return pin.map === "hyrule" && pin.area === r.id;
+    return pin.map === r.id;
+  }
+
+  function regionPinsForEra(r) {
+    return PINS.filter(function (p) {
+      if (state.era !== "All" && p.era !== "Both" && p.era !== state.era) return false;
+      return pinBelongsToRegion(p, r);
+    });
+  }
+
+  function isRegionAvailable(r) {
+    if (!r) return false;
+    var eraPins = regionPinsForEra(r);
+    if (r.kind === "field") {
+      if (state.era === "All") return !!(r.maps && ((r.maps.Adult || []).length || (r.maps.Child || []).length));
+      return !!(r.maps && (r.maps[state.era] || []).length);
+    }
+    return eraPins.length > 0;
+  }
+
+  function regionMapFile(r) {
+    if (!r) return "";
+    if (r.kind === "dungeon") {
+      var floors = r.floors || [];
+      var pick = floors.find(function (f) { return f.label === state.floor; });
+      if (!pick) pick = floors.find(function (f) { return f.label === "All"; });
+      if (!pick && floors.length) pick = floors[0];
+      return pick ? pick.file : "";
+    }
+    var order = state.era === "Adult" ? ["Adult", "Child"] : state.era === "Child" ? ["Child", "Adult"] : ["Child", "Adult"];
+    for (var i = 0; i < order.length; i++) {
+      var list = (r.maps && r.maps[order[i]]) || [];
+      if (list.length) {
+        var item = list[0];
+        return typeof item === "string" ? item : ((item && item.file) || "");
+      }
+    }
+    return "";
+  }
+
+  function regionFloorLabel(r) {
+    if (!r || r.kind !== "dungeon") return "";
+    var fl = state.floor === "All" ? "全层" : state.floor;
+    return fl;
+  }
+
+  function renderRegionList() {
+    var fieldBox = $("regionFieldList");
+    var dungBox = $("regionDungeonList");
+    if (!fieldBox || !dungBox) return;
+    fieldBox.innerHTML = "";
+    dungBox.innerHTML = "";
+
+    var available = REGIONS.filter(isRegionAvailable);
+    var field = available.filter(function (r) { return r.kind === "field"; });
+    var dungeon = available.filter(function (r) { return r.kind === "dungeon"; });
+    var hiddenCount = REGIONS.length - available.length;
+
+    $("regionFieldCount").textContent = field.length;
+    $("regionDungeonCount").textContent = dungeon.length;
+    $("regionEraLbl").textContent = state.era === "All" ? "全部时代" : (state.era === "Child" ? "童年" : "成年");
+
+    function buildOne(r, box) {
+      var b = document.createElement("button");
+      b.className = "region-item" + (r.id === state.area ? " on" : "");
+      b.setAttribute("data-region", r.id);
+      var n = regionPinsForEra(r).length;
+      var fl = (r.kind === "dungeon")
+        ? '<span class="region-floors">' + Math.max(0, (r.floors || []).length - 1) + ' 层</span>'
+        : "";
+      b.innerHTML = "<span>" + (state.lang === "zh" ? r.zh : r.en) + "</span>" + fl +
+        "<em>" + n + "</em>";
+      b.addEventListener("click", function () { openRegion(r.id); });
+      box.appendChild(b);
+    }
+    field.forEach(function (r) { buildOne(r, fieldBox); });
+    dungeon.forEach(function (r) { buildOne(r, dungBox); });
+
+    var note = $("regionEraNote");
+    if (hiddenCount > 0) {
+      note.textContent = "已隐藏 " + hiddenCount + " 个仅" + (state.era === "Child" ? "成年" : "童年") + "可进入的区域，切换时代可见。";
+    } else {
+      note.textContent = "当前时代 31 个区域全部可进入。";
+    }
+  }
+
+  function updateRegionHead(r) {
+    if (!r) return;
+    $("regionKicker").textContent = r.kind === "field" ? "FIELD REGION" : "DUNGEON · " + Math.max(0, (r.floors || []).length - 1) + " FLOORS";
+    $("regionName").textContent = state.lang === "zh" ? r.zh : r.en;
+    var available = isRegionAvailable(r);
+    var sub = "";
+    if (available) {
+      var total = regionPinsForEra(r).length;
+      if (r.kind === "dungeon" && state.floor !== "All") {
+        var shown = PINS.filter(function (p) {
+          if (state.era !== "All" && p.era !== "Both" && p.era !== state.era) return false;
+          return pinBelongsToRegion(p, r) && pinOnFloor(p, state.floor);
+        }).length;
+        sub = shown + " / " + total + " 个点位 · " + state.floor;
+      } else {
+        var mapNote = r.kind === "dungeon" ? regionFloorLabel(r) : (state.era === "Adult" ? "成年底图" : "童年底图");
+        sub = total + " 个点位 · " + mapNote;
+      }
+    } else {
+      sub = "当前时代不可进入";
+    }
+    $("regionSub").textContent = sub;
+    $("regionEmpty").hidden = available;
+    $("regionWorld").style.visibility = available ? "" : "hidden";
+  }
+
+  function buildRegionFloorBar(r) {
+    var bar = $("regionFloorBar");
+    if (!bar) return;
+    if (!r || r.kind !== "dungeon") {
+      bar.hidden = true;
+      bar.innerHTML = "";
+      return;
+    }
+    var floors = (r.floors || []).slice();
+    floors.sort(function (a, b) {
+      if (a.label === "All") return -1;
+      if (b.label === "All") return 1;
+      function rank(x) {
+        if (x.charAt(0) === "B") return 100 + parseInt(x.slice(1), 10);
+        return parseInt(x, 10) || 0;
+      }
+      return rank(a.label) - rank(b.label);
+    });
+    if (!floors.length) { bar.hidden = true; return; }
+    bar.innerHTML = "";
+    floors.forEach(function (f) {
+      var b = document.createElement("button");
+      b.className = "region-floor-btn" + (state.floor === f.label ? " on" : "");
+      b.textContent = f.label === "All" ? "全层" : f.label;
+      b.setAttribute("data-floor", f.label);
+      b.addEventListener("click", function (e) {
+        e.stopPropagation();
+        state.floor = f.label;
+        buildRegionFloorBar(r);
+        updateRegionHead(r);
+        loadRegionMap(r, true);
+      });
+      bar.appendChild(b);
+    });
+    bar.hidden = false;
+  }
+
+  function layoutRegionBase() {
+    var board = $("regionBoard");
+    var img = $("regionImg");
+    if (!board || !img) return;
+    var W = board.clientWidth;
+    var H = board.clientHeight;
+    if (!W || !H) return;
+    var iw = img.naturalWidth || 1024;
+    var ih = img.naturalHeight || 1024;
+    var s = Math.min(W / iw, H / ih);
+    regionBase.w = iw * s;
+    regionBase.h = ih * s;
+    regionBase.left = (W - regionBase.w) / 2;
+    regionBase.top = (H - regionBase.h) / 2;
+    var world = $("regionWorld");
+    world.style.width = regionBase.w + "px";
+    world.style.height = regionBase.h + "px";
+    world.style.left = regionBase.left + "px";
+    world.style.top = regionBase.top + "px";
+  }
+
+  function applyRegionCam() {
+    var world = $("regionWorld");
+    if (!world) return;
+    world.style.transform = "translate3d(" + state.regionTx + "px," + state.regionTy + "px,0) scale(" + state.regionZoom + ")";
+    var inv = (1 / state.regionZoom).toFixed(4);
+    var board = $("regionBoard");
+    if (board) board.style.setProperty("--region-inv", inv);
+    var zp = $("zoomPercent");
+    if (zp && state.mode === "region") zp.textContent = Math.round(state.regionZoom * 100) + "%";
+  }
+
+  function fitRegion() {
+    state.regionZoom = 1;
+    state.regionTx = 0;
+    state.regionTy = 0;
+    applyRegionCam();
+  }
+
+  function regionZoomAt(factor, clientX, clientY) {
+    var board = $("regionBoard");
+    if (!board) return;
+    var rect = board.getBoundingClientRect();
+    var px = (clientX !== undefined ? clientX - rect.left : rect.width / 2);
+    var py = (clientY !== undefined ? clientY - rect.top : rect.height / 2);
+    var oldZoom = state.regionZoom;
+    var newZoom = Math.max(0.55, Math.min(5, oldZoom * factor));
+    if (Math.abs(newZoom - oldZoom) < 0.001) return;
+    var wx = (px - regionBase.left - state.regionTx) / oldZoom;
+    var wy = (py - regionBase.top - state.regionTy) / oldZoom;
+    state.regionZoom = newZoom;
+    state.regionTx = px - regionBase.left - wx * newZoom;
+    state.regionTy = py - regionBase.top - wy * newZoom;
+    applyRegionCam();
+  }
+
+  function pinOnFloor(pin, floor) {
+    if (floor === "All") return true;
+    if (floor === "1F") return pin.area === "1F" || pin.area === "0F";
+    return pin.area === floor;
+  }
+
+  function renderRegionPins() {
+    var box = $("regionPins");
+    if (!box) return;
+    box.innerHTML = "";
+    var r = currentRegion();
+    if (!r || !isRegionAvailable(r)) return;
+
+    var list = PINS.filter(function (p) {
+      return isPinVisible(p) && pinBelongsToRegion(p, r) && pinOnFloor(p, state.floor);
+    });
+
+    list.forEach(function (pin) {
+      var el = document.createElement("div");
+      el.className = "map-pin" +
+        (state.donePins[pin.id] ? " done" : "") +
+        (state.selectedPinId === pin.id ? " selected" : "");
+      el.id = "rpin-" + pin.id;
+      el.style.left = pin.x + "%";
+      el.style.top = pin.y + "%";
+      el.innerHTML = ICONS.svg(pin.cat, 28);
+
+      el.addEventListener("mousedown", function (e) {
+        if (calState.active) {
+          e.stopPropagation();
+          calState.draggingPin = pin;
+          calState.targetBox = box;
+        }
+      });
+      el.addEventListener("click", function (e) {
+        e.stopPropagation();
+        if (!calState.active) selectPin(pin);
+      });
+      box.appendChild(el);
+    });
+  }
+
+  function loadRegionMap(r, keepZoom) {
+    var file = regionMapFile(r);
+    var img = $("regionImg");
+    if (!img || !file) return;
+    if (file === regionFile) {
+      if (!keepZoom) fitRegion();
+      renderRegionPins();
+      return;
+    }
+    regionFile = file;
+    img.onload = function () {
+      layoutRegionBase();
+      if (!keepZoom) fitRegion(); else applyRegionCam();
+      renderRegionPins();
+    };
+    img.onerror = function () {
+      $("regionSub").textContent = "底图加载失败：" + file;
+    };
+    img.src = file;
+  }
+
+  function openRegion(id, opts) {
+    opts = opts || {};
+    var r = REGIONS.find(function (x) { return x.id === id; });
+    if (!r) return;
+    state.area = id;
+    state.floor = opts.floor || "All";
+    state.selectedPinId = null;
+    closeDetailCard();
+    saveStorage();
+    renderRegionList();
+    updateRegionHead(r);
+    buildRegionFloorBar(r);
+    if (isRegionAvailable(r)) loadRegionMap(r, opts.keepZoom);
+    else renderRegionPins();
+    updateUrl();
+  }
+
+  function chooseRegionForEra() {
+    var cur = currentRegion();
+    if (cur && isRegionAvailable(cur)) return cur;
+    var preferred = REGIONS.find(function (r) { return r.id === "KokiriForest"; });
+    var first = preferred && isRegionAvailable(preferred) ? preferred :
+      REGIONS.find(isRegionAvailable);
+    return first || null;
+  }
+
+  function syncRegionForEra() {
+    if (!REGIONS.length) return;
+    // 时代切换后当前选中的点位可能不属于新图层，先收起详情卡
+    var card = $("detailCard");
+    if (card && !card.hidden) closeDetailCard();
+    var pick = chooseRegionForEra();
+    if (pick && (!currentRegion() || !isRegionAvailable(currentRegion()))) {
+      openRegion(pick.id, { keepZoom: false });
+      return;
+    }
+    renderRegionList();
+    var r = currentRegion();
+    if (r) {
+      updateRegionHead(r);
+      buildRegionFloorBar(r);
+      loadRegionMap(r, true);
+      renderRegionPins();
+    }
+  }
+
+  function setMode(mode) {
+    state.mode = mode;
+    saveStorage();
+    document.body.setAttribute("data-view", mode);
+    var regionBoard = $("regionBoard");
+    var mindmap = $("mindmapBoard");
+    var rp = $("regionPanel");
+    var js = $("jumpSection");
+    if (regionBoard) regionBoard.hidden = (mode !== "region");
+    if (mindmap) mindmap.hidden = (mode !== "topology");
+    if (rp) rp.hidden = (mode !== "region");
+    if (js) js.hidden = (mode !== "topology");
+
+    document.querySelectorAll("#viewSeg button").forEach(function (b) {
+      b.classList.toggle("on", b.getAttribute("data-view") === mode);
+    });
+    var fab = $("modeFab");
+    if (fab) fab.textContent = mode === "region" ? "拓扑导图" : "区域地图";
+
+    if (mode === "region") {
+      renderRegionList();
+      var r = currentRegion();
+      if (r && !isRegionAvailable(r)) {
+        var pick = chooseRegionForEra();
+        if (pick) { openRegion(pick.id, { keepZoom: false }); return; }
+      }
+      if (r) {
+        updateRegionHead(r);
+        buildRegionFloorBar(r);
+        if (!regionFile) loadRegionMap(r, false);
+        else { layoutRegionBase(); applyRegionCam(); renderRegionPins(); }
+      }
+      applyRegionCam();
+    } else {
+      // 拓扑模式保留原有的“聚焦海拉鲁平原 hub”视野
+      focusNode("HyruleField", 0.52);
+    }
+    updateUrl();
+  }
+
+  function updateUrl(pinId) {
+    try {
+      var p = new URLSearchParams(window.location.search);
+      p.set("mode", state.mode);
+      p.set("era", state.era);
+      p.delete("node");
+      if (state.mode === "region") {
+        p.set("area", state.area);
+        if (state.floor && state.floor !== "All") p.set("floor", state.floor); else p.delete("floor");
+      }
+      if (pinId) p.set("pin", pinId); else p.delete("pin");
+      history.replaceState(null, "", window.location.pathname + "?" + p.toString());
+    } catch (e) {}
+  }
+
+  function bindRegionEvents() {
+    var board = $("regionBoard");
+    if (!board) return;
+
+    board.addEventListener("pointerdown", function (e) {
+      if (e.button !== undefined && e.button !== 0) return;
+      if (e.target.closest(".map-pin") || e.target.closest(".detail-card") || e.target.closest(".zoom-controls") || e.target.closest(".region-floor-bar")) return;
+      state.regionDragging = true;
+      state.regionDragMoved = false;
+      state.regionDragStartX = e.clientX;
+      state.regionDragStartY = e.clientY;
+      state.regionCamStartX = state.regionTx;
+      state.regionCamStartY = state.regionTy;
+      board.classList.add("dragging");
+    });
+
+    window.addEventListener("pointermove", function (e) {
+      if (!state.regionDragging) return;
+      var dx = e.clientX - state.regionDragStartX;
+      var dy = e.clientY - state.regionDragStartY;
+      if (Math.hypot(dx, dy) > 4) state.regionDragMoved = true;
+      state.regionTx = state.regionCamStartX + dx;
+      state.regionTy = state.regionCamStartY + dy;
+      applyRegionCam();
+    });
+
+    window.addEventListener("pointerup", function () {
+      if (state.regionDragging) {
+        state.regionDragging = false;
+        board.classList.remove("dragging");
+      }
+      setTimeout(function () { state.regionDragMoved = false; }, 50);
+    });
+
+    board.addEventListener("wheel", function (e) {
+      e.preventDefault();
+      regionZoomAt(e.deltaY < 0 ? 1.14 : 0.88, e.clientX, e.clientY);
+    }, { passive: false });
+
+    board.addEventListener("dblclick", function (e) {
+      if (e.target.closest(".map-pin")) return;
+      regionZoomAt(1.5, e.clientX, e.clientY);
+    });
+
+    var pinchDist = 0;
+    board.addEventListener("touchstart", function (e) {
+      if (e.touches.length === 2) {
+        pinchDist = Math.hypot(e.touches[0].clientX - e.touches[1].clientX, e.touches[0].clientY - e.touches[1].clientY);
+      }
+    }, { passive: true });
+
+    board.addEventListener("touchmove", function (e) {
+      if (e.touches.length === 2) {
+        e.preventDefault();
+        var d = Math.hypot(e.touches[0].clientX - e.touches[1].clientX, e.touches[0].clientY - e.touches[1].clientY);
+        if (pinchDist > 0) {
+          var rect = board.getBoundingClientRect();
+          var mx = (e.touches[0].clientX + e.touches[1].clientX) / 2;
+          var my = (e.touches[0].clientY + e.touches[1].clientY) / 2;
+          regionZoomAt(d / pinchDist, mx, my);
+        }
+        pinchDist = d;
+      }
+    }, { passive: false });
+
+    board.addEventListener("touchend", function () { pinchDist = 0; }, { passive: true });
   }
 
   // -------------------------------------------------------------
@@ -510,7 +995,7 @@
       // 点击节点居中放大 (仅单击有效，拖动松手不触发)
       card.addEventListener("click", function (e) {
         if (state.dragMoved) return;
-        if (e.target.closest(".map-pin") || e.target.closest(".map-gateway") || e.target.closest(".floor-bar")) return;
+        if (e.target.closest(".map-pin") || e.target.closest(".map-gateway") || e.target.closest(".floor-btn")) return;
         focusNode(node.id, 1.25);
       });
 
@@ -675,7 +1160,7 @@
 
     // 初始居中聚焦在海拉鲁平原核心 hub，视野舒适，纵览周边相连森林与城镇
     setTimeout(function () {
-      focusNode("HyruleField", 0.52);
+      if (state.mode === "topology") focusNode("HyruleField", 0.52);
     }, 60);
     renderAllPins();
     updateCategoriesCount();
@@ -914,15 +1399,19 @@
 
       targetBox.appendChild(el);
     });
+
+    if (state.mode === "region") renderRegionPins();
   }
 
   function selectPin(pin) {
     state.selectedPinId = pin.id;
 
-    var prev = document.querySelector(".map-pin.selected");
-    if (prev) prev.classList.remove("selected");
+    var prev = document.querySelectorAll(".map-pin.selected");
+    prev.forEach(function (el) { el.classList.remove("selected"); });
     var cur = $("pin-" + pin.id);
     if (cur) cur.classList.add("selected");
+    var rcur = $("rpin-" + pin.id);
+    if (rcur) rcur.classList.add("selected");
 
     var card = $("detailCard");
     $("cardIconWrap").innerHTML = ICONS.svg(pin.cat, 36);
@@ -965,13 +1454,13 @@
     };
 
     card.hidden = false;
+    updateUrl(pin.id);
   }
 
   function closeDetailCard() {
     $("detailCard").hidden = true;
     state.selectedPinId = null;
-    var sel = document.querySelector(".map-pin.selected");
-    if (sel) sel.classList.remove("selected");
+    document.querySelectorAll(".map-pin.selected").forEach(function (el) { el.classList.remove("selected"); });
   }
 
   // -------------------------------------------------------------
@@ -1087,21 +1576,43 @@
         return;
       }
 
+      var regionMatches = REGIONS.filter(function (r) {
+        if (!isRegionAvailable(r)) return false;
+        return (r.zh && r.zh.toLowerCase().indexOf(q) !== -1) ||
+               (r.en && r.en.toLowerCase().indexOf(q) !== -1);
+      }).slice(0, 5);
+
       var matches = PINS.filter(function (p) {
+        if (state.era !== "All" && p.era !== "Both" && p.era !== state.era) return false;
         return (p.zh && p.zh.toLowerCase().indexOf(q) !== -1) ||
                (p.en && p.en.toLowerCase().indexOf(q) !== -1) ||
                (p.descZh && p.descZh.toLowerCase().indexOf(q) !== -1) ||
                (p.area && p.area.toLowerCase().indexOf(q) !== -1) ||
                (p.req && p.req.toLowerCase().indexOf(q) !== -1);
-      }).slice(0, 15);
+      }).slice(0, 12);
 
-      if (!matches.length) {
+      if (!matches.length && !regionMatches.length) {
         resBox.innerHTML = '<div style="padding:10px;font-size:12px;color:#7d725d;text-align:center;">未找到匹配点位</div>';
         resBox.hidden = false;
         return;
       }
 
       resBox.innerHTML = "";
+      regionMatches.forEach(function (r) {
+        var row = document.createElement("div");
+        row.className = "search-item";
+        row.innerHTML = '<div style="flex:0 0 24px;color:#eab308;text-align:center;">▣</div>' +
+                        '<div class="search-item-info">' +
+                        '  <span class="search-item-title">' + (state.lang === "zh" ? r.zh : r.en) + '</span>' +
+                        '  <span class="search-item-area">区域 · ' + regionPinsForEra(r).length + ' 点</span>' +
+                        '</div>';
+        row.addEventListener("click", function () {
+          resBox.hidden = true;
+          input.value = "";
+          openRegion(r.id);
+        });
+        resBox.appendChild(row);
+      });
       matches.forEach(function (m) {
         var row = document.createElement("div");
         row.className = "search-item";
@@ -1114,8 +1625,15 @@
           resBox.hidden = true;
           input.value = "";
 
-          focusNode(m.area, 1.35);
-          setTimeout(function () { selectPin(m); }, 200);
+          var hostId = (m.map && m.map !== "hyrule") ? m.map : m.area;
+          var floor = (m.map && m.map !== "hyrule") ? (m.area === "0F" ? "1F" : m.area) : "All";
+          if (state.mode === "region") {
+            openRegion(hostId, { floor: floor });
+            setTimeout(function () { selectPin(m); }, 180);
+          } else {
+            focusNode(hostId, 1.35);
+            setTimeout(function () { selectPin(m); }, 200);
+          }
         });
         resBox.appendChild(row);
       });
@@ -1135,7 +1653,37 @@
   function bindUI() {
     $("sidebarToggle").addEventListener("click", function () {
       $("sidebar").classList.toggle("collapsed");
-      setTimeout(function () { fitCamera(); }, 300);
+      setTimeout(function () {
+        if (state.mode === "region") { layoutRegionBase(); applyRegionCam(); }
+        else fitCamera();
+      }, 300);
+    });
+
+    // 视图模式：区域地图 / 拓扑导图
+    document.querySelectorAll("#viewSeg button").forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        setMode(btn.getAttribute("data-view"));
+      });
+    });
+    var modeFab = $("modeFab");
+    if (modeFab) {
+      modeFab.addEventListener("click", function () {
+        setMode(state.mode === "region" ? "topology" : "region");
+      });
+    }
+
+    // 分类与区域列表折叠（TOTKmap 式收起/展开）
+    $("catToggle").addEventListener("click", function () {
+      var list = $("catList");
+      var hidden = list.hidden;
+      list.hidden = !hidden;
+      this.textContent = hidden ? "收起" : "展开";
+    });
+    $("regionToggle").addEventListener("click", function () {
+      var body = $("regionBody");
+      var hidden = body.hidden;
+      body.hidden = !hidden;
+      this.textContent = hidden ? "收起" : "展开";
     });
 
     var eraBtns = document.querySelectorAll("#eraSeg .era-btn");
@@ -1152,6 +1700,8 @@
         renderAllPins();
         updateCategoriesCount();
         updateProgress();
+        syncRegionForEra();
+        updateUrl();
       });
     });
 
@@ -1238,7 +1788,8 @@
 
     window.addEventListener("resize", function () {
       // 保持当前视口平移缩放，仅更新相机
-      updateCamera();
+      if (state.mode === "region") { layoutRegionBase(); applyRegionCam(); }
+      else updateCamera();
     });
   }
 
@@ -1275,6 +1826,9 @@
 
     renderCategoriesSidebar();
     renderJumpChips();
+    renderRegionList();
+    var rHead = currentRegion();
+    if (rHead) updateRegionHead(rHead);
 
     if (state.selectedPinId) {
       var p = PINS.find(function (pin) { return pin.id === state.selectedPinId; });
@@ -1369,6 +1923,7 @@
     initStorage();
     initResponsiveShell();
     bindCameraEvents();
+    bindRegionEvents();
     bindUI();
     bindSearch();
     renderVersion();
@@ -1376,11 +1931,40 @@
     renderJumpChips();
     buildTopologyBoard();
 
-    // 支持 URL 深度链接定位点位或区域，例如 ?pin=kf_gs_1 或 ?node=KokiriForest
+    // 支持 URL 深度链接：
+    // 区域模式 ?mode=region&area=KokiriForest&floor=1F&pin=xxx
+    // 拓扑模式 ?mode=topology&node=KokiriForest 或旧链接 ?node=
     try {
       var params = new URLSearchParams(window.location.search);
       var qNode = params.get("node");
       var qPin = params.get("pin");
+      var qMode = params.get("mode");
+      var qArea = params.get("area");
+      var qFloor = params.get("floor");
+      var qEra = params.get("era");
+
+      if (qEra === "All" || qEra === "Child" || qEra === "Adult") {
+        state.era = qEra;
+        document.querySelectorAll("#eraSeg .era-btn").forEach(function (b) {
+          b.classList.toggle("on", b.getAttribute("data-era") === qEra);
+        });
+        updateCategoriesCount();
+        updateProgress();
+      }
+      if (qMode === "region" || qMode === "topology") state.mode = qMode;
+      if (qNode) state.mode = "topology";
+      if (qArea && REGIONS.some(function (r) { return r.id === qArea; })) state.area = qArea;
+      if (qFloor) state.floor = qFloor;
+
+      // 当前区域在当前时代不可进入时，自动落到第一个可进入区域
+      var cur = currentRegion();
+      if (!cur || !isRegionAvailable(cur)) {
+        var pick = chooseRegionForEra();
+        if (pick) state.area = pick.id;
+      }
+
+      setMode(state.mode);
+
       if (params.get("cal") === "1") {
         setTimeout(toggleCalibrationMode, 100);
       }
@@ -1390,10 +1974,16 @@
       if (qPin) {
         var targetPin = PINS.find(function (pin) { return pin.id === qPin; });
         if (targetPin) {
+          var hostId = (targetPin.map && targetPin.map !== "hyrule") ? targetPin.map : targetPin.area;
+          var floor = (targetPin.map && targetPin.map !== "hyrule") ? (targetPin.area === "0F" ? "1F" : targetPin.area) : "All";
           setTimeout(function () {
-            if (targetPin.area) focusNode(targetPin.area, 1.0);
+            if (state.mode === "region") {
+              openRegion(hostId, { floor: floor });
+            } else {
+              focusNode(hostId, 1.0);
+            }
             selectPin(targetPin);
-          }, 200);
+          }, 220);
         }
       }
     } catch (e) {}
@@ -1402,3 +1992,4 @@
   window.addEventListener("DOMContentLoaded", init);
 
 })();
+
