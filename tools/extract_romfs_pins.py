@@ -45,8 +45,52 @@ from decode_map_tex import decode as decode_bntx  # noqa: E402
 
 ROMFS = Path(r"F:\SWITCH2\ZeldaOOT-RomFS")
 PROJ_PATH = ROOT / "data" / "map_projections.json"
+CURATED_PATH = ROOT / "data" / "curated_points.json"
 PINS_OUT = ROOT / "app" / "data" / "pins_data.js"
 TOPO_PATH = ROOT / "app" / "data" / "topology_data.js"
+
+# 分类真源（与 app/js/cat_tree.js 的 27 个小类一一对应）
+CATEGORY_META = [
+    ("heart", "心之碎片", "Piece of Heart", "#ef4444"),
+    ("heartc", "心之容器", "Heart Container", "#f43f5e"),
+    ("skull", "黄金骷髅蜘蛛", "Gold Skulltula", "#f59e0b"),
+    ("song", "歌曲", "Ocarina Song", "#a3e635"),
+    ("medal", "精灵石 / 勋章", "Stone / Medallion", "#fbbf24"),
+    ("bottle", "瓶子", "Bottle", "#06b6d4"),
+    ("mask", "面具", "Mask", "#fb923c"),
+    ("upgrade", "强化升级", "Upgrade", "#22c55e"),
+    ("owl", "猫头鹰像", "Owl Statue", "#cbd5e1"),
+    ("poe", "大怨灵", "Big Poe", "#818cf8"),
+    ("chest", "迷宫宝箱", "Dungeon Chest", "#eab308"),
+    ("boss", "Boss 房", "Boss Room", "#991b1b"),
+    ("dungeon", "神殿与挑战入口", "Dungeon Entrance", "#e11d48"),
+    ("keyitem", "关键道具", "Key Item", "#14b8a6"),
+    ("grotto", "秘密洞穴", "Secret Grotto", "#d97706"),
+    ("stone", "八卦石", "Gossip Stone", "#94a3b8"),
+    ("soil", "松软土地（魔豆）", "Soft Soil", "#10b981"),
+    ("warp", "时之歌传送点", "Warp Point", "#0284c7"),
+    ("sign", "告示牌", "Signboard", "#a8a29e"),
+    ("shop", "商店与商人", "Shop & Merchant", "#f97316"),
+    ("minigame", "迷你小游戏", "Mini-game", "#ec4899"),
+    ("fairy", "大妖精之泉", "Great Fairy", "#c084fc"),
+    ("training", "训练场", "Training Ground", "#b45309"),
+    ("item", "关键设施 / NPC", "Key Facility & NPC", "#14b8a6"),
+    ("npc", "主线 NPC", "Story NPC", "#38bdf8"),
+    ("carpenter", "木匠", "Carpenter", "#b45309"),
+    ("merchant", "商人", "Merchant", "#facc15"),
+]
+
+# Boss 房（MapParam Floor.Facility IconType 0）→ 名称与奖励
+BOSS_INFO = {
+    "InsideTheDekuTree": ("哥马", "Gohma", "心之容器 + 科奇里翡翠"),
+    "DodongoCavern": ("多东哥王后", "King Dodongo", "心之容器 + 鼓隆红宝石"),
+    "InsideJabuJabuBelly": ("啪哩内德", "Barinade", "心之容器 + 卓拉蓝宝石"),
+    "ForestTemple": ("幻影加侬", "Phantom Ganon", "心之容器 + 森之勋章"),
+    "FireTemple": ("瓦尔巴基亚", "Volvagia", "心之容器 + 火之勋章"),
+    "WaterTemple": ("魔发", "Morpha", "心之容器 + 水之勋章"),
+    "ShadowTemple": ("崩鼓崩鼓", "Bongo Bongo", "心之容器 + 暗之勋章"),
+    "SpiritTemple": ("双子妖婆", "Twinrova", "心之容器 + 魂之勋章"),
+}
 
 # Area display names
 AREA_NAMES = {
@@ -148,7 +192,13 @@ DROP_NAMES = {
     "Hookshot": ("钩索", "Hookshot", True),
     "HoverBoots": ("悬浮靴", "Hover Boots", True),
     "IronBoots": ("铁靴", "Iron Boots", True),
+    "ItemHeavyBoot": ("铁靴", "Iron Boots", True),
+    "ItemHoverBoot": ("悬浮靴", "Hover Boots", True),
     "LensOfTruth": ("真实之镜", "Lens of Truth", True),
+    "ItemGlassTruth": ("真实之镜", "Lens of Truth", True),
+    "TBoxShieldDeku": ("德库盾", "Deku Shield", False),
+    "ItemScrubBusinessSeed": ("德库种子", "Deku Seeds", False),
+    "TboxMagicJarLarge": ("大魔力罐", "Large Magic Jar", False),
     "MirrorShield": ("镜盾", "Mirror Shield", True),
     "SilverGauntlets": ("银色护手", "Silver Gauntlets", True),
     "GoldenGauntlets": ("黄金护手", "Golden Gauntlets", True),
@@ -157,7 +207,7 @@ DROP_NAMES = {
     "Rupee": ("卢比", "Rupee", False),
     "Bomb": ("炸弹", "Bombs", False),
     "Bombchu": ("炸弹鼠", "Bombchus", False),
-    "Arrow": ("箭矢", "Arrows", False),
+    "Arrow": ("箭", "Arrows", False),
     "DekuStick": ("德库树枝", "Deku Sticks", False),
     "DekuNut": ("德库坚果", "Deku Nuts", False),
     "DekuSeed": ("德库种子", "Deku Seeds", False),
@@ -165,16 +215,16 @@ DROP_NAMES = {
 }
 
 
-def format_drop(drop_actor: str) -> tuple[str, str]:
+def format_drop(drop_actor: str) -> tuple[str, str, bool]:
     if not drop_actor:
-        return ("宝箱", "Treasure Chest")
-    low = drop_actor.lower()
-    for key, (zh, en, _imp) in DROP_NAMES.items():
-        if key.lower() in low:
-            return (f"宝箱 · {zh}", f"Chest: {en}")
-    # Check specific OoT Switch 2 Drop__DropActor names
-    clean = drop_actor.replace("Item_", "").replace("Weapon_", "").replace("Obj_", "")
-    return (f"宝箱 · {clean}", f"Chest: {clean}")
+        return ("宝箱", "Treasure Chest", False)
+    # 归一化：去掉下划线/空格/前缀，避免 Dungeon_Map 匹配不到 DungeonMap
+    low = re.sub(r"[_\s]", "", drop_actor).lower()
+    for key, (zh, en, imp) in DROP_NAMES.items():
+        if re.sub(r"[_\s]", "", key).lower() in low:
+            return (f"宝箱 · {zh}", f"Chest: {en}", imp)
+    clean = re.sub(r"[_\s]", "", drop_actor)
+    return (f"宝箱 · {clean}", f"Chest: {clean}", False)
 
 
 def floor_label(min_floor: int, idx: int) -> str:
@@ -253,7 +303,7 @@ def main() -> int:
         cat: str,
         x: float,
         z: float,
-        y_world: float,
+        y_world: float | None,
         era: str,
         zh: str,
         en: str,
@@ -265,6 +315,9 @@ def main() -> int:
         time: str = "Any",
         req: str = "",
         instance_id: int | None = None,
+        howto: str = "",
+        reward: str = "",
+        note: str = "",
     ) -> None:
         proj = projections.get(area_id)
         if not proj:
@@ -272,10 +325,12 @@ def main() -> int:
         u, v = world_to_uv(proj, x, z)
         cat_counters[cat] += 1
         prefix = {
-            "heart": "HP", "skull": "GS", "fairy": "GF", "bean": "MB",
-            "bottle": "BT", "grotto": "GR", "poe": "BP", "stone": "ST",
+            "heart": "HP", "heartc": "HC", "skull": "GS", "fairy": "GF", "bean": "MB",
+            "bottle": "BT", "grotto": "GR", "poe": "BP", "stone": "ST", "song": "SG",
             "shop": "SH", "minigame": "MG", "item": "IT", "dungeon": "DG",
-            "warp": "WP", "chest": "CH",
+            "warp": "WP", "chest": "CH", "boss": "BS", "medal": "MD", "mask": "MK",
+            "owl": "OW", "soil": "SL", "keyitem": "KI", "npc": "NP", "merchant": "MC",
+            "training": "TR", "sign": "SN", "upgrade": "UG", "carpenter": "CP",
         }.get(cat, "PK")
         pin_id = f"{prefix}-{cat_counters[cat]:03d}"
         entry = {
@@ -285,7 +340,7 @@ def main() -> int:
             "cat": cat,
             "x": u,
             "y": v,
-            "world": [round(x, 2), round(y_world, 2), round(z, 2)],
+            "world": [round(x, 2), round(y_world, 2), round(z, 2)] if y_world is not None else None,
             "era": era,
             "time": time,
             "req": req,
@@ -294,6 +349,12 @@ def main() -> int:
             "descZh": desc_zh,
             "descEn": desc_en,
         }
+        if howto:
+            entry["howto"] = howto
+        if reward:
+            entry["reward"] = reward
+        if note:
+            entry["note"] = note
         if instance_id is not None:
             entry["instanceId"] = str(instance_id)
         pins.append(entry)
@@ -380,8 +441,28 @@ def main() -> int:
         era = DUNGEON_ERA.get(sc, "Both")
         azh, aen = AREA_NAMES.get(sc, (sc, sc))
         seen_d_skull: set[int] = set()
+        seen_boss: set[str] = set()
         for fi, fl in enumerate(sdata["Floor"]):
             fl_lbl = floor_label(min_fl, fi)
+            # Boss 房：Floor.Facility IconType 0（原先被 FACILITY_MAP 过滤丢弃）
+            for it in fl.get("Facility", []):
+                if it.get("IconType") != 0 or sc not in BOSS_INFO or sc in seen_boss:
+                    continue
+                seen_boss.add(sc)
+                bzh, ben, breward = BOSS_INFO[sc]
+                bx, by, bz = it["Trans"]
+                add_pin(
+                    sc, "boss", bx, bz, by, era,
+                    f"{azh} ({fl_lbl}) · Boss 房：{bzh}",
+                    f"{aen} ({fl_lbl}): Boss Room - {ben}",
+                    f"进入 Boss 房与{bzh}战斗，胜利后取得心之容器。",
+                    f"Defeat {ben} in the boss room for a Heart Container.",
+                    is_dungeon=True,
+                    floor=fl_lbl,
+                    howto=f"进入 Boss 房，击败{bzh}（{ben}）。",
+                    reward=breward,
+                    instance_id=it.get("InstanceID"),
+                )
             for item in fl.get("CollectSign", []):
                 iid = item["InstanceID"]
                 if iid in seen_d_skull:
@@ -574,7 +655,7 @@ def main() -> int:
                         best_d = dist
                         dyn = a.get("Dynamic") or {}
                         drop = dyn.get("Drop__DropActor", "")
-                czh, cen = format_drop(drop if best_d < 3.0 else "")
+                czh, cen, is_key = format_drop(drop if best_d < 3.0 else "")
                 add_pin(
                     sc, "chest", tx, tz, ty, era,
                     f"{azh} ({fl_lbl}) · {czh}",
@@ -585,23 +666,188 @@ def main() -> int:
                     floor=fl_lbl,
                     instance_id=iid,
                 )
+                # 关键道具：从宝箱掉落派生一层「关键道具」点，坐标同源、上移错开
+                if is_key and czh.startswith("宝箱 · "):
+                    kname = czh[len("宝箱 · "):]
+                    kp = dict(pins[-1])
+                    cat_counters["keyitem"] += 1
+                    kp["id"] = f"KI-{cat_counters['keyitem']:03d}"
+                    kp["cat"] = "keyitem"
+                    kp["zh"] = f"{azh} ({fl_lbl}) · {kname}"
+                    kp["en"] = f"{aen} ({fl_lbl}): {cen.replace('Chest: ', '')}"
+                    kp["y"] = round(min(kp["y"] + 1.8, 99.0), 2)
+                    kp["howto"] = f"在{azh} {fl_lbl} 打开宝箱取得「{kname}」，属于推进流程的关键道具。"
+                    kp["reward"] = kname
+                    kp["note"] = "与同位置「宝箱」点重合，已上移错开；按攻略顺序使用。"
+                    kp.pop("descZh", None)
+                    kp.pop("descEn", None)
+                    pins.append(kp)
 
     # ------------------------------------------------------------------
-    # 6. WRITE app/data/pins_data.js
+    # 6. CURATED POINTS (data/curated_points.json，攻略口径人工点位)
+    # ------------------------------------------------------------------
+    curated_added = 0
+    if CURATED_PATH.exists():
+        cdoc = json.loads(CURATED_PATH.read_text(encoding="utf-8"))
+        valid_cats = {m[0] for m in CATEGORY_META}
+        for cp in cdoc.get("points", []):
+            area_id = cp.get("area")
+            proj = projections.get(area_id)
+            cat = cp.get("cat")
+            if not proj or cat not in valid_cats:
+                print(f"  [WARN] curated 跳过：{cp.get('id')} area={area_id} cat={cat}")
+                continue
+            if cp.get("uv"):
+                u, v = float(cp["uv"][0]), float(cp["uv"][1])
+                x = y = z = None
+            elif cp.get("world"):
+                x, y, z = [float(n) for n in cp["world"]]
+                u, v = world_to_uv(proj, x, z)
+            else:
+                print(f"  [WARN] curated 缺坐标：{cp.get('id')}")
+                continue
+            ox, oy = (cp.get("uvOffset") or [0, 0])
+            u = round(u + float(ox), 2)
+            v = round(v + float(oy), 2)
+            cat_counters[cat] += 1
+            pin_id = cp.get("id") or f"{cat}-{cat_counters[cat]:03d}"
+            entry = {
+                "id": pin_id,
+                "map": area_id if cp.get("dungeon") else "hyrule",
+                "area": (cp.get("floor") or area_id) if cp.get("dungeon") else area_id,
+                "cat": cat,
+                "x": u,
+                "y": v,
+                "world": [round(x, 2), round(y, 2), round(z, 2)] if x is not None else None,
+                "era": cp.get("era", "Both"),
+                "time": cp.get("time", "Any"),
+                "req": cp.get("req", ""),
+                "zh": cp["zh"],
+                "en": cp.get("en", cp["zh"]),
+                "descZh": cp.get("descZh", ""),
+                "descEn": cp.get("descEn", ""),
+            }
+            for k_src, k_out in (
+                ("howto", "howto"), ("howtoEn", "howtoEn"),
+                ("reward", "reward"), ("rewardEn", "rewardEn"),
+                ("note", "note"), ("noteEn", "noteEn"),
+            ):
+                if cp.get(k_src):
+                    entry[k_out] = cp[k_src]
+            pins.append(entry)
+            curated_added += 1
+
+    # ------------------------------------------------------------------
+    # 6.5 卡片攻略口径（P3）：去掉 RomFS 样板句，补「怎么拿 / 奖励 / 备注」
+    # ------------------------------------------------------------------
+    CHEST_NOTE = {
+        "迷宫地图": "打开后地图页会显示本层平面，先拿图再规划路线。",
+        "指南针": "显示本层所有宝箱与首领房位置，和地图配套。",
+        "小钥匙": "开启本层上锁的门，通常一把对应一扇。",
+        "首领钥匙": "开启首领房大门，打 Boss 前必拿。",
+        "炸弹": "补进炸弹袋，可炸裂缝、蛛网与假墙。",
+        "炸弹鼠": "贴地爬行爆炸，能钻进低矮暗道与墙角。",
+        "卢比": "补充卢比，颜色不同面额不同。",
+        "心之碎片": "4 片合 1 颗心。",
+        "德库树枝": "补给德库木棒，可点火/当武器。",
+        "德库坚果": "补给德库坚果，闪光定敌。",
+        "箭": "补充箭袋。",
+        "德库盾": "装备用；被火烧或落入岩浆会烧毁，备 1 面。",
+        "德库种子": "弹弓弹药补给。",
+        "大魔力罐": "补满魔力槽。",
+        "真实之镜": "戴上后能看见隐藏平台、假墙与幽灵。",
+        "铁靴": "沉入水底、吸附磁力地面。",
+        "悬浮靴": "短距离悬浮，越过流沙与断桥。",
+    }
+    def _region_key(pin: dict) -> str:
+        return pin["area"] if pin["map"] == "hyrule" else pin["map"]
+
+    skull_by_map: dict[str, int] = {}
+    for p in pins:
+        if p["cat"] == "skull":
+            k = _region_key(p)
+            skull_by_map[k] = skull_by_map.get(k, 0) + 1
+    for p in pins:
+        cat = p["cat"]
+        parts = p.get("zh", "").split(" · ")
+        area_lbl = parts[0] if parts else ""
+        if cat == "chest" and len(parts) >= 2 and parts[1] == "宝箱":
+            item = parts[2] if len(parts) >= 3 else "未标注"
+            p["howto"] = f"在{area_lbl}找到并打开宝箱，取得「{item}」。部分宝箱需先清怪或解开本层机关。"
+            p["reward"] = item
+            p["note"] = CHEST_NOTE.get(item, "内容以官方宝箱数据为准，按用途使用。" if len(parts) >= 3
+                                         else "官方 RomFS 该宝箱无掉落字段，多为剧情/机关宝箱，进游戏确认。")
+            p.pop("descZh", None)
+            p.pop("descEn", None)
+        elif cat == "heart":
+            p["howto"] = f"在{area_lbl}按点位搜索：可能在屋顶、水下、土中、树上，或用钩索/炸弹/豆叶/小游戏才能到达。"
+            p["reward"] = "心之碎片（1/4 颗心）"
+            p["note"] = "全 36 片；幼年与成年能拿的片不同。"
+            p.pop("descZh", None)
+            p.pop("descEn", None)
+        elif cat == "skull":
+            if p.get("map") != "hyrule":
+                p["howto"] = f"在{area_lbl}，用弹弓/钩索/炸弹清掉蛛网与角落，击杀黄金骷髅蜘蛛后捡徽章。"
+            else:
+                p["howto"] = f"在{area_lbl}按点位排查树上、墙缝、水下与软土；野外点位多数只在夜晚出现。"
+            p["reward"] = "黄金骷髅蜘蛛徽章 ×1"
+            p["note"] = (f"全 100 只，本区 {skull_by_map.get(_region_key(p), 0)} 只；"
+                         "10 大人钱包 / 20 响音石 / 30 巨人钱包 / 40 炸弹鼠×20 / 50 心之碎片 / 100 金卢比 200。")
+            p.pop("descZh", None)
+            p.pop("descEn", None)
+        elif cat == "grotto":
+            p["howto"] = "用炸弹、百万吨大锤或风暴之歌炸开/掀开地面裂缝，跳进洞穴。"
+            p["reward"] = "洞内卢比 / 心之碎片 / 妖精"
+            p["note"] = "进洞前备好炸弹与火把，部分洞穴有蜘蛛或敌人。"
+            p.pop("descZh", None)
+            p.pop("descEn", None)
+        elif cat == "stone":
+            p["howto"] = "戴上真实面具与八卦石对话获取线索；对着石吹曲还能召唤妖精。"
+            p["reward"] = "情报 / 妖精"
+            p["note"] = "不戴真实面具只会听到含糊的低语。"
+            p.pop("descZh", None)
+            p.pop("descEn", None)
+        elif cat == "warp":
+            p["howto"] = "成年学会对应传送曲后，在时之神殿吹奏即可传送到此。"
+            p["reward"] = "快速移动点"
+            p.pop("descZh", None)
+            p.pop("descEn", None)
+        elif cat == "poe":
+            p["howto"] = "成年骑艾波娜在野外夜行，遇大怨灵下马射箭击败，再用空瓶装魂。"
+            p["reward"] = "大魄 ×1（10 只换空瓶）"
+            p["note"] = "必须夜晚；魂会隐身，注意听笑声定位。"
+            p.pop("descZh", None)
+            p.pop("descEn", None)
+
+    # 8 个 Boss 房派生「心之容器」点（同一房间，横向错开）
+    hc_pins: list[dict] = []
+    for p in pins:
+        if p["cat"] != "boss":
+            continue
+        boss_name = p["zh"].split("Boss 房：")[-1]
+        area_lbl = p["zh"].split(" · ")[0]
+        hc = dict(p)
+        hc["id"] = f"HC-{len(hc_pins) + 1:03d}"
+        hc["cat"] = "heartc"
+        hc["zh"] = f"{area_lbl} · 心之容器：{boss_name}"
+        hc["en"] = p.get("en", "").replace("Boss Room", "Heart Container")
+        hc["x"] = round(min(p["x"] + 2.4, 97.5), 2)
+        hc["howto"] = f"在{area_lbl}击败 {boss_name}，胜利后取得心之容器。"
+        hc["reward"] = "心之容器（心上限 +1）"
+        hc["note"] = "与 Boss 房点同一房间，已右移错开；8 个容器全拿可多 8 颗心。"
+        hc.pop("descZh", None)
+        hc.pop("descEn", None)
+        hc_pins.append(hc)
+    pins.extend(hc_pins)
+    for h in hc_pins:
+        cat_counters["heartc"] += 1
+
+    # ------------------------------------------------------------------
+    # 7. WRITE app/data/pins_data.js
     # ------------------------------------------------------------------
     categories = [
-        {"id": "heart", "zh": "心之碎片", "en": "Piece of Heart", "badge": "#ef4444"},
-        {"id": "skull", "zh": "黄金骷髅蜘蛛", "en": "Gold Skulltula", "badge": "#f59e0b"},
-        {"id": "fairy", "zh": "大妖精之泉", "en": "Great Fairy", "badge": "#c084fc"},
-        {"id": "poe", "zh": "大怨灵（大珀伊）", "en": "Big Poe", "badge": "#818cf8"},
-        {"id": "grotto", "zh": "秘密洞穴", "en": "Secret Grotto", "badge": "#d97706"},
-        {"id": "stone", "zh": "八卦石（谣言石）", "en": "Gossip Stone", "badge": "#94a3b8"},
-        {"id": "shop", "zh": "商店与商人", "en": "Shop & Merchant", "badge": "#f97316"},
-        {"id": "minigame", "zh": "迷你小游戏", "en": "Mini-game", "badge": "#ec4899"},
-        {"id": "item", "zh": "关键设施与NPC", "en": "Key Facility & NPC", "badge": "#14b8a6"},
-        {"id": "warp", "zh": "时之歌传送点", "en": "Warp Point", "badge": "#0284c7"},
-        {"id": "chest", "zh": "迷宫宝箱", "en": "Dungeon Chest", "badge": "#eab308"},
-        {"id": "dungeon", "zh": "神殿与挑战入口", "en": "Dungeon Entrance", "badge": "#e11d48"},
+        {"id": cid, "zh": czh, "en": cen, "badge": badge}
+        for cid, czh, cen, badge in CATEGORY_META
     ]
 
     js_out = (
@@ -618,7 +864,7 @@ def main() -> int:
     )
     PINS_OUT.write_text(js_out, encoding="utf-8")
 
-    print(f"\n=== Extracted {len(pins)} 100%-accurate RomFS pins ===")
+    print(f"\n=== Extracted {len(pins)} 100%-accurate pins (romfs + curated {curated_added}) ===")
     for c, cnt in sorted(cat_counters.items()):
         print(f"  {c:12s}: {cnt}")
 

@@ -12,7 +12,47 @@
   var TOPOLOGY = window.OOT_TOPOLOGY;
   var NODES = TOPOLOGY.nodes;
   var EDGES = TOPOLOGY.edges;
-  var CATS = window.OOT_CATEGORIES || [];
+  var DATA_CATS = window.OOT_CATEGORIES || [];
+  var CAT_TREE = window.OOT_CAT_TREE || { groups: [] };
+  var CATS = (function () {
+    var out = [];
+    var byId = {};
+    (CAT_TREE.groups || []).forEach(function (g) {
+      (g.cats || []).forEach(function (c) {
+        var cat = {
+          id: c.id,
+          zh: c.zh || c.id,
+          short: c.short || c.zh || c.id,
+          en: c.en || c.zh || c.id,
+          badge: c.badge || "#d9b45a",
+          group: g.id,
+          icon: c.icon || null,
+          iconDone: c.iconDone || null,
+          defOff: !!c.defOff
+        };
+        out.push(cat);
+        byId[cat.id] = cat;
+      });
+    });
+    // 数据里存在、树里没写的分类兜底收进「其他」，避免点位变不可见
+    DATA_CATS.forEach(function (dc) {
+      var hit = byId[dc.id];
+      if (hit) {
+        if (dc.badge) hit.badge = dc.badge;
+        if (dc.zh && !hit.zh) hit.zh = dc.zh;
+        if (dc.en && !hit.en) hit.en = dc.en;
+        return;
+      }
+      var cat = { id: dc.id, zh: dc.zh || dc.id, short: dc.zh || dc.id, en: dc.en || dc.id, badge: dc.badge || "#d9b45a", group: "other", icon: null };
+      out.push(cat);
+      byId[cat.id] = cat;
+    });
+    return out;
+  })();
+  var GROUPS = (CAT_TREE.groups && CAT_TREE.groups.length) ? CAT_TREE.groups.slice() : [{ id: "other", zh: "分类", en: "Categories" }];
+  if (CATS.some(function (c) { return c.group === "other"; }) && !GROUPS.some(function (g) { return g.id === "other"; })) {
+    GROUPS.push({ id: "other", zh: "其他", en: "Other" });
+  }
   var PINS = window.OOT_PINS_DATA || [];
   var REGIONS = (window.OOT_REGIONS && window.OOT_REGIONS.areas) || [];
   var ICONS = window.OOT_ICONS;
@@ -54,7 +94,7 @@
     era: "Child", // Child | Adult | All
     lang: "zh",   // 默认简体中文，支持一键切 EN
     hideDone: false,
-    activeCats: new Set(CATS.map(function (c) { return c.id; })),
+    activeCats: new Set(CATS.filter(function (c) { return !c.defOff; }).map(function (c) { return c.id; })),
     donePins: {},
     selectedPinId: null,
 
@@ -644,7 +684,7 @@
       el.id = "rpin-" + pin.id;
       el.style.left = pin.x + "%";
       el.style.top = pin.y + "%";
-      el.innerHTML = ICONS.svg(pin.cat, 28);
+      el.innerHTML = ICONS.html(pin.cat, pinIconSize(), !!state.donePins[pin.id]);
 
       el.addEventListener("mousedown", function (e) {
         if (calState.active) {
@@ -1757,6 +1797,11 @@
   // -------------------------------------------------------------
   // 点位渲染与交互
   // -------------------------------------------------------------
+  // 画布图标基准尺寸：桌面 20 / 手机 18（UI 规范：命中区仍由 padding 撑到 32）
+  function pinIconSize() {
+    return (window.innerWidth <= 900) ? 22 : 24;
+  }
+
   function isPinVisible(pin) {
     if (state.era !== "All") {
       if (pin.era !== "Both" && pin.era !== state.era) return false;
@@ -1798,7 +1843,7 @@
       el.style.left = pin.x + "%";
       el.style.top = pin.y + "%";
 
-      el.innerHTML = ICONS.svg(pin.cat, 28);
+      el.innerHTML = ICONS.html(pin.cat, pinIconSize(), !!state.donePins[pin.id]);
 
       // 点位拖拽微调支持
       el.addEventListener("mousedown", function (e) {
@@ -1834,12 +1879,13 @@
     if (rcur) rcur.classList.add("selected");
 
     var card = $("detailCard");
-    $("cardIconWrap").innerHTML = ICONS.svg(pin.cat, 36);
+    $("cardIconWrap").innerHTML = ICONS.html(pin.cat, 26, !!state.donePins[pin.id]);
 
     var catObj = CATS.find(function (c) { return c.id === pin.cat; });
     $("cardCatTag").textContent = catObj ? (state.lang === "zh" ? catObj.zh : catObj.en) : pin.cat;
-    $("cardCatTag").style.background = ICONS.color(pin.cat) + "25";
-    $("cardCatTag").style.color = ICONS.color(pin.cat);
+    var catColor = (catObj && catObj.badge) || ICONS.color(pin.cat);
+    $("cardCatTag").style.background = catColor + "25";
+    $("cardCatTag").style.color = catColor;
 
     var eraTxt = pin.era === "Both" ? (state.lang === "zh" ? "全时代" : "All Eras") : (state.lang === "zh" ? (pin.era === "Child" ? "童年期" : "成年期") : pin.era);
     $("cardEraTag").textContent = eraTxt;
@@ -1848,7 +1894,20 @@
     $("cardTimeTag").textContent = timeTxt;
 
     $("cardTitle").textContent = state.lang === "zh" ? pin.zh : pin.en;
-    $("cardArea").textContent = pin.area ? ("📍 " + pin.area) : "";
+
+    // 位置：区域名 + 楼层 + 世界坐标，替代原来只显示 area / 楼层
+    var hostId = (pin.map && pin.map !== "hyrule") ? pin.map : pin.area;
+    var hostRegion = REGIONS.find(function (r) { return r.id === hostId; });
+    var regionName = hostRegion ? (state.lang === "zh" ? hostRegion.zh : hostRegion.en) : hostId;
+    var floorTxt = (pin.map && pin.map !== "hyrule" && pin.area) ? pin.area : "";
+    $("cardArea").textContent = "📍 " + regionName + (floorTxt ? " · " + floorTxt : "");
+    $("cardLocRow").hidden = !floorTxt;
+    $("cardLocVal").textContent = floorTxt ? ((state.lang === "zh" ? "楼层 " : "Floor ") + floorTxt) : "";
+
+    // 怎么拿：优先结构化 howto，没写则回落到官方点位说明
+    var hasHowto = !!(pin.howto || pin.howtoEn);
+    var howTxt = state.lang === "zh" ? (pin.howto || pin.descZh || pin.zh) : (pin.howtoEn || pin.descEn || pin.en);
+    $("cardHowVal").textContent = howTxt;
 
     if (pin.req) {
       $("cardReqRow").hidden = false;
@@ -1857,7 +1916,23 @@
       $("cardReqRow").hidden = true;
     }
 
-    $("cardDesc").textContent = state.lang === "zh" ? (pin.descZh || pin.zh) : (pin.descEn || pin.en);
+    var rewardTxt = state.lang === "zh" ? (pin.reward || "") : (pin.rewardEn || "");
+    $("cardRewardRow").hidden = !rewardTxt;
+    if (rewardTxt) $("cardRewardVal").textContent = rewardTxt;
+
+    var noteTxt = state.lang === "zh" ? (pin.note || "") : (pin.noteEn || "");
+    $("cardNoteRow").hidden = !noteTxt;
+    if (noteTxt) $("cardNoteVal").textContent = noteTxt;
+
+    var descTxt = state.lang === "zh" ? (pin.descZh || "") : (pin.descEn || "");
+    var showDesc = !!descTxt && hasHowto;
+    $("cardDesc").hidden = !showDesc;
+    $("cardDesc").textContent = showDesc ? descTxt : "";
+
+    var world = pin.world || [];
+    $("cardCoordVal").textContent = world.length >= 3
+      ? "X " + world[0] + " · Y " + world[1] + " · Z " + world[2]
+      : (state.lang === "zh" ? "地图定位 " + pin.x + "% · " + pin.y + "%" : "Map " + pin.x + "% / " + pin.y + "%");
 
     var chk = $("cardDoneChk");
     chk.checked = !!state.donePins[pin.id];
@@ -1903,6 +1978,15 @@
         badge.textContent = countByCat[cat.id] || 0;
       }
     });
+
+    GROUPS.forEach(function (g) {
+      var total = 0;
+      CATS.forEach(function (c) {
+        if (c.group === g.id) total += (countByCat[c.id] || 0);
+      });
+      var el = $("cgroup-" + g.id);
+      if (el) el.textContent = total;
+    });
   }
 
   function updateProgress() {
@@ -1925,42 +2009,97 @@
     var list = $("catList");
     list.innerHTML = "";
 
-    CATS.forEach(function (cat) {
-      var item = document.createElement("label");
-      item.className = "cat-item" + (state.activeCats.has(cat.id) ? " active" : "");
+    GROUPS.forEach(function (group) {
+      var cats = CATS.filter(function (c) { return c.group === group.id; });
+      if (!cats.length) return;
 
-      var chk = document.createElement("input");
-      chk.type = "checkbox";
-      chk.checked = state.activeCats.has(cat.id);
-      chk.addEventListener("change", function () {
-        if (chk.checked) {
-          state.activeCats.add(cat.id);
-          item.classList.add("active");
-        } else {
-          state.activeCats.delete(cat.id);
-          item.classList.remove("active");
-        }
+      var box = document.createElement("div");
+      box.className = "cat-group";
+
+      var head = document.createElement("div");
+      head.className = "cat-group-head";
+
+      var toggle = document.createElement("button");
+      toggle.className = "cat-group-toggle" + (group.open === false ? " closed" : "");
+      toggle.innerHTML = '<span class="cg-caret">▾</span>' +
+                         '<span class="cg-name">' + (state.lang === "zh" ? group.zh : group.en) + '</span>' +
+                         '<span class="cg-total" id="cgroup-' + group.id + '">0</span>';
+
+      var acts = document.createElement("div");
+      acts.className = "cat-group-acts";
+      var btnAll = document.createElement("button");
+      btnAll.textContent = state.lang === "zh" ? "全选" : "All";
+      var btnNone = document.createElement("button");
+      btnNone.textContent = state.lang === "zh" ? "清空" : "None";
+      btnAll.addEventListener("click", function (e) {
+        e.stopPropagation();
+        cats.forEach(function (c) { state.activeCats.add(c.id); });
+        renderCategoriesSidebar();
         renderAllPins();
       });
+      btnNone.addEventListener("click", function (e) {
+        e.stopPropagation();
+        cats.forEach(function (c) { state.activeCats.delete(c.id); });
+        renderCategoriesSidebar();
+        renderAllPins();
+      });
+      acts.appendChild(btnAll);
+      acts.appendChild(btnNone);
+      head.appendChild(toggle);
+      head.appendChild(acts);
 
-      var iconSlot = document.createElement("div");
-      iconSlot.className = "cat-icon-slot";
-      iconSlot.innerHTML = ICONS.svg(cat.id, 24);
+      var grid = document.createElement("div");
+      grid.className = "cat-grid";
+      grid.hidden = (group.open === false);
 
-      var name = document.createElement("span");
-      name.className = "cat-name";
-      name.textContent = state.lang === "zh" ? cat.zh : cat.en;
+      toggle.addEventListener("click", function () {
+        grid.hidden = !grid.hidden;
+        toggle.classList.toggle("closed", grid.hidden);
+        group.open = !grid.hidden;
+      });
 
-      var badge = document.createElement("span");
-      badge.className = "cat-badge";
-      badge.id = "cat-count-" + cat.id;
-      badge.textContent = "0";
+      cats.forEach(function (cat) {
+        var item = document.createElement("label");
+        item.className = "cat-item" + (state.activeCats.has(cat.id) ? " active" : "");
+        item.title = (state.lang === "zh" ? cat.zh : cat.en) + " · " + cat.id;
 
-      item.appendChild(chk);
-      item.appendChild(iconSlot);
-      item.appendChild(name);
-      item.appendChild(badge);
-      list.appendChild(item);
+        var chk = document.createElement("input");
+        chk.type = "checkbox";
+        chk.checked = state.activeCats.has(cat.id);
+        chk.addEventListener("change", function () {
+          if (chk.checked) {
+            state.activeCats.add(cat.id);
+            item.classList.add("active");
+          } else {
+            state.activeCats.delete(cat.id);
+            item.classList.remove("active");
+          }
+          renderAllPins();
+        });
+
+        var iconSlot = document.createElement("div");
+        iconSlot.className = "cat-icon-slot";
+        iconSlot.innerHTML = ICONS.html(cat.id, 18);
+
+        var name = document.createElement("span");
+        name.className = "cat-name";
+        name.textContent = state.lang === "zh" ? cat.short : cat.en;
+
+        var badge = document.createElement("span");
+        badge.className = "cat-badge";
+        badge.id = "cat-count-" + cat.id;
+        badge.textContent = "0";
+
+        item.appendChild(chk);
+        item.appendChild(iconSlot);
+        item.appendChild(name);
+        item.appendChild(badge);
+        grid.appendChild(item);
+      });
+
+      box.appendChild(head);
+      box.appendChild(grid);
+      list.appendChild(box);
     });
 
     updateCategoriesCount();
@@ -2036,7 +2175,7 @@
       matches.forEach(function (m) {
         var row = document.createElement("div");
         row.className = "search-item";
-        row.innerHTML = '<div style="flex:0 0 24px;">' + ICONS.svg(m.cat, 22) + '</div>' +
+        row.innerHTML = '<div style="flex:0 0 24px;">' + ICONS.html(m.cat, 18) + '</div>' +
                         '<div class="search-item-info">' +
                         '  <span class="search-item-title">' + (state.lang === "zh" ? m.zh : m.en) + '</span>' +
                         '  <span class="search-item-area">' + (m.area || m.map) + '</span>' +
@@ -2173,6 +2312,25 @@
     });
 
     $("cardClose").addEventListener("click", closeDetailCard);
+
+    var copyBtn = $("cardCopyCoord");
+    if (copyBtn) {
+      copyBtn.addEventListener("click", function () {
+        var pin = PINS.find(function (p) { return p.id === state.selectedPinId; });
+        if (!pin) return;
+        var w = pin.world || [];
+        var txt = (pin.zh || pin.id) + (w.length >= 3 ? "  X " + w[0] + " Y " + w[1] + " Z " + w[2] : "");
+        function doneCopy() {
+          copyBtn.textContent = state.lang === "zh" ? "已复制" : "Copied";
+          setTimeout(function () { copyBtn.textContent = state.lang === "zh" ? "复制坐标" : "Copy"; }, 1200);
+        }
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(txt).then(doneCopy, doneCopy);
+        } else {
+          doneCopy();
+        }
+      });
+    }
 
     var editBtn = $("btnEditMode");
     if (editBtn) editBtn.addEventListener("click", toggleCalibrationMode);

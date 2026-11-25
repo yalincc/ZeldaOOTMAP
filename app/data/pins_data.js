@@ -15,22 +15,82 @@
     "badge": "#ef4444"
   },
   {
+    "id": "heartc",
+    "zh": "心之容器",
+    "en": "Heart Container",
+    "badge": "#f43f5e"
+  },
+  {
     "id": "skull",
     "zh": "黄金骷髅蜘蛛",
     "en": "Gold Skulltula",
     "badge": "#f59e0b"
   },
   {
-    "id": "fairy",
-    "zh": "大妖精之泉",
-    "en": "Great Fairy",
-    "badge": "#c084fc"
+    "id": "song",
+    "zh": "歌曲",
+    "en": "Ocarina Song",
+    "badge": "#a3e635"
+  },
+  {
+    "id": "medal",
+    "zh": "精灵石 / 勋章",
+    "en": "Stone / Medallion",
+    "badge": "#fbbf24"
+  },
+  {
+    "id": "bottle",
+    "zh": "瓶子",
+    "en": "Bottle",
+    "badge": "#06b6d4"
+  },
+  {
+    "id": "mask",
+    "zh": "面具",
+    "en": "Mask",
+    "badge": "#fb923c"
+  },
+  {
+    "id": "upgrade",
+    "zh": "强化升级",
+    "en": "Upgrade",
+    "badge": "#22c55e"
+  },
+  {
+    "id": "owl",
+    "zh": "猫头鹰像",
+    "en": "Owl Statue",
+    "badge": "#cbd5e1"
   },
   {
     "id": "poe",
-    "zh": "大怨灵（大珀伊）",
+    "zh": "大怨灵",
     "en": "Big Poe",
     "badge": "#818cf8"
+  },
+  {
+    "id": "chest",
+    "zh": "迷宫宝箱",
+    "en": "Dungeon Chest",
+    "badge": "#eab308"
+  },
+  {
+    "id": "boss",
+    "zh": "Boss 房",
+    "en": "Boss Room",
+    "badge": "#991b1b"
+  },
+  {
+    "id": "dungeon",
+    "zh": "神殿与挑战入口",
+    "en": "Dungeon Entrance",
+    "badge": "#e11d48"
+  },
+  {
+    "id": "keyitem",
+    "zh": "关键道具",
+    "en": "Key Item",
+    "badge": "#14b8a6"
   },
   {
     "id": "grotto",
@@ -40,9 +100,27 @@
   },
   {
     "id": "stone",
-    "zh": "八卦石（谣言石）",
+    "zh": "八卦石",
     "en": "Gossip Stone",
     "badge": "#94a3b8"
+  },
+  {
+    "id": "soil",
+    "zh": "松软土地（魔豆）",
+    "en": "Soft Soil",
+    "badge": "#10b981"
+  },
+  {
+    "id": "warp",
+    "zh": "时之歌传送点",
+    "en": "Warp Point",
+    "badge": "#0284c7"
+  },
+  {
+    "id": "sign",
+    "zh": "告示牌",
+    "en": "Signboard",
+    "badge": "#a8a29e"
   },
   {
     "id": "shop",
@@ -57,28 +135,40 @@
     "badge": "#ec4899"
   },
   {
+    "id": "fairy",
+    "zh": "大妖精之泉",
+    "en": "Great Fairy",
+    "badge": "#c084fc"
+  },
+  {
+    "id": "training",
+    "zh": "训练场",
+    "en": "Training Ground",
+    "badge": "#b45309"
+  },
+  {
     "id": "item",
-    "zh": "关键设施与NPC",
+    "zh": "关键设施 / NPC",
     "en": "Key Facility & NPC",
     "badge": "#14b8a6"
   },
   {
-    "id": "warp",
-    "zh": "时之歌传送点",
-    "en": "Warp Point",
-    "badge": "#0284c7"
+    "id": "npc",
+    "zh": "主线 NPC",
+    "en": "Story NPC",
+    "badge": "#38bdf8"
   },
   {
-    "id": "chest",
-    "zh": "迷宫宝箱",
-    "en": "Dungeon Chest",
-    "badge": "#eab308"
+    "id": "carpenter",
+    "zh": "木匠",
+    "en": "Carpenter",
+    "badge": "#b45309"
   },
   {
-    "id": "dungeon",
-    "zh": "神殿与挑战入口",
-    "en": "Dungeon Entrance",
-    "badge": "#e11d48"
+    "id": "merchant",
+    "zh": "商人",
+    "en": "Merchant",
+    "badge": "#facc15"
   }
 ];
 
@@ -100,9 +190,10 @@
     "req": "",
     "zh": "死亡山火山口 · 心之碎片",
     "en": "Death Mountain Crater: Piece of Heart",
-    "descZh": "官方 RomFS 精确定位心之碎片（死亡山火山口，世界坐标 -23.0, 121.1, 33.0）。 [DeathMountain_Enemy_Scrub_Business_HeartPiece_01]",
-    "descEn": "Exact RomFS Piece of Heart in Death Mountain Crater (World: -23.0, 121.1, 33.0).",
-    "instanceId": "12493798230772313904"
+    "instanceId": "12493798230772313904",
+    "howto": "在死亡山火山口按点位搜索：可能在屋顶、水下、土中、树上，或用钩索/炸弹/豆叶/小游戏才能到达。",
+    "reward": "心之碎片（1/4 颗心）",
+    "note": "全 36 片；幼年与成年能拿的片不同。"
   },
   {
     "id": "HP-002",
@@ -121,9 +212,10 @@
     "req": "",
     "zh": "死亡山火山口 · 心之碎片",
     "en": "Death Mountain Crater: Piece of Heart",
-    "descZh": "官方 RomFS 精确定位心之碎片（死亡山火山口，世界坐标 -17.5, 127.2, 3.9）。",
-    "descEn": "Exact RomFS Piece of Heart in Death Mountain Crater (World: -17.5, 127.2, 3.9).",
-    "instanceId": "12975373498949047978"
+    "instanceId": "12975373498949047978",
+    "howto": "在死亡山火山口按点位搜索：可能在屋顶、水下、土中、树上，或用钩索/炸弹/豆叶/小游戏才能到达。",
+    "reward": "心之碎片（1/4 颗心）",
+    "note": "全 36 片；幼年与成年能拿的片不同。"
   },
   {
     "id": "HP-003",
@@ -142,9 +234,10 @@
     "req": "",
     "zh": "死亡山火山口 · 心之碎片",
     "en": "Death Mountain Crater: Piece of Heart",
-    "descZh": "官方 RomFS 精确定位心之碎片（死亡山火山口，世界坐标 -0.5, 116.8, 32.3）。",
-    "descEn": "Exact RomFS Piece of Heart in Death Mountain Crater (World: -0.5, 116.8, 32.3).",
-    "instanceId": "16784485264831565984"
+    "instanceId": "16784485264831565984",
+    "howto": "在死亡山火山口按点位搜索：可能在屋顶、水下、土中、树上，或用钩索/炸弹/豆叶/小游戏才能到达。",
+    "reward": "心之碎片（1/4 颗心）",
+    "note": "全 36 片；幼年与成年能拿的片不同。"
   },
   {
     "id": "HP-004",
@@ -163,9 +256,10 @@
     "req": "",
     "zh": "死亡山山道 · 心之碎片",
     "en": "Death Mountain Trail: Piece of Heart",
-    "descZh": "官方 RomFS 精确定位心之碎片（死亡山山道，世界坐标 -39.7, 122.2, -26.0）。",
-    "descEn": "Exact RomFS Piece of Heart in Death Mountain Trail (World: -39.7, 122.2, -26.0).",
-    "instanceId": "15856934019904510189"
+    "instanceId": "15856934019904510189",
+    "howto": "在死亡山山道按点位搜索：可能在屋顶、水下、土中、树上，或用钩索/炸弹/豆叶/小游戏才能到达。",
+    "reward": "心之碎片（1/4 颗心）",
+    "note": "全 36 片；幼年与成年能拿的片不同。"
   },
   {
     "id": "HP-005",
@@ -184,9 +278,10 @@
     "req": "",
     "zh": "沙漠巨像 · 心之碎片",
     "en": "Desert Colossus: Piece of Heart",
-    "descZh": "官方 RomFS 精确定位心之碎片（沙漠巨像，世界坐标 -137.1, 103.5, 10.5）。",
-    "descEn": "Exact RomFS Piece of Heart in Desert Colossus (World: -137.1, 103.5, 10.5).",
-    "instanceId": "2308531337658761834"
+    "instanceId": "2308531337658761834",
+    "howto": "在沙漠巨像按点位搜索：可能在屋顶、水下、土中、树上，或用钩索/炸弹/豆叶/小游戏才能到达。",
+    "reward": "心之碎片（1/4 颗心）",
+    "note": "全 36 片；幼年与成年能拿的片不同。"
   },
   {
     "id": "HP-006",
@@ -205,9 +300,10 @@
     "req": "",
     "zh": "格鲁德要塞 · 心之碎片",
     "en": "Gerudo's Fortress: Piece of Heart",
-    "descZh": "官方 RomFS 精确定位心之碎片（格鲁德要塞，世界坐标 29.0, 131.5, -93.7）。",
-    "descEn": "Exact RomFS Piece of Heart in Gerudo's Fortress (World: 29.0, 131.5, -93.7).",
-    "instanceId": "267586701490681000"
+    "instanceId": "267586701490681000",
+    "howto": "在格鲁德要塞按点位搜索：可能在屋顶、水下、土中、树上，或用钩索/炸弹/豆叶/小游戏才能到达。",
+    "reward": "心之碎片（1/4 颗心）",
+    "note": "全 36 片；幼年与成年能拿的片不同。"
   },
   {
     "id": "HP-007",
@@ -226,9 +322,10 @@
     "req": "",
     "zh": "格鲁德要塞 · 心之碎片",
     "en": "Gerudo's Fortress: Piece of Heart",
-    "descZh": "官方 RomFS 精确定位心之碎片（格鲁德要塞，世界坐标 70.5, 115.0, 37.4）。 [MiniGame_HorsebackArchery_GotaHeart]",
-    "descEn": "Exact RomFS Piece of Heart in Gerudo's Fortress (World: 70.5, 115.0, 37.4).",
-    "instanceId": "3389467775572858537"
+    "instanceId": "3389467775572858537",
+    "howto": "在格鲁德要塞按点位搜索：可能在屋顶、水下、土中、树上，或用钩索/炸弹/豆叶/小游戏才能到达。",
+    "reward": "心之碎片（1/4 颗心）",
+    "note": "全 36 片；幼年与成年能拿的片不同。"
   },
   {
     "id": "HP-008",
@@ -247,9 +344,10 @@
     "req": "",
     "zh": "格鲁德峡谷 · 心之碎片",
     "en": "Gerudo Valley: Piece of Heart",
-    "descZh": "官方 RomFS 精确定位心之碎片（格鲁德峡谷，世界坐标 4.9, 59.2, -78.2）。",
-    "descEn": "Exact RomFS Piece of Heart in Gerudo Valley (World: 4.9, 59.2, -78.2).",
-    "instanceId": "1077480308077338993"
+    "instanceId": "1077480308077338993",
+    "howto": "在格鲁德峡谷按点位搜索：可能在屋顶、水下、土中、树上，或用钩索/炸弹/豆叶/小游戏才能到达。",
+    "reward": "心之碎片（1/4 颗心）",
+    "note": "全 36 片；幼年与成年能拿的片不同。"
   },
   {
     "id": "HP-009",
@@ -268,9 +366,10 @@
     "req": "",
     "zh": "格鲁德峡谷 · 心之碎片",
     "en": "Gerudo Valley: Piece of Heart",
-    "descZh": "官方 RomFS 精确定位心之碎片（格鲁德峡谷，世界坐标 -9.8, 90.4, 35.0）。",
-    "descEn": "Exact RomFS Piece of Heart in Gerudo Valley (World: -9.8, 90.4, 35.0).",
-    "instanceId": "14813002874583645116"
+    "instanceId": "14813002874583645116",
+    "howto": "在格鲁德峡谷按点位搜索：可能在屋顶、水下、土中、树上，或用钩索/炸弹/豆叶/小游戏才能到达。",
+    "reward": "心之碎片（1/4 颗心）",
+    "note": "全 36 片；幼年与成年能拿的片不同。"
   },
   {
     "id": "HP-010",
@@ -289,9 +388,10 @@
     "req": "",
     "zh": "哥隆城 · 心之碎片",
     "en": "Goron City: Piece of Heart",
-    "descZh": "官方 RomFS 精确定位心之碎片（哥隆城，世界坐标 0.0, 105.5, 0.0）。 [GoronLargePot_IsGetHeartPiece]",
-    "descEn": "Exact RomFS Piece of Heart in Goron City (World: 0.0, 105.5, 0.0).",
-    "instanceId": "3483734707455267135"
+    "instanceId": "3483734707455267135",
+    "howto": "在哥隆城按点位搜索：可能在屋顶、水下、土中、树上，或用钩索/炸弹/豆叶/小游戏才能到达。",
+    "reward": "心之碎片（1/4 颗心）",
+    "note": "全 36 片；幼年与成年能拿的片不同。"
   },
   {
     "id": "HP-011",
@@ -310,9 +410,10 @@
     "req": "",
     "zh": "卡卡利科墓地 · 心之碎片",
     "en": "Kakariko Graveyard: Piece of Heart",
-    "descZh": "官方 RomFS 精确定位心之碎片（卡卡利科墓地，世界坐标 -16.6, 108.1, -8.9）。",
-    "descEn": "Exact RomFS Piece of Heart in Kakariko Graveyard (World: -16.6, 108.1, -8.9).",
-    "instanceId": "77201491298807580"
+    "instanceId": "77201491298807580",
+    "howto": "在卡卡利科墓地按点位搜索：可能在屋顶、水下、土中、树上，或用钩索/炸弹/豆叶/小游戏才能到达。",
+    "reward": "心之碎片（1/4 颗心）",
+    "note": "全 36 片；幼年与成年能拿的片不同。"
   },
   {
     "id": "HP-012",
@@ -331,9 +432,10 @@
     "req": "",
     "zh": "卡卡利科墓地 · 心之碎片",
     "en": "Kakariko Graveyard: Piece of Heart",
-    "descZh": "官方 RomFS 精确定位心之碎片（卡卡利科墓地，世界坐标 21.4, 105.1, 23.2）。",
-    "descEn": "Exact RomFS Piece of Heart in Kakariko Graveyard (World: 21.4, 105.1, 23.2).",
-    "instanceId": "9353003823584590464"
+    "instanceId": "9353003823584590464",
+    "howto": "在卡卡利科墓地按点位搜索：可能在屋顶、水下、土中、树上，或用钩索/炸弹/豆叶/小游戏才能到达。",
+    "reward": "心之碎片（1/4 颗心）",
+    "note": "全 36 片；幼年与成年能拿的片不同。"
   },
   {
     "id": "HP-013",
@@ -352,9 +454,10 @@
     "req": "",
     "zh": "卡卡利科墓地 · 心之碎片",
     "en": "Kakariko Graveyard: Piece of Heart",
-    "descZh": "官方 RomFS 精确定位心之碎片（卡卡利科墓地，世界坐标 -4.6, 103.1, -1.8）。 [GraveYard_DiggingHoleTour_Drop_HeartPiece]",
-    "descEn": "Exact RomFS Piece of Heart in Kakariko Graveyard (World: -4.6, 103.1, -1.8).",
-    "instanceId": "10075158462075677237"
+    "instanceId": "10075158462075677237",
+    "howto": "在卡卡利科墓地按点位搜索：可能在屋顶、水下、土中、树上，或用钩索/炸弹/豆叶/小游戏才能到达。",
+    "reward": "心之碎片（1/4 颗心）",
+    "note": "全 36 片；幼年与成年能拿的片不同。"
   },
   {
     "id": "HP-014",
@@ -373,9 +476,10 @@
     "req": "",
     "zh": "卡卡利科墓地 · 心之碎片",
     "en": "Kakariko Graveyard: Piece of Heart",
-    "descZh": "官方 RomFS 精确定位心之碎片（卡卡利科墓地，世界坐标 -7.7, 103.4, -10.9）。",
-    "descEn": "Exact RomFS Piece of Heart in Kakariko Graveyard (World: -7.7, 103.4, -10.9).",
-    "instanceId": "13358460016985463621"
+    "instanceId": "13358460016985463621",
+    "howto": "在卡卡利科墓地按点位搜索：可能在屋顶、水下、土中、树上，或用钩索/炸弹/豆叶/小游戏才能到达。",
+    "reward": "心之碎片（1/4 颗心）",
+    "note": "全 36 片；幼年与成年能拿的片不同。"
   },
   {
     "id": "HP-015",
@@ -394,9 +498,10 @@
     "req": "",
     "zh": "海拉鲁平原 · 心之碎片",
     "en": "Hyrule Field: Piece of Heart",
-    "descZh": "官方 RomFS 精确定位心之碎片（海拉鲁平原，世界坐标 -213.4, 133.4, 138.4）。",
-    "descEn": "Exact RomFS Piece of Heart in Hyrule Field (World: -213.4, 133.4, 138.4).",
-    "instanceId": "14128250030289710996"
+    "instanceId": "14128250030289710996",
+    "howto": "在海拉鲁平原按点位搜索：可能在屋顶、水下、土中、树上，或用钩索/炸弹/豆叶/小游戏才能到达。",
+    "reward": "心之碎片（1/4 颗心）",
+    "note": "全 36 片；幼年与成年能拿的片不同。"
   },
   {
     "id": "HP-016",
@@ -415,9 +520,10 @@
     "req": "",
     "zh": "海拉鲁平原 · 心之碎片",
     "en": "Hyrule Field: Piece of Heart",
-    "descZh": "官方 RomFS 精确定位心之碎片（海拉鲁平原，世界坐标 39.9, 152.4, 26.6）。 [HyruleField_Enemy_Scrub_Business_HeartPiece_01]",
-    "descEn": "Exact RomFS Piece of Heart in Hyrule Field (World: 39.9, 152.4, 26.6).",
-    "instanceId": "14825051130171187671"
+    "instanceId": "14825051130171187671",
+    "howto": "在海拉鲁平原按点位搜索：可能在屋顶、水下、土中、树上，或用钩索/炸弹/豆叶/小游戏才能到达。",
+    "reward": "心之碎片（1/4 颗心）",
+    "note": "全 36 片；幼年与成年能拿的片不同。"
   },
   {
     "id": "HP-017",
@@ -436,9 +542,10 @@
     "req": "",
     "zh": "卡卡利科村 · 心之碎片",
     "en": "Kakariko Village: Piece of Heart",
-    "descZh": "官方 RomFS 精确定位心之碎片（卡卡利科村，世界坐标 -44.1, 108.0, 112.0）。",
-    "descEn": "Exact RomFS Piece of Heart in Kakariko Village (World: -44.1, 108.0, 112.0).",
-    "instanceId": "1051454338871863592"
+    "instanceId": "1051454338871863592",
+    "howto": "在卡卡利科村按点位搜索：可能在屋顶、水下、土中、树上，或用钩索/炸弹/豆叶/小游戏才能到达。",
+    "reward": "心之碎片（1/4 颗心）",
+    "note": "全 36 片；幼年与成年能拿的片不同。"
   },
   {
     "id": "HP-018",
@@ -457,9 +564,10 @@
     "req": "",
     "zh": "卡卡利科村 · 心之碎片",
     "en": "Kakariko Village: Piece of Heart",
-    "descZh": "官方 RomFS 精确定位心之碎片（卡卡利科村，世界坐标 -36.1, 107.5, 29.0）。 [Npc_Hylia_001_IsGetHeartPiece]",
-    "descEn": "Exact RomFS Piece of Heart in Kakariko Village (World: -36.1, 107.5, 29.0).",
-    "instanceId": "1416092057268113387"
+    "instanceId": "1416092057268113387",
+    "howto": "在卡卡利科村按点位搜索：可能在屋顶、水下、土中、树上，或用钩索/炸弹/豆叶/小游戏才能到达。",
+    "reward": "心之碎片（1/4 颗心）",
+    "note": "全 36 片；幼年与成年能拿的片不同。"
   },
   {
     "id": "HP-019",
@@ -478,9 +586,10 @@
     "req": "",
     "zh": "卡卡利科村 · 心之碎片",
     "en": "Kakariko Village: Piece of Heart",
-    "descZh": "官方 RomFS 精确定位心之碎片（卡卡利科村，世界坐标 1.5, 108.9, 37.5）。",
-    "descEn": "Exact RomFS Piece of Heart in Kakariko Village (World: 1.5, 108.9, 37.5).",
-    "instanceId": "3518965357024502806"
+    "instanceId": "3518965357024502806",
+    "howto": "在卡卡利科村按点位搜索：可能在屋顶、水下、土中、树上，或用钩索/炸弹/豆叶/小游戏才能到达。",
+    "reward": "心之碎片（1/4 颗心）",
+    "note": "全 36 片；幼年与成年能拿的片不同。"
   },
   {
     "id": "HP-020",
@@ -499,9 +608,10 @@
     "req": "",
     "zh": "卡卡利科村 · 心之碎片",
     "en": "Kakariko Village: Piece of Heart",
-    "descZh": "官方 RomFS 精确定位心之碎片（卡卡利科村，世界坐标 -27.8, 103.2, 80.6）。 [KakarikoVillage_IsAfterSave_Npc_Hylia_025]",
-    "descEn": "Exact RomFS Piece of Heart in Kakariko Village (World: -27.8, 103.2, 80.6).",
-    "instanceId": "12012336414699946951"
+    "instanceId": "12012336414699946951",
+    "howto": "在卡卡利科村按点位搜索：可能在屋顶、水下、土中、树上，或用钩索/炸弹/豆叶/小游戏才能到达。",
+    "reward": "心之碎片（1/4 颗心）",
+    "note": "全 36 片；幼年与成年能拿的片不同。"
   },
   {
     "id": "HP-021",
@@ -520,9 +630,10 @@
     "req": "",
     "zh": "海利亚湖 · 心之碎片",
     "en": "Lake Hylia: Piece of Heart",
-    "descZh": "官方 RomFS 精确定位心之碎片（海利亚湖，世界坐标 -174.4, 138.0, 418.0）。 [Npc_Hylia_045_HasDived]",
-    "descEn": "Exact RomFS Piece of Heart in Lake Hylia (World: -174.4, 138.0, 418.0).",
-    "instanceId": "3889886157160285015"
+    "instanceId": "3889886157160285015",
+    "howto": "在海利亚湖按点位搜索：可能在屋顶、水下、土中、树上，或用钩索/炸弹/豆叶/小游戏才能到达。",
+    "reward": "心之碎片（1/4 颗心）",
+    "note": "全 36 片；幼年与成年能拿的片不同。"
   },
   {
     "id": "HP-022",
@@ -541,9 +652,10 @@
     "req": "",
     "zh": "海利亚湖 · 心之碎片",
     "en": "Lake Hylia: Piece of Heart",
-    "descZh": "官方 RomFS 精确定位心之碎片（海利亚湖，世界坐标 -98.8, 134.8, 493.3）。 [MiniGame_Fishing_GetHeartPiece]",
-    "descEn": "Exact RomFS Piece of Heart in Lake Hylia (World: -98.8, 134.8, 493.3).",
-    "instanceId": "6175378250368022556"
+    "instanceId": "6175378250368022556",
+    "howto": "在海利亚湖按点位搜索：可能在屋顶、水下、土中、树上，或用钩索/炸弹/豆叶/小游戏才能到达。",
+    "reward": "心之碎片（1/4 颗心）",
+    "note": "全 36 片；幼年与成年能拿的片不同。"
   },
   {
     "id": "HP-023",
@@ -562,9 +674,10 @@
     "req": "",
     "zh": "海利亚湖 · 心之碎片",
     "en": "Lake Hylia: Piece of Heart",
-    "descZh": "官方 RomFS 精确定位心之碎片（海利亚湖，世界坐标 -180.6, 163.1, 425.0）。",
-    "descEn": "Exact RomFS Piece of Heart in Lake Hylia (World: -180.6, 163.1, 425.0).",
-    "instanceId": "8693044901437535425"
+    "instanceId": "8693044901437535425",
+    "howto": "在海利亚湖按点位搜索：可能在屋顶、水下、土中、树上，或用钩索/炸弹/豆叶/小游戏才能到达。",
+    "reward": "心之碎片（1/4 颗心）",
+    "note": "全 36 片；幼年与成年能拿的片不同。"
   },
   {
     "id": "HP-024",
@@ -583,9 +696,10 @@
     "req": "",
     "zh": "隆隆牧场 · 心之碎片",
     "en": "Lon Lon Ranch: Piece of Heart",
-    "descZh": "官方 RomFS 精确定位心之碎片（隆隆牧场，世界坐标 -157.2, 150.9, 266.4）。",
-    "descEn": "Exact RomFS Piece of Heart in Lon Lon Ranch (World: -157.2, 150.9, 266.4).",
-    "instanceId": "11156084763374250886"
+    "instanceId": "11156084763374250886",
+    "howto": "在隆隆牧场按点位搜索：可能在屋顶、水下、土中、树上，或用钩索/炸弹/豆叶/小游戏才能到达。",
+    "reward": "心之碎片（1/4 颗心）",
+    "note": "全 36 片；幼年与成年能拿的片不同。"
   },
   {
     "id": "HP-025",
@@ -604,9 +718,10 @@
     "req": "",
     "zh": "迷失森林 · 心之碎片",
     "en": "Lost Woods: Piece of Heart",
-    "descZh": "官方 RomFS 精确定位心之碎片（迷失森林，世界坐标 -34.0, 104.5, -3.7）。 [Npc_SkullKid_Child_IsGetHeartPiece]",
-    "descEn": "Exact RomFS Piece of Heart in Lost Woods (World: -34.0, 104.5, -3.7).",
-    "instanceId": "605877630645816565"
+    "instanceId": "605877630645816565",
+    "howto": "在迷失森林按点位搜索：可能在屋顶、水下、土中、树上，或用钩索/炸弹/豆叶/小游戏才能到达。",
+    "reward": "心之碎片（1/4 颗心）",
+    "note": "全 36 片；幼年与成年能拿的片不同。"
   },
   {
     "id": "HP-026",
@@ -625,9 +740,10 @@
     "req": "",
     "zh": "迷失森林 · 心之碎片",
     "en": "Lost Woods: Piece of Heart",
-    "descZh": "官方 RomFS 精确定位心之碎片（迷失森林，世界坐标 48.8, 98.3, 16.0）。 [Minigame_SkullKidSession_IsGetHeartPiece]",
-    "descEn": "Exact RomFS Piece of Heart in Lost Woods (World: 48.8, 98.3, 16.0).",
-    "instanceId": "18092305056327665421"
+    "instanceId": "18092305056327665421",
+    "howto": "在迷失森林按点位搜索：可能在屋顶、水下、土中、树上，或用钩索/炸弹/豆叶/小游戏才能到达。",
+    "reward": "心之碎片（1/4 颗心）",
+    "note": "全 36 片；幼年与成年能拿的片不同。"
   },
   {
     "id": "HP-027",
@@ -646,9 +762,10 @@
     "req": "",
     "zh": "城下町集市 · 心之碎片",
     "en": "Hyrule Market: Piece of Heart",
-    "descZh": "官方 RomFS 精确定位心之碎片（城下町集市，世界坐标 -62.9, 110.7, 12.6）。 [MiniGame_ChoiceTreasure_IsClear]",
-    "descEn": "Exact RomFS Piece of Heart in Hyrule Market (World: -62.9, 110.7, 12.6).",
-    "instanceId": "5215133574889185473"
+    "instanceId": "5215133574889185473",
+    "howto": "在城下町集市按点位搜索：可能在屋顶、水下、土中、树上，或用钩索/炸弹/豆叶/小游戏才能到达。",
+    "reward": "心之碎片（1/4 颗心）",
+    "note": "全 36 片；幼年与成年能拿的片不同。"
   },
   {
     "id": "HP-028",
@@ -667,9 +784,10 @@
     "req": "",
     "zh": "城下町集市 · 心之碎片",
     "en": "Hyrule Market: Piece of Heart",
-    "descZh": "官方 RomFS 精确定位心之碎片（城下町集市，世界坐标 1.7, 100.1, 26.6）。 [SubEvent_FindRichard_GetHeartPiece]",
-    "descEn": "Exact RomFS Piece of Heart in Hyrule Market (World: 1.7, 100.1, 26.6).",
-    "instanceId": "8568137720802848289"
+    "instanceId": "8568137720802848289",
+    "howto": "在城下町集市按点位搜索：可能在屋顶、水下、土中、树上，或用钩索/炸弹/豆叶/小游戏才能到达。",
+    "reward": "心之碎片（1/4 颗心）",
+    "note": "全 36 片；幼年与成年能拿的片不同。"
   },
   {
     "id": "HP-029",
@@ -688,9 +806,10 @@
     "req": "",
     "zh": "城下町集市 · 心之碎片",
     "en": "Hyrule Market: Piece of Heart",
-    "descZh": "官方 RomFS 精确定位心之碎片（城下町集市，世界坐标 -22.0, 110.0, 9.2）。 [MiniGame_BombchuBowling_ClearThirdTime]",
-    "descEn": "Exact RomFS Piece of Heart in Hyrule Market (World: -22.0, 110.0, 9.2).",
-    "instanceId": "11628104451986877978"
+    "instanceId": "11628104451986877978",
+    "howto": "在城下町集市按点位搜索：可能在屋顶、水下、土中、树上，或用钩索/炸弹/豆叶/小游戏才能到达。",
+    "reward": "心之碎片（1/4 颗心）",
+    "note": "全 36 片；幼年与成年能拿的片不同。"
   },
   {
     "id": "HP-030",
@@ -709,9 +828,10 @@
     "req": "",
     "zh": "佐拉族领地 · 心之碎片",
     "en": "Zora's Domain: Piece of Heart",
-    "descZh": "官方 RomFS 精确定位心之碎片（佐拉族领地，世界坐标 28.8, 100.5, -4.9）。",
-    "descEn": "Exact RomFS Piece of Heart in Zora's Domain (World: 28.8, 100.5, -4.9).",
-    "instanceId": "12099229167357371868"
+    "instanceId": "12099229167357371868",
+    "howto": "在佐拉族领地按点位搜索：可能在屋顶、水下、土中、树上，或用钩索/炸弹/豆叶/小游戏才能到达。",
+    "reward": "心之碎片（1/4 颗心）",
+    "note": "全 36 片；幼年与成年能拿的片不同。"
   },
   {
     "id": "HP-031",
@@ -730,9 +850,10 @@
     "req": "",
     "zh": "佐拉之泉 · 心之碎片",
     "en": "Zora's Fountain: Piece of Heart",
-    "descZh": "官方 RomFS 精确定位心之碎片（佐拉之泉，世界坐标 56.8, 70.9, -27.4）。",
-    "descEn": "Exact RomFS Piece of Heart in Zora's Fountain (World: 56.8, 70.9, -27.4).",
-    "instanceId": "11514535765115882860"
+    "instanceId": "11514535765115882860",
+    "howto": "在佐拉之泉按点位搜索：可能在屋顶、水下、土中、树上，或用钩索/炸弹/豆叶/小游戏才能到达。",
+    "reward": "心之碎片（1/4 颗心）",
+    "note": "全 36 片；幼年与成年能拿的片不同。"
   },
   {
     "id": "HP-032",
@@ -751,9 +872,10 @@
     "req": "",
     "zh": "佐拉之泉 · 心之碎片",
     "en": "Zora's Fountain: Piece of Heart",
-    "descZh": "官方 RomFS 精确定位心之碎片（佐拉之泉，世界坐标 85.0, 103.1, -34.7）。",
-    "descEn": "Exact RomFS Piece of Heart in Zora's Fountain (World: 85.0, 103.1, -34.7).",
-    "instanceId": "12439817999368518552"
+    "instanceId": "12439817999368518552",
+    "howto": "在佐拉之泉按点位搜索：可能在屋顶、水下、土中、树上，或用钩索/炸弹/豆叶/小游戏才能到达。",
+    "reward": "心之碎片（1/4 颗心）",
+    "note": "全 36 片；幼年与成年能拿的片不同。"
   },
   {
     "id": "HP-033",
@@ -772,9 +894,10 @@
     "req": "",
     "zh": "佐拉河 · 心之碎片",
     "en": "Zora's River: Piece of Heart",
-    "descZh": "官方 RomFS 精确定位心之碎片（佐拉河，世界坐标 -4.0, 111.4, -34.3）。",
-    "descEn": "Exact RomFS Piece of Heart in Zora's River (World: -4.0, 111.4, -34.3).",
-    "instanceId": "3814878871658269103"
+    "instanceId": "3814878871658269103",
+    "howto": "在佐拉河按点位搜索：可能在屋顶、水下、土中、树上，或用钩索/炸弹/豆叶/小游戏才能到达。",
+    "reward": "心之碎片（1/4 颗心）",
+    "note": "全 36 片；幼年与成年能拿的片不同。"
   },
   {
     "id": "HP-034",
@@ -793,9 +916,10 @@
     "req": "",
     "zh": "佐拉河 · 心之碎片",
     "en": "Zora's River: Piece of Heart",
-    "descZh": "官方 RomFS 精确定位心之碎片（佐拉河，世界坐标 9.0, 101.9, -50.9）。 [MiniGame_FrogTenors_InsectRepellent]",
-    "descEn": "Exact RomFS Piece of Heart in Zora's River (World: 9.0, 101.9, -50.9).",
-    "instanceId": "4877056571307262080"
+    "instanceId": "4877056571307262080",
+    "howto": "在佐拉河按点位搜索：可能在屋顶、水下、土中、树上，或用钩索/炸弹/豆叶/小游戏才能到达。",
+    "reward": "心之碎片（1/4 颗心）",
+    "note": "全 36 片；幼年与成年能拿的片不同。"
   },
   {
     "id": "HP-035",
@@ -814,9 +938,10 @@
     "req": "",
     "zh": "佐拉河 · 心之碎片",
     "en": "Zora's River: Piece of Heart",
-    "descZh": "官方 RomFS 精确定位心之碎片（佐拉河，世界坐标 99.5, 120.1, -61.7）。",
-    "descEn": "Exact RomFS Piece of Heart in Zora's River (World: 99.5, 120.1, -61.7).",
-    "instanceId": "6961804965205481566"
+    "instanceId": "6961804965205481566",
+    "howto": "在佐拉河按点位搜索：可能在屋顶、水下、土中、树上，或用钩索/炸弹/豆叶/小游戏才能到达。",
+    "reward": "心之碎片（1/4 颗心）",
+    "note": "全 36 片；幼年与成年能拿的片不同。"
   },
   {
     "id": "HP-036",
@@ -835,9 +960,10 @@
     "req": "",
     "zh": "佐拉河 · 心之碎片",
     "en": "Zora's River: Piece of Heart",
-    "descZh": "官方 RomFS 精确定位心之碎片（佐拉河，世界坐标 9.0, 101.9, -50.9）。 [MiniGame_FrogTenors_StormSong]",
-    "descEn": "Exact RomFS Piece of Heart in Zora's River (World: 9.0, 101.9, -50.9).",
-    "instanceId": "18246168067761770276"
+    "instanceId": "18246168067761770276",
+    "howto": "在佐拉河按点位搜索：可能在屋顶、水下、土中、树上，或用钩索/炸弹/豆叶/小游戏才能到达。",
+    "reward": "心之碎片（1/4 颗心）",
+    "note": "全 36 片；幼年与成年能拿的片不同。"
   },
   {
     "id": "GS-001",
@@ -856,9 +982,10 @@
     "req": "",
     "zh": "死亡山火山口 · 黄金骷髅蜘蛛",
     "en": "Death Mountain Crater: Gold Skulltula",
-    "descZh": "官方 RomFS 精确定位黄金骷髅蜘蛛（世界坐标 3.8, 111.2, -0.8）。",
-    "descEn": "Exact RomFS Gold Skulltula in Death Mountain Crater (World: 3.8, 111.2, -0.8).",
-    "instanceId": "6397182598322965076"
+    "instanceId": "6397182598322965076",
+    "howto": "在死亡山火山口按点位排查树上、墙缝、水下与软土；野外点位多数只在夜晚出现。",
+    "reward": "黄金骷髅蜘蛛徽章 ×1",
+    "note": "全 100 只，本区 2 只；10 大人钱包 / 20 响音石 / 30 巨人钱包 / 40 炸弹鼠×20 / 50 心之碎片 / 100 金卢比 200。"
   },
   {
     "id": "GS-002",
@@ -877,9 +1004,10 @@
     "req": "",
     "zh": "死亡山火山口 · 黄金骷髅蜘蛛",
     "en": "Death Mountain Crater: Gold Skulltula",
-    "descZh": "官方 RomFS 精确定位黄金骷髅蜘蛛（世界坐标 -2.9, 128.2, 48.7）。",
-    "descEn": "Exact RomFS Gold Skulltula in Death Mountain Crater (World: -2.9, 128.2, 48.7).",
-    "instanceId": "18219295034534354574"
+    "instanceId": "18219295034534354574",
+    "howto": "在死亡山火山口按点位排查树上、墙缝、水下与软土；野外点位多数只在夜晚出现。",
+    "reward": "黄金骷髅蜘蛛徽章 ×1",
+    "note": "全 100 只，本区 2 只；10 大人钱包 / 20 响音石 / 30 巨人钱包 / 40 炸弹鼠×20 / 50 心之碎片 / 100 金卢比 200。"
   },
   {
     "id": "GS-003",
@@ -898,9 +1026,10 @@
     "req": "",
     "zh": "死亡山山道 · 黄金骷髅蜘蛛",
     "en": "Death Mountain Trail: Gold Skulltula",
-    "descZh": "官方 RomFS 精确定位黄金骷髅蜘蛛（世界坐标 -51.2, 102.8, 27.2）。",
-    "descEn": "Exact RomFS Gold Skulltula in Death Mountain Trail (World: -51.2, 102.8, 27.2).",
-    "instanceId": "351345377871782696"
+    "instanceId": "351345377871782696",
+    "howto": "在死亡山山道按点位排查树上、墙缝、水下与软土；野外点位多数只在夜晚出现。",
+    "reward": "黄金骷髅蜘蛛徽章 ×1",
+    "note": "全 100 只，本区 4 只；10 大人钱包 / 20 响音石 / 30 巨人钱包 / 40 炸弹鼠×20 / 50 心之碎片 / 100 金卢比 200。"
   },
   {
     "id": "GS-004",
@@ -919,9 +1048,10 @@
     "req": "",
     "zh": "死亡山山道 · 黄金骷髅蜘蛛",
     "en": "Death Mountain Trail: Gold Skulltula",
-    "descZh": "官方 RomFS 精确定位黄金骷髅蜘蛛（世界坐标 3.2, 187.3, -111.3）。",
-    "descEn": "Exact RomFS Gold Skulltula in Death Mountain Trail (World: 3.2, 187.3, -111.3).",
-    "instanceId": "832677387023638406"
+    "instanceId": "832677387023638406",
+    "howto": "在死亡山山道按点位排查树上、墙缝、水下与软土；野外点位多数只在夜晚出现。",
+    "reward": "黄金骷髅蜘蛛徽章 ×1",
+    "note": "全 100 只，本区 4 只；10 大人钱包 / 20 响音石 / 30 巨人钱包 / 40 炸弹鼠×20 / 50 心之碎片 / 100 金卢比 200。"
   },
   {
     "id": "GS-005",
@@ -940,9 +1070,10 @@
     "req": "",
     "zh": "死亡山山道 · 黄金骷髅蜘蛛",
     "en": "Death Mountain Trail: Gold Skulltula",
-    "descZh": "官方 RomFS 精确定位黄金骷髅蜘蛛（世界坐标 -45.5, 109.2, -20.2）。",
-    "descEn": "Exact RomFS Gold Skulltula in Death Mountain Trail (World: -45.5, 109.2, -20.2).",
-    "instanceId": "17425319789138387506"
+    "instanceId": "17425319789138387506",
+    "howto": "在死亡山山道按点位排查树上、墙缝、水下与软土；野外点位多数只在夜晚出现。",
+    "reward": "黄金骷髅蜘蛛徽章 ×1",
+    "note": "全 100 只，本区 4 只；10 大人钱包 / 20 响音石 / 30 巨人钱包 / 40 炸弹鼠×20 / 50 心之碎片 / 100 金卢比 200。"
   },
   {
     "id": "GS-006",
@@ -961,9 +1092,10 @@
     "req": "",
     "zh": "死亡山山道 · 黄金骷髅蜘蛛",
     "en": "Death Mountain Trail: Gold Skulltula",
-    "descZh": "官方 RomFS 精确定位黄金骷髅蜘蛛（世界坐标 -31.0, 125.1, -18.0）。",
-    "descEn": "Exact RomFS Gold Skulltula in Death Mountain Trail (World: -31.0, 125.1, -18.0).",
-    "instanceId": "17669199296215821346"
+    "instanceId": "17669199296215821346",
+    "howto": "在死亡山山道按点位排查树上、墙缝、水下与软土；野外点位多数只在夜晚出现。",
+    "reward": "黄金骷髅蜘蛛徽章 ×1",
+    "note": "全 100 只，本区 4 只；10 大人钱包 / 20 响音石 / 30 巨人钱包 / 40 炸弹鼠×20 / 50 心之碎片 / 100 金卢比 200。"
   },
   {
     "id": "GS-007",
@@ -982,9 +1114,10 @@
     "req": "",
     "zh": "沙漠巨像 · 黄金骷髅蜘蛛",
     "en": "Desert Colossus: Gold Skulltula",
-    "descZh": "官方 RomFS 精确定位黄金骷髅蜘蛛（世界坐标 -157.5, 95.7, 17.2）。",
-    "descEn": "Exact RomFS Gold Skulltula in Desert Colossus (World: -157.5, 95.7, 17.2).",
-    "instanceId": "234735562946824289"
+    "instanceId": "234735562946824289",
+    "howto": "在沙漠巨像按点位排查树上、墙缝、水下与软土；野外点位多数只在夜晚出现。",
+    "reward": "黄金骷髅蜘蛛徽章 ×1",
+    "note": "全 100 只，本区 3 只；10 大人钱包 / 20 响音石 / 30 巨人钱包 / 40 炸弹鼠×20 / 50 心之碎片 / 100 金卢比 200。"
   },
   {
     "id": "GS-008",
@@ -1003,9 +1136,10 @@
     "req": "",
     "zh": "沙漠巨像 · 黄金骷髅蜘蛛",
     "en": "Desert Colossus: Gold Skulltula",
-    "descZh": "官方 RomFS 精确定位黄金骷髅蜘蛛（世界坐标 -73.9, 105.3, -5.7）。",
-    "descEn": "Exact RomFS Gold Skulltula in Desert Colossus (World: -73.9, 105.3, -5.7).",
-    "instanceId": "11160993739666517210"
+    "instanceId": "11160993739666517210",
+    "howto": "在沙漠巨像按点位排查树上、墙缝、水下与软土；野外点位多数只在夜晚出现。",
+    "reward": "黄金骷髅蜘蛛徽章 ×1",
+    "note": "全 100 只，本区 3 只；10 大人钱包 / 20 响音石 / 30 巨人钱包 / 40 炸弹鼠×20 / 50 心之碎片 / 100 金卢比 200。"
   },
   {
     "id": "GS-009",
@@ -1024,9 +1158,10 @@
     "req": "",
     "zh": "沙漠巨像 · 黄金骷髅蜘蛛",
     "en": "Desert Colossus: Gold Skulltula",
-    "descZh": "官方 RomFS 精确定位黄金骷髅蜘蛛（世界坐标 -170.1, 101.8, -47.9）。",
-    "descEn": "Exact RomFS Gold Skulltula in Desert Colossus (World: -170.1, 101.8, -47.9).",
-    "instanceId": "15057756765324812936"
+    "instanceId": "15057756765324812936",
+    "howto": "在沙漠巨像按点位排查树上、墙缝、水下与软土；野外点位多数只在夜晚出现。",
+    "reward": "黄金骷髅蜘蛛徽章 ×1",
+    "note": "全 100 只，本区 3 只；10 大人钱包 / 20 响音石 / 30 巨人钱包 / 40 炸弹鼠×20 / 50 心之碎片 / 100 金卢比 200。"
   },
   {
     "id": "GS-010",
@@ -1045,9 +1180,10 @@
     "req": "",
     "zh": "加侬之城 · 黄金骷髅蜘蛛",
     "en": "Ganon's Castle: Gold Skulltula",
-    "descZh": "官方 RomFS 精确定位黄金骷髅蜘蛛（世界坐标 78.4, 94.1, 328.4）。",
-    "descEn": "Exact RomFS Gold Skulltula in Ganon's Castle (World: 78.4, 94.1, 328.4).",
-    "instanceId": "5626064870824758772"
+    "instanceId": "5626064870824758772",
+    "howto": "在加侬之城按点位排查树上、墙缝、水下与软土；野外点位多数只在夜晚出现。",
+    "reward": "黄金骷髅蜘蛛徽章 ×1",
+    "note": "全 100 只，本区 1 只；10 大人钱包 / 20 响音石 / 30 巨人钱包 / 40 炸弹鼠×20 / 50 心之碎片 / 100 金卢比 200。"
   },
   {
     "id": "GS-011",
@@ -1066,9 +1202,10 @@
     "req": "",
     "zh": "格鲁德要塞 · 黄金骷髅蜘蛛",
     "en": "Gerudo's Fortress: Gold Skulltula",
-    "descZh": "官方 RomFS 精确定位黄金骷髅蜘蛛（世界坐标 55.3, 131.9, -70.2）。",
-    "descEn": "Exact RomFS Gold Skulltula in Gerudo's Fortress (World: 55.3, 131.9, -70.2).",
-    "instanceId": "9362225887419425752"
+    "instanceId": "9362225887419425752",
+    "howto": "在格鲁德要塞按点位排查树上、墙缝、水下与软土；野外点位多数只在夜晚出现。",
+    "reward": "黄金骷髅蜘蛛徽章 ×1",
+    "note": "全 100 只，本区 2 只；10 大人钱包 / 20 响音石 / 30 巨人钱包 / 40 炸弹鼠×20 / 50 心之碎片 / 100 金卢比 200。"
   },
   {
     "id": "GS-012",
@@ -1087,9 +1224,10 @@
     "req": "",
     "zh": "格鲁德要塞 · 黄金骷髅蜘蛛",
     "en": "Gerudo's Fortress: Gold Skulltula",
-    "descZh": "官方 RomFS 精确定位黄金骷髅蜘蛛（世界坐标 181.7, 125.6, -88.6）。",
-    "descEn": "Exact RomFS Gold Skulltula in Gerudo's Fortress (World: 181.7, 125.6, -88.6).",
-    "instanceId": "13037049463363052038"
+    "instanceId": "13037049463363052038",
+    "howto": "在格鲁德要塞按点位排查树上、墙缝、水下与软土；野外点位多数只在夜晚出现。",
+    "reward": "黄金骷髅蜘蛛徽章 ×1",
+    "note": "全 100 只，本区 2 只；10 大人钱包 / 20 响音石 / 30 巨人钱包 / 40 炸弹鼠×20 / 50 心之碎片 / 100 金卢比 200。"
   },
   {
     "id": "GS-013",
@@ -1108,9 +1246,10 @@
     "req": "",
     "zh": "格鲁德峡谷 · 黄金骷髅蜘蛛",
     "en": "Gerudo Valley: Gold Skulltula",
-    "descZh": "官方 RomFS 精确定位黄金骷髅蜘蛛（世界坐标 -11.0, 48.0, 2.4）。",
-    "descEn": "Exact RomFS Gold Skulltula in Gerudo Valley (World: -11.0, 48.0, 2.4).",
-    "instanceId": "8326970197618554626"
+    "instanceId": "8326970197618554626",
+    "howto": "在格鲁德峡谷按点位排查树上、墙缝、水下与软土；野外点位多数只在夜晚出现。",
+    "reward": "黄金骷髅蜘蛛徽章 ×1",
+    "note": "全 100 只，本区 4 只；10 大人钱包 / 20 响音石 / 30 巨人钱包 / 40 炸弹鼠×20 / 50 心之碎片 / 100 金卢比 200。"
   },
   {
     "id": "GS-014",
@@ -1129,9 +1268,10 @@
     "req": "",
     "zh": "格鲁德峡谷 · 黄金骷髅蜘蛛",
     "en": "Gerudo Valley: Gold Skulltula",
-    "descZh": "官方 RomFS 精确定位黄金骷髅蜘蛛（世界坐标 -34.5, 110.0, 10.3）。",
-    "descEn": "Exact RomFS Gold Skulltula in Gerudo Valley (World: -34.5, 110.0, 10.3).",
-    "instanceId": "11535915511003753934"
+    "instanceId": "11535915511003753934",
+    "howto": "在格鲁德峡谷按点位排查树上、墙缝、水下与软土；野外点位多数只在夜晚出现。",
+    "reward": "黄金骷髅蜘蛛徽章 ×1",
+    "note": "全 100 只，本区 4 只；10 大人钱包 / 20 响音石 / 30 巨人钱包 / 40 炸弹鼠×20 / 50 心之碎片 / 100 金卢比 200。"
   },
   {
     "id": "GS-015",
@@ -1150,9 +1290,10 @@
     "req": "",
     "zh": "格鲁德峡谷 · 黄金骷髅蜘蛛",
     "en": "Gerudo Valley: Gold Skulltula",
-    "descZh": "官方 RomFS 精确定位黄金骷髅蜘蛛（世界坐标 -45.7, 106.2, -35.6）。",
-    "descEn": "Exact RomFS Gold Skulltula in Gerudo Valley (World: -45.7, 106.2, -35.6).",
-    "instanceId": "13584527502619061465"
+    "instanceId": "13584527502619061465",
+    "howto": "在格鲁德峡谷按点位排查树上、墙缝、水下与软土；野外点位多数只在夜晚出现。",
+    "reward": "黄金骷髅蜘蛛徽章 ×1",
+    "note": "全 100 只，本区 4 只；10 大人钱包 / 20 响音石 / 30 巨人钱包 / 40 炸弹鼠×20 / 50 心之碎片 / 100 金卢比 200。"
   },
   {
     "id": "GS-016",
@@ -1171,9 +1312,10 @@
     "req": "",
     "zh": "格鲁德峡谷 · 黄金骷髅蜘蛛",
     "en": "Gerudo Valley: Gold Skulltula",
-    "descZh": "官方 RomFS 精确定位黄金骷髅蜘蛛（世界坐标 50.8, 97.4, 5.1）。",
-    "descEn": "Exact RomFS Gold Skulltula in Gerudo Valley (World: 50.8, 97.4, 5.1).",
-    "instanceId": "15265071047503310220"
+    "instanceId": "15265071047503310220",
+    "howto": "在格鲁德峡谷按点位排查树上、墙缝、水下与软土；野外点位多数只在夜晚出现。",
+    "reward": "黄金骷髅蜘蛛徽章 ×1",
+    "note": "全 100 只，本区 4 只；10 大人钱包 / 20 响音石 / 30 巨人钱包 / 40 炸弹鼠×20 / 50 心之碎片 / 100 金卢比 200。"
   },
   {
     "id": "GS-017",
@@ -1192,9 +1334,10 @@
     "req": "",
     "zh": "哥隆城 · 黄金骷髅蜘蛛",
     "en": "Goron City: Gold Skulltula",
-    "descZh": "官方 RomFS 精确定位黄金骷髅蜘蛛（世界坐标 -48.2, 113.7, -7.8）。",
-    "descEn": "Exact RomFS Gold Skulltula in Goron City (World: -48.2, 113.7, -7.8).",
-    "instanceId": "569390966671955163"
+    "instanceId": "569390966671955163",
+    "howto": "在哥隆城按点位排查树上、墙缝、水下与软土；野外点位多数只在夜晚出现。",
+    "reward": "黄金骷髅蜘蛛徽章 ×1",
+    "note": "全 100 只，本区 2 只；10 大人钱包 / 20 响音石 / 30 巨人钱包 / 40 炸弹鼠×20 / 50 心之碎片 / 100 金卢比 200。"
   },
   {
     "id": "GS-018",
@@ -1213,9 +1356,10 @@
     "req": "",
     "zh": "哥隆城 · 黄金骷髅蜘蛛",
     "en": "Goron City: Gold Skulltula",
-    "descZh": "官方 RomFS 精确定位黄金骷髅蜘蛛（世界坐标 0.5, 113.4, -1.2）。",
-    "descEn": "Exact RomFS Gold Skulltula in Goron City (World: 0.5, 113.4, -1.2).",
-    "instanceId": "18139423190738716302"
+    "instanceId": "18139423190738716302",
+    "howto": "在哥隆城按点位排查树上、墙缝、水下与软土；野外点位多数只在夜晚出现。",
+    "reward": "黄金骷髅蜘蛛徽章 ×1",
+    "note": "全 100 只，本区 2 只；10 大人钱包 / 20 响音石 / 30 巨人钱包 / 40 炸弹鼠×20 / 50 心之碎片 / 100 金卢比 200。"
   },
   {
     "id": "GS-019",
@@ -1234,9 +1378,10 @@
     "req": "",
     "zh": "卡卡利科墓地 · 黄金骷髅蜘蛛",
     "en": "Kakariko Graveyard: Gold Skulltula",
-    "descZh": "官方 RomFS 精确定位黄金骷髅蜘蛛（世界坐标 -20.2, 104.3, 26.4）。",
-    "descEn": "Exact RomFS Gold Skulltula in Kakariko Graveyard (World: -20.2, 104.3, 26.4).",
-    "instanceId": "229475726653285413"
+    "instanceId": "229475726653285413",
+    "howto": "在卡卡利科墓地按点位排查树上、墙缝、水下与软土；野外点位多数只在夜晚出现。",
+    "reward": "黄金骷髅蜘蛛徽章 ×1",
+    "note": "全 100 只，本区 2 只；10 大人钱包 / 20 响音石 / 30 巨人钱包 / 40 炸弹鼠×20 / 50 心之碎片 / 100 金卢比 200。"
   },
   {
     "id": "GS-020",
@@ -1255,9 +1400,10 @@
     "req": "",
     "zh": "卡卡利科墓地 · 黄金骷髅蜘蛛",
     "en": "Kakariko Graveyard: Gold Skulltula",
-    "descZh": "官方 RomFS 精确定位黄金骷髅蜘蛛（世界坐标 -12.1, 103.4, -12.2）。",
-    "descEn": "Exact RomFS Gold Skulltula in Kakariko Graveyard (World: -12.1, 103.4, -12.2).",
-    "instanceId": "16798263777516949500"
+    "instanceId": "16798263777516949500",
+    "howto": "在卡卡利科墓地按点位排查树上、墙缝、水下与软土；野外点位多数只在夜晚出现。",
+    "reward": "黄金骷髅蜘蛛徽章 ×1",
+    "note": "全 100 只，本区 2 只；10 大人钱包 / 20 响音石 / 30 巨人钱包 / 40 炸弹鼠×20 / 50 心之碎片 / 100 金卢比 200。"
   },
   {
     "id": "GS-021",
@@ -1276,9 +1422,10 @@
     "req": "",
     "zh": "幻影沙漠 · 黄金骷髅蜘蛛",
     "en": "Haunted Wasteland: Gold Skulltula",
-    "descZh": "官方 RomFS 精确定位黄金骷髅蜘蛛（世界坐标 16.0, 88.8, -99.8）。",
-    "descEn": "Exact RomFS Gold Skulltula in Haunted Wasteland (World: 16.0, 88.8, -99.8).",
-    "instanceId": "14910672274965350769"
+    "instanceId": "14910672274965350769",
+    "howto": "在幻影沙漠按点位排查树上、墙缝、水下与软土；野外点位多数只在夜晚出现。",
+    "reward": "黄金骷髅蜘蛛徽章 ×1",
+    "note": "全 100 只，本区 1 只；10 大人钱包 / 20 响音石 / 30 巨人钱包 / 40 炸弹鼠×20 / 50 心之碎片 / 100 金卢比 200。"
   },
   {
     "id": "GS-022",
@@ -1297,9 +1444,10 @@
     "req": "",
     "zh": "海拉鲁城堡 · 黄金骷髅蜘蛛",
     "en": "Hyrule Castle: Gold Skulltula",
-    "descZh": "官方 RomFS 精确定位黄金骷髅蜘蛛（世界坐标 -12.4, 121.8, -94.9）。",
-    "descEn": "Exact RomFS Gold Skulltula in Hyrule Castle (World: -12.4, 121.8, -94.9).",
-    "instanceId": "2504273934093629549"
+    "instanceId": "2504273934093629549",
+    "howto": "在海拉鲁城堡按点位排查树上、墙缝、水下与软土；野外点位多数只在夜晚出现。",
+    "reward": "黄金骷髅蜘蛛徽章 ×1",
+    "note": "全 100 只，本区 2 只；10 大人钱包 / 20 响音石 / 30 巨人钱包 / 40 炸弹鼠×20 / 50 心之碎片 / 100 金卢比 200。"
   },
   {
     "id": "GS-023",
@@ -1318,9 +1466,10 @@
     "req": "",
     "zh": "海拉鲁城堡 · 黄金骷髅蜘蛛",
     "en": "Hyrule Castle: Gold Skulltula",
-    "descZh": "官方 RomFS 精确定位黄金骷髅蜘蛛（世界坐标 35.9, 117.3, -106.2）。",
-    "descEn": "Exact RomFS Gold Skulltula in Hyrule Castle (World: 35.9, 117.3, -106.2).",
-    "instanceId": "9162653017526462607"
+    "instanceId": "9162653017526462607",
+    "howto": "在海拉鲁城堡按点位排查树上、墙缝、水下与软土；野外点位多数只在夜晚出现。",
+    "reward": "黄金骷髅蜘蛛徽章 ×1",
+    "note": "全 100 只，本区 2 只；10 大人钱包 / 20 响音石 / 30 巨人钱包 / 40 炸弹鼠×20 / 50 心之碎片 / 100 金卢比 200。"
   },
   {
     "id": "GS-024",
@@ -1339,9 +1488,10 @@
     "req": "",
     "zh": "海拉鲁平原 · 黄金骷髅蜘蛛",
     "en": "Hyrule Field: Gold Skulltula",
-    "descZh": "官方 RomFS 精确定位黄金骷髅蜘蛛（世界坐标 70.5, 167.4, 263.8）。",
-    "descEn": "Exact RomFS Gold Skulltula in Hyrule Field (World: 70.5, 167.4, 263.8).",
-    "instanceId": "2177746409373494991"
+    "instanceId": "2177746409373494991",
+    "howto": "在海拉鲁平原按点位排查树上、墙缝、水下与软土；野外点位多数只在夜晚出现。",
+    "reward": "黄金骷髅蜘蛛徽章 ×1",
+    "note": "全 100 只，本区 3 只；10 大人钱包 / 20 响音石 / 30 巨人钱包 / 40 炸弹鼠×20 / 50 心之碎片 / 100 金卢比 200。"
   },
   {
     "id": "GS-025",
@@ -1360,9 +1510,10 @@
     "req": "",
     "zh": "海拉鲁平原 · 黄金骷髅蜘蛛",
     "en": "Hyrule Field: Gold Skulltula",
-    "descZh": "官方 RomFS 精确定位黄金骷髅蜘蛛（位于箱子/软土/洞穴内）（世界坐标 40.1, 144.8, 342.3）。",
-    "descEn": "Exact RomFS Gold Skulltula in Hyrule Field (World: 40.1, 144.8, 342.3).",
-    "instanceId": "9047381233010434881"
+    "instanceId": "9047381233010434881",
+    "howto": "在海拉鲁平原按点位排查树上、墙缝、水下与软土；野外点位多数只在夜晚出现。",
+    "reward": "黄金骷髅蜘蛛徽章 ×1",
+    "note": "全 100 只，本区 3 只；10 大人钱包 / 20 响音石 / 30 巨人钱包 / 40 炸弹鼠×20 / 50 心之碎片 / 100 金卢比 200。"
   },
   {
     "id": "GS-026",
@@ -1381,9 +1532,10 @@
     "req": "",
     "zh": "海拉鲁平原 · 黄金骷髅蜘蛛",
     "en": "Hyrule Field: Gold Skulltula",
-    "descZh": "官方 RomFS 精确定位黄金骷髅蜘蛛（世界坐标 -156.4, 144.2, 338.3）。",
-    "descEn": "Exact RomFS Gold Skulltula in Hyrule Field (World: -156.4, 144.2, 338.3).",
-    "instanceId": "12007978132755687032"
+    "instanceId": "12007978132755687032",
+    "howto": "在海拉鲁平原按点位排查树上、墙缝、水下与软土；野外点位多数只在夜晚出现。",
+    "reward": "黄金骷髅蜘蛛徽章 ×1",
+    "note": "全 100 只，本区 3 只；10 大人钱包 / 20 响音石 / 30 巨人钱包 / 40 炸弹鼠×20 / 50 心之碎片 / 100 金卢比 200。"
   },
   {
     "id": "GS-027",
@@ -1402,9 +1554,10 @@
     "req": "",
     "zh": "卡卡利科村 · 黄金骷髅蜘蛛",
     "en": "Kakariko Village: Gold Skulltula",
-    "descZh": "官方 RomFS 精确定位黄金骷髅蜘蛛（世界坐标 -38.7, 113.7, 115.5）。",
-    "descEn": "Exact RomFS Gold Skulltula in Kakariko Village (World: -38.7, 113.7, 115.5).",
-    "instanceId": "3310819903461047792"
+    "instanceId": "3310819903461047792",
+    "howto": "在卡卡利科村按点位排查树上、墙缝、水下与软土；野外点位多数只在夜晚出现。",
+    "reward": "黄金骷髅蜘蛛徽章 ×1",
+    "note": "全 100 只，本区 6 只；10 大人钱包 / 20 响音石 / 30 巨人钱包 / 40 炸弹鼠×20 / 50 心之碎片 / 100 金卢比 200。"
   },
   {
     "id": "GS-028",
@@ -1423,9 +1576,10 @@
     "req": "",
     "zh": "卡卡利科村 · 黄金骷髅蜘蛛",
     "en": "Kakariko Village: Gold Skulltula",
-    "descZh": "官方 RomFS 精确定位黄金骷髅蜘蛛（世界坐标 -73.6, 104.5, 43.5）。",
-    "descEn": "Exact RomFS Gold Skulltula in Kakariko Village (World: -73.6, 104.5, 43.5).",
-    "instanceId": "7677963516305772491"
+    "instanceId": "7677963516305772491",
+    "howto": "在卡卡利科村按点位排查树上、墙缝、水下与软土；野外点位多数只在夜晚出现。",
+    "reward": "黄金骷髅蜘蛛徽章 ×1",
+    "note": "全 100 只，本区 6 只；10 大人钱包 / 20 响音石 / 30 巨人钱包 / 40 炸弹鼠×20 / 50 心之碎片 / 100 金卢比 200。"
   },
   {
     "id": "GS-029",
@@ -1444,9 +1598,10 @@
     "req": "",
     "zh": "卡卡利科村 · 黄金骷髅蜘蛛",
     "en": "Kakariko Village: Gold Skulltula",
-    "descZh": "官方 RomFS 精确定位黄金骷髅蜘蛛（世界坐标 -75.0, 105.3, 2.2）。",
-    "descEn": "Exact RomFS Gold Skulltula in Kakariko Village (World: -75.0, 105.3, 2.2).",
-    "instanceId": "11629189455828560791"
+    "instanceId": "11629189455828560791",
+    "howto": "在卡卡利科村按点位排查树上、墙缝、水下与软土；野外点位多数只在夜晚出现。",
+    "reward": "黄金骷髅蜘蛛徽章 ×1",
+    "note": "全 100 只，本区 6 只；10 大人钱包 / 20 响音石 / 30 巨人钱包 / 40 炸弹鼠×20 / 50 心之碎片 / 100 金卢比 200。"
   },
   {
     "id": "GS-030",
@@ -1465,9 +1620,10 @@
     "req": "",
     "zh": "卡卡利科村 · 黄金骷髅蜘蛛",
     "en": "Kakariko Village: Gold Skulltula",
-    "descZh": "官方 RomFS 精确定位黄金骷髅蜘蛛（世界坐标 -60.7, 102.1, 59.5）。",
-    "descEn": "Exact RomFS Gold Skulltula in Kakariko Village (World: -60.7, 102.1, 59.5).",
-    "instanceId": "14107117960174262321"
+    "instanceId": "14107117960174262321",
+    "howto": "在卡卡利科村按点位排查树上、墙缝、水下与软土；野外点位多数只在夜晚出现。",
+    "reward": "黄金骷髅蜘蛛徽章 ×1",
+    "note": "全 100 只，本区 6 只；10 大人钱包 / 20 响音石 / 30 巨人钱包 / 40 炸弹鼠×20 / 50 心之碎片 / 100 金卢比 200。"
   },
   {
     "id": "GS-031",
@@ -1486,9 +1642,10 @@
     "req": "",
     "zh": "卡卡利科村 · 黄金骷髅蜘蛛",
     "en": "Kakariko Village: Gold Skulltula",
-    "descZh": "官方 RomFS 精确定位黄金骷髅蜘蛛（世界坐标 -48.1, 110.9, 18.4）。",
-    "descEn": "Exact RomFS Gold Skulltula in Kakariko Village (World: -48.1, 110.9, 18.4).",
-    "instanceId": "15118290503807073158"
+    "instanceId": "15118290503807073158",
+    "howto": "在卡卡利科村按点位排查树上、墙缝、水下与软土；野外点位多数只在夜晚出现。",
+    "reward": "黄金骷髅蜘蛛徽章 ×1",
+    "note": "全 100 只，本区 6 只；10 大人钱包 / 20 响音石 / 30 巨人钱包 / 40 炸弹鼠×20 / 50 心之碎片 / 100 金卢比 200。"
   },
   {
     "id": "GS-032",
@@ -1507,9 +1664,10 @@
     "req": "",
     "zh": "卡卡利科村 · 黄金骷髅蜘蛛",
     "en": "Kakariko Village: Gold Skulltula",
-    "descZh": "官方 RomFS 精确定位黄金骷髅蜘蛛（世界坐标 -29.1, 103.1, 60.5）。",
-    "descEn": "Exact RomFS Gold Skulltula in Kakariko Village (World: -29.1, 103.1, 60.5).",
-    "instanceId": "15314554401574296838"
+    "instanceId": "15314554401574296838",
+    "howto": "在卡卡利科村按点位排查树上、墙缝、水下与软土；野外点位多数只在夜晚出现。",
+    "reward": "黄金骷髅蜘蛛徽章 ×1",
+    "note": "全 100 只，本区 6 只；10 大人钱包 / 20 响音石 / 30 巨人钱包 / 40 炸弹鼠×20 / 50 心之碎片 / 100 金卢比 200。"
   },
   {
     "id": "GS-033",
@@ -1528,9 +1686,10 @@
     "req": "",
     "zh": "科奇里森林 · 黄金骷髅蜘蛛",
     "en": "Kokiri Forest: Gold Skulltula",
-    "descZh": "官方 RomFS 精确定位黄金骷髅蜘蛛（世界坐标 18.0, 117.2, 18.9）。",
-    "descEn": "Exact RomFS Gold Skulltula in Kokiri Forest (World: 18.0, 117.2, 18.9).",
-    "instanceId": "7116603238806634901"
+    "instanceId": "7116603238806634901",
+    "howto": "在科奇里森林按点位排查树上、墙缝、水下与软土；野外点位多数只在夜晚出现。",
+    "reward": "黄金骷髅蜘蛛徽章 ×1",
+    "note": "全 100 只，本区 3 只；10 大人钱包 / 20 响音石 / 30 巨人钱包 / 40 炸弹鼠×20 / 50 心之碎片 / 100 金卢比 200。"
   },
   {
     "id": "GS-034",
@@ -1549,9 +1708,10 @@
     "req": "",
     "zh": "科奇里森林 · 黄金骷髅蜘蛛",
     "en": "Kokiri Forest: Gold Skulltula",
-    "descZh": "官方 RomFS 精确定位黄金骷髅蜘蛛（世界坐标 8.2, 112.6, -23.3）。",
-    "descEn": "Exact RomFS Gold Skulltula in Kokiri Forest (World: 8.2, 112.6, -23.3).",
-    "instanceId": "9623998892552467148"
+    "instanceId": "9623998892552467148",
+    "howto": "在科奇里森林按点位排查树上、墙缝、水下与软土；野外点位多数只在夜晚出现。",
+    "reward": "黄金骷髅蜘蛛徽章 ×1",
+    "note": "全 100 只，本区 3 只；10 大人钱包 / 20 响音石 / 30 巨人钱包 / 40 炸弹鼠×20 / 50 心之碎片 / 100 金卢比 200。"
   },
   {
     "id": "GS-035",
@@ -1570,9 +1730,10 @@
     "req": "",
     "zh": "科奇里森林 · 黄金骷髅蜘蛛",
     "en": "Kokiri Forest: Gold Skulltula",
-    "descZh": "官方 RomFS 精确定位黄金骷髅蜘蛛（世界坐标 -83.8, 117.9, -17.6）。",
-    "descEn": "Exact RomFS Gold Skulltula in Kokiri Forest (World: -83.8, 117.9, -17.6).",
-    "instanceId": "17067594426901953848"
+    "instanceId": "17067594426901953848",
+    "howto": "在科奇里森林按点位排查树上、墙缝、水下与软土；野外点位多数只在夜晚出现。",
+    "reward": "黄金骷髅蜘蛛徽章 ×1",
+    "note": "全 100 只，本区 3 只；10 大人钱包 / 20 响音石 / 30 巨人钱包 / 40 炸弹鼠×20 / 50 心之碎片 / 100 金卢比 200。"
   },
   {
     "id": "GS-036",
@@ -1591,9 +1752,10 @@
     "req": "",
     "zh": "海利亚湖 · 黄金骷髅蜘蛛",
     "en": "Lake Hylia: Gold Skulltula",
-    "descZh": "官方 RomFS 精确定位黄金骷髅蜘蛛（世界坐标 -197.0, 150.3, 517.4）。",
-    "descEn": "Exact RomFS Gold Skulltula in Lake Hylia (World: -197.0, 150.3, 517.4).",
-    "instanceId": "789492162651991711"
+    "instanceId": "789492162651991711",
+    "howto": "在海利亚湖按点位排查树上、墙缝、水下与软土；野外点位多数只在夜晚出现。",
+    "reward": "黄金骷髅蜘蛛徽章 ×1",
+    "note": "全 100 只，本区 5 只；10 大人钱包 / 20 响音石 / 30 巨人钱包 / 40 炸弹鼠×20 / 50 心之碎片 / 100 金卢比 200。"
   },
   {
     "id": "GS-037",
@@ -1612,9 +1774,10 @@
     "req": "",
     "zh": "海利亚湖 · 黄金骷髅蜘蛛",
     "en": "Lake Hylia: Gold Skulltula",
-    "descZh": "官方 RomFS 精确定位黄金骷髅蜘蛛（世界坐标 -166.4, 137.9, 412.4）。",
-    "descEn": "Exact RomFS Gold Skulltula in Lake Hylia (World: -166.4, 137.9, 412.4).",
-    "instanceId": "7014193622407727514"
+    "instanceId": "7014193622407727514",
+    "howto": "在海利亚湖按点位排查树上、墙缝、水下与软土；野外点位多数只在夜晚出现。",
+    "reward": "黄金骷髅蜘蛛徽章 ×1",
+    "note": "全 100 只，本区 5 只；10 大人钱包 / 20 响音石 / 30 巨人钱包 / 40 炸弹鼠×20 / 50 心之碎片 / 100 金卢比 200。"
   },
   {
     "id": "GS-038",
@@ -1633,9 +1796,10 @@
     "req": "",
     "zh": "海利亚湖 · 黄金骷髅蜘蛛",
     "en": "Lake Hylia: Gold Skulltula",
-    "descZh": "官方 RomFS 精确定位黄金骷髅蜘蛛（世界坐标 -175.7, 128.5, 410.7）。",
-    "descEn": "Exact RomFS Gold Skulltula in Lake Hylia (World: -175.7, 128.5, 410.7).",
-    "instanceId": "7388645484070660331"
+    "instanceId": "7388645484070660331",
+    "howto": "在海利亚湖按点位排查树上、墙缝、水下与软土；野外点位多数只在夜晚出现。",
+    "reward": "黄金骷髅蜘蛛徽章 ×1",
+    "note": "全 100 只，本区 5 只；10 大人钱包 / 20 响音石 / 30 巨人钱包 / 40 炸弹鼠×20 / 50 心之碎片 / 100 金卢比 200。"
   },
   {
     "id": "GS-039",
@@ -1654,9 +1818,10 @@
     "req": "",
     "zh": "海利亚湖 · 黄金骷髅蜘蛛",
     "en": "Lake Hylia: Gold Skulltula",
-    "descZh": "官方 RomFS 精确定位黄金骷髅蜘蛛（世界坐标 -289.1, 130.9, 590.9）。",
-    "descEn": "Exact RomFS Gold Skulltula in Lake Hylia (World: -289.1, 130.9, 590.9).",
-    "instanceId": "8655370827943125875"
+    "instanceId": "8655370827943125875",
+    "howto": "在海利亚湖按点位排查树上、墙缝、水下与软土；野外点位多数只在夜晚出现。",
+    "reward": "黄金骷髅蜘蛛徽章 ×1",
+    "note": "全 100 只，本区 5 只；10 大人钱包 / 20 响音石 / 30 巨人钱包 / 40 炸弹鼠×20 / 50 心之碎片 / 100 金卢比 200。"
   },
   {
     "id": "GS-040",
@@ -1675,9 +1840,10 @@
     "req": "",
     "zh": "海利亚湖 · 黄金骷髅蜘蛛",
     "en": "Lake Hylia: Gold Skulltula",
-    "descZh": "官方 RomFS 精确定位黄金骷髅蜘蛛（世界坐标 -178.3, 142.0, 426.4）。",
-    "descEn": "Exact RomFS Gold Skulltula in Lake Hylia (World: -178.3, 142.0, 426.4).",
-    "instanceId": "13944703896577680014"
+    "instanceId": "13944703896577680014",
+    "howto": "在海利亚湖按点位排查树上、墙缝、水下与软土；野外点位多数只在夜晚出现。",
+    "reward": "黄金骷髅蜘蛛徽章 ×1",
+    "note": "全 100 只，本区 5 只；10 大人钱包 / 20 响音石 / 30 巨人钱包 / 40 炸弹鼠×20 / 50 心之碎片 / 100 金卢比 200。"
   },
   {
     "id": "GS-041",
@@ -1696,9 +1862,10 @@
     "req": "",
     "zh": "隆隆牧场 · 黄金骷髅蜘蛛",
     "en": "Lon Lon Ranch: Gold Skulltula",
-    "descZh": "官方 RomFS 精确定位黄金骷髅蜘蛛（世界坐标 -39.6, 158.2, 200.7）。",
-    "descEn": "Exact RomFS Gold Skulltula in Lon Lon Ranch (World: -39.6, 158.2, 200.7).",
-    "instanceId": "341792603838029977"
+    "instanceId": "341792603838029977",
+    "howto": "在隆隆牧场按点位排查树上、墙缝、水下与软土；野外点位多数只在夜晚出现。",
+    "reward": "黄金骷髅蜘蛛徽章 ×1",
+    "note": "全 100 只，本区 3 只；10 大人钱包 / 20 响音石 / 30 巨人钱包 / 40 炸弹鼠×20 / 50 心之碎片 / 100 金卢比 200。"
   },
   {
     "id": "GS-042",
@@ -1717,9 +1884,10 @@
     "req": "",
     "zh": "隆隆牧场 · 黄金骷髅蜘蛛",
     "en": "Lon Lon Ranch: Gold Skulltula",
-    "descZh": "官方 RomFS 精确定位黄金骷髅蜘蛛（世界坐标 -147.4, 159.2, 268.2）。",
-    "descEn": "Exact RomFS Gold Skulltula in Lon Lon Ranch (World: -147.4, 159.2, 268.2).",
-    "instanceId": "2730878115209290675"
+    "instanceId": "2730878115209290675",
+    "howto": "在隆隆牧场按点位排查树上、墙缝、水下与软土；野外点位多数只在夜晚出现。",
+    "reward": "黄金骷髅蜘蛛徽章 ×1",
+    "note": "全 100 只，本区 3 只；10 大人钱包 / 20 响音石 / 30 巨人钱包 / 40 炸弹鼠×20 / 50 心之碎片 / 100 金卢比 200。"
   },
   {
     "id": "GS-043",
@@ -1738,9 +1906,10 @@
     "req": "",
     "zh": "隆隆牧场 · 黄金骷髅蜘蛛",
     "en": "Lon Lon Ranch: Gold Skulltula",
-    "descZh": "官方 RomFS 精确定位黄金骷髅蜘蛛（世界坐标 -63.2, 156.4, 212.4）。",
-    "descEn": "Exact RomFS Gold Skulltula in Lon Lon Ranch (World: -63.2, 156.4, 212.4).",
-    "instanceId": "15889002414176907668"
+    "instanceId": "15889002414176907668",
+    "howto": "在隆隆牧场按点位排查树上、墙缝、水下与软土；野外点位多数只在夜晚出现。",
+    "reward": "黄金骷髅蜘蛛徽章 ×1",
+    "note": "全 100 只，本区 3 只；10 大人钱包 / 20 响音石 / 30 巨人钱包 / 40 炸弹鼠×20 / 50 心之碎片 / 100 金卢比 200。"
   },
   {
     "id": "GS-044",
@@ -1759,9 +1928,10 @@
     "req": "",
     "zh": "迷失森林 · 黄金骷髅蜘蛛",
     "en": "Lost Woods: Gold Skulltula",
-    "descZh": "官方 RomFS 精确定位黄金骷髅蜘蛛（世界坐标 8.6, 105.7, -55.4）。",
-    "descEn": "Exact RomFS Gold Skulltula in Lost Woods (World: 8.6, 105.7, -55.4).",
-    "instanceId": "4335656213162247230"
+    "instanceId": "4335656213162247230",
+    "howto": "在迷失森林按点位排查树上、墙缝、水下与软土；野外点位多数只在夜晚出现。",
+    "reward": "黄金骷髅蜘蛛徽章 ×1",
+    "note": "全 100 只，本区 3 只；10 大人钱包 / 20 响音石 / 30 巨人钱包 / 40 炸弹鼠×20 / 50 心之碎片 / 100 金卢比 200。"
   },
   {
     "id": "GS-045",
@@ -1780,9 +1950,10 @@
     "req": "",
     "zh": "迷失森林 · 黄金骷髅蜘蛛",
     "en": "Lost Woods: Gold Skulltula",
-    "descZh": "官方 RomFS 精确定位黄金骷髅蜘蛛（世界坐标 -33.2, 100.2, 31.4）。",
-    "descEn": "Exact RomFS Gold Skulltula in Lost Woods (World: -33.2, 100.2, 31.4).",
-    "instanceId": "9333354743976439033"
+    "instanceId": "9333354743976439033",
+    "howto": "在迷失森林按点位排查树上、墙缝、水下与软土；野外点位多数只在夜晚出现。",
+    "reward": "黄金骷髅蜘蛛徽章 ×1",
+    "note": "全 100 只，本区 3 只；10 大人钱包 / 20 响音石 / 30 巨人钱包 / 40 炸弹鼠×20 / 50 心之碎片 / 100 金卢比 200。"
   },
   {
     "id": "GS-046",
@@ -1801,9 +1972,10 @@
     "req": "",
     "zh": "迷失森林 · 黄金骷髅蜘蛛",
     "en": "Lost Woods: Gold Skulltula",
-    "descZh": "官方 RomFS 精确定位黄金骷髅蜘蛛（世界坐标 14.5, 101.7, -52.1）。",
-    "descEn": "Exact RomFS Gold Skulltula in Lost Woods (World: 14.5, 101.7, -52.1).",
-    "instanceId": "17796658857969527112"
+    "instanceId": "17796658857969527112",
+    "howto": "在迷失森林按点位排查树上、墙缝、水下与软土；野外点位多数只在夜晚出现。",
+    "reward": "黄金骷髅蜘蛛徽章 ×1",
+    "note": "全 100 只，本区 3 只；10 大人钱包 / 20 响音石 / 30 巨人钱包 / 40 炸弹鼠×20 / 50 心之碎片 / 100 金卢比 200。"
   },
   {
     "id": "GS-047",
@@ -1822,9 +1994,10 @@
     "req": "",
     "zh": "城下町集市 · 黄金骷髅蜘蛛",
     "en": "Hyrule Market: Gold Skulltula",
-    "descZh": "官方 RomFS 精确定位黄金骷髅蜘蛛（世界坐标 17.4, 102.1, 58.4）。",
-    "descEn": "Exact RomFS Gold Skulltula in Hyrule Market (World: 17.4, 102.1, 58.4).",
-    "instanceId": "8942465719711548237"
+    "instanceId": "8942465719711548237",
+    "howto": "在城下町集市按点位排查树上、墙缝、水下与软土；野外点位多数只在夜晚出现。",
+    "reward": "黄金骷髅蜘蛛徽章 ×1",
+    "note": "全 100 只，本区 1 只；10 大人钱包 / 20 响音石 / 30 巨人钱包 / 40 炸弹鼠×20 / 50 心之碎片 / 100 金卢比 200。"
   },
   {
     "id": "GS-048",
@@ -1843,9 +2016,10 @@
     "req": "",
     "zh": "圣域森林草原 · 黄金骷髅蜘蛛",
     "en": "Sacred Forest Meadow: Gold Skulltula",
-    "descZh": "官方 RomFS 精确定位黄金骷髅蜘蛛（世界坐标 7.8, 107.4, 13.2）。",
-    "descEn": "Exact RomFS Gold Skulltula in Sacred Forest Meadow (World: 7.8, 107.4, 13.2).",
-    "instanceId": "14473218207379268379"
+    "instanceId": "14473218207379268379",
+    "howto": "在圣域森林草原按点位排查树上、墙缝、水下与软土；野外点位多数只在夜晚出现。",
+    "reward": "黄金骷髅蜘蛛徽章 ×1",
+    "note": "全 100 只，本区 1 只；10 大人钱包 / 20 响音石 / 30 巨人钱包 / 40 炸弹鼠×20 / 50 心之碎片 / 100 金卢比 200。"
   },
   {
     "id": "GS-049",
@@ -1864,9 +2038,10 @@
     "req": "",
     "zh": "佐拉族领地 · 黄金骷髅蜘蛛",
     "en": "Zora's Domain: Gold Skulltula",
-    "descZh": "官方 RomFS 精确定位黄金骷髅蜘蛛（世界坐标 24.8, 116.3, 3.4）。",
-    "descEn": "Exact RomFS Gold Skulltula in Zora's Domain (World: 24.8, 116.3, 3.4).",
-    "instanceId": "9600417828645642589"
+    "instanceId": "9600417828645642589",
+    "howto": "在佐拉族领地按点位排查树上、墙缝、水下与软土；野外点位多数只在夜晚出现。",
+    "reward": "黄金骷髅蜘蛛徽章 ×1",
+    "note": "全 100 只，本区 1 只；10 大人钱包 / 20 响音石 / 30 巨人钱包 / 40 炸弹鼠×20 / 50 心之碎片 / 100 金卢比 200。"
   },
   {
     "id": "GS-050",
@@ -1885,9 +2060,10 @@
     "req": "",
     "zh": "佐拉之泉 · 黄金骷髅蜘蛛",
     "en": "Zora's Fountain: Gold Skulltula",
-    "descZh": "官方 RomFS 精确定位黄金骷髅蜘蛛（世界坐标 14.0, 107.8, 22.8）。",
-    "descEn": "Exact RomFS Gold Skulltula in Zora's Fountain (World: 14.0, 107.8, 22.8).",
-    "instanceId": "7152962033963346563"
+    "instanceId": "7152962033963346563",
+    "howto": "在佐拉之泉按点位排查树上、墙缝、水下与软土；野外点位多数只在夜晚出现。",
+    "reward": "黄金骷髅蜘蛛徽章 ×1",
+    "note": "全 100 只，本区 3 只；10 大人钱包 / 20 响音石 / 30 巨人钱包 / 40 炸弹鼠×20 / 50 心之碎片 / 100 金卢比 200。"
   },
   {
     "id": "GS-051",
@@ -1906,9 +2082,10 @@
     "req": "",
     "zh": "佐拉之泉 · 黄金骷髅蜘蛛",
     "en": "Zora's Fountain: Gold Skulltula",
-    "descZh": "官方 RomFS 精确定位黄金骷髅蜘蛛（世界坐标 71.2, 125.7, 4.8）。",
-    "descEn": "Exact RomFS Gold Skulltula in Zora's Fountain (World: 71.2, 125.7, 4.8).",
-    "instanceId": "9537398183107003742"
+    "instanceId": "9537398183107003742",
+    "howto": "在佐拉之泉按点位排查树上、墙缝、水下与软土；野外点位多数只在夜晚出现。",
+    "reward": "黄金骷髅蜘蛛徽章 ×1",
+    "note": "全 100 只，本区 3 只；10 大人钱包 / 20 响音石 / 30 巨人钱包 / 40 炸弹鼠×20 / 50 心之碎片 / 100 金卢比 200。"
   },
   {
     "id": "GS-052",
@@ -1927,9 +2104,10 @@
     "req": "",
     "zh": "佐拉之泉 · 黄金骷髅蜘蛛",
     "en": "Zora's Fountain: Gold Skulltula",
-    "descZh": "官方 RomFS 精确定位黄金骷髅蜘蛛（世界坐标 49.3, 110.4, 32.0）。",
-    "descEn": "Exact RomFS Gold Skulltula in Zora's Fountain (World: 49.3, 110.4, 32.0).",
-    "instanceId": "17355397719442343054"
+    "instanceId": "17355397719442343054",
+    "howto": "在佐拉之泉按点位排查树上、墙缝、水下与软土；野外点位多数只在夜晚出现。",
+    "reward": "黄金骷髅蜘蛛徽章 ×1",
+    "note": "全 100 只，本区 3 只；10 大人钱包 / 20 响音石 / 30 巨人钱包 / 40 炸弹鼠×20 / 50 心之碎片 / 100 金卢比 200。"
   },
   {
     "id": "GS-053",
@@ -1948,9 +2126,10 @@
     "req": "",
     "zh": "佐拉河 · 黄金骷髅蜘蛛",
     "en": "Zora's River: Gold Skulltula",
-    "descZh": "官方 RomFS 精确定位黄金骷髅蜘蛛（世界坐标 112.6, 111.8, -48.8）。",
-    "descEn": "Exact RomFS Gold Skulltula in Zora's River (World: 112.6, 111.8, -48.8).",
-    "instanceId": "8695975724114049706"
+    "instanceId": "8695975724114049706",
+    "howto": "在佐拉河按点位排查树上、墙缝、水下与软土；野外点位多数只在夜晚出现。",
+    "reward": "黄金骷髅蜘蛛徽章 ×1",
+    "note": "全 100 只，本区 4 只；10 大人钱包 / 20 响音石 / 30 巨人钱包 / 40 炸弹鼠×20 / 50 心之碎片 / 100 金卢比 200。"
   },
   {
     "id": "GS-054",
@@ -1969,9 +2148,10 @@
     "req": "",
     "zh": "佐拉河 · 黄金骷髅蜘蛛",
     "en": "Zora's River: Gold Skulltula",
-    "descZh": "官方 RomFS 精确定位黄金骷髅蜘蛛（世界坐标 76.3, 126.8, -46.4）。",
-    "descEn": "Exact RomFS Gold Skulltula in Zora's River (World: 76.3, 126.8, -46.4).",
-    "instanceId": "9450239379321634455"
+    "instanceId": "9450239379321634455",
+    "howto": "在佐拉河按点位排查树上、墙缝、水下与软土；野外点位多数只在夜晚出现。",
+    "reward": "黄金骷髅蜘蛛徽章 ×1",
+    "note": "全 100 只，本区 4 只；10 大人钱包 / 20 响音石 / 30 巨人钱包 / 40 炸弹鼠×20 / 50 心之碎片 / 100 金卢比 200。"
   },
   {
     "id": "GS-055",
@@ -1990,9 +2170,10 @@
     "req": "",
     "zh": "佐拉河 · 黄金骷髅蜘蛛",
     "en": "Zora's River: Gold Skulltula",
-    "descZh": "官方 RomFS 精确定位黄金骷髅蜘蛛（世界坐标 -35.0, 118.8, 12.5）。",
-    "descEn": "Exact RomFS Gold Skulltula in Zora's River (World: -35.0, 118.8, 12.5).",
-    "instanceId": "10917372215719266172"
+    "instanceId": "10917372215719266172",
+    "howto": "在佐拉河按点位排查树上、墙缝、水下与软土；野外点位多数只在夜晚出现。",
+    "reward": "黄金骷髅蜘蛛徽章 ×1",
+    "note": "全 100 只，本区 4 只；10 大人钱包 / 20 响音石 / 30 巨人钱包 / 40 炸弹鼠×20 / 50 心之碎片 / 100 金卢比 200。"
   },
   {
     "id": "GS-056",
@@ -2011,9 +2192,10 @@
     "req": "",
     "zh": "佐拉河 · 黄金骷髅蜘蛛",
     "en": "Zora's River: Gold Skulltula",
-    "descZh": "官方 RomFS 精确定位黄金骷髅蜘蛛（世界坐标 -54.7, 100.5, -10.4）。",
-    "descEn": "Exact RomFS Gold Skulltula in Zora's River (World: -54.7, 100.5, -10.4).",
-    "instanceId": "12370559827741970774"
+    "instanceId": "12370559827741970774",
+    "howto": "在佐拉河按点位排查树上、墙缝、水下与软土；野外点位多数只在夜晚出现。",
+    "reward": "黄金骷髅蜘蛛徽章 ×1",
+    "note": "全 100 只，本区 4 只；10 大人钱包 / 20 响音石 / 30 巨人钱包 / 40 炸弹鼠×20 / 50 心之碎片 / 100 金卢比 200。"
   },
   {
     "id": "GS-057",
@@ -2032,9 +2214,10 @@
     "req": "",
     "zh": "井底 (B1) · 黄金骷髅蜘蛛",
     "en": "Bottom of the Well (B1): Gold Skulltula",
-    "descZh": "位于井底 B1 层的黄金骷髅蜘蛛（世界坐标 -8.2, 103.8, -31.9）。",
-    "descEn": "Gold Skulltula on B1 of Bottom of the Well.",
-    "instanceId": "7460556442932201772"
+    "instanceId": "7460556442932201772",
+    "howto": "在井底 (B1)，用弹弓/钩索/炸弹清掉蛛网与角落，击杀黄金骷髅蜘蛛后捡徽章。",
+    "reward": "黄金骷髅蜘蛛徽章 ×1",
+    "note": "全 100 只，本区 3 只；10 大人钱包 / 20 响音石 / 30 巨人钱包 / 40 炸弹鼠×20 / 50 心之碎片 / 100 金卢比 200。"
   },
   {
     "id": "GS-058",
@@ -2053,9 +2236,10 @@
     "req": "",
     "zh": "井底 (B1) · 黄金骷髅蜘蛛",
     "en": "Bottom of the Well (B1): Gold Skulltula",
-    "descZh": "位于井底 B1 层的黄金骷髅蜘蛛（世界坐标 2.6, 103.8, -30.5）。",
-    "descEn": "Gold Skulltula on B1 of Bottom of the Well.",
-    "instanceId": "12165938013608963606"
+    "instanceId": "12165938013608963606",
+    "howto": "在井底 (B1)，用弹弓/钩索/炸弹清掉蛛网与角落，击杀黄金骷髅蜘蛛后捡徽章。",
+    "reward": "黄金骷髅蜘蛛徽章 ×1",
+    "note": "全 100 只，本区 3 只；10 大人钱包 / 20 响音石 / 30 巨人钱包 / 40 炸弹鼠×20 / 50 心之碎片 / 100 金卢比 200。"
   },
   {
     "id": "GS-059",
@@ -2074,9 +2258,33 @@
     "req": "",
     "zh": "井底 (B1) · 黄金骷髅蜘蛛",
     "en": "Bottom of the Well (B1): Gold Skulltula",
-    "descZh": "位于井底 B1 层的黄金骷髅蜘蛛（世界坐标 32.0, 104.8, -14.9）。",
-    "descEn": "Gold Skulltula on B1 of Bottom of the Well.",
-    "instanceId": "3889761319471426870"
+    "instanceId": "3889761319471426870",
+    "howto": "在井底 (B1)，用弹弓/钩索/炸弹清掉蛛网与角落，击杀黄金骷髅蜘蛛后捡徽章。",
+    "reward": "黄金骷髅蜘蛛徽章 ×1",
+    "note": "全 100 只，本区 3 只；10 大人钱包 / 20 响音石 / 30 巨人钱包 / 40 炸弹鼠×20 / 50 心之碎片 / 100 金卢比 200。"
+  },
+  {
+    "id": "BS-001",
+    "map": "DodongoCavern",
+    "area": "0F",
+    "cat": "boss",
+    "x": 47.36,
+    "y": 27.13,
+    "world": [
+      10.32,
+      92.41,
+      -77.8
+    ],
+    "era": "Child",
+    "time": "Any",
+    "req": "",
+    "zh": "多东哥洞穴 (0F) · Boss 房：多东哥王后",
+    "en": "Dodongo's Cavern (0F): Boss Room - King Dodongo",
+    "descZh": "进入 Boss 房与多东哥王后战斗，胜利后取得心之容器。",
+    "descEn": "Defeat King Dodongo in the boss room for a Heart Container.",
+    "howto": "进入 Boss 房，击败多东哥王后（King Dodongo）。",
+    "reward": "心之容器 + 鼓隆红宝石",
+    "instanceId": "6735534919529993887"
   },
   {
     "id": "GS-060",
@@ -2095,9 +2303,10 @@
     "req": "",
     "zh": "多东哥洞穴 (0F) · 黄金骷髅蜘蛛",
     "en": "Dodongo's Cavern (0F): Gold Skulltula",
-    "descZh": "位于多东哥洞穴 0F 层的黄金骷髅蜘蛛（世界坐标 -48.8, 96.6, -104.2）。",
-    "descEn": "Gold Skulltula on 0F of Dodongo's Cavern.",
-    "instanceId": "13690401647626643497"
+    "instanceId": "13690401647626643497",
+    "howto": "在多东哥洞穴 (0F)，用弹弓/钩索/炸弹清掉蛛网与角落，击杀黄金骷髅蜘蛛后捡徽章。",
+    "reward": "黄金骷髅蜘蛛徽章 ×1",
+    "note": "全 100 只，本区 5 只；10 大人钱包 / 20 响音石 / 30 巨人钱包 / 40 炸弹鼠×20 / 50 心之碎片 / 100 金卢比 200。"
   },
   {
     "id": "GS-061",
@@ -2116,9 +2325,10 @@
     "req": "",
     "zh": "多东哥洞穴 (0F) · 黄金骷髅蜘蛛",
     "en": "Dodongo's Cavern (0F): Gold Skulltula",
-    "descZh": "位于多东哥洞穴 0F 层的黄金骷髅蜘蛛（世界坐标 64.0, 98.5, 15.9）。",
-    "descEn": "Gold Skulltula on 0F of Dodongo's Cavern.",
-    "instanceId": "1171854281537584829"
+    "instanceId": "1171854281537584829",
+    "howto": "在多东哥洞穴 (0F)，用弹弓/钩索/炸弹清掉蛛网与角落，击杀黄金骷髅蜘蛛后捡徽章。",
+    "reward": "黄金骷髅蜘蛛徽章 ×1",
+    "note": "全 100 只，本区 5 只；10 大人钱包 / 20 响音石 / 30 巨人钱包 / 40 炸弹鼠×20 / 50 心之碎片 / 100 金卢比 200。"
   },
   {
     "id": "GS-062",
@@ -2137,9 +2347,10 @@
     "req": "",
     "zh": "多东哥洞穴 (0F) · 黄金骷髅蜘蛛",
     "en": "Dodongo's Cavern (0F): Gold Skulltula",
-    "descZh": "位于多东哥洞穴 0F 层的黄金骷髅蜘蛛（世界坐标 58.2, 104.5, -19.9）。",
-    "descEn": "Gold Skulltula on 0F of Dodongo's Cavern.",
-    "instanceId": "960362013021648957"
+    "instanceId": "960362013021648957",
+    "howto": "在多东哥洞穴 (0F)，用弹弓/钩索/炸弹清掉蛛网与角落，击杀黄金骷髅蜘蛛后捡徽章。",
+    "reward": "黄金骷髅蜘蛛徽章 ×1",
+    "note": "全 100 只，本区 5 只；10 大人钱包 / 20 响音石 / 30 巨人钱包 / 40 炸弹鼠×20 / 50 心之碎片 / 100 金卢比 200。"
   },
   {
     "id": "GS-063",
@@ -2158,9 +2369,10 @@
     "req": "",
     "zh": "多东哥洞穴 (1F) · 黄金骷髅蜘蛛",
     "en": "Dodongo's Cavern (1F): Gold Skulltula",
-    "descZh": "位于多东哥洞穴 1F 层的黄金骷髅蜘蛛（世界坐标 21.5, 112.4, -55.9）。",
-    "descEn": "Gold Skulltula on 1F of Dodongo's Cavern.",
-    "instanceId": "4565265801822094851"
+    "instanceId": "4565265801822094851",
+    "howto": "在多东哥洞穴 (1F)，用弹弓/钩索/炸弹清掉蛛网与角落，击杀黄金骷髅蜘蛛后捡徽章。",
+    "reward": "黄金骷髅蜘蛛徽章 ×1",
+    "note": "全 100 只，本区 5 只；10 大人钱包 / 20 响音石 / 30 巨人钱包 / 40 炸弹鼠×20 / 50 心之碎片 / 100 金卢比 200。"
   },
   {
     "id": "GS-064",
@@ -2179,9 +2391,33 @@
     "req": "",
     "zh": "多东哥洞穴 (1F) · 黄金骷髅蜘蛛",
     "en": "Dodongo's Cavern (1F): Gold Skulltula",
-    "descZh": "位于多东哥洞穴 1F 层的黄金骷髅蜘蛛（世界坐标 -48.4, 120.3, -40.1）。",
-    "descEn": "Gold Skulltula on 1F of Dodongo's Cavern.",
-    "instanceId": "8470399761714006011"
+    "instanceId": "8470399761714006011",
+    "howto": "在多东哥洞穴 (1F)，用弹弓/钩索/炸弹清掉蛛网与角落，击杀黄金骷髅蜘蛛后捡徽章。",
+    "reward": "黄金骷髅蜘蛛徽章 ×1",
+    "note": "全 100 只，本区 5 只；10 大人钱包 / 20 响音石 / 30 巨人钱包 / 40 炸弹鼠×20 / 50 心之碎片 / 100 金卢比 200。"
+  },
+  {
+    "id": "BS-002",
+    "map": "FireTemple",
+    "area": "0F",
+    "cat": "boss",
+    "x": 26.2,
+    "y": 58.07,
+    "world": [
+      -39.0,
+      105.0,
+      0.0
+    ],
+    "era": "Adult",
+    "time": "Any",
+    "req": "",
+    "zh": "火之神殿 (0F) · Boss 房：瓦尔巴基亚",
+    "en": "Fire Temple (0F): Boss Room - Volvagia",
+    "descZh": "进入 Boss 房与瓦尔巴基亚战斗，胜利后取得心之容器。",
+    "descEn": "Defeat Volvagia in the boss room for a Heart Container.",
+    "howto": "进入 Boss 房，击败瓦尔巴基亚（Volvagia）。",
+    "reward": "心之容器 + 火之勋章",
+    "instanceId": "9275766067171822172"
   },
   {
     "id": "GS-065",
@@ -2200,9 +2436,10 @@
     "req": "",
     "zh": "火之神殿 (0F) · 黄金骷髅蜘蛛",
     "en": "Fire Temple (0F): Gold Skulltula",
-    "descZh": "位于火之神殿 0F 层的黄金骷髅蜘蛛（世界坐标 11.2, 101.5, -43.2）。",
-    "descEn": "Gold Skulltula on 0F of Fire Temple.",
-    "instanceId": "14706322686481615109"
+    "instanceId": "14706322686481615109",
+    "howto": "在火之神殿 (0F)，用弹弓/钩索/炸弹清掉蛛网与角落，击杀黄金骷髅蜘蛛后捡徽章。",
+    "reward": "黄金骷髅蜘蛛徽章 ×1",
+    "note": "全 100 只，本区 5 只；10 大人钱包 / 20 响音石 / 30 巨人钱包 / 40 炸弹鼠×20 / 50 心之碎片 / 100 金卢比 200。"
   },
   {
     "id": "GS-066",
@@ -2221,9 +2458,10 @@
     "req": "",
     "zh": "火之神殿 (0F) · 黄金骷髅蜘蛛",
     "en": "Fire Temple (0F): Gold Skulltula",
-    "descZh": "位于火之神殿 0F 层的黄金骷髅蜘蛛（世界坐标 67.7, 115.3, -47.0）。",
-    "descEn": "Gold Skulltula on 0F of Fire Temple.",
-    "instanceId": "6789992996625105554"
+    "instanceId": "6789992996625105554",
+    "howto": "在火之神殿 (0F)，用弹弓/钩索/炸弹清掉蛛网与角落，击杀黄金骷髅蜘蛛后捡徽章。",
+    "reward": "黄金骷髅蜘蛛徽章 ×1",
+    "note": "全 100 只，本区 5 只；10 大人钱包 / 20 响音石 / 30 巨人钱包 / 40 炸弹鼠×20 / 50 心之碎片 / 100 金卢比 200。"
   },
   {
     "id": "GS-067",
@@ -2242,9 +2480,10 @@
     "req": "",
     "zh": "火之神殿 (2F) · 黄金骷髅蜘蛛",
     "en": "Fire Temple (2F): Gold Skulltula",
-    "descZh": "位于火之神殿 2F 层的黄金骷髅蜘蛛（世界坐标 59.0, 148.4, -30.0）。",
-    "descEn": "Gold Skulltula on 2F of Fire Temple.",
-    "instanceId": "12751796212121957464"
+    "instanceId": "12751796212121957464",
+    "howto": "在火之神殿 (2F)，用弹弓/钩索/炸弹清掉蛛网与角落，击杀黄金骷髅蜘蛛后捡徽章。",
+    "reward": "黄金骷髅蜘蛛徽章 ×1",
+    "note": "全 100 只，本区 5 只；10 大人钱包 / 20 响音石 / 30 巨人钱包 / 40 炸弹鼠×20 / 50 心之碎片 / 100 金卢比 200。"
   },
   {
     "id": "GS-068",
@@ -2263,9 +2502,10 @@
     "req": "",
     "zh": "火之神殿 (4F) · 黄金骷髅蜘蛛",
     "en": "Fire Temple (4F): Gold Skulltula",
-    "descZh": "位于火之神殿 4F 层的黄金骷髅蜘蛛（世界坐标 36.6, 187.7, -5.2）。",
-    "descEn": "Gold Skulltula on 4F of Fire Temple.",
-    "instanceId": "9172014785497046138"
+    "instanceId": "9172014785497046138",
+    "howto": "在火之神殿 (4F)，用弹弓/钩索/炸弹清掉蛛网与角落，击杀黄金骷髅蜘蛛后捡徽章。",
+    "reward": "黄金骷髅蜘蛛徽章 ×1",
+    "note": "全 100 只，本区 5 只；10 大人钱包 / 20 响音石 / 30 巨人钱包 / 40 炸弹鼠×20 / 50 心之碎片 / 100 金卢比 200。"
   },
   {
     "id": "GS-069",
@@ -2284,9 +2524,33 @@
     "req": "",
     "zh": "火之神殿 (4F) · 黄金骷髅蜘蛛",
     "en": "Fire Temple (4F): Gold Skulltula",
-    "descZh": "位于火之神殿 4F 层的黄金骷髅蜘蛛（世界坐标 40.0, 189.1, -19.8）。",
-    "descEn": "Gold Skulltula on 4F of Fire Temple.",
-    "instanceId": "5556173334779815044"
+    "instanceId": "5556173334779815044",
+    "howto": "在火之神殿 (4F)，用弹弓/钩索/炸弹清掉蛛网与角落，击杀黄金骷髅蜘蛛后捡徽章。",
+    "reward": "黄金骷髅蜘蛛徽章 ×1",
+    "note": "全 100 只，本区 5 只；10 大人钱包 / 20 响音石 / 30 巨人钱包 / 40 炸弹鼠×20 / 50 心之碎片 / 100 金卢比 200。"
+  },
+  {
+    "id": "BS-003",
+    "map": "ForestTemple",
+    "area": "B2",
+    "cat": "boss",
+    "x": 63.36,
+    "y": 26.01,
+    "world": [
+      -0.04,
+      59.53,
+      -40.86
+    ],
+    "era": "Adult",
+    "time": "Any",
+    "req": "",
+    "zh": "森林神殿 (B2) · Boss 房：幻影加侬",
+    "en": "Forest Temple (B2): Boss Room - Phantom Ganon",
+    "descZh": "进入 Boss 房与幻影加侬战斗，胜利后取得心之容器。",
+    "descEn": "Defeat Phantom Ganon in the boss room for a Heart Container.",
+    "howto": "进入 Boss 房，击败幻影加侬（Phantom Ganon）。",
+    "reward": "心之容器 + 森之勋章",
+    "instanceId": "8258358987204188069"
   },
   {
     "id": "GS-070",
@@ -2305,9 +2569,10 @@
     "req": "",
     "zh": "森林神殿 (B2) · 黄金骷髅蜘蛛",
     "en": "Forest Temple (B2): Gold Skulltula",
-    "descZh": "位于森林神殿 B2 层的黄金骷髅蜘蛛（世界坐标 -3.4, 65.6, 17.2）。",
-    "descEn": "Gold Skulltula on B2 of Forest Temple.",
-    "instanceId": "3072474196008424241"
+    "instanceId": "3072474196008424241",
+    "howto": "在森林神殿 (B2)，用弹弓/钩索/炸弹清掉蛛网与角落，击杀黄金骷髅蜘蛛后捡徽章。",
+    "reward": "黄金骷髅蜘蛛徽章 ×1",
+    "note": "全 100 只，本区 5 只；10 大人钱包 / 20 响音石 / 30 巨人钱包 / 40 炸弹鼠×20 / 50 心之碎片 / 100 金卢比 200。"
   },
   {
     "id": "GS-071",
@@ -2326,9 +2591,10 @@
     "req": "",
     "zh": "森林神殿 (1F) · 黄金骷髅蜘蛛",
     "en": "Forest Temple (1F): Gold Skulltula",
-    "descZh": "位于森林神殿 1F 层的黄金骷髅蜘蛛（世界坐标 -38.1, 100.1, -4.2）。",
-    "descEn": "Gold Skulltula on 1F of Forest Temple.",
-    "instanceId": "10970805784153267902"
+    "instanceId": "10970805784153267902",
+    "howto": "在森林神殿 (1F)，用弹弓/钩索/炸弹清掉蛛网与角落，击杀黄金骷髅蜘蛛后捡徽章。",
+    "reward": "黄金骷髅蜘蛛徽章 ×1",
+    "note": "全 100 只，本区 5 只；10 大人钱包 / 20 响音石 / 30 巨人钱包 / 40 炸弹鼠×20 / 50 心之碎片 / 100 金卢比 200。"
   },
   {
     "id": "GS-072",
@@ -2347,9 +2613,10 @@
     "req": "",
     "zh": "森林神殿 (1F) · 黄金骷髅蜘蛛",
     "en": "Forest Temple (1F): Gold Skulltula",
-    "descZh": "位于森林神殿 1F 层的黄金骷髅蜘蛛（世界坐标 8.8, 109.6, -23.6）。",
-    "descEn": "Gold Skulltula on 1F of Forest Temple.",
-    "instanceId": "17612196129225973969"
+    "instanceId": "17612196129225973969",
+    "howto": "在森林神殿 (1F)，用弹弓/钩索/炸弹清掉蛛网与角落，击杀黄金骷髅蜘蛛后捡徽章。",
+    "reward": "黄金骷髅蜘蛛徽章 ×1",
+    "note": "全 100 只，本区 5 只；10 大人钱包 / 20 响音石 / 30 巨人钱包 / 40 炸弹鼠×20 / 50 心之碎片 / 100 金卢比 200。"
   },
   {
     "id": "GS-073",
@@ -2368,9 +2635,10 @@
     "req": "",
     "zh": "森林神殿 (1F) · 黄金骷髅蜘蛛",
     "en": "Forest Temple (1F): Gold Skulltula",
-    "descZh": "位于森林神殿 1F 层的黄金骷髅蜘蛛（世界坐标 44.3, 112.1, -38.2）。",
-    "descEn": "Gold Skulltula on 1F of Forest Temple.",
-    "instanceId": "2014780391754316762"
+    "instanceId": "2014780391754316762",
+    "howto": "在森林神殿 (1F)，用弹弓/钩索/炸弹清掉蛛网与角落，击杀黄金骷髅蜘蛛后捡徽章。",
+    "reward": "黄金骷髅蜘蛛徽章 ×1",
+    "note": "全 100 只，本区 5 只；10 大人钱包 / 20 响音石 / 30 巨人钱包 / 40 炸弹鼠×20 / 50 心之碎片 / 100 金卢比 200。"
   },
   {
     "id": "GS-074",
@@ -2389,9 +2657,10 @@
     "req": "",
     "zh": "森林神殿 (2F) · 黄金骷髅蜘蛛",
     "en": "Forest Temple (2F): Gold Skulltula",
-    "descZh": "位于森林神殿 2F 层的黄金骷髅蜘蛛（世界坐标 11.3, 119.8, 64.0）。",
-    "descEn": "Gold Skulltula on 2F of Forest Temple.",
-    "instanceId": "11081821111317815057"
+    "instanceId": "11081821111317815057",
+    "howto": "在森林神殿 (2F)，用弹弓/钩索/炸弹清掉蛛网与角落，击杀黄金骷髅蜘蛛后捡徽章。",
+    "reward": "黄金骷髅蜘蛛徽章 ×1",
+    "note": "全 100 只，本区 5 只；10 大人钱包 / 20 响音石 / 30 巨人钱包 / 40 炸弹鼠×20 / 50 心之碎片 / 100 金卢比 200。"
   },
   {
     "id": "GS-075",
@@ -2410,9 +2679,10 @@
     "req": "",
     "zh": "冰之洞窟 (0F) · 黄金骷髅蜘蛛",
     "en": "Ice Cavern (0F): Gold Skulltula",
-    "descZh": "位于冰之洞窟 0F 层的黄金骷髅蜘蛛（世界坐标 -1.4, 107.2, -6.2）。",
-    "descEn": "Gold Skulltula on 0F of Ice Cavern.",
-    "instanceId": "7165255787572043804"
+    "instanceId": "7165255787572043804",
+    "howto": "在冰之洞窟 (0F)，用弹弓/钩索/炸弹清掉蛛网与角落，击杀黄金骷髅蜘蛛后捡徽章。",
+    "reward": "黄金骷髅蜘蛛徽章 ×1",
+    "note": "全 100 只，本区 3 只；10 大人钱包 / 20 响音石 / 30 巨人钱包 / 40 炸弹鼠×20 / 50 心之碎片 / 100 金卢比 200。"
   },
   {
     "id": "GS-076",
@@ -2431,9 +2701,10 @@
     "req": "",
     "zh": "冰之洞窟 (0F) · 黄金骷髅蜘蛛",
     "en": "Ice Cavern (0F): Gold Skulltula",
-    "descZh": "位于冰之洞窟 0F 层的黄金骷髅蜘蛛（世界坐标 83.7, 108.3, -0.5）。",
-    "descEn": "Gold Skulltula on 0F of Ice Cavern.",
-    "instanceId": "1612219105489330028"
+    "instanceId": "1612219105489330028",
+    "howto": "在冰之洞窟 (0F)，用弹弓/钩索/炸弹清掉蛛网与角落，击杀黄金骷髅蜘蛛后捡徽章。",
+    "reward": "黄金骷髅蜘蛛徽章 ×1",
+    "note": "全 100 只，本区 3 只；10 大人钱包 / 20 响音石 / 30 巨人钱包 / 40 炸弹鼠×20 / 50 心之碎片 / 100 金卢比 200。"
   },
   {
     "id": "GS-077",
@@ -2452,9 +2723,10 @@
     "req": "",
     "zh": "冰之洞窟 (0F) · 黄金骷髅蜘蛛",
     "en": "Ice Cavern (0F): Gold Skulltula",
-    "descZh": "位于冰之洞窟 0F 层的黄金骷髅蜘蛛（世界坐标 -18.1, 108.7, -16.6）。",
-    "descEn": "Gold Skulltula on 0F of Ice Cavern.",
-    "instanceId": "14822647495538506998"
+    "instanceId": "14822647495538506998",
+    "howto": "在冰之洞窟 (0F)，用弹弓/钩索/炸弹清掉蛛网与角落，击杀黄金骷髅蜘蛛后捡徽章。",
+    "reward": "黄金骷髅蜘蛛徽章 ×1",
+    "note": "全 100 只，本区 3 只；10 大人钱包 / 20 响音石 / 30 巨人钱包 / 40 炸弹鼠×20 / 50 心之碎片 / 100 金卢比 200。"
   },
   {
     "id": "GS-078",
@@ -2473,9 +2745,10 @@
     "req": "",
     "zh": "加布加布腹中 (B1) · 黄金骷髅蜘蛛",
     "en": "Inside Jabu-Jabu's Belly (B1): Gold Skulltula",
-    "descZh": "位于加布加布腹中 B1 层的黄金骷髅蜘蛛（世界坐标 17.4, 81.7, -59.3）。",
-    "descEn": "Gold Skulltula on B1 of Inside Jabu-Jabu's Belly.",
-    "instanceId": "11513774157335944149"
+    "instanceId": "11513774157335944149",
+    "howto": "在加布加布腹中 (B1)，用弹弓/钩索/炸弹清掉蛛网与角落，击杀黄金骷髅蜘蛛后捡徽章。",
+    "reward": "黄金骷髅蜘蛛徽章 ×1",
+    "note": "全 100 只，本区 4 只；10 大人钱包 / 20 响音石 / 30 巨人钱包 / 40 炸弹鼠×20 / 50 心之碎片 / 100 金卢比 200。"
   },
   {
     "id": "GS-079",
@@ -2494,9 +2767,10 @@
     "req": "",
     "zh": "加布加布腹中 (B1) · 黄金骷髅蜘蛛",
     "en": "Inside Jabu-Jabu's Belly (B1): Gold Skulltula",
-    "descZh": "位于加布加布腹中 B1 层的黄金骷髅蜘蛛（世界坐标 -15.5, 84.6, -83.4）。",
-    "descEn": "Gold Skulltula on B1 of Inside Jabu-Jabu's Belly.",
-    "instanceId": "11283202900158580106"
+    "instanceId": "11283202900158580106",
+    "howto": "在加布加布腹中 (B1)，用弹弓/钩索/炸弹清掉蛛网与角落，击杀黄金骷髅蜘蛛后捡徽章。",
+    "reward": "黄金骷髅蜘蛛徽章 ×1",
+    "note": "全 100 只，本区 4 只；10 大人钱包 / 20 响音石 / 30 巨人钱包 / 40 炸弹鼠×20 / 50 心之碎片 / 100 金卢比 200。"
   },
   {
     "id": "GS-080",
@@ -2515,9 +2789,33 @@
     "req": "",
     "zh": "加布加布腹中 (B1) · 黄金骷髅蜘蛛",
     "en": "Inside Jabu-Jabu's Belly (B1): Gold Skulltula",
-    "descZh": "位于加布加布腹中 B1 层的黄金骷髅蜘蛛（世界坐标 -2.2, 88.4, -95.0）。",
-    "descEn": "Gold Skulltula on B1 of Inside Jabu-Jabu's Belly.",
-    "instanceId": "13852835165271311030"
+    "instanceId": "13852835165271311030",
+    "howto": "在加布加布腹中 (B1)，用弹弓/钩索/炸弹清掉蛛网与角落，击杀黄金骷髅蜘蛛后捡徽章。",
+    "reward": "黄金骷髅蜘蛛徽章 ×1",
+    "note": "全 100 只，本区 4 只；10 大人钱包 / 20 响音石 / 30 巨人钱包 / 40 炸弹鼠×20 / 50 心之碎片 / 100 金卢比 200。"
+  },
+  {
+    "id": "BS-004",
+    "map": "InsideJabuJabuBelly",
+    "area": "2F",
+    "cat": "boss",
+    "x": 91.0,
+    "y": 53.51,
+    "world": [
+      41.93,
+      102.06,
+      -92.74
+    ],
+    "era": "Child",
+    "time": "Any",
+    "req": "",
+    "zh": "加布加布腹中 (2F) · Boss 房：啪哩内德",
+    "en": "Inside Jabu-Jabu's Belly (2F): Boss Room - Barinade",
+    "descZh": "进入 Boss 房与啪哩内德战斗，胜利后取得心之容器。",
+    "descEn": "Defeat Barinade in the boss room for a Heart Container.",
+    "howto": "进入 Boss 房，击败啪哩内德（Barinade）。",
+    "reward": "心之容器 + 卓拉蓝宝石",
+    "instanceId": "10044298509133306592"
   },
   {
     "id": "GS-081",
@@ -2536,9 +2834,33 @@
     "req": "",
     "zh": "加布加布腹中 (2F) · 黄金骷髅蜘蛛",
     "en": "Inside Jabu-Jabu's Belly (2F): Gold Skulltula",
-    "descZh": "位于加布加布腹中 2F 层的黄金骷髅蜘蛛（世界坐标 38.3, 106.1, -49.1）。",
-    "descEn": "Gold Skulltula on 2F of Inside Jabu-Jabu's Belly.",
-    "instanceId": "15983944335296207002"
+    "instanceId": "15983944335296207002",
+    "howto": "在加布加布腹中 (2F)，用弹弓/钩索/炸弹清掉蛛网与角落，击杀黄金骷髅蜘蛛后捡徽章。",
+    "reward": "黄金骷髅蜘蛛徽章 ×1",
+    "note": "全 100 只，本区 4 只；10 大人钱包 / 20 响音石 / 30 巨人钱包 / 40 炸弹鼠×20 / 50 心之碎片 / 100 金卢比 200。"
+  },
+  {
+    "id": "BS-005",
+    "map": "InsideTheDekuTree",
+    "area": "B2",
+    "cat": "boss",
+    "x": 60.89,
+    "y": 89.77,
+    "world": [
+      -29.0,
+      53.0,
+      46.59
+    ],
+    "era": "Child",
+    "time": "Any",
+    "req": "",
+    "zh": "德库树内部 (B2) · Boss 房：哥马",
+    "en": "Inside the Deku Tree (B2): Boss Room - Gohma",
+    "descZh": "进入 Boss 房与哥马战斗，胜利后取得心之容器。",
+    "descEn": "Defeat Gohma in the boss room for a Heart Container.",
+    "howto": "进入 Boss 房，击败哥马（Gohma）。",
+    "reward": "心之容器 + 科奇里翡翠",
+    "instanceId": "12971031847538946406"
   },
   {
     "id": "GS-082",
@@ -2557,9 +2879,10 @@
     "req": "",
     "zh": "德库树内部 (B1) · 黄金骷髅蜘蛛",
     "en": "Inside the Deku Tree (B1): Gold Skulltula",
-    "descZh": "位于德库树内部 B1 层的黄金骷髅蜘蛛（世界坐标 -18.1, 78.7, -13.0）。",
-    "descEn": "Gold Skulltula on B1 of Inside the Deku Tree.",
-    "instanceId": "18075358844331090388"
+    "instanceId": "18075358844331090388",
+    "howto": "在德库树内部 (B1)，用弹弓/钩索/炸弹清掉蛛网与角落，击杀黄金骷髅蜘蛛后捡徽章。",
+    "reward": "黄金骷髅蜘蛛徽章 ×1",
+    "note": "全 100 只，本区 4 只；10 大人钱包 / 20 响音石 / 30 巨人钱包 / 40 炸弹鼠×20 / 50 心之碎片 / 100 金卢比 200。"
   },
   {
     "id": "GS-083",
@@ -2578,9 +2901,10 @@
     "req": "",
     "zh": "德库树内部 (B1) · 黄金骷髅蜘蛛",
     "en": "Inside the Deku Tree (B1): Gold Skulltula",
-    "descZh": "位于德库树内部 B1 层的黄金骷髅蜘蛛（世界坐标 -81.9, 86.7, -7.4）。",
-    "descEn": "Gold Skulltula on B1 of Inside the Deku Tree.",
-    "instanceId": "17501688996789643983"
+    "instanceId": "17501688996789643983",
+    "howto": "在德库树内部 (B1)，用弹弓/钩索/炸弹清掉蛛网与角落，击杀黄金骷髅蜘蛛后捡徽章。",
+    "reward": "黄金骷髅蜘蛛徽章 ×1",
+    "note": "全 100 只，本区 4 只；10 大人钱包 / 20 响音石 / 30 巨人钱包 / 40 炸弹鼠×20 / 50 心之碎片 / 100 金卢比 200。"
   },
   {
     "id": "GS-084",
@@ -2599,9 +2923,10 @@
     "req": "",
     "zh": "德库树内部 (B1) · 黄金骷髅蜘蛛",
     "en": "Inside the Deku Tree (B1): Gold Skulltula",
-    "descZh": "位于德库树内部 B1 层的黄金骷髅蜘蛛（世界坐标 3.3, 86.9, 1.1）。",
-    "descEn": "Gold Skulltula on B1 of Inside the Deku Tree.",
-    "instanceId": "16101480770659370603"
+    "instanceId": "16101480770659370603",
+    "howto": "在德库树内部 (B1)，用弹弓/钩索/炸弹清掉蛛网与角落，击杀黄金骷髅蜘蛛后捡徽章。",
+    "reward": "黄金骷髅蜘蛛徽章 ×1",
+    "note": "全 100 只，本区 4 只；10 大人钱包 / 20 响音石 / 30 巨人钱包 / 40 炸弹鼠×20 / 50 心之碎片 / 100 金卢比 200。"
   },
   {
     "id": "GS-085",
@@ -2620,9 +2945,33 @@
     "req": "",
     "zh": "德库树内部 (3F) · 黄金骷髅蜘蛛",
     "en": "Inside the Deku Tree (3F): Gold Skulltula",
-    "descZh": "位于德库树内部 3F 层的黄金骷髅蜘蛛（世界坐标 -29.8, 121.0, 13.0）。",
-    "descEn": "Gold Skulltula on 3F of Inside the Deku Tree.",
-    "instanceId": "13609975487234437568"
+    "instanceId": "13609975487234437568",
+    "howto": "在德库树内部 (3F)，用弹弓/钩索/炸弹清掉蛛网与角落，击杀黄金骷髅蜘蛛后捡徽章。",
+    "reward": "黄金骷髅蜘蛛徽章 ×1",
+    "note": "全 100 只，本区 4 只；10 大人钱包 / 20 响音石 / 30 巨人钱包 / 40 炸弹鼠×20 / 50 心之碎片 / 100 金卢比 200。"
+  },
+  {
+    "id": "BS-006",
+    "map": "ShadowTemple",
+    "area": "B4",
+    "cat": "boss",
+    "x": 24.24,
+    "y": 62.19,
+    "world": [
+      -138.51,
+      42.0,
+      19.06
+    ],
+    "era": "Adult",
+    "time": "Any",
+    "req": "",
+    "zh": "暗之神殿 (B4) · Boss 房：崩鼓崩鼓",
+    "en": "Shadow Temple (B4): Boss Room - Bongo Bongo",
+    "descZh": "进入 Boss 房与崩鼓崩鼓战斗，胜利后取得心之容器。",
+    "descEn": "Defeat Bongo Bongo in the boss room for a Heart Container.",
+    "howto": "进入 Boss 房，击败崩鼓崩鼓（Bongo Bongo）。",
+    "reward": "心之容器 + 暗之勋章",
+    "instanceId": "16286836175896403549"
   },
   {
     "id": "GS-086",
@@ -2641,9 +2990,10 @@
     "req": "",
     "zh": "暗之神殿 (B4) · 黄金骷髅蜘蛛",
     "en": "Shadow Temple (B4): Gold Skulltula",
-    "descZh": "位于暗之神殿 B4 层的黄金骷髅蜘蛛（世界坐标 -215.4, 41.8, -43.6）。",
-    "descEn": "Gold Skulltula on B4 of Shadow Temple.",
-    "instanceId": "10270336409167849808"
+    "instanceId": "10270336409167849808",
+    "howto": "在暗之神殿 (B4)，用弹弓/钩索/炸弹清掉蛛网与角落，击杀黄金骷髅蜘蛛后捡徽章。",
+    "reward": "黄金骷髅蜘蛛徽章 ×1",
+    "note": "全 100 只，本区 5 只；10 大人钱包 / 20 响音石 / 30 巨人钱包 / 40 炸弹鼠×20 / 50 心之碎片 / 100 金卢比 200。"
   },
   {
     "id": "GS-087",
@@ -2662,9 +3012,10 @@
     "req": "",
     "zh": "暗之神殿 (B4) · 黄金骷髅蜘蛛",
     "en": "Shadow Temple (B4): Gold Skulltula",
-    "descZh": "位于暗之神殿 B4 层的黄金骷髅蜘蛛（世界坐标 104.6, 42.0, -39.6）。",
-    "descEn": "Gold Skulltula on B4 of Shadow Temple.",
-    "instanceId": "8823884712433934372"
+    "instanceId": "8823884712433934372",
+    "howto": "在暗之神殿 (B4)，用弹弓/钩索/炸弹清掉蛛网与角落，击杀黄金骷髅蜘蛛后捡徽章。",
+    "reward": "黄金骷髅蜘蛛徽章 ×1",
+    "note": "全 100 只，本区 5 只；10 大人钱包 / 20 响音石 / 30 巨人钱包 / 40 炸弹鼠×20 / 50 心之碎片 / 100 金卢比 200。"
   },
   {
     "id": "GS-088",
@@ -2683,9 +3034,10 @@
     "req": "",
     "zh": "暗之神殿 (B3) · 黄金骷髅蜘蛛",
     "en": "Shadow Temple (B3): Gold Skulltula",
-    "descZh": "位于暗之神殿 B3 层的黄金骷髅蜘蛛（世界坐标 75.8, 53.4, 6.3）。",
-    "descEn": "Gold Skulltula on B3 of Shadow Temple.",
-    "instanceId": "15564367841356014861"
+    "instanceId": "15564367841356014861",
+    "howto": "在暗之神殿 (B3)，用弹弓/钩索/炸弹清掉蛛网与角落，击杀黄金骷髅蜘蛛后捡徽章。",
+    "reward": "黄金骷髅蜘蛛徽章 ×1",
+    "note": "全 100 只，本区 5 只；10 大人钱包 / 20 响音石 / 30 巨人钱包 / 40 炸弹鼠×20 / 50 心之碎片 / 100 金卢比 200。"
   },
   {
     "id": "GS-089",
@@ -2704,9 +3056,10 @@
     "req": "",
     "zh": "暗之神殿 (B3) · 黄金骷髅蜘蛛",
     "en": "Shadow Temple (B3): Gold Skulltula",
-    "descZh": "位于暗之神殿 B3 层的黄金骷髅蜘蛛（世界坐标 32.9, 56.5, 86.3）。",
-    "descEn": "Gold Skulltula on B3 of Shadow Temple.",
-    "instanceId": "15148554628675590606"
+    "instanceId": "15148554628675590606",
+    "howto": "在暗之神殿 (B3)，用弹弓/钩索/炸弹清掉蛛网与角落，击杀黄金骷髅蜘蛛后捡徽章。",
+    "reward": "黄金骷髅蜘蛛徽章 ×1",
+    "note": "全 100 只，本区 5 只；10 大人钱包 / 20 响音石 / 30 巨人钱包 / 40 炸弹鼠×20 / 50 心之碎片 / 100 金卢比 200。"
   },
   {
     "id": "GS-090",
@@ -2725,9 +3078,10 @@
     "req": "",
     "zh": "暗之神殿 (B3) · 黄金骷髅蜘蛛",
     "en": "Shadow Temple (B3): Gold Skulltula",
-    "descZh": "位于暗之神殿 B3 层的黄金骷髅蜘蛛（世界坐标 184.9, 61.9, 96.9）。",
-    "descEn": "Gold Skulltula on B3 of Shadow Temple.",
-    "instanceId": "16933078188088206331"
+    "instanceId": "16933078188088206331",
+    "howto": "在暗之神殿 (B3)，用弹弓/钩索/炸弹清掉蛛网与角落，击杀黄金骷髅蜘蛛后捡徽章。",
+    "reward": "黄金骷髅蜘蛛徽章 ×1",
+    "note": "全 100 只，本区 5 只；10 大人钱包 / 20 响音石 / 30 巨人钱包 / 40 炸弹鼠×20 / 50 心之碎片 / 100 金卢比 200。"
   },
   {
     "id": "GS-091",
@@ -2746,9 +3100,10 @@
     "req": "",
     "zh": "魂之神殿 (0F) · 黄金骷髅蜘蛛",
     "en": "Spirit Temple (0F): Gold Skulltula",
-    "descZh": "位于魂之神殿 0F 层的黄金骷髅蜘蛛（世界坐标 39.0, 104.2, -62.9）。",
-    "descEn": "Gold Skulltula on 0F of Spirit Temple.",
-    "instanceId": "8120267919866495114"
+    "instanceId": "8120267919866495114",
+    "howto": "在魂之神殿 (0F)，用弹弓/钩索/炸弹清掉蛛网与角落，击杀黄金骷髅蜘蛛后捡徽章。",
+    "reward": "黄金骷髅蜘蛛徽章 ×1",
+    "note": "全 100 只，本区 5 只；10 大人钱包 / 20 响音石 / 30 巨人钱包 / 40 炸弹鼠×20 / 50 心之碎片 / 100 金卢比 200。"
   },
   {
     "id": "GS-092",
@@ -2767,9 +3122,10 @@
     "req": "",
     "zh": "魂之神殿 (0F) · 黄金骷髅蜘蛛",
     "en": "Spirit Temple (0F): Gold Skulltula",
-    "descZh": "位于魂之神殿 0F 层的黄金骷髅蜘蛛（世界坐标 -9.6, 107.4, -56.0）。",
-    "descEn": "Gold Skulltula on 0F of Spirit Temple.",
-    "instanceId": "10530233152473742636"
+    "instanceId": "10530233152473742636",
+    "howto": "在魂之神殿 (0F)，用弹弓/钩索/炸弹清掉蛛网与角落，击杀黄金骷髅蜘蛛后捡徽章。",
+    "reward": "黄金骷髅蜘蛛徽章 ×1",
+    "note": "全 100 只，本区 5 只；10 大人钱包 / 20 响音石 / 30 巨人钱包 / 40 炸弹鼠×20 / 50 心之碎片 / 100 金卢比 200。"
   },
   {
     "id": "GS-093",
@@ -2788,9 +3144,33 @@
     "req": "",
     "zh": "魂之神殿 (1F) · 黄金骷髅蜘蛛",
     "en": "Spirit Temple (1F): Gold Skulltula",
-    "descZh": "位于魂之神殿 1F 层的黄金骷髅蜘蛛（世界坐标 14.7, 115.2, -68.8）。",
-    "descEn": "Gold Skulltula on 1F of Spirit Temple.",
-    "instanceId": "12959656942046734931"
+    "instanceId": "12959656942046734931",
+    "howto": "在魂之神殿 (1F)，用弹弓/钩索/炸弹清掉蛛网与角落，击杀黄金骷髅蜘蛛后捡徽章。",
+    "reward": "黄金骷髅蜘蛛徽章 ×1",
+    "note": "全 100 只，本区 5 只；10 大人钱包 / 20 响音石 / 30 巨人钱包 / 40 炸弹鼠×20 / 50 心之碎片 / 100 金卢比 200。"
+  },
+  {
+    "id": "BS-007",
+    "map": "SpiritTemple",
+    "area": "2F",
+    "cat": "boss",
+    "x": 50.0,
+    "y": 15.21,
+    "world": [
+      0.0,
+      135.0,
+      -76.7
+    ],
+    "era": "Both",
+    "time": "Any",
+    "req": "",
+    "zh": "魂之神殿 (2F) · Boss 房：双子妖婆",
+    "en": "Spirit Temple (2F): Boss Room - Twinrova",
+    "descZh": "进入 Boss 房与双子妖婆战斗，胜利后取得心之容器。",
+    "descEn": "Defeat Twinrova in the boss room for a Heart Container.",
+    "howto": "进入 Boss 房，击败双子妖婆（Twinrova）。",
+    "reward": "心之容器 + 魂之勋章",
+    "instanceId": "6871288692468145393"
   },
   {
     "id": "GS-094",
@@ -2809,9 +3189,10 @@
     "req": "",
     "zh": "魂之神殿 (2F) · 黄金骷髅蜘蛛",
     "en": "Spirit Temple (2F): Gold Skulltula",
-    "descZh": "位于魂之神殿 2F 层的黄金骷髅蜘蛛（世界坐标 -23.1, 129.7, -66.7）。",
-    "descEn": "Gold Skulltula on 2F of Spirit Temple.",
-    "instanceId": "5086449036385341804"
+    "instanceId": "5086449036385341804",
+    "howto": "在魂之神殿 (2F)，用弹弓/钩索/炸弹清掉蛛网与角落，击杀黄金骷髅蜘蛛后捡徽章。",
+    "reward": "黄金骷髅蜘蛛徽章 ×1",
+    "note": "全 100 只，本区 5 只；10 大人钱包 / 20 响音石 / 30 巨人钱包 / 40 炸弹鼠×20 / 50 心之碎片 / 100 金卢比 200。"
   },
   {
     "id": "GS-095",
@@ -2830,9 +3211,10 @@
     "req": "",
     "zh": "魂之神殿 (2F) · 黄金骷髅蜘蛛",
     "en": "Spirit Temple (2F): Gold Skulltula",
-    "descZh": "位于魂之神殿 2F 层的黄金骷髅蜘蛛（世界坐标 -55.7, 136.6, -7.3）。",
-    "descEn": "Gold Skulltula on 2F of Spirit Temple.",
-    "instanceId": "10127391959410674946"
+    "instanceId": "10127391959410674946",
+    "howto": "在魂之神殿 (2F)，用弹弓/钩索/炸弹清掉蛛网与角落，击杀黄金骷髅蜘蛛后捡徽章。",
+    "reward": "黄金骷髅蜘蛛徽章 ×1",
+    "note": "全 100 只，本区 5 只；10 大人钱包 / 20 响音石 / 30 巨人钱包 / 40 炸弹鼠×20 / 50 心之碎片 / 100 金卢比 200。"
   },
   {
     "id": "GS-096",
@@ -2851,9 +3233,10 @@
     "req": "",
     "zh": "水之神殿 (B1) · 黄金骷髅蜘蛛",
     "en": "Water Temple (B1): Gold Skulltula",
-    "descZh": "位于水之神殿 B1 层的黄金骷髅蜘蛛（世界坐标 1.4, 95.2, 0.5）。",
-    "descEn": "Gold Skulltula on B1 of Water Temple.",
-    "instanceId": "16157272130665282352"
+    "instanceId": "16157272130665282352",
+    "howto": "在水之神殿 (B1)，用弹弓/钩索/炸弹清掉蛛网与角落，击杀黄金骷髅蜘蛛后捡徽章。",
+    "reward": "黄金骷髅蜘蛛徽章 ×1",
+    "note": "全 100 只，本区 5 只；10 大人钱包 / 20 响音石 / 30 巨人钱包 / 40 炸弹鼠×20 / 50 心之碎片 / 100 金卢比 200。"
   },
   {
     "id": "GS-097",
@@ -2872,9 +3255,10 @@
     "req": "",
     "zh": "水之神殿 (1F) · 黄金骷髅蜘蛛",
     "en": "Water Temple (1F): Gold Skulltula",
-    "descZh": "位于水之神殿 1F 层的黄金骷髅蜘蛛（世界坐标 18.6, 107.5, -65.7）。",
-    "descEn": "Gold Skulltula on 1F of Water Temple.",
-    "instanceId": "186694424287048567"
+    "instanceId": "186694424287048567",
+    "howto": "在水之神殿 (1F)，用弹弓/钩索/炸弹清掉蛛网与角落，击杀黄金骷髅蜘蛛后捡徽章。",
+    "reward": "黄金骷髅蜘蛛徽章 ×1",
+    "note": "全 100 只，本区 5 只；10 大人钱包 / 20 响音石 / 30 巨人钱包 / 40 炸弹鼠×20 / 50 心之碎片 / 100 金卢比 200。"
   },
   {
     "id": "GS-098",
@@ -2893,9 +3277,10 @@
     "req": "",
     "zh": "水之神殿 (2F) · 黄金骷髅蜘蛛",
     "en": "Water Temple (2F): Gold Skulltula",
-    "descZh": "位于水之神殿 2F 层的黄金骷髅蜘蛛（世界坐标 35.1, 112.5, -9.5）。",
-    "descEn": "Gold Skulltula on 2F of Water Temple.",
-    "instanceId": "4399424945134189769"
+    "instanceId": "4399424945134189769",
+    "howto": "在水之神殿 (2F)，用弹弓/钩索/炸弹清掉蛛网与角落，击杀黄金骷髅蜘蛛后捡徽章。",
+    "reward": "黄金骷髅蜘蛛徽章 ×1",
+    "note": "全 100 只，本区 5 只；10 大人钱包 / 20 响音石 / 30 巨人钱包 / 40 炸弹鼠×20 / 50 心之碎片 / 100 金卢比 200。"
   },
   {
     "id": "GS-099",
@@ -2914,9 +3299,33 @@
     "req": "",
     "zh": "水之神殿 (2F) · 黄金骷髅蜘蛛",
     "en": "Water Temple (2F): Gold Skulltula",
-    "descZh": "位于水之神殿 2F 层的黄金骷髅蜘蛛（世界坐标 -54.5, 114.0, -59.3）。",
-    "descEn": "Gold Skulltula on 2F of Water Temple.",
-    "instanceId": "15506432733081566465"
+    "instanceId": "15506432733081566465",
+    "howto": "在水之神殿 (2F)，用弹弓/钩索/炸弹清掉蛛网与角落，击杀黄金骷髅蜘蛛后捡徽章。",
+    "reward": "黄金骷髅蜘蛛徽章 ×1",
+    "note": "全 100 只，本区 5 只；10 大人钱包 / 20 响音石 / 30 巨人钱包 / 40 炸弹鼠×20 / 50 心之碎片 / 100 金卢比 200。"
+  },
+  {
+    "id": "BS-008",
+    "map": "WaterTemple",
+    "area": "3F",
+    "cat": "boss",
+    "x": 68.2,
+    "y": 36.73,
+    "world": [
+      -4.5,
+      131.36,
+      -71.18
+    ],
+    "era": "Adult",
+    "time": "Any",
+    "req": "",
+    "zh": "水之神殿 (3F) · Boss 房：魔发",
+    "en": "Water Temple (3F): Boss Room - Morpha",
+    "descZh": "进入 Boss 房与魔发战斗，胜利后取得心之容器。",
+    "descEn": "Defeat Morpha in the boss room for a Heart Container.",
+    "howto": "进入 Boss 房，击败魔发（Morpha）。",
+    "reward": "心之容器 + 水之勋章",
+    "instanceId": "17144458175705251477"
   },
   {
     "id": "GS-100",
@@ -2935,9 +3344,10 @@
     "req": "",
     "zh": "水之神殿 (3F) · 黄金骷髅蜘蛛",
     "en": "Water Temple (3F): Gold Skulltula",
-    "descZh": "位于水之神殿 3F 层的黄金骷髅蜘蛛（世界坐标 -1.2, 126.0, -7.9）。",
-    "descEn": "Gold Skulltula on 3F of Water Temple.",
-    "instanceId": "11571778270592589517"
+    "instanceId": "11571778270592589517",
+    "howto": "在水之神殿 (3F)，用弹弓/钩索/炸弹清掉蛛网与角落，击杀黄金骷髅蜘蛛后捡徽章。",
+    "reward": "黄金骷髅蜘蛛徽章 ×1",
+    "note": "全 100 只，本区 5 只；10 大人钱包 / 20 响音石 / 30 巨人钱包 / 40 炸弹鼠×20 / 50 心之碎片 / 100 金卢比 200。"
   },
   {
     "id": "GF-001",
@@ -3775,8 +4185,9 @@
     "req": "",
     "zh": "死亡山火山口 · 秘密洞穴",
     "en": "Death Mountain Crater: Secret Grotto",
-    "descZh": "使用炸弹、百万吨大锤或风暴之歌开启的隐藏地洞（世界坐标 -50.8, 117.3, -0.2）。",
-    "descEn": "Hidden Secret Grotto (open with Bomb, Hammer, or Song of Storms)."
+    "howto": "用炸弹、百万吨大锤或风暴之歌炸开/掀开地面裂缝，跳进洞穴。",
+    "reward": "洞内卢比 / 心之碎片 / 妖精",
+    "note": "进洞前备好炸弹与火把，部分洞穴有蜘蛛或敌人。"
   },
   {
     "id": "GR-002",
@@ -3795,8 +4206,9 @@
     "req": "",
     "zh": "死亡山火山口 · 秘密洞穴",
     "en": "Death Mountain Crater: Secret Grotto",
-    "descZh": "使用炸弹、百万吨大锤或风暴之歌开启的隐藏地洞（世界坐标 -17.4, 125.0, 52.6）。",
-    "descEn": "Hidden Secret Grotto (open with Bomb, Hammer, or Song of Storms)."
+    "howto": "用炸弹、百万吨大锤或风暴之歌炸开/掀开地面裂缝，跳进洞穴。",
+    "reward": "洞内卢比 / 心之碎片 / 妖精",
+    "note": "进洞前备好炸弹与火把，部分洞穴有蜘蛛或敌人。"
   },
   {
     "id": "ST-001",
@@ -3815,8 +4227,9 @@
     "req": "",
     "zh": "死亡山火山口 · 八卦石",
     "en": "Death Mountain Crater: Gossip Stone",
-    "descZh": "佩戴真实面具可与之对话获取线索；吹奏曲目可召唤妖精（世界坐标 -21.9, 67.2, 62.5）。",
-    "descEn": "Wear the Mask of Truth to hear secrets or play songs for fairies."
+    "howto": "戴上真实面具与八卦石对话获取线索；对着石吹曲还能召唤妖精。",
+    "reward": "情报 / 妖精",
+    "note": "不戴真实面具只会听到含糊的低语。"
   },
   {
     "id": "ST-002",
@@ -3835,8 +4248,9 @@
     "req": "",
     "zh": "死亡山火山口 · 八卦石",
     "en": "Death Mountain Crater: Gossip Stone",
-    "descZh": "佩戴真实面具可与之对话获取线索；吹奏曲目可召唤妖精（世界坐标 43.6, 132.3, 37.3）。",
-    "descEn": "Wear the Mask of Truth to hear secrets or play songs for fairies."
+    "howto": "戴上真实面具与八卦石对话获取线索；对着石吹曲还能召唤妖精。",
+    "reward": "情报 / 妖精",
+    "note": "不戴真实面具只会听到含糊的低语。"
   },
   {
     "id": "WP-001",
@@ -3855,8 +4269,8 @@
     "req": "",
     "zh": "死亡山火山口 · 时之歌传送点",
     "en": "Death Mountain Crater: Ocarina Warp Pad",
-    "descZh": "吹奏对应神殿传送曲可直接传送至此。",
-    "descEn": "Play the corresponding Ocarina warp melody to teleport here."
+    "howto": "成年学会对应传送曲后，在时之神殿吹奏即可传送到此。",
+    "reward": "快速移动点"
   },
   {
     "id": "GR-003",
@@ -3875,8 +4289,9 @@
     "req": "",
     "zh": "死亡山山道 · 秘密洞穴",
     "en": "Death Mountain Trail: Secret Grotto",
-    "descZh": "使用炸弹、百万吨大锤或风暴之歌开启的隐藏地洞（世界坐标 -13.4, 140.2, -6.8）。",
-    "descEn": "Hidden Secret Grotto (open with Bomb, Hammer, or Song of Storms)."
+    "howto": "用炸弹、百万吨大锤或风暴之歌炸开/掀开地面裂缝，跳进洞穴。",
+    "reward": "洞内卢比 / 心之碎片 / 妖精",
+    "note": "进洞前备好炸弹与火把，部分洞穴有蜘蛛或敌人。"
   },
   {
     "id": "GR-004",
@@ -3895,8 +4310,9 @@
     "req": "",
     "zh": "死亡山山道 · 秘密洞穴",
     "en": "Death Mountain Trail: Secret Grotto",
-    "descZh": "使用炸弹、百万吨大锤或风暴之歌开启的隐藏地洞（世界坐标 -1.6, 120.2, -26.1）。",
-    "descEn": "Hidden Secret Grotto (open with Bomb, Hammer, or Song of Storms)."
+    "howto": "用炸弹、百万吨大锤或风暴之歌炸开/掀开地面裂缝，跳进洞穴。",
+    "reward": "洞内卢比 / 心之碎片 / 妖精",
+    "note": "进洞前备好炸弹与火把，部分洞穴有蜘蛛或敌人。"
   },
   {
     "id": "ST-003",
@@ -3915,8 +4331,9 @@
     "req": "",
     "zh": "死亡山山道 · 八卦石",
     "en": "Death Mountain Trail: Gossip Stone",
-    "descZh": "佩戴真实面具可与之对话获取线索；吹奏曲目可召唤妖精（世界坐标 -24.8, 63.9, -17.5）。",
-    "descEn": "Wear the Mask of Truth to hear secrets or play songs for fairies."
+    "howto": "戴上真实面具与八卦石对话获取线索；对着石吹曲还能召唤妖精。",
+    "reward": "情报 / 妖精",
+    "note": "不戴真实面具只会听到含糊的低语。"
   },
   {
     "id": "ST-004",
@@ -3935,8 +4352,9 @@
     "req": "",
     "zh": "死亡山山道 · 八卦石",
     "en": "Death Mountain Trail: Gossip Stone",
-    "descZh": "佩戴真实面具可与之对话获取线索；吹奏曲目可召唤妖精（世界坐标 6.7, 198.5, -122.3）。",
-    "descEn": "Wear the Mask of Truth to hear secrets or play songs for fairies."
+    "howto": "戴上真实面具与八卦石对话获取线索；对着石吹曲还能召唤妖精。",
+    "reward": "情报 / 妖精",
+    "note": "不戴真实面具只会听到含糊的低语。"
   },
   {
     "id": "GR-005",
@@ -3955,8 +4373,9 @@
     "req": "",
     "zh": "沙漠巨像 · 秘密洞穴",
     "en": "Desert Colossus: Secret Grotto",
-    "descZh": "使用炸弹、百万吨大锤或风暴之歌开启的隐藏地洞（世界坐标 -115.5, 94.0, -26.7）。",
-    "descEn": "Hidden Secret Grotto (open with Bomb, Hammer, or Song of Storms)."
+    "howto": "用炸弹、百万吨大锤或风暴之歌炸开/掀开地面裂缝，跳进洞穴。",
+    "reward": "洞内卢比 / 心之碎片 / 妖精",
+    "note": "进洞前备好炸弹与火把，部分洞穴有蜘蛛或敌人。"
   },
   {
     "id": "ST-005",
@@ -3975,8 +4394,9 @@
     "req": "",
     "zh": "沙漠巨像 · 八卦石",
     "en": "Desert Colossus: Gossip Stone",
-    "descZh": "佩戴真实面具可与之对话获取线索；吹奏曲目可召唤妖精（世界坐标 -167.7, 95.7, 61.0）。",
-    "descEn": "Wear the Mask of Truth to hear secrets or play songs for fairies."
+    "howto": "戴上真实面具与八卦石对话获取线索；对着石吹曲还能召唤妖精。",
+    "reward": "情报 / 妖精",
+    "note": "不戴真实面具只会听到含糊的低语。"
   },
   {
     "id": "WP-002",
@@ -3995,8 +4415,8 @@
     "req": "",
     "zh": "沙漠巨像 · 时之歌传送点",
     "en": "Desert Colossus: Ocarina Warp Pad",
-    "descZh": "吹奏对应神殿传送曲可直接传送至此。",
-    "descEn": "Play the corresponding Ocarina warp melody to teleport here."
+    "howto": "成年学会对应传送曲后，在时之神殿吹奏即可传送到此。",
+    "reward": "快速移动点"
   },
   {
     "id": "GR-006",
@@ -4015,8 +4435,9 @@
     "req": "",
     "zh": "格鲁德要塞 · 秘密洞穴",
     "en": "Gerudo's Fortress: Secret Grotto",
-    "descZh": "使用炸弹、百万吨大锤或风暴之歌开启的隐藏地洞（世界坐标 33.2, 112.6, -67.8）。",
-    "descEn": "Hidden Secret Grotto (open with Bomb, Hammer, or Song of Storms)."
+    "howto": "用炸弹、百万吨大锤或风暴之歌炸开/掀开地面裂缝，跳进洞穴。",
+    "reward": "洞内卢比 / 心之碎片 / 妖精",
+    "note": "进洞前备好炸弹与火把，部分洞穴有蜘蛛或敌人。"
   },
   {
     "id": "GR-007",
@@ -4035,8 +4456,9 @@
     "req": "",
     "zh": "格鲁德峡谷 · 秘密洞穴",
     "en": "Gerudo Valley: Secret Grotto",
-    "descZh": "使用炸弹、百万吨大锤或风暴之歌开启的隐藏地洞（世界坐标 -45.3, 101.1, -29.0）。",
-    "descEn": "Hidden Secret Grotto (open with Bomb, Hammer, or Song of Storms)."
+    "howto": "用炸弹、百万吨大锤或风暴之歌炸开/掀开地面裂缝，跳进洞穴。",
+    "reward": "洞内卢比 / 心之碎片 / 妖精",
+    "note": "进洞前备好炸弹与火把，部分洞穴有蜘蛛或敌人。"
   },
   {
     "id": "GR-008",
@@ -4055,8 +4477,9 @@
     "req": "",
     "zh": "格鲁德峡谷 · 秘密洞穴",
     "en": "Gerudo Valley: Secret Grotto",
-    "descZh": "使用炸弹、百万吨大锤或风暴之歌开启的隐藏地洞（世界坐标 11.5, 90.5, 36.5）。",
-    "descEn": "Hidden Secret Grotto (open with Bomb, Hammer, or Song of Storms)."
+    "howto": "用炸弹、百万吨大锤或风暴之歌炸开/掀开地面裂缝，跳进洞穴。",
+    "reward": "洞内卢比 / 心之碎片 / 妖精",
+    "note": "进洞前备好炸弹与火把，部分洞穴有蜘蛛或敌人。"
   },
   {
     "id": "ST-006",
@@ -4075,8 +4498,9 @@
     "req": "",
     "zh": "格鲁德峡谷 · 八卦石",
     "en": "Gerudo Valley: Gossip Stone",
-    "descZh": "佩戴真实面具可与之对话获取线索；吹奏曲目可召唤妖精（世界坐标 -17.8, 48.7, -59.4）。",
-    "descEn": "Wear the Mask of Truth to hear secrets or play songs for fairies."
+    "howto": "戴上真实面具与八卦石对话获取线索；对着石吹曲还能召唤妖精。",
+    "reward": "情报 / 妖精",
+    "note": "不戴真实面具只会听到含糊的低语。"
   },
   {
     "id": "GR-009",
@@ -4095,8 +4519,9 @@
     "req": "",
     "zh": "哥隆城 · 秘密洞穴",
     "en": "Goron City: Secret Grotto",
-    "descZh": "使用炸弹、百万吨大锤或风暴之歌开启的隐藏地洞（世界坐标 -42.2, 112.7, 29.3）。",
-    "descEn": "Hidden Secret Grotto (open with Bomb, Hammer, or Song of Storms)."
+    "howto": "用炸弹、百万吨大锤或风暴之歌炸开/掀开地面裂缝，跳进洞穴。",
+    "reward": "洞内卢比 / 心之碎片 / 妖精",
+    "note": "进洞前备好炸弹与火把，部分洞穴有蜘蛛或敌人。"
   },
   {
     "id": "ST-007",
@@ -4115,8 +4540,9 @@
     "req": "",
     "zh": "哥隆城 · 八卦石",
     "en": "Goron City: Gossip Stone",
-    "descZh": "佩戴真实面具可与之对话获取线索；吹奏曲目可召唤妖精（世界坐标 -48.8, 113.7, -3.8）。",
-    "descEn": "Wear the Mask of Truth to hear secrets or play songs for fairies."
+    "howto": "戴上真实面具与八卦石对话获取线索；对着石吹曲还能召唤妖精。",
+    "reward": "情报 / 妖精",
+    "note": "不戴真实面具只会听到含糊的低语。"
   },
   {
     "id": "ST-008",
@@ -4135,8 +4561,9 @@
     "req": "",
     "zh": "哥隆城 · 八卦石",
     "en": "Goron City: Gossip Stone",
-    "descZh": "佩戴真实面具可与之对话获取线索；吹奏曲目可召唤妖精（世界坐标 32.0, 115.7, 9.0）。",
-    "descEn": "Wear the Mask of Truth to hear secrets or play songs for fairies."
+    "howto": "戴上真实面具与八卦石对话获取线索；对着石吹曲还能召唤妖精。",
+    "reward": "情报 / 妖精",
+    "note": "不戴真实面具只会听到含糊的低语。"
   },
   {
     "id": "GR-010",
@@ -4155,8 +4582,9 @@
     "req": "",
     "zh": "卡卡利科墓地 · 秘密洞穴",
     "en": "Kakariko Graveyard: Secret Grotto",
-    "descZh": "使用炸弹、百万吨大锤或风暴之歌开启的隐藏地洞（世界坐标 -4.0, 102.9, -10.9）。",
-    "descEn": "Hidden Secret Grotto (open with Bomb, Hammer, or Song of Storms)."
+    "howto": "用炸弹、百万吨大锤或风暴之歌炸开/掀开地面裂缝，跳进洞穴。",
+    "reward": "洞内卢比 / 心之碎片 / 妖精",
+    "note": "进洞前备好炸弹与火把，部分洞穴有蜘蛛或敌人。"
   },
   {
     "id": "GR-011",
@@ -4175,8 +4603,9 @@
     "req": "",
     "zh": "卡卡利科墓地 · 秘密洞穴",
     "en": "Kakariko Graveyard: Secret Grotto",
-    "descZh": "使用炸弹、百万吨大锤或风暴之歌开启的隐藏地洞（世界坐标 4.0, 101.4, 5.8）。",
-    "descEn": "Hidden Secret Grotto (open with Bomb, Hammer, or Song of Storms)."
+    "howto": "用炸弹、百万吨大锤或风暴之歌炸开/掀开地面裂缝，跳进洞穴。",
+    "reward": "洞内卢比 / 心之碎片 / 妖精",
+    "note": "进洞前备好炸弹与火把，部分洞穴有蜘蛛或敌人。"
   },
   {
     "id": "GR-012",
@@ -4195,8 +4624,9 @@
     "req": "",
     "zh": "卡卡利科墓地 · 秘密洞穴",
     "en": "Kakariko Graveyard: Secret Grotto",
-    "descZh": "使用炸弹、百万吨大锤或风暴之歌开启的隐藏地洞（世界坐标 21.5, 102.9, 11.2）。",
-    "descEn": "Hidden Secret Grotto (open with Bomb, Hammer, or Song of Storms)."
+    "howto": "用炸弹、百万吨大锤或风暴之歌炸开/掀开地面裂缝，跳进洞穴。",
+    "reward": "洞内卢比 / 心之碎片 / 妖精",
+    "note": "进洞前备好炸弹与火把，部分洞穴有蜘蛛或敌人。"
   },
   {
     "id": "GR-013",
@@ -4215,8 +4645,9 @@
     "req": "",
     "zh": "卡卡利科墓地 · 秘密洞穴",
     "en": "Kakariko Graveyard: Secret Grotto",
-    "descZh": "使用炸弹、百万吨大锤或风暴之歌开启的隐藏地洞（世界坐标 21.4, 103.0, 23.2）。",
-    "descEn": "Hidden Secret Grotto (open with Bomb, Hammer, or Song of Storms)."
+    "howto": "用炸弹、百万吨大锤或风暴之歌炸开/掀开地面裂缝，跳进洞穴。",
+    "reward": "洞内卢比 / 心之碎片 / 妖精",
+    "note": "进洞前备好炸弹与火把，部分洞穴有蜘蛛或敌人。"
   },
   {
     "id": "ST-009",
@@ -4235,8 +4666,9 @@
     "req": "",
     "zh": "卡卡利科墓地 · 八卦石",
     "en": "Kakariko Graveyard: Gossip Stone",
-    "descZh": "佩戴真实面具可与之对话获取线索；吹奏曲目可召唤妖精（世界坐标 68.9, 108.5, -2.3）。",
-    "descEn": "Wear the Mask of Truth to hear secrets or play songs for fairies."
+    "howto": "戴上真实面具与八卦石对话获取线索；对着石吹曲还能召唤妖精。",
+    "reward": "情报 / 妖精",
+    "note": "不戴真实面具只会听到含糊的低语。"
   },
   {
     "id": "WP-003",
@@ -4255,8 +4687,8 @@
     "req": "",
     "zh": "卡卡利科墓地 · 时之歌传送点",
     "en": "Kakariko Graveyard: Ocarina Warp Pad",
-    "descZh": "吹奏对应神殿传送曲可直接传送至此。",
-    "descEn": "Play the corresponding Ocarina warp melody to teleport here."
+    "howto": "成年学会对应传送曲后，在时之神殿吹奏即可传送到此。",
+    "reward": "快速移动点"
   },
   {
     "id": "GR-014",
@@ -4275,8 +4707,9 @@
     "req": "",
     "zh": "海拉鲁城堡 · 秘密洞穴",
     "en": "Hyrule Castle: Secret Grotto",
-    "descZh": "使用炸弹、百万吨大锤或风暴之歌开启的隐藏地洞（世界坐标 35.9, 117.3, -106.2）。",
-    "descEn": "Hidden Secret Grotto (open with Bomb, Hammer, or Song of Storms)."
+    "howto": "用炸弹、百万吨大锤或风暴之歌炸开/掀开地面裂缝，跳进洞穴。",
+    "reward": "洞内卢比 / 心之碎片 / 妖精",
+    "note": "进洞前备好炸弹与火把，部分洞穴有蜘蛛或敌人。"
   },
   {
     "id": "ST-010",
@@ -4295,8 +4728,9 @@
     "req": "",
     "zh": "海拉鲁城堡 · 八卦石",
     "en": "Hyrule Castle: Gossip Stone",
-    "descZh": "佩戴真实面具可与之对话获取线索；吹奏曲目可召唤妖精（世界坐标 -26.3, 119.6, -97.0）。",
-    "descEn": "Wear the Mask of Truth to hear secrets or play songs for fairies."
+    "howto": "戴上真实面具与八卦石对话获取线索；对着石吹曲还能召唤妖精。",
+    "reward": "情报 / 妖精",
+    "note": "不戴真实面具只会听到含糊的低语。"
   },
   {
     "id": "ST-011",
@@ -4315,8 +4749,9 @@
     "req": "",
     "zh": "海拉鲁城堡 · 八卦石",
     "en": "Hyrule Castle: Gossip Stone",
-    "descZh": "佩戴真实面具可与之对话获取线索；吹奏曲目可召唤妖精（世界坐标 21.4, 112.2, -35.5）。",
-    "descEn": "Wear the Mask of Truth to hear secrets or play songs for fairies."
+    "howto": "戴上真实面具与八卦石对话获取线索；对着石吹曲还能召唤妖精。",
+    "reward": "情报 / 妖精",
+    "note": "不戴真实面具只会听到含糊的低语。"
   },
   {
     "id": "ST-012",
@@ -4335,8 +4770,9 @@
     "req": "",
     "zh": "海拉鲁城堡 · 八卦石",
     "en": "Hyrule Castle: Gossip Stone",
-    "descZh": "佩戴真实面具可与之对话获取线索；吹奏曲目可召唤妖精（世界坐标 46.3, 96.7, -98.8）。",
-    "descEn": "Wear the Mask of Truth to hear secrets or play songs for fairies."
+    "howto": "戴上真实面具与八卦石对话获取线索；对着石吹曲还能召唤妖精。",
+    "reward": "情报 / 妖精",
+    "note": "不戴真实面具只会听到含糊的低语。"
   },
   {
     "id": "BP-001",
@@ -4355,8 +4791,9 @@
     "req": "",
     "zh": "海拉鲁平原 · 大怨灵",
     "en": "Hyrule Field: Big Poe",
-    "descZh": "成年期骑乘艾波娜经过此处触发大怨灵，射箭击败后用空瓶装取（世界坐标 -114.5, 154.2, 175.0）。",
-    "descEn": "Ride Epona past this spot to spawn a Big Poe (World: -114.5, 154.2, 175.0)."
+    "howto": "成年骑艾波娜在野外夜行，遇大怨灵下马射箭击败，再用空瓶装魂。",
+    "reward": "大魄 ×1（10 只换空瓶）",
+    "note": "必须夜晚；魂会隐身，注意听笑声定位。"
   },
   {
     "id": "BP-002",
@@ -4375,8 +4812,9 @@
     "req": "",
     "zh": "海拉鲁平原 · 大怨灵",
     "en": "Hyrule Field: Big Poe",
-    "descZh": "成年期骑乘艾波娜经过此处触发大怨灵，射箭击败后用空瓶装取（世界坐标 20.5, 164.2, 234.2）。",
-    "descEn": "Ride Epona past this spot to spawn a Big Poe (World: 20.5, 164.2, 234.2)."
+    "howto": "成年骑艾波娜在野外夜行，遇大怨灵下马射箭击败，再用空瓶装魂。",
+    "reward": "大魄 ×1（10 只换空瓶）",
+    "note": "必须夜晚；魂会隐身，注意听笑声定位。"
   },
   {
     "id": "BP-003",
@@ -4395,8 +4833,9 @@
     "req": "",
     "zh": "海拉鲁平原 · 大怨灵",
     "en": "Hyrule Field: Big Poe",
-    "descZh": "成年期骑乘艾波娜经过此处触发大怨灵，射箭击败后用空瓶装取（世界坐标 100.2, 167.2, 298.0）。",
-    "descEn": "Ride Epona past this spot to spawn a Big Poe (World: 100.2, 167.2, 298.0)."
+    "howto": "成年骑艾波娜在野外夜行，遇大怨灵下马射箭击败，再用空瓶装魂。",
+    "reward": "大魄 ×1（10 只换空瓶）",
+    "note": "必须夜晚；魂会隐身，注意听笑声定位。"
   },
   {
     "id": "BP-004",
@@ -4415,8 +4854,9 @@
     "req": "",
     "zh": "海拉鲁平原 · 大怨灵",
     "en": "Hyrule Field: Big Poe",
-    "descZh": "成年期骑乘艾波娜经过此处触发大怨灵，射箭击败后用空瓶装取（世界坐标 -117.3, 152.6, 310.7）。",
-    "descEn": "Ride Epona past this spot to spawn a Big Poe (World: -117.3, 152.6, 310.7)."
+    "howto": "成年骑艾波娜在野外夜行，遇大怨灵下马射箭击败，再用空瓶装魂。",
+    "reward": "大魄 ×1（10 只换空瓶）",
+    "note": "必须夜晚；魂会隐身，注意听笑声定位。"
   },
   {
     "id": "BP-005",
@@ -4435,8 +4875,9 @@
     "req": "",
     "zh": "海拉鲁平原 · 大怨灵",
     "en": "Hyrule Field: Big Poe",
-    "descZh": "成年期骑乘艾波娜经过此处触发大怨灵，射箭击败后用空瓶装取（世界坐标 -55.3, 157.5, 151.0）。",
-    "descEn": "Ride Epona past this spot to spawn a Big Poe (World: -55.3, 157.5, 151.0)."
+    "howto": "成年骑艾波娜在野外夜行，遇大怨灵下马射箭击败，再用空瓶装魂。",
+    "reward": "大魄 ×1（10 只换空瓶）",
+    "note": "必须夜晚；魂会隐身，注意听笑声定位。"
   },
   {
     "id": "BP-006",
@@ -4455,8 +4896,9 @@
     "req": "",
     "zh": "海拉鲁平原 · 大怨灵",
     "en": "Hyrule Field: Big Poe",
-    "descZh": "成年期骑乘艾波娜经过此处触发大怨灵，射箭击败后用空瓶装取（世界坐标 -184.5, 146.1, 227.5）。",
-    "descEn": "Ride Epona past this spot to spawn a Big Poe (World: -184.5, 146.1, 227.5)."
+    "howto": "成年骑艾波娜在野外夜行，遇大怨灵下马射箭击败，再用空瓶装魂。",
+    "reward": "大魄 ×1（10 只换空瓶）",
+    "note": "必须夜晚；魂会隐身，注意听笑声定位。"
   },
   {
     "id": "BP-007",
@@ -4475,8 +4917,9 @@
     "req": "",
     "zh": "海拉鲁平原 · 大怨灵",
     "en": "Hyrule Field: Big Poe",
-    "descZh": "成年期骑乘艾波娜经过此处触发大怨灵，射箭击败后用空瓶装取（世界坐标 -214.2, 137.5, 183.2）。",
-    "descEn": "Ride Epona past this spot to spawn a Big Poe (World: -214.2, 137.5, 183.2)."
+    "howto": "成年骑艾波娜在野外夜行，遇大怨灵下马射箭击败，再用空瓶装魂。",
+    "reward": "大魄 ×1（10 只换空瓶）",
+    "note": "必须夜晚；魂会隐身，注意听笑声定位。"
   },
   {
     "id": "BP-008",
@@ -4495,8 +4938,9 @@
     "req": "",
     "zh": "海拉鲁平原 · 大怨灵",
     "en": "Hyrule Field: Big Poe",
-    "descZh": "成年期骑乘艾波娜经过此处触发大怨灵，射箭击败后用空瓶装取（世界坐标 -12.7, 153.6, 376.8）。",
-    "descEn": "Ride Epona past this spot to spawn a Big Poe (World: -12.7, 153.6, 376.8)."
+    "howto": "成年骑艾波娜在野外夜行，遇大怨灵下马射箭击败，再用空瓶装魂。",
+    "reward": "大魄 ×1（10 只换空瓶）",
+    "note": "必须夜晚；魂会隐身，注意听笑声定位。"
   },
   {
     "id": "BP-009",
@@ -4515,8 +4959,9 @@
     "req": "",
     "zh": "海拉鲁平原 · 大怨灵",
     "en": "Hyrule Field: Big Poe",
-    "descZh": "成年期骑乘艾波娜经过此处触发大怨灵，射箭击败后用空瓶装取（世界坐标 -48.9, 155.3, 59.9）。",
-    "descEn": "Ride Epona past this spot to spawn a Big Poe (World: -48.9, 155.3, 59.9)."
+    "howto": "成年骑艾波娜在野外夜行，遇大怨灵下马射箭击败，再用空瓶装魂。",
+    "reward": "大魄 ×1（10 只换空瓶）",
+    "note": "必须夜晚；魂会隐身，注意听笑声定位。"
   },
   {
     "id": "BP-010",
@@ -4535,8 +4980,9 @@
     "req": "",
     "zh": "海拉鲁平原 · 大怨灵",
     "en": "Hyrule Field: Big Poe",
-    "descZh": "成年期骑乘艾波娜经过此处触发大怨灵，射箭击败后用空瓶装取（世界坐标 -0.5, 156.8, 108.6）。",
-    "descEn": "Ride Epona past this spot to spawn a Big Poe (World: -0.5, 156.8, 108.6)."
+    "howto": "成年骑艾波娜在野外夜行，遇大怨灵下马射箭击败，再用空瓶装魂。",
+    "reward": "大魄 ×1（10 只换空瓶）",
+    "note": "必须夜晚；魂会隐身，注意听笑声定位。"
   },
   {
     "id": "GR-015",
@@ -4555,8 +5001,9 @@
     "req": "",
     "zh": "海拉鲁平原 · 秘密洞穴",
     "en": "Hyrule Field: Secret Grotto",
-    "descZh": "使用炸弹、百万吨大锤或风暴之歌开启的隐藏地洞（世界坐标 -258.3, 140.9, 137.9）。",
-    "descEn": "Hidden Secret Grotto (open with Bomb, Hammer, or Song of Storms)."
+    "howto": "用炸弹、百万吨大锤或风暴之歌炸开/掀开地面裂缝，跳进洞穴。",
+    "reward": "洞内卢比 / 心之碎片 / 妖精",
+    "note": "进洞前备好炸弹与火把，部分洞穴有蜘蛛或敌人。"
   },
   {
     "id": "GR-016",
@@ -4575,8 +5022,9 @@
     "req": "",
     "zh": "海拉鲁平原 · 秘密洞穴",
     "en": "Hyrule Field: Secret Grotto",
-    "descZh": "使用炸弹、百万吨大锤或风暴之歌开启的隐藏地洞（世界坐标 -156.1, 144.2, 338.4）。",
-    "descEn": "Hidden Secret Grotto (open with Bomb, Hammer, or Song of Storms)."
+    "howto": "用炸弹、百万吨大锤或风暴之歌炸开/掀开地面裂缝，跳进洞穴。",
+    "reward": "洞内卢比 / 心之碎片 / 妖精",
+    "note": "进洞前备好炸弹与火把，部分洞穴有蜘蛛或敌人。"
   },
   {
     "id": "GR-017",
@@ -4595,8 +5043,9 @@
     "req": "",
     "zh": "海拉鲁平原 · 秘密洞穴",
     "en": "Hyrule Field: Secret Grotto",
-    "descZh": "使用炸弹、百万吨大锤或风暴之歌开启的隐藏地洞（世界坐标 -98.0, 146.5, 17.1）。",
-    "descEn": "Hidden Secret Grotto (open with Bomb, Hammer, or Song of Storms)."
+    "howto": "用炸弹、百万吨大锤或风暴之歌炸开/掀开地面裂缝，跳进洞穴。",
+    "reward": "洞内卢比 / 心之碎片 / 妖精",
+    "note": "进洞前备好炸弹与火把，部分洞穴有蜘蛛或敌人。"
   },
   {
     "id": "GR-018",
@@ -4615,8 +5064,9 @@
     "req": "",
     "zh": "海拉鲁平原 · 秘密洞穴",
     "en": "Hyrule Field: Secret Grotto",
-    "descZh": "使用炸弹、百万吨大锤或风暴之歌开启的隐藏地洞（世界坐标 -36.4, 150.7, 290.7）。",
-    "descEn": "Hidden Secret Grotto (open with Bomb, Hammer, or Song of Storms)."
+    "howto": "用炸弹、百万吨大锤或风暴之歌炸开/掀开地面裂缝，跳进洞穴。",
+    "reward": "洞内卢比 / 心之碎片 / 妖精",
+    "note": "进洞前备好炸弹与火把，部分洞穴有蜘蛛或敌人。"
   },
   {
     "id": "GR-019",
@@ -4635,8 +5085,9 @@
     "req": "",
     "zh": "海拉鲁平原 · 秘密洞穴",
     "en": "Hyrule Field: Secret Grotto",
-    "descZh": "使用炸弹、百万吨大锤或风暴之歌开启的隐藏地洞（世界坐标 -13.2, 149.7, 169.5）。",
-    "descEn": "Hidden Secret Grotto (open with Bomb, Hammer, or Song of Storms)."
+    "howto": "用炸弹、百万吨大锤或风暴之歌炸开/掀开地面裂缝，跳进洞穴。",
+    "reward": "洞内卢比 / 心之碎片 / 妖精",
+    "note": "进洞前备好炸弹与火把，部分洞穴有蜘蛛或敌人。"
   },
   {
     "id": "GR-020",
@@ -4655,8 +5106,9 @@
     "req": "",
     "zh": "海拉鲁平原 · 秘密洞穴",
     "en": "Hyrule Field: Secret Grotto",
-    "descZh": "使用炸弹、百万吨大锤或风暴之歌开启的隐藏地洞（世界坐标 39.9, 148.3, 26.6）。",
-    "descEn": "Hidden Secret Grotto (open with Bomb, Hammer, or Song of Storms)."
+    "howto": "用炸弹、百万吨大锤或风暴之歌炸开/掀开地面裂缝，跳进洞穴。",
+    "reward": "洞内卢比 / 心之碎片 / 妖精",
+    "note": "进洞前备好炸弹与火把，部分洞穴有蜘蛛或敌人。"
   },
   {
     "id": "GR-021",
@@ -4675,8 +5127,9 @@
     "req": "",
     "zh": "海拉鲁平原 · 秘密洞穴",
     "en": "Hyrule Field: Secret Grotto",
-    "descZh": "使用炸弹、百万吨大锤或风暴之歌开启的隐藏地洞（世界坐标 39.9, 144.7, 342.3）。",
-    "descEn": "Hidden Secret Grotto (open with Bomb, Hammer, or Song of Storms)."
+    "howto": "用炸弹、百万吨大锤或风暴之歌炸开/掀开地面裂缝，跳进洞穴。",
+    "reward": "洞内卢比 / 心之碎片 / 妖精",
+    "note": "进洞前备好炸弹与火把，部分洞穴有蜘蛛或敌人。"
   },
   {
     "id": "GR-022",
@@ -4695,8 +5148,9 @@
     "req": "",
     "zh": "海拉鲁平原 · 秘密洞穴",
     "en": "Hyrule Field: Secret Grotto",
-    "descZh": "使用炸弹、百万吨大锤或风暴之歌开启的隐藏地洞（世界坐标 163.3, 155.7, 27.4）。",
-    "descEn": "Hidden Secret Grotto (open with Bomb, Hammer, or Song of Storms)."
+    "howto": "用炸弹、百万吨大锤或风暴之歌炸开/掀开地面裂缝，跳进洞穴。",
+    "reward": "洞内卢比 / 心之碎片 / 妖精",
+    "note": "进洞前备好炸弹与火把，部分洞穴有蜘蛛或敌人。"
   },
   {
     "id": "GR-023",
@@ -4715,8 +5169,9 @@
     "req": "",
     "zh": "海拉鲁平原 · 秘密洞穴",
     "en": "Hyrule Field: Secret Grotto",
-    "descZh": "使用炸弹、百万吨大锤或风暴之歌开启的隐藏地洞（世界坐标 179.8, 156.6, 190.5）。",
-    "descEn": "Hidden Secret Grotto (open with Bomb, Hammer, or Song of Storms)."
+    "howto": "用炸弹、百万吨大锤或风暴之歌炸开/掀开地面裂缝，跳进洞穴。",
+    "reward": "洞内卢比 / 心之碎片 / 妖精",
+    "note": "进洞前备好炸弹与火把，部分洞穴有蜘蛛或敌人。"
   },
   {
     "id": "ST-013",
@@ -4735,8 +5190,9 @@
     "req": "",
     "zh": "海拉鲁平原 · 八卦石",
     "en": "Hyrule Field: Gossip Stone",
-    "descZh": "佩戴真实面具可与之对话获取线索；吹奏曲目可召唤妖精（世界坐标 -269.6, 120.2, 143.3）。",
-    "descEn": "Wear the Mask of Truth to hear secrets or play songs for fairies."
+    "howto": "戴上真实面具与八卦石对话获取线索；对着石吹曲还能召唤妖精。",
+    "reward": "情报 / 妖精",
+    "note": "不戴真实面具只会听到含糊的低语。"
   },
   {
     "id": "ST-014",
@@ -4755,8 +5211,9 @@
     "req": "",
     "zh": "海拉鲁平原 · 八卦石",
     "en": "Hyrule Field: Gossip Stone",
-    "descZh": "佩戴真实面具可与之对话获取线索；吹奏曲目可召唤妖精（世界坐标 51.7, 126.0, 339.7）。",
-    "descEn": "Wear the Mask of Truth to hear secrets or play songs for fairies."
+    "howto": "戴上真实面具与八卦石对话获取线索；对着石吹曲还能召唤妖精。",
+    "reward": "情报 / 妖精",
+    "note": "不戴真实面具只会听到含糊的低语。"
   },
   {
     "id": "ST-015",
@@ -4775,8 +5232,9 @@
     "req": "",
     "zh": "海拉鲁平原 · 八卦石",
     "en": "Hyrule Field: Gossip Stone",
-    "descZh": "佩戴真实面具可与之对话获取线索；吹奏曲目可召唤妖精（世界坐标 172.7, 137.8, 182.1）。",
-    "descEn": "Wear the Mask of Truth to hear secrets or play songs for fairies."
+    "howto": "戴上真实面具与八卦石对话获取线索；对着石吹曲还能召唤妖精。",
+    "reward": "情报 / 妖精",
+    "note": "不戴真实面具只会听到含糊的低语。"
   },
   {
     "id": "GR-024",
@@ -4795,8 +5253,9 @@
     "req": "",
     "zh": "卡卡利科村 · 秘密洞穴",
     "en": "Kakariko Village: Secret Grotto",
-    "descZh": "使用炸弹、百万吨大锤或风暴之歌开启的隐藏地洞（世界坐标 -26.8, 100.0, 12.4）。",
-    "descEn": "Hidden Secret Grotto (open with Bomb, Hammer, or Song of Storms)."
+    "howto": "用炸弹、百万吨大锤或风暴之歌炸开/掀开地面裂缝，跳进洞穴。",
+    "reward": "洞内卢比 / 心之碎片 / 妖精",
+    "note": "进洞前备好炸弹与火把，部分洞穴有蜘蛛或敌人。"
   },
   {
     "id": "GR-025",
@@ -4815,8 +5274,9 @@
     "req": "",
     "zh": "卡卡利科村 · 秘密洞穴",
     "en": "Kakariko Village: Secret Grotto",
-    "descZh": "使用炸弹、百万吨大锤或风暴之歌开启的隐藏地洞（世界坐标 -20.0, 102.0, 66.0）。",
-    "descEn": "Hidden Secret Grotto (open with Bomb, Hammer, or Song of Storms)."
+    "howto": "用炸弹、百万吨大锤或风暴之歌炸开/掀开地面裂缝，跳进洞穴。",
+    "reward": "洞内卢比 / 心之碎片 / 妖精",
+    "note": "进洞前备好炸弹与火把，部分洞穴有蜘蛛或敌人。"
   },
   {
     "id": "ST-016",
@@ -4835,8 +5295,9 @@
     "req": "",
     "zh": "卡卡利科村 · 八卦石",
     "en": "Kakariko Village: Gossip Stone",
-    "descZh": "佩戴真实面具可与之对话获取线索；吹奏曲目可召唤妖精（世界坐标 -35.9, 79.3, 13.9）。",
-    "descEn": "Wear the Mask of Truth to hear secrets or play songs for fairies."
+    "howto": "戴上真实面具与八卦石对话获取线索；对着石吹曲还能召唤妖精。",
+    "reward": "情报 / 妖精",
+    "note": "不戴真实面具只会听到含糊的低语。"
   },
   {
     "id": "ST-017",
@@ -4855,8 +5316,9 @@
     "req": "",
     "zh": "卡卡利科村 · 八卦石",
     "en": "Kakariko Village: Gossip Stone",
-    "descZh": "佩戴真实面具可与之对话获取线索；吹奏曲目可召唤妖精（世界坐标 -8.0, 83.2, 65.0）。",
-    "descEn": "Wear the Mask of Truth to hear secrets or play songs for fairies."
+    "howto": "戴上真实面具与八卦石对话获取线索；对着石吹曲还能召唤妖精。",
+    "reward": "情报 / 妖精",
+    "note": "不戴真实面具只会听到含糊的低语。"
   },
   {
     "id": "GR-026",
@@ -4875,8 +5337,9 @@
     "req": "",
     "zh": "科奇里森林 · 秘密洞穴",
     "en": "Kokiri Forest: Secret Grotto",
-    "descZh": "使用炸弹、百万吨大锤或风暴之歌开启的隐藏地洞（世界坐标 -51.9, 121.6, -62.8）。",
-    "descEn": "Hidden Secret Grotto (open with Bomb, Hammer, or Song of Storms)."
+    "howto": "用炸弹、百万吨大锤或风暴之歌炸开/掀开地面裂缝，跳进洞穴。",
+    "reward": "洞内卢比 / 心之碎片 / 妖精",
+    "note": "进洞前备好炸弹与火把，部分洞穴有蜘蛛或敌人。"
   },
   {
     "id": "ST-018",
@@ -4895,8 +5358,9 @@
     "req": "",
     "zh": "科奇里森林 · 八卦石",
     "en": "Kokiri Forest: Gossip Stone",
-    "descZh": "佩戴真实面具可与之对话获取线索；吹奏曲目可召唤妖精（世界坐标 -118.4, 114.5, -16.3）。",
-    "descEn": "Wear the Mask of Truth to hear secrets or play songs for fairies."
+    "howto": "戴上真实面具与八卦石对话获取线索；对着石吹曲还能召唤妖精。",
+    "reward": "情报 / 妖精",
+    "note": "不戴真实面具只会听到含糊的低语。"
   },
   {
     "id": "ST-019",
@@ -4915,8 +5379,9 @@
     "req": "",
     "zh": "科奇里森林 · 八卦石",
     "en": "Kokiri Forest: Gossip Stone",
-    "descZh": "佩戴真实面具可与之对话获取线索；吹奏曲目可召唤妖精（世界坐标 -49.2, 121.3, -58.9）。",
-    "descEn": "Wear the Mask of Truth to hear secrets or play songs for fairies."
+    "howto": "戴上真实面具与八卦石对话获取线索；对着石吹曲还能召唤妖精。",
+    "reward": "情报 / 妖精",
+    "note": "不戴真实面具只会听到含糊的低语。"
   },
   {
     "id": "ST-020",
@@ -4935,8 +5400,9 @@
     "req": "",
     "zh": "科奇里森林 · 八卦石",
     "en": "Kokiri Forest: Gossip Stone",
-    "descZh": "佩戴真实面具可与之对话获取线索；吹奏曲目可召唤妖精（世界坐标 89.2, 114.6, -41.8）。",
-    "descEn": "Wear the Mask of Truth to hear secrets or play songs for fairies."
+    "howto": "戴上真实面具与八卦石对话获取线索；对着石吹曲还能召唤妖精。",
+    "reward": "情报 / 妖精",
+    "note": "不戴真实面具只会听到含糊的低语。"
   },
   {
     "id": "ST-021",
@@ -4955,8 +5421,9 @@
     "req": "",
     "zh": "科奇里森林 · 八卦石",
     "en": "Kokiri Forest: Gossip Stone",
-    "descZh": "佩戴真实面具可与之对话获取线索；吹奏曲目可召唤妖精（世界坐标 91.1, 115.2, -54.4）。",
-    "descEn": "Wear the Mask of Truth to hear secrets or play songs for fairies."
+    "howto": "戴上真实面具与八卦石对话获取线索；对着石吹曲还能召唤妖精。",
+    "reward": "情报 / 妖精",
+    "note": "不戴真实面具只会听到含糊的低语。"
   },
   {
     "id": "GR-027",
@@ -4975,8 +5442,9 @@
     "req": "",
     "zh": "迷失森林 · 秘密洞穴",
     "en": "Lost Woods: Secret Grotto",
-    "descZh": "使用炸弹、百万吨大锤或风暴之歌开启的隐藏地洞（世界坐标 3.8, 99.3, -47.5）。",
-    "descEn": "Hidden Secret Grotto (open with Bomb, Hammer, or Song of Storms)."
+    "howto": "用炸弹、百万吨大锤或风暴之歌炸开/掀开地面裂缝，跳进洞穴。",
+    "reward": "洞内卢比 / 心之碎片 / 妖精",
+    "note": "进洞前备好炸弹与火把，部分洞穴有蜘蛛或敌人。"
   },
   {
     "id": "GR-028",
@@ -4995,8 +5463,9 @@
     "req": "",
     "zh": "迷失森林 · 秘密洞穴",
     "en": "Lost Woods: Secret Grotto",
-    "descZh": "使用炸弹、百万吨大锤或风暴之歌开启的隐藏地洞（世界坐标 20.4, 100.0, -75.6）。",
-    "descEn": "Hidden Secret Grotto (open with Bomb, Hammer, or Song of Storms)."
+    "howto": "用炸弹、百万吨大锤或风暴之歌炸开/掀开地面裂缝，跳进洞穴。",
+    "reward": "洞内卢比 / 心之碎片 / 妖精",
+    "note": "进洞前备好炸弹与火把，部分洞穴有蜘蛛或敌人。"
   },
   {
     "id": "GR-029",
@@ -5015,8 +5484,9 @@
     "req": "",
     "zh": "迷失森林 · 秘密洞穴",
     "en": "Lost Woods: Secret Grotto",
-    "descZh": "使用炸弹、百万吨大锤或风暴之歌开启的隐藏地洞（世界坐标 27.8, 100.0, -28.3）。",
-    "descEn": "Hidden Secret Grotto (open with Bomb, Hammer, or Song of Storms)."
+    "howto": "用炸弹、百万吨大锤或风暴之歌炸开/掀开地面裂缝，跳进洞穴。",
+    "reward": "洞内卢比 / 心之碎片 / 妖精",
+    "note": "进洞前备好炸弹与火把，部分洞穴有蜘蛛或敌人。"
   },
   {
     "id": "ST-022",
@@ -5035,8 +5505,9 @@
     "req": "",
     "zh": "迷失森林 · 八卦石",
     "en": "Lost Woods: Gossip Stone",
-    "descZh": "佩戴真实面具可与之对话获取线索；吹奏曲目可召唤妖精（世界坐标 -35.6, 95.2, 71.6）。",
-    "descEn": "Wear the Mask of Truth to hear secrets or play songs for fairies."
+    "howto": "戴上真实面具与八卦石对话获取线索；对着石吹曲还能召唤妖精。",
+    "reward": "情报 / 妖精",
+    "note": "不戴真实面具只会听到含糊的低语。"
   },
   {
     "id": "ST-023",
@@ -5055,8 +5526,9 @@
     "req": "",
     "zh": "城下町集市 · 八卦石",
     "en": "Hyrule Market: Gossip Stone",
-    "descZh": "佩戴真实面具可与之对话获取线索；吹奏曲目可召唤妖精（世界坐标 39.4, 103.1, -11.7）。",
-    "descEn": "Wear the Mask of Truth to hear secrets or play songs for fairies."
+    "howto": "戴上真实面具与八卦石对话获取线索；对着石吹曲还能召唤妖精。",
+    "reward": "情报 / 妖精",
+    "note": "不戴真实面具只会听到含糊的低语。"
   },
   {
     "id": "ST-024",
@@ -5075,8 +5547,9 @@
     "req": "",
     "zh": "城下町集市 · 八卦石",
     "en": "Hyrule Market: Gossip Stone",
-    "descZh": "佩戴真实面具可与之对话获取线索；吹奏曲目可召唤妖精（世界坐标 39.4, 103.0, -9.6）。",
-    "descEn": "Wear the Mask of Truth to hear secrets or play songs for fairies."
+    "howto": "戴上真实面具与八卦石对话获取线索；对着石吹曲还能召唤妖精。",
+    "reward": "情报 / 妖精",
+    "note": "不戴真实面具只会听到含糊的低语。"
   },
   {
     "id": "ST-025",
@@ -5095,8 +5568,9 @@
     "req": "",
     "zh": "城下町集市 · 八卦石",
     "en": "Hyrule Market: Gossip Stone",
-    "descZh": "佩戴真实面具可与之对话获取线索；吹奏曲目可召唤妖精（世界坐标 39.4, 103.1, -7.3）。",
-    "descEn": "Wear the Mask of Truth to hear secrets or play songs for fairies."
+    "howto": "戴上真实面具与八卦石对话获取线索；对着石吹曲还能召唤妖精。",
+    "reward": "情报 / 妖精",
+    "note": "不戴真实面具只会听到含糊的低语。"
   },
   {
     "id": "ST-026",
@@ -5115,8 +5589,9 @@
     "req": "",
     "zh": "城下町集市 · 八卦石",
     "en": "Hyrule Market: Gossip Stone",
-    "descZh": "佩戴真实面具可与之对话获取线索；吹奏曲目可召唤妖精（世界坐标 39.3, 103.2, -5.3）。",
-    "descEn": "Wear the Mask of Truth to hear secrets or play songs for fairies."
+    "howto": "戴上真实面具与八卦石对话获取线索；对着石吹曲还能召唤妖精。",
+    "reward": "情报 / 妖精",
+    "note": "不戴真实面具只会听到含糊的低语。"
   },
   {
     "id": "GR-030",
@@ -5135,8 +5610,9 @@
     "req": "",
     "zh": "圣域森林草原 · 秘密洞穴",
     "en": "Sacred Forest Meadow: Secret Grotto",
-    "descZh": "使用炸弹、百万吨大锤或风暴之歌开启的隐藏地洞（世界坐标 -4.2, 100.0, 1.9）。",
-    "descEn": "Hidden Secret Grotto (open with Bomb, Hammer, or Song of Storms)."
+    "howto": "用炸弹、百万吨大锤或风暴之歌炸开/掀开地面裂缝，跳进洞穴。",
+    "reward": "洞内卢比 / 心之碎片 / 妖精",
+    "note": "进洞前备好炸弹与火把，部分洞穴有蜘蛛或敌人。"
   },
   {
     "id": "GR-031",
@@ -5155,8 +5631,9 @@
     "req": "",
     "zh": "圣域森林草原 · 秘密洞穴",
     "en": "Sacred Forest Meadow: Secret Grotto",
-    "descZh": "使用炸弹、百万吨大锤或风暴之歌开启的隐藏地洞（世界坐标 -1.6, 100.0, 51.2）。",
-    "descEn": "Hidden Secret Grotto (open with Bomb, Hammer, or Song of Storms)."
+    "howto": "用炸弹、百万吨大锤或风暴之歌炸开/掀开地面裂缝，跳进洞穴。",
+    "reward": "洞内卢比 / 心之碎片 / 妖精",
+    "note": "进洞前备好炸弹与火把，部分洞穴有蜘蛛或敌人。"
   },
   {
     "id": "GR-032",
@@ -5175,8 +5652,9 @@
     "req": "",
     "zh": "圣域森林草原 · 秘密洞穴",
     "en": "Sacred Forest Meadow: Secret Grotto",
-    "descZh": "使用炸弹、百万吨大锤或风暴之歌开启的隐藏地洞（世界坐标 1.3, 114.4, -85.5）。",
-    "descEn": "Hidden Secret Grotto (open with Bomb, Hammer, or Song of Storms)."
+    "howto": "用炸弹、百万吨大锤或风暴之歌炸开/掀开地面裂缝，跳进洞穴。",
+    "reward": "洞内卢比 / 心之碎片 / 妖精",
+    "note": "进洞前备好炸弹与火把，部分洞穴有蜘蛛或敌人。"
   },
   {
     "id": "ST-027",
@@ -5195,8 +5673,9 @@
     "req": "",
     "zh": "圣域森林草原 · 八卦石",
     "en": "Sacred Forest Meadow: Gossip Stone",
-    "descZh": "佩戴真实面具可与之对话获取线索；吹奏曲目可召唤妖精（世界坐标 -16.6, 114.4, -85.4）。",
-    "descEn": "Wear the Mask of Truth to hear secrets or play songs for fairies."
+    "howto": "戴上真实面具与八卦石对话获取线索；对着石吹曲还能召唤妖精。",
+    "reward": "情报 / 妖精",
+    "note": "不戴真实面具只会听到含糊的低语。"
   },
   {
     "id": "ST-028",
@@ -5215,8 +5694,9 @@
     "req": "",
     "zh": "圣域森林草原 · 八卦石",
     "en": "Sacred Forest Meadow: Gossip Stone",
-    "descZh": "佩戴真实面具可与之对话获取线索；吹奏曲目可召唤妖精（世界坐标 -16.3, 104.6, 18.7）。",
-    "descEn": "Wear the Mask of Truth to hear secrets or play songs for fairies."
+    "howto": "戴上真实面具与八卦石对话获取线索；对着石吹曲还能召唤妖精。",
+    "reward": "情报 / 妖精",
+    "note": "不戴真实面具只会听到含糊的低语。"
   },
   {
     "id": "ST-029",
@@ -5235,8 +5715,9 @@
     "req": "",
     "zh": "圣域森林草原 · 八卦石",
     "en": "Sacred Forest Meadow: Gossip Stone",
-    "descZh": "佩戴真实面具可与之对话获取线索；吹奏曲目可召唤妖精（世界坐标 4.1, 104.5, 41.0）。",
-    "descEn": "Wear the Mask of Truth to hear secrets or play songs for fairies."
+    "howto": "戴上真实面具与八卦石对话获取线索；对着石吹曲还能召唤妖精。",
+    "reward": "情报 / 妖精",
+    "note": "不戴真实面具只会听到含糊的低语。"
   },
   {
     "id": "ST-030",
@@ -5255,8 +5736,9 @@
     "req": "",
     "zh": "圣域森林草原 · 八卦石",
     "en": "Sacred Forest Meadow: Gossip Stone",
-    "descZh": "佩戴真实面具可与之对话获取线索；吹奏曲目可召唤妖精（世界坐标 11.0, 95.6, -78.9）。",
-    "descEn": "Wear the Mask of Truth to hear secrets or play songs for fairies."
+    "howto": "戴上真实面具与八卦石对话获取线索；对着石吹曲还能召唤妖精。",
+    "reward": "情报 / 妖精",
+    "note": "不戴真实面具只会听到含糊的低语。"
   },
   {
     "id": "WP-004",
@@ -5275,8 +5757,8 @@
     "req": "",
     "zh": "圣域森林草原 · 时之歌传送点",
     "en": "Sacred Forest Meadow: Ocarina Warp Pad",
-    "descZh": "吹奏对应神殿传送曲可直接传送至此。",
-    "descEn": "Play the corresponding Ocarina warp melody to teleport here."
+    "howto": "成年学会对应传送曲后，在时之神殿吹奏即可传送到此。",
+    "reward": "快速移动点"
   },
   {
     "id": "GR-033",
@@ -5295,8 +5777,9 @@
     "req": "",
     "zh": "佐拉族领地 · 秘密洞穴",
     "en": "Zora's Domain: Secret Grotto",
-    "descZh": "使用炸弹、百万吨大锤或风暴之歌开启的隐藏地洞（世界坐标 17.0, 100.2, -18.3）。",
-    "descEn": "Hidden Secret Grotto (open with Bomb, Hammer, or Song of Storms)."
+    "howto": "用炸弹、百万吨大锤或风暴之歌炸开/掀开地面裂缝，跳进洞穴。",
+    "reward": "洞内卢比 / 心之碎片 / 妖精",
+    "note": "进洞前备好炸弹与火把，部分洞穴有蜘蛛或敌人。"
   },
   {
     "id": "ST-031",
@@ -5315,8 +5798,9 @@
     "req": "",
     "zh": "佐拉族领地 · 八卦石",
     "en": "Zora's Domain: Gossip Stone",
-    "descZh": "佩戴真实面具可与之对话获取线索；吹奏曲目可召唤妖精（世界坐标 55.5, 114.5, 3.8）。",
-    "descEn": "Wear the Mask of Truth to hear secrets or play songs for fairies."
+    "howto": "戴上真实面具与八卦石对话获取线索；对着石吹曲还能召唤妖精。",
+    "reward": "情报 / 妖精",
+    "note": "不戴真实面具只会听到含糊的低语。"
   },
   {
     "id": "ST-032",
@@ -5335,8 +5819,9 @@
     "req": "",
     "zh": "佐拉之泉 · 八卦石",
     "en": "Zora's Fountain: Gossip Stone",
-    "descZh": "佩戴真实面具可与之对话获取线索；吹奏曲目可召唤妖精（世界坐标 21.5, 101.9, -53.1）。",
-    "descEn": "Wear the Mask of Truth to hear secrets or play songs for fairies."
+    "howto": "戴上真实面具与八卦石对话获取线索；对着石吹曲还能召唤妖精。",
+    "reward": "情报 / 妖精",
+    "note": "不戴真实面具只会听到含糊的低语。"
   },
   {
     "id": "ST-033",
@@ -5355,8 +5840,9 @@
     "req": "",
     "zh": "佐拉之泉 · 八卦石",
     "en": "Zora's Fountain: Gossip Stone",
-    "descZh": "佩戴真实面具可与之对话获取线索；吹奏曲目可召唤妖精（世界坐标 64.6, 102.8, 35.4）。",
-    "descEn": "Wear the Mask of Truth to hear secrets or play songs for fairies."
+    "howto": "戴上真实面具与八卦石对话获取线索；对着石吹曲还能召唤妖精。",
+    "reward": "情报 / 妖精",
+    "note": "不戴真实面具只会听到含糊的低语。"
   },
   {
     "id": "GR-034",
@@ -5375,8 +5861,9 @@
     "req": "",
     "zh": "佐拉河 · 秘密洞穴",
     "en": "Zora's River: Secret Grotto",
-    "descZh": "使用炸弹、百万吨大锤或风暴之歌开启的隐藏地洞（世界坐标 -78.1, 99.1, -16.8）。",
-    "descEn": "Hidden Secret Grotto (open with Bomb, Hammer, or Song of Storms)."
+    "howto": "用炸弹、百万吨大锤或风暴之歌炸开/掀开地面裂缝，跳进洞穴。",
+    "reward": "洞内卢比 / 心之碎片 / 妖精",
+    "note": "进洞前备好炸弹与火把，部分洞穴有蜘蛛或敌人。"
   },
   {
     "id": "GR-035",
@@ -5395,8 +5882,9 @@
     "req": "",
     "zh": "佐拉河 · 秘密洞穴",
     "en": "Zora's River: Secret Grotto",
-    "descZh": "使用炸弹、百万吨大锤或风暴之歌开启的隐藏地洞（世界坐标 -15.7, 115.2, 14.8）。",
-    "descEn": "Hidden Secret Grotto (open with Bomb, Hammer, or Song of Storms)."
+    "howto": "用炸弹、百万吨大锤或风暴之歌炸开/掀开地面裂缝，跳进洞穴。",
+    "reward": "洞内卢比 / 心之碎片 / 妖精",
+    "note": "进洞前备好炸弹与火把，部分洞穴有蜘蛛或敌人。"
   },
   {
     "id": "GR-036",
@@ -5415,8 +5903,9 @@
     "req": "",
     "zh": "佐拉河 · 秘密洞穴",
     "en": "Zora's River: Secret Grotto",
-    "descZh": "使用炸弹、百万吨大锤或风暴之歌开启的隐藏地洞（世界坐标 5.2, 114.2, -16.3）。",
-    "descEn": "Hidden Secret Grotto (open with Bomb, Hammer, or Song of Storms)."
+    "howto": "用炸弹、百万吨大锤或风暴之歌炸开/掀开地面裂缝，跳进洞穴。",
+    "reward": "洞内卢比 / 心之碎片 / 妖精",
+    "note": "进洞前备好炸弹与火把，部分洞穴有蜘蛛或敌人。"
   },
   {
     "id": "ST-034",
@@ -5435,8 +5924,9 @@
     "req": "",
     "zh": "佐拉河 · 八卦石",
     "en": "Zora's River: Gossip Stone",
-    "descZh": "佩戴真实面具可与之对话获取线索；吹奏曲目可召唤妖精（世界坐标 -77.8, 82.0, -32.6）。",
-    "descEn": "Wear the Mask of Truth to hear secrets or play songs for fairies."
+    "howto": "戴上真实面具与八卦石对话获取线索；对着石吹曲还能召唤妖精。",
+    "reward": "情报 / 妖精",
+    "note": "不戴真实面具只会听到含糊的低语。"
   },
   {
     "id": "ST-035",
@@ -5455,8 +5945,9 @@
     "req": "",
     "zh": "佐拉河 · 八卦石",
     "en": "Zora's River: Gossip Stone",
-    "descZh": "佩戴真实面具可与之对话获取线索；吹奏曲目可召唤妖精（世界坐标 -14.2, 74.5, 23.9）。",
-    "descEn": "Wear the Mask of Truth to hear secrets or play songs for fairies."
+    "howto": "戴上真实面具与八卦石对话获取线索；对着石吹曲还能召唤妖精。",
+    "reward": "情报 / 妖精",
+    "note": "不戴真实面具只会听到含糊的低语。"
   },
   {
     "id": "ST-036",
@@ -5475,8 +5966,9 @@
     "req": "",
     "zh": "佐拉河 · 八卦石",
     "en": "Zora's River: Gossip Stone",
-    "descZh": "佩戴真实面具可与之对话获取线索；吹奏曲目可召唤妖精（世界坐标 12.4, 115.3, -32.1）。",
-    "descEn": "Wear the Mask of Truth to hear secrets or play songs for fairies."
+    "howto": "戴上真实面具与八卦石对话获取线索；对着石吹曲还能召唤妖精。",
+    "reward": "情报 / 妖精",
+    "note": "不戴真实面具只会听到含糊的低语。"
   },
   {
     "id": "ST-037",
@@ -5495,8 +5987,9 @@
     "req": "",
     "zh": "佐拉河 · 八卦石",
     "en": "Zora's River: Gossip Stone",
-    "descZh": "佩戴真实面具可与之对话获取线索；吹奏曲目可召唤妖精（世界坐标 117.9, 112.1, -33.7）。",
-    "descEn": "Wear the Mask of Truth to hear secrets or play songs for fairies."
+    "howto": "戴上真实面具与八卦石对话获取线索；对着石吹曲还能召唤妖精。",
+    "reward": "情报 / 妖精",
+    "note": "不戴真实面具只会听到含糊的低语。"
   },
   {
     "id": "CH-001",
@@ -5513,11 +6006,12 @@
     "era": "Child",
     "time": "Any",
     "req": "",
-    "zh": "井底 (B2) · 宝箱 · Dungeon_Map",
-    "en": "Bottom of the Well (B2): Chest: Dungeon_Map",
-    "descZh": "位于井底 B2 层的官方宝箱（内容：宝箱 · Dungeon_Map，世界坐标 18.3, 87.4, 1.2）。",
-    "descEn": "Treasure chest on B2 of Bottom of the Well (Chest: Dungeon_Map).",
-    "instanceId": "9466613428674883506"
+    "zh": "井底 (B2) · 宝箱 · 迷宫地图",
+    "en": "Bottom of the Well (B2): Chest: Dungeon Map",
+    "instanceId": "9466613428674883506",
+    "howto": "在井底 (B2)找到并打开宝箱，取得「迷宫地图」。部分宝箱需先清怪或解开本层机关。",
+    "reward": "迷宫地图",
+    "note": "打开后地图页会显示本层平面，先拿图再规划路线。"
   },
   {
     "id": "CH-002",
@@ -5534,11 +6028,34 @@
     "era": "Child",
     "time": "Any",
     "req": "",
-    "zh": "井底 (B2) · 宝箱 · GlassTruth",
-    "en": "Bottom of the Well (B2): Chest: GlassTruth",
-    "descZh": "位于井底 B2 层的官方宝箱（内容：宝箱 · GlassTruth，世界坐标 -0.0, 92.4, -110.3）。",
-    "descEn": "Treasure chest on B2 of Bottom of the Well (Chest: GlassTruth).",
-    "instanceId": "16654774376625985726"
+    "zh": "井底 (B2) · 宝箱 · 真实之镜",
+    "en": "Bottom of the Well (B2): Chest: Lens of Truth",
+    "instanceId": "16654774376625985726",
+    "howto": "在井底 (B2)找到并打开宝箱，取得「真实之镜」。部分宝箱需先清怪或解开本层机关。",
+    "reward": "真实之镜",
+    "note": "戴上后能看见隐藏平台、假墙与幽灵。"
+  },
+  {
+    "id": "KI-001",
+    "map": "BottomOfTheWell",
+    "area": "B2",
+    "cat": "keyitem",
+    "x": 76.01,
+    "y": 8.0,
+    "world": [
+      -0.05,
+      92.42,
+      -110.27
+    ],
+    "era": "Child",
+    "time": "Any",
+    "req": "",
+    "zh": "井底 (B2) · 真实之镜",
+    "en": "Bottom of the Well (B2): Lens of Truth",
+    "instanceId": "16654774376625985726",
+    "howto": "在井底 B2 打开宝箱取得「真实之镜」，属于推进流程的关键道具。",
+    "reward": "真实之镜",
+    "note": "与同位置「宝箱」点重合，已上移错开；按攻略顺序使用。"
   },
   {
     "id": "CH-003",
@@ -5557,9 +6074,10 @@
     "req": "",
     "zh": "井底 (B1) · 宝箱 · 卢比",
     "en": "Bottom of the Well (B1): Chest: Rupee",
-    "descZh": "位于井底 B1 层的官方宝箱（内容：宝箱 · 卢比，世界坐标 -0.2, 96.2, -5.0）。",
-    "descEn": "Treasure chest on B1 of Bottom of the Well (Chest: Rupee).",
-    "instanceId": "5429815628949128345"
+    "instanceId": "5429815628949128345",
+    "howto": "在井底 (B1)找到并打开宝箱，取得「卢比」。部分宝箱需先清怪或解开本层机关。",
+    "reward": "卢比",
+    "note": "补充卢比，颜色不同面额不同。"
   },
   {
     "id": "CH-004",
@@ -5578,9 +6096,10 @@
     "req": "",
     "zh": "井底 (B1) · 宝箱 · 卢比",
     "en": "Bottom of the Well (B1): Chest: Rupee",
-    "descZh": "位于井底 B1 层的官方宝箱（内容：宝箱 · 卢比，世界坐标 19.9, 97.8, -18.6）。",
-    "descEn": "Treasure chest on B1 of Bottom of the Well (Chest: Rupee).",
-    "instanceId": "12988877782812797760"
+    "instanceId": "12988877782812797760",
+    "howto": "在井底 (B1)找到并打开宝箱，取得「卢比」。部分宝箱需先清怪或解开本层机关。",
+    "reward": "卢比",
+    "note": "补充卢比，颜色不同面额不同。"
   },
   {
     "id": "CH-005",
@@ -5599,9 +6118,10 @@
     "req": "",
     "zh": "井底 (B1) · 宝箱 · 小钥匙",
     "en": "Bottom of the Well (B1): Chest: Small Key",
-    "descZh": "位于井底 B1 层的官方宝箱（内容：宝箱 · 小钥匙，世界坐标 10.6, 100.0, -4.5）。",
-    "descEn": "Treasure chest on B1 of Bottom of the Well (Chest: Small Key).",
-    "instanceId": "8397646530660039355"
+    "instanceId": "8397646530660039355",
+    "howto": "在井底 (B1)找到并打开宝箱，取得「小钥匙」。部分宝箱需先清怪或解开本层机关。",
+    "reward": "小钥匙",
+    "note": "开启本层上锁的门，通常一把对应一扇。"
   },
   {
     "id": "CH-006",
@@ -5620,9 +6140,10 @@
     "req": "",
     "zh": "井底 (B1) · 宝箱 · 卢比",
     "en": "Bottom of the Well (B1): Chest: Rupee",
-    "descZh": "位于井底 B1 层的官方宝箱（内容：宝箱 · 卢比，世界坐标 -11.0, 100.0, -5.4）。",
-    "descEn": "Treasure chest on B1 of Bottom of the Well (Chest: Rupee).",
-    "instanceId": "8975637636514249074"
+    "instanceId": "8975637636514249074",
+    "howto": "在井底 (B1)找到并打开宝箱，取得「卢比」。部分宝箱需先清怪或解开本层机关。",
+    "reward": "卢比",
+    "note": "补充卢比，颜色不同面额不同。"
   },
   {
     "id": "CH-007",
@@ -5639,11 +6160,12 @@
     "era": "Child",
     "time": "Any",
     "req": "",
-    "zh": "井底 (B1) · 宝箱 · TBox_Shield_Deku",
-    "en": "Bottom of the Well (B1): Chest: TBox_Shield_Deku",
-    "descZh": "位于井底 B1 层的官方宝箱（内容：宝箱 · TBox_Shield_Deku，世界坐标 33.9, 100.0, -22.5）。",
-    "descEn": "Treasure chest on B1 of Bottom of the Well (Chest: TBox_Shield_Deku).",
-    "instanceId": "874970148260328653"
+    "zh": "井底 (B1) · 宝箱 · 德库盾",
+    "en": "Bottom of the Well (B1): Chest: Deku Shield",
+    "instanceId": "874970148260328653",
+    "howto": "在井底 (B1)找到并打开宝箱，取得「德库盾」。部分宝箱需先清怪或解开本层机关。",
+    "reward": "德库盾",
+    "note": "装备用；被火烧或落入岩浆会烧毁，备 1 面。"
   },
   {
     "id": "CH-008",
@@ -5662,9 +6184,10 @@
     "req": "",
     "zh": "井底 (B1) · 宝箱 · 卢比",
     "en": "Bottom of the Well (B1): Chest: Rupee",
-    "descZh": "位于井底 B1 层的官方宝箱（内容：宝箱 · 卢比，世界坐标 12.0, 100.0, -11.1）。",
-    "descEn": "Treasure chest on B1 of Bottom of the Well (Chest: Rupee).",
-    "instanceId": "631709185320708287"
+    "instanceId": "631709185320708287",
+    "howto": "在井底 (B1)找到并打开宝箱，取得「卢比」。部分宝箱需先清怪或解开本层机关。",
+    "reward": "卢比",
+    "note": "补充卢比，颜色不同面额不同。"
   },
   {
     "id": "CH-009",
@@ -5683,9 +6206,10 @@
     "req": "",
     "zh": "井底 (B1) · 宝箱 · 卢比",
     "en": "Bottom of the Well (B1): Chest: Rupee",
-    "descZh": "位于井底 B1 层的官方宝箱（内容：宝箱 · 卢比，世界坐标 -29.6, 100.0, -37.0）。",
-    "descEn": "Treasure chest on B1 of Bottom of the Well (Chest: Rupee).",
-    "instanceId": "10905582354954996284"
+    "instanceId": "10905582354954996284",
+    "howto": "在井底 (B1)找到并打开宝箱，取得「卢比」。部分宝箱需先清怪或解开本层机关。",
+    "reward": "卢比",
+    "note": "补充卢比，颜色不同面额不同。"
   },
   {
     "id": "CH-010",
@@ -5704,9 +6228,10 @@
     "req": "",
     "zh": "井底 (B1) · 宝箱 · 指南针",
     "en": "Bottom of the Well (B1): Chest: Compass",
-    "descZh": "位于井底 B1 层的官方宝箱（内容：宝箱 · 指南针，世界坐标 -12.4, 100.1, -11.0）。",
-    "descEn": "Treasure chest on B1 of Bottom of the Well (Chest: Compass).",
-    "instanceId": "14911602953212243797"
+    "instanceId": "14911602953212243797",
+    "howto": "在井底 (B1)找到并打开宝箱，取得「指南针」。部分宝箱需先清怪或解开本层机关。",
+    "reward": "指南针",
+    "note": "显示本层所有宝箱与首领房位置，和地图配套。"
   },
   {
     "id": "CH-011",
@@ -5723,11 +6248,12 @@
     "era": "Child",
     "time": "Any",
     "req": "",
-    "zh": "井底 (B1) · 宝箱 · ScrubBusinessSeed",
-    "en": "Bottom of the Well (B1): Chest: ScrubBusinessSeed",
-    "descZh": "位于井底 B1 层的官方宝箱（内容：宝箱 · ScrubBusinessSeed，世界坐标 0.0, 102.2, -100.5）。",
-    "descEn": "Treasure chest on B1 of Bottom of the Well (Chest: ScrubBusinessSeed).",
-    "instanceId": "6064359710907908886"
+    "zh": "井底 (B1) · 宝箱 · 德库种子",
+    "en": "Bottom of the Well (B1): Chest: Deku Seeds",
+    "instanceId": "6064359710907908886",
+    "howto": "在井底 (B1)找到并打开宝箱，取得「德库种子」。部分宝箱需先清怪或解开本层机关。",
+    "reward": "德库种子",
+    "note": "弹弓弹药补给。"
   },
   {
     "id": "CH-012",
@@ -5746,9 +6272,10 @@
     "req": "",
     "zh": "井底 (B1) · 宝箱 · 卢比",
     "en": "Bottom of the Well (B1): Chest: Rupee",
-    "descZh": "位于井底 B1 层的官方宝箱（内容：宝箱 · 卢比，世界坐标 0.0, 105.8, -77.1）。",
-    "descEn": "Treasure chest on B1 of Bottom of the Well (Chest: Rupee).",
-    "instanceId": "11718708984125260282"
+    "instanceId": "11718708984125260282",
+    "howto": "在井底 (B1)找到并打开宝箱，取得「卢比」。部分宝箱需先清怪或解开本层机关。",
+    "reward": "卢比",
+    "note": "补充卢比，颜色不同面额不同。"
   },
   {
     "id": "CH-013",
@@ -5767,9 +6294,10 @@
     "req": "",
     "zh": "多东哥洞穴 (0F) · 宝箱 · 卢比",
     "en": "Dodongo's Cavern (0F): Chest: Rupee",
-    "descZh": "位于多东哥洞穴 0F 层的官方宝箱（内容：宝箱 · 卢比，世界坐标 -30.1, 100.0, -8.0）。",
-    "descEn": "Treasure chest on 0F of Dodongo's Cavern (Chest: Rupee).",
-    "instanceId": "8607798771661947511"
+    "instanceId": "8607798771661947511",
+    "howto": "在多东哥洞穴 (0F)找到并打开宝箱，取得「卢比」。部分宝箱需先清怪或解开本层机关。",
+    "reward": "卢比",
+    "note": "补充卢比，颜色不同面额不同。"
   },
   {
     "id": "CH-014",
@@ -5786,11 +6314,12 @@
     "era": "Child",
     "time": "Any",
     "req": "",
-    "zh": "多东哥洞穴 (0F) · 宝箱 · Dungeon_Map",
-    "en": "Dodongo's Cavern (0F): Chest: Dungeon_Map",
-    "descZh": "位于多东哥洞穴 0F 层的官方宝箱（内容：宝箱 · Dungeon_Map，世界坐标 -26.5, 100.3, -38.0）。",
-    "descEn": "Treasure chest on 0F of Dodongo's Cavern (Chest: Dungeon_Map).",
-    "instanceId": "8291119063305855945"
+    "zh": "多东哥洞穴 (0F) · 宝箱 · 迷宫地图",
+    "en": "Dodongo's Cavern (0F): Chest: Dungeon Map",
+    "instanceId": "8291119063305855945",
+    "howto": "在多东哥洞穴 (0F)找到并打开宝箱，取得「迷宫地图」。部分宝箱需先清怪或解开本层机关。",
+    "reward": "迷宫地图",
+    "note": "打开后地图页会显示本层平面，先拿图再规划路线。"
   },
   {
     "id": "CH-015",
@@ -5809,9 +6338,10 @@
     "req": "",
     "zh": "多东哥洞穴 (0F) · 宝箱 · 卢比",
     "en": "Dodongo's Cavern (0F): Chest: Rupee",
-    "descZh": "位于多东哥洞穴 0F 层的官方宝箱（内容：宝箱 · 卢比，世界坐标 83.0, 100.6, -55.6）。",
-    "descEn": "Treasure chest on 0F of Dodongo's Cavern (Chest: Rupee).",
-    "instanceId": "7764016096998075927"
+    "instanceId": "7764016096998075927",
+    "howto": "在多东哥洞穴 (0F)找到并打开宝箱，取得「卢比」。部分宝箱需先清怪或解开本层机关。",
+    "reward": "卢比",
+    "note": "补充卢比，颜色不同面额不同。"
   },
   {
     "id": "CH-016",
@@ -5830,9 +6360,10 @@
     "req": "",
     "zh": "多东哥洞穴 (0F) · 宝箱 · 指南针",
     "en": "Dodongo's Cavern (0F): Chest: Compass",
-    "descZh": "位于多东哥洞穴 0F 层的官方宝箱（内容：宝箱 · 指南针，世界坐标 -49.0, 103.6, 7.5）。",
-    "descEn": "Treasure chest on 0F of Dodongo's Cavern (Chest: Compass).",
-    "instanceId": "17531994809974271603"
+    "instanceId": "17531994809974271603",
+    "howto": "在多东哥洞穴 (0F)找到并打开宝箱，取得「指南针」。部分宝箱需先清怪或解开本层机关。",
+    "reward": "指南针",
+    "note": "显示本层所有宝箱与首领房位置，和地图配套。"
   },
   {
     "id": "CH-017",
@@ -5849,11 +6380,12 @@
     "era": "Child",
     "time": "Any",
     "req": "",
-    "zh": "多东哥洞穴 (1F) · 宝箱 · TBox_Shield_Deku",
-    "en": "Dodongo's Cavern (1F): Chest: TBox_Shield_Deku",
-    "descZh": "位于多东哥洞穴 1F 层的官方宝箱（内容：宝箱 · TBox_Shield_Deku，世界坐标 43.0, 113.2, -8.7）。",
-    "descEn": "Treasure chest on 1F of Dodongo's Cavern (Chest: TBox_Shield_Deku).",
-    "instanceId": "11582649900854566065"
+    "zh": "多东哥洞穴 (1F) · 宝箱 · 德库盾",
+    "en": "Dodongo's Cavern (1F): Chest: Deku Shield",
+    "instanceId": "11582649900854566065",
+    "howto": "在多东哥洞穴 (1F)找到并打开宝箱，取得「德库盾」。部分宝箱需先清怪或解开本层机关。",
+    "reward": "德库盾",
+    "note": "装备用；被火烧或落入岩浆会烧毁，备 1 面。"
   },
   {
     "id": "CH-018",
@@ -5870,11 +6402,12 @@
     "era": "Child",
     "time": "Any",
     "req": "",
-    "zh": "多东哥洞穴 (1F) · 宝箱 · TBox_Shield_Deku",
-    "en": "Dodongo's Cavern (1F): Chest: TBox_Shield_Deku",
-    "descZh": "位于多东哥洞穴 1F 层的官方宝箱（内容：宝箱 · TBox_Shield_Deku，世界坐标 -20.8, 113.3, -36.5）。",
-    "descEn": "Treasure chest on 1F of Dodongo's Cavern (Chest: TBox_Shield_Deku).",
-    "instanceId": "7524527082521156886"
+    "zh": "多东哥洞穴 (1F) · 宝箱 · 德库盾",
+    "en": "Dodongo's Cavern (1F): Chest: Deku Shield",
+    "instanceId": "7524527082521156886",
+    "howto": "在多东哥洞穴 (1F)找到并打开宝箱，取得「德库盾」。部分宝箱需先清怪或解开本层机关。",
+    "reward": "德库盾",
+    "note": "装备用；被火烧或落入岩浆会烧毁，备 1 面。"
   },
   {
     "id": "CH-019",
@@ -5891,11 +6424,12 @@
     "era": "Child",
     "time": "Any",
     "req": "",
-    "zh": "多东哥洞穴 (1F) · 宝箱 · ScrubBusinessSeed",
-    "en": "Dodongo's Cavern (1F): Chest: ScrubBusinessSeed",
-    "descZh": "位于多东哥洞穴 1F 层的官方宝箱（内容：宝箱 · ScrubBusinessSeed，世界坐标 92.5, 115.0, -50.3）。",
-    "descEn": "Treasure chest on 1F of Dodongo's Cavern (Chest: ScrubBusinessSeed).",
-    "instanceId": "850464708089653824"
+    "zh": "多东哥洞穴 (1F) · 宝箱 · 德库种子",
+    "en": "Dodongo's Cavern (1F): Chest: Deku Seeds",
+    "instanceId": "850464708089653824",
+    "howto": "在多东哥洞穴 (1F)找到并打开宝箱，取得「德库种子」。部分宝箱需先清怪或解开本层机关。",
+    "reward": "德库种子",
+    "note": "弹弓弹药补给。"
   },
   {
     "id": "CH-020",
@@ -5914,9 +6448,32 @@
     "req": "",
     "zh": "多东哥洞穴 (1F) · 宝箱 · 炸弹袋",
     "en": "Dodongo's Cavern (1F): Chest: Bomb Bag",
-    "descZh": "位于多东哥洞穴 1F 层的官方宝箱（内容：宝箱 · 炸弹袋，世界坐标 39.0, 115.7, -23.0）。",
-    "descEn": "Treasure chest on 1F of Dodongo's Cavern (Chest: Bomb Bag).",
-    "instanceId": "12161709650443144121"
+    "instanceId": "12161709650443144121",
+    "howto": "在多东哥洞穴 (1F)找到并打开宝箱，取得「炸弹袋」。部分宝箱需先清怪或解开本层机关。",
+    "reward": "炸弹袋",
+    "note": "内容以官方宝箱数据为准，按用途使用。"
+  },
+  {
+    "id": "KI-002",
+    "map": "DodongoCavern",
+    "area": "1F",
+    "cat": "keyitem",
+    "x": 59.43,
+    "y": 59.77,
+    "world": [
+      39.0,
+      115.72,
+      -23.0
+    ],
+    "era": "Child",
+    "time": "Any",
+    "req": "",
+    "zh": "多东哥洞穴 (1F) · 炸弹袋",
+    "en": "Dodongo's Cavern (1F): Bomb Bag",
+    "instanceId": "12161709650443144121",
+    "howto": "在多东哥洞穴 1F 打开宝箱取得「炸弹袋」，属于推进流程的关键道具。",
+    "reward": "炸弹袋",
+    "note": "与同位置「宝箱」点重合，已上移错开；按攻略顺序使用。"
   },
   {
     "id": "CH-021",
@@ -5933,11 +6490,12 @@
     "era": "Child",
     "time": "Any",
     "req": "",
-    "zh": "多东哥洞穴 (1F) · 宝箱 · ScrubBusinessSeed",
-    "en": "Dodongo's Cavern (1F): Chest: ScrubBusinessSeed",
-    "descZh": "位于多东哥洞穴 1F 层的官方宝箱（内容：宝箱 · ScrubBusinessSeed，世界坐标 -49.0, 116.0, -63.9）。",
-    "descEn": "Treasure chest on 1F of Dodongo's Cavern (Chest: ScrubBusinessSeed).",
-    "instanceId": "12253889300578348965"
+    "zh": "多东哥洞穴 (1F) · 宝箱 · 德库种子",
+    "en": "Dodongo's Cavern (1F): Chest: Deku Seeds",
+    "instanceId": "12253889300578348965",
+    "howto": "在多东哥洞穴 (1F)找到并打开宝箱，取得「德库种子」。部分宝箱需先清怪或解开本层机关。",
+    "reward": "德库种子",
+    "note": "弹弓弹药补给。"
   },
   {
     "id": "CH-022",
@@ -5956,9 +6514,32 @@
     "req": "",
     "zh": "火之神殿 (0F) · 宝箱 · 首领钥匙",
     "en": "Fire Temple (0F): Chest: Boss Key",
-    "descZh": "位于火之神殿 0F 层的官方宝箱（内容：宝箱 · 首领钥匙，世界坐标 -5.1, 100.9, -8.7）。",
-    "descEn": "Treasure chest on 0F of Fire Temple (Chest: Boss Key).",
-    "instanceId": "14060099092170010696"
+    "instanceId": "14060099092170010696",
+    "howto": "在火之神殿 (0F)找到并打开宝箱，取得「首领钥匙」。部分宝箱需先清怪或解开本层机关。",
+    "reward": "首领钥匙",
+    "note": "开启首领房大门，打 Boss 前必拿。"
+  },
+  {
+    "id": "KI-003",
+    "map": "FireTemple",
+    "area": "0F",
+    "cat": "keyitem",
+    "x": 41.38,
+    "y": 53.96,
+    "world": [
+      -5.06,
+      100.9,
+      -8.7
+    ],
+    "era": "Adult",
+    "time": "Any",
+    "req": "",
+    "zh": "火之神殿 (0F) · 首领钥匙",
+    "en": "Fire Temple (0F): Boss Key",
+    "instanceId": "14060099092170010696",
+    "howto": "在火之神殿 0F 打开宝箱取得「首领钥匙」，属于推进流程的关键道具。",
+    "reward": "首领钥匙",
+    "note": "与同位置「宝箱」点重合，已上移错开；按攻略顺序使用。"
   },
   {
     "id": "CH-023",
@@ -5977,9 +6558,10 @@
     "req": "",
     "zh": "火之神殿 (0F) · 宝箱 · 卢比",
     "en": "Fire Temple (0F): Chest: Rupee",
-    "descZh": "位于火之神殿 0F 层的官方宝箱（内容：宝箱 · 卢比，世界坐标 -7.0, 102.0, -33.3）。",
-    "descEn": "Treasure chest on 0F of Fire Temple (Chest: Rupee).",
-    "instanceId": "8757492004108970488"
+    "instanceId": "8757492004108970488",
+    "howto": "在火之神殿 (0F)找到并打开宝箱，取得「卢比」。部分宝箱需先清怪或解开本层机关。",
+    "reward": "卢比",
+    "note": "补充卢比，颜色不同面额不同。"
   },
   {
     "id": "CH-024",
@@ -5998,9 +6580,10 @@
     "req": "",
     "zh": "火之神殿 (0F) · 宝箱 · 小钥匙",
     "en": "Fire Temple (0F): Chest: Small Key",
-    "descZh": "位于火之神殿 0F 层的官方宝箱（内容：宝箱 · 小钥匙，世界坐标 -39.2, 105.0, 24.6）。",
-    "descEn": "Treasure chest on 0F of Fire Temple (Chest: Small Key).",
-    "instanceId": "5634724236470386190"
+    "instanceId": "5634724236470386190",
+    "howto": "在火之神殿 (0F)找到并打开宝箱，取得「小钥匙」。部分宝箱需先清怪或解开本层机关。",
+    "reward": "小钥匙",
+    "note": "开启本层上锁的门，通常一把对应一扇。"
   },
   {
     "id": "CH-025",
@@ -6019,9 +6602,10 @@
     "req": "",
     "zh": "火之神殿 (0F) · 宝箱 · 小钥匙",
     "en": "Fire Temple (0F): Chest: Small Key",
-    "descZh": "位于火之神殿 0F 层的官方宝箱（内容：宝箱 · 小钥匙，世界坐标 39.4, 105.3, 51.2）。",
-    "descEn": "Treasure chest on 0F of Fire Temple (Chest: Small Key).",
-    "instanceId": "1705064956286753527"
+    "instanceId": "1705064956286753527",
+    "howto": "在火之神殿 (0F)找到并打开宝箱，取得「小钥匙」。部分宝箱需先清怪或解开本层机关。",
+    "reward": "小钥匙",
+    "note": "开启本层上锁的门，通常一把对应一扇。"
   },
   {
     "id": "CH-026",
@@ -6040,9 +6624,10 @@
     "req": "",
     "zh": "火之神殿 (0F) · 宝箱 · 小钥匙",
     "en": "Fire Temple (0F): Chest: Small Key",
-    "descZh": "位于火之神殿 0F 层的官方宝箱（内容：宝箱 · 小钥匙，世界坐标 34.2, 105.3, -46.5）。",
-    "descEn": "Treasure chest on 0F of Fire Temple (Chest: Small Key).",
-    "instanceId": "3949488292768750868"
+    "instanceId": "3949488292768750868",
+    "howto": "在火之神殿 (0F)找到并打开宝箱，取得「小钥匙」。部分宝箱需先清怪或解开本层机关。",
+    "reward": "小钥匙",
+    "note": "开启本层上锁的门，通常一把对应一扇。"
   },
   {
     "id": "CH-027",
@@ -6061,9 +6646,10 @@
     "req": "",
     "zh": "火之神殿 (1F) · 宝箱 · 小钥匙",
     "en": "Fire Temple (1F): Chest: Small Key",
-    "descZh": "位于火之神殿 1F 层的官方宝箱（内容：宝箱 · 小钥匙，世界坐标 77.4, 141.1, 0.2）。",
-    "descEn": "Treasure chest on 1F of Fire Temple (Chest: Small Key).",
-    "instanceId": "16785682308850448108"
+    "instanceId": "16785682308850448108",
+    "howto": "在火之神殿 (1F)找到并打开宝箱，取得「小钥匙」。部分宝箱需先清怪或解开本层机关。",
+    "reward": "小钥匙",
+    "note": "开启本层上锁的门，通常一把对应一扇。"
   },
   {
     "id": "CH-028",
@@ -6082,9 +6668,10 @@
     "req": "",
     "zh": "火之神殿 (2F) · 宝箱 · 小钥匙",
     "en": "Fire Temple (2F): Chest: Small Key",
-    "descZh": "位于火之神殿 2F 层的官方宝箱（内容：宝箱 · 小钥匙，世界坐标 -37.8, 145.2, -0.6）。",
-    "descEn": "Treasure chest on 2F of Fire Temple (Chest: Small Key).",
-    "instanceId": "10521366928524045067"
+    "instanceId": "10521366928524045067",
+    "howto": "在火之神殿 (2F)找到并打开宝箱，取得「小钥匙」。部分宝箱需先清怪或解开本层机关。",
+    "reward": "小钥匙",
+    "note": "开启本层上锁的门，通常一把对应一扇。"
   },
   {
     "id": "CH-029",
@@ -6103,9 +6690,10 @@
     "req": "",
     "zh": "火之神殿 (2F) · 宝箱 · 小钥匙",
     "en": "Fire Temple (2F): Chest: Small Key",
-    "descZh": "位于火之神殿 2F 层的官方宝箱（内容：宝箱 · 小钥匙，世界坐标 -17.1, 147.0, -31.1）。",
-    "descEn": "Treasure chest on 2F of Fire Temple (Chest: Small Key).",
-    "instanceId": "12945617941305968586"
+    "instanceId": "12945617941305968586",
+    "howto": "在火之神殿 (2F)找到并打开宝箱，取得「小钥匙」。部分宝箱需先清怪或解开本层机关。",
+    "reward": "小钥匙",
+    "note": "开启本层上锁的门，通常一把对应一扇。"
   },
   {
     "id": "CH-030",
@@ -6124,9 +6712,10 @@
     "req": "",
     "zh": "火之神殿 (2F) · 宝箱 · 小钥匙",
     "en": "Fire Temple (2F): Chest: Small Key",
-    "descZh": "位于火之神殿 2F 层的官方宝箱（内容：宝箱 · 小钥匙，世界坐标 48.5, 147.0, -43.4）。",
-    "descEn": "Treasure chest on 2F of Fire Temple (Chest: Small Key).",
-    "instanceId": "12567412825200613393"
+    "instanceId": "12567412825200613393",
+    "howto": "在火之神殿 (2F)找到并打开宝箱，取得「小钥匙」。部分宝箱需先清怪或解开本层机关。",
+    "reward": "小钥匙",
+    "note": "开启本层上锁的门，通常一把对应一扇。"
   },
   {
     "id": "CH-031",
@@ -6145,9 +6734,10 @@
     "req": "",
     "zh": "火之神殿 (2F) · 宝箱 · 指南针",
     "en": "Fire Temple (2F): Chest: Compass",
-    "descZh": "位于火之神殿 2F 层的官方宝箱（内容：宝箱 · 指南针，世界坐标 34.1, 147.1, -5.7）。",
-    "descEn": "Treasure chest on 2F of Fire Temple (Chest: Compass).",
-    "instanceId": "16713240760352215634"
+    "instanceId": "16713240760352215634",
+    "howto": "在火之神殿 (2F)找到并打开宝箱，取得「指南针」。部分宝箱需先清怪或解开本层机关。",
+    "reward": "指南针",
+    "note": "显示本层所有宝箱与首领房位置，和地图配套。"
   },
   {
     "id": "CH-032",
@@ -6164,11 +6754,12 @@
     "era": "Adult",
     "time": "Any",
     "req": "",
-    "zh": "火之神殿 (2F) · 宝箱 · Dungeon_Map",
-    "en": "Fire Temple (2F): Chest: Dungeon_Map",
-    "descZh": "位于火之神殿 2F 层的官方宝箱（内容：宝箱 · Dungeon_Map，世界坐标 58.2, 147.1, 40.6）。",
-    "descEn": "Treasure chest on 2F of Fire Temple (Chest: Dungeon_Map).",
-    "instanceId": "3688520809244472975"
+    "zh": "火之神殿 (2F) · 宝箱 · 迷宫地图",
+    "en": "Fire Temple (2F): Chest: Dungeon Map",
+    "instanceId": "3688520809244472975",
+    "howto": "在火之神殿 (2F)找到并打开宝箱，取得「迷宫地图」。部分宝箱需先清怪或解开本层机关。",
+    "reward": "迷宫地图",
+    "note": "打开后地图页会显示本层平面，先拿图再规划路线。"
   },
   {
     "id": "CH-033",
@@ -6187,9 +6778,10 @@
     "req": "",
     "zh": "火之神殿 (2F) · 宝箱 · 小钥匙",
     "en": "Fire Temple (2F): Chest: Small Key",
-    "descZh": "位于火之神殿 2F 层的官方宝箱（内容：宝箱 · 小钥匙，世界坐标 46.6, 150.5, 33.4）。",
-    "descEn": "Treasure chest on 2F of Fire Temple (Chest: Small Key).",
-    "instanceId": "9634924691849556346"
+    "instanceId": "9634924691849556346",
+    "howto": "在火之神殿 (2F)找到并打开宝箱，取得「小钥匙」。部分宝箱需先清怪或解开本层机关。",
+    "reward": "小钥匙",
+    "note": "开启本层上锁的门，通常一把对应一扇。"
   },
   {
     "id": "CH-034",
@@ -6208,9 +6800,10 @@
     "req": "",
     "zh": "火之神殿 (4F) · 宝箱 · 卢比",
     "en": "Fire Temple (4F): Chest: Rupee",
-    "descZh": "位于火之神殿 4F 层的官方宝箱（内容：宝箱 · 卢比，世界坐标 30.8, 194.4, -11.1）。",
-    "descEn": "Treasure chest on 4F of Fire Temple (Chest: Rupee).",
-    "instanceId": "862385681502746018"
+    "instanceId": "862385681502746018",
+    "howto": "在火之神殿 (4F)找到并打开宝箱，取得「卢比」。部分宝箱需先清怪或解开本层机关。",
+    "reward": "卢比",
+    "note": "补充卢比，颜色不同面额不同。"
   },
   {
     "id": "CH-035",
@@ -6229,9 +6822,10 @@
     "req": "",
     "zh": "火之神殿 (4F) · 宝箱",
     "en": "Fire Temple (4F): Treasure Chest",
-    "descZh": "位于火之神殿 4F 层的官方宝箱（内容：宝箱，世界坐标 36.2, 194.4, -10.2）。",
-    "descEn": "Treasure chest on 4F of Fire Temple (Treasure Chest).",
-    "instanceId": "17001858340376096722"
+    "instanceId": "17001858340376096722",
+    "howto": "在火之神殿 (4F)找到并打开宝箱，取得「未标注」。部分宝箱需先清怪或解开本层机关。",
+    "reward": "未标注",
+    "note": "官方 RomFS 该宝箱无掉落字段，多为剧情/机关宝箱，进游戏确认。"
   },
   {
     "id": "CH-036",
@@ -6250,9 +6844,10 @@
     "req": "",
     "zh": "火之神殿 (4F) · 宝箱",
     "en": "Fire Temple (4F): Treasure Chest",
-    "descZh": "位于火之神殿 4F 层的官方宝箱（内容：宝箱，世界坐标 30.8, 194.4, -5.5）。",
-    "descEn": "Treasure chest on 4F of Fire Temple (Treasure Chest).",
-    "instanceId": "15073195886628236505"
+    "instanceId": "15073195886628236505",
+    "howto": "在火之神殿 (4F)找到并打开宝箱，取得「未标注」。部分宝箱需先清怪或解开本层机关。",
+    "reward": "未标注",
+    "note": "官方 RomFS 该宝箱无掉落字段，多为剧情/机关宝箱，进游戏确认。"
   },
   {
     "id": "CH-037",
@@ -6271,9 +6866,32 @@
     "req": "",
     "zh": "火之神殿 (4F) · 宝箱 · 百万吨大锤",
     "en": "Fire Temple (4F): Chest: Megaton Hammer",
-    "descZh": "位于火之神殿 4F 层的官方宝箱（内容：宝箱 · 百万吨大锤，世界坐标 -31.8, 196.1, -12.7）。",
-    "descEn": "Treasure chest on 4F of Fire Temple (Chest: Megaton Hammer).",
-    "instanceId": "12083259659219538030"
+    "instanceId": "12083259659219538030",
+    "howto": "在火之神殿 (4F)找到并打开宝箱，取得「百万吨大锤」。部分宝箱需先清怪或解开本层机关。",
+    "reward": "百万吨大锤",
+    "note": "内容以官方宝箱数据为准，按用途使用。"
+  },
+  {
+    "id": "KI-004",
+    "map": "FireTemple",
+    "area": "4F",
+    "cat": "keyitem",
+    "x": 29.44,
+    "y": 51.24,
+    "world": [
+      -31.77,
+      196.1,
+      -12.71
+    ],
+    "era": "Adult",
+    "time": "Any",
+    "req": "",
+    "zh": "火之神殿 (4F) · 百万吨大锤",
+    "en": "Fire Temple (4F): Megaton Hammer",
+    "instanceId": "12083259659219538030",
+    "howto": "在火之神殿 4F 打开宝箱取得「百万吨大锤」，属于推进流程的关键道具。",
+    "reward": "百万吨大锤",
+    "note": "与同位置「宝箱」点重合，已上移错开；按攻略顺序使用。"
   },
   {
     "id": "CH-038",
@@ -6290,11 +6908,12 @@
     "era": "Adult",
     "time": "Any",
     "req": "",
-    "zh": "森林神殿 (B2) · 宝箱 · 箭矢",
+    "zh": "森林神殿 (B2) · 宝箱 · 箭",
     "en": "Forest Temple (B2): Chest: Arrows",
-    "descZh": "位于森林神殿 B2 层的官方宝箱（内容：宝箱 · 箭矢，世界坐标 -16.3, 60.7, 12.6）。",
-    "descEn": "Treasure chest on B2 of Forest Temple (Chest: Arrows).",
-    "instanceId": "9038700938965170329"
+    "instanceId": "9038700938965170329",
+    "howto": "在森林神殿 (B2)找到并打开宝箱，取得「箭」。部分宝箱需先清怪或解开本层机关。",
+    "reward": "箭",
+    "note": "补充箭袋。"
   },
   {
     "id": "CH-039",
@@ -6313,9 +6932,10 @@
     "req": "",
     "zh": "森林神殿 (B1) · 宝箱 · 小钥匙",
     "en": "Forest Temple (B1): Chest: Small Key",
-    "descZh": "位于森林神殿 B1 层的官方宝箱（内容：宝箱 · 小钥匙，世界坐标 16.4, 88.0, -42.6）。",
-    "descEn": "Treasure chest on B1 of Forest Temple (Chest: Small Key).",
-    "instanceId": "6449977980406424425"
+    "instanceId": "6449977980406424425",
+    "howto": "在森林神殿 (B1)找到并打开宝箱，取得「小钥匙」。部分宝箱需先清怪或解开本层机关。",
+    "reward": "小钥匙",
+    "note": "开启本层上锁的门，通常一把对应一扇。"
   },
   {
     "id": "CH-040",
@@ -6332,11 +6952,12 @@
     "era": "Adult",
     "time": "Any",
     "req": "",
-    "zh": "森林神殿 (1F) · 宝箱 · Dungeon_Map",
-    "en": "Forest Temple (1F): Chest: Dungeon_Map",
-    "descZh": "位于森林神殿 1F 层的官方宝箱（内容：宝箱 · Dungeon_Map，世界坐标 38.8, 101.4, -35.7）。",
-    "descEn": "Treasure chest on 1F of Forest Temple (Chest: Dungeon_Map).",
-    "instanceId": "3174893090599461927"
+    "zh": "森林神殿 (1F) · 宝箱 · 迷宫地图",
+    "en": "Forest Temple (1F): Chest: Dungeon Map",
+    "instanceId": "3174893090599461927",
+    "howto": "在森林神殿 (1F)找到并打开宝箱，取得「迷宫地图」。部分宝箱需先清怪或解开本层机关。",
+    "reward": "迷宫地图",
+    "note": "打开后地图页会显示本层平面，先拿图再规划路线。"
   },
   {
     "id": "CH-041",
@@ -6355,9 +6976,10 @@
     "req": "",
     "zh": "森林神殿 (1F) · 宝箱",
     "en": "Forest Temple (1F): Treasure Chest",
-    "descZh": "位于森林神殿 1F 层的官方宝箱（内容：宝箱，世界坐标 56.0, 104.0, -22.8）。",
-    "descEn": "Treasure chest on 1F of Forest Temple (Treasure Chest).",
-    "instanceId": "15117164073907033527"
+    "instanceId": "15117164073907033527",
+    "howto": "在森林神殿 (1F)找到并打开宝箱，取得「未标注」。部分宝箱需先清怪或解开本层机关。",
+    "reward": "未标注",
+    "note": "官方 RomFS 该宝箱无掉落字段，多为剧情/机关宝箱，进游戏确认。"
   },
   {
     "id": "CH-042",
@@ -6376,9 +6998,10 @@
     "req": "",
     "zh": "森林神殿 (1F) · 宝箱 · 小钥匙",
     "en": "Forest Temple (1F): Chest: Small Key",
-    "descZh": "位于森林神殿 1F 层的官方宝箱（内容：宝箱 · 小钥匙，世界坐标 0.0, 105.8, -62.8）。",
-    "descEn": "Treasure chest on 1F of Forest Temple (Chest: Small Key).",
-    "instanceId": "14776684749746592758"
+    "instanceId": "14776684749746592758",
+    "howto": "在森林神殿 (1F)找到并打开宝箱，取得「小钥匙」。部分宝箱需先清怪或解开本层机关。",
+    "reward": "小钥匙",
+    "note": "开启本层上锁的门，通常一把对应一扇。"
   },
   {
     "id": "CH-043",
@@ -6397,9 +7020,10 @@
     "req": "",
     "zh": "森林神殿 (1F) · 宝箱 · 小钥匙",
     "en": "Forest Temple (1F): Chest: Small Key",
-    "descZh": "位于森林神殿 1F 层的官方宝箱（内容：宝箱 · 小钥匙，世界坐标 -70.2, 107.1, -26.5）。",
-    "descEn": "Treasure chest on 1F of Forest Temple (Chest: Small Key).",
-    "instanceId": "7535137041266964235"
+    "instanceId": "7535137041266964235",
+    "howto": "在森林神殿 (1F)找到并打开宝箱，取得「小钥匙」。部分宝箱需先清怪或解开本层机关。",
+    "reward": "小钥匙",
+    "note": "开启本层上锁的门，通常一把对应一扇。"
   },
   {
     "id": "CH-044",
@@ -6418,9 +7042,32 @@
     "req": "",
     "zh": "森林神殿 (2F) · 宝箱 · 妖精弓",
     "en": "Forest Temple (2F): Chest: Fairy Bow",
-    "descZh": "位于森林神殿 2F 层的官方宝箱（内容：宝箱 · 妖精弓，世界坐标 0.2, 114.8, -68.5）。",
-    "descEn": "Treasure chest on 2F of Forest Temple (Chest: Fairy Bow).",
-    "instanceId": "11082303891540711688"
+    "instanceId": "11082303891540711688",
+    "howto": "在森林神殿 (2F)找到并打开宝箱，取得「妖精弓」。部分宝箱需先清怪或解开本层机关。",
+    "reward": "妖精弓",
+    "note": "内容以官方宝箱数据为准，按用途使用。"
+  },
+  {
+    "id": "KI-005",
+    "map": "ForestTemple",
+    "area": "2F",
+    "cat": "keyitem",
+    "x": 63.47,
+    "y": 11.84,
+    "world": [
+      0.2,
+      114.76,
+      -68.5
+    ],
+    "era": "Adult",
+    "time": "Any",
+    "req": "",
+    "zh": "森林神殿 (2F) · 妖精弓",
+    "en": "Forest Temple (2F): Fairy Bow",
+    "instanceId": "11082303891540711688",
+    "howto": "在森林神殿 2F 打开宝箱取得「妖精弓」，属于推进流程的关键道具。",
+    "reward": "妖精弓",
+    "note": "与同位置「宝箱」点重合，已上移错开；按攻略顺序使用。"
   },
   {
     "id": "CH-045",
@@ -6439,9 +7086,10 @@
     "req": "",
     "zh": "森林神殿 (2F) · 宝箱 · 小钥匙",
     "en": "Forest Temple (2F): Chest: Small Key",
-    "descZh": "位于森林神殿 2F 层的官方宝箱（内容：宝箱 · 小钥匙，世界坐标 -17.1, 114.8, -63.6）。",
-    "descEn": "Treasure chest on 2F of Forest Temple (Chest: Small Key).",
-    "instanceId": "3433400840978782007"
+    "instanceId": "3433400840978782007",
+    "howto": "在森林神殿 (2F)找到并打开宝箱，取得「小钥匙」。部分宝箱需先清怪或解开本层机关。",
+    "reward": "小钥匙",
+    "note": "开启本层上锁的门，通常一把对应一扇。"
   },
   {
     "id": "CH-046",
@@ -6460,9 +7108,10 @@
     "req": "",
     "zh": "森林神殿 (2F) · 宝箱 · 指南针",
     "en": "Forest Temple (2F): Chest: Compass",
-    "descZh": "位于森林神殿 2F 层的官方宝箱（内容：宝箱 · 指南针，世界坐标 17.1, 114.8, -63.6）。",
-    "descEn": "Treasure chest on 2F of Forest Temple (Chest: Compass).",
-    "instanceId": "6948525240950728236"
+    "instanceId": "6948525240950728236",
+    "howto": "在森林神殿 (2F)找到并打开宝箱，取得「指南针」。部分宝箱需先清怪或解开本层机关。",
+    "reward": "指南针",
+    "note": "显示本层所有宝箱与首领房位置，和地图配套。"
   },
   {
     "id": "CH-047",
@@ -6481,9 +7130,10 @@
     "req": "",
     "zh": "森林神殿 (2F) · 宝箱 · 卢比",
     "en": "Forest Temple (2F): Chest: Rupee",
-    "descZh": "位于森林神殿 2F 层的官方宝箱（内容：宝箱 · 卢比，世界坐标 -52.8, 115.0, 4.2）。",
-    "descEn": "Treasure chest on 2F of Forest Temple (Chest: Rupee).",
-    "instanceId": "15920957434854338961"
+    "instanceId": "15920957434854338961",
+    "howto": "在森林神殿 (2F)找到并打开宝箱，取得「卢比」。部分宝箱需先清怪或解开本层机关。",
+    "reward": "卢比",
+    "note": "补充卢比，颜色不同面额不同。"
   },
   {
     "id": "CH-048",
@@ -6502,9 +7152,10 @@
     "req": "",
     "zh": "森林神殿 (2F) · 宝箱 · 小钥匙",
     "en": "Forest Temple (2F): Chest: Small Key",
-    "descZh": "位于森林神殿 2F 层的官方宝箱（内容：宝箱 · 小钥匙，世界坐标 -9.9, 117.5, 64.4）。",
-    "descEn": "Treasure chest on 2F of Forest Temple (Chest: Small Key).",
-    "instanceId": "1171460703078800858"
+    "instanceId": "1171460703078800858",
+    "howto": "在森林神殿 (2F)找到并打开宝箱，取得「小钥匙」。部分宝箱需先清怪或解开本层机关。",
+    "reward": "小钥匙",
+    "note": "开启本层上锁的门，通常一把对应一扇。"
   },
   {
     "id": "CH-049",
@@ -6523,9 +7174,32 @@
     "req": "",
     "zh": "森林神殿 (3F) · 宝箱 · 首领钥匙",
     "en": "Forest Temple (3F): Chest: Boss Key",
-    "descZh": "位于森林神殿 3F 层的官方宝箱（内容：宝箱 · 首领钥匙，世界坐标 -49.5, 129.5, -63.7）。",
-    "descEn": "Treasure chest on 3F of Forest Temple (Chest: Boss Key).",
-    "instanceId": "5306318520835485827"
+    "instanceId": "5306318520835485827",
+    "howto": "在森林神殿 (3F)找到并打开宝箱，取得「首领钥匙」。部分宝箱需先清怪或解开本层机关。",
+    "reward": "首领钥匙",
+    "note": "开启首领房大门，打 Boss 前必拿。"
+  },
+  {
+    "id": "KI-006",
+    "map": "ForestTemple",
+    "area": "3F",
+    "cat": "keyitem",
+    "x": 39.37,
+    "y": 14.61,
+    "world": [
+      -49.46,
+      129.5,
+      -63.71
+    ],
+    "era": "Adult",
+    "time": "Any",
+    "req": "",
+    "zh": "森林神殿 (3F) · 首领钥匙",
+    "en": "Forest Temple (3F): Boss Key",
+    "instanceId": "5306318520835485827",
+    "howto": "在森林神殿 3F 打开宝箱取得「首领钥匙」，属于推进流程的关键道具。",
+    "reward": "首领钥匙",
+    "note": "与同位置「宝箱」点重合，已上移错开；按攻略顺序使用。"
   },
   {
     "id": "CH-050",
@@ -6544,9 +7218,10 @@
     "req": "",
     "zh": "冰之洞窟 (0F) · 宝箱 · 指南针",
     "en": "Ice Cavern (0F): Chest: Compass",
-    "descZh": "位于冰之洞窟 0F 层的官方宝箱（内容：宝箱 · 指南针，世界坐标 90.2, 104.5, 2.9）。",
-    "descEn": "Treasure chest on 0F of Ice Cavern (Chest: Compass).",
-    "instanceId": "13542013937093159888"
+    "instanceId": "13542013937093159888",
+    "howto": "在冰之洞窟 (0F)找到并打开宝箱，取得「指南针」。部分宝箱需先清怪或解开本层机关。",
+    "reward": "指南针",
+    "note": "显示本层所有宝箱与首领房位置，和地图配套。"
   },
   {
     "id": "CH-051",
@@ -6565,9 +7240,10 @@
     "req": "",
     "zh": "冰之洞窟 (0F) · 宝箱 · 卢比",
     "en": "Ice Cavern (0F): Chest: Rupee",
-    "descZh": "位于冰之洞窟 0F 层的官方宝箱（内容：宝箱 · 卢比，世界坐标 -53.1, 107.2, -34.2）。",
-    "descEn": "Treasure chest on 0F of Ice Cavern (Chest: Rupee).",
-    "instanceId": "4128092231168513176"
+    "instanceId": "4128092231168513176",
+    "howto": "在冰之洞窟 (0F)找到并打开宝箱，取得「卢比」。部分宝箱需先清怪或解开本层机关。",
+    "reward": "卢比",
+    "note": "补充卢比，颜色不同面额不同。"
   },
   {
     "id": "CH-052",
@@ -6584,11 +7260,34 @@
     "era": "Adult",
     "time": "Any",
     "req": "",
-    "zh": "冰之洞窟 (0F) · 宝箱 · HeavyBoot",
-    "en": "Ice Cavern (0F): Chest: HeavyBoot",
-    "descZh": "位于冰之洞窟 0F 层的官方宝箱（内容：宝箱 · HeavyBoot，世界坐标 -46.2, 109.7, 42.5）。",
-    "descEn": "Treasure chest on 0F of Ice Cavern (Chest: HeavyBoot).",
-    "instanceId": "6859289214373847284"
+    "zh": "冰之洞窟 (0F) · 宝箱 · 铁靴",
+    "en": "Ice Cavern (0F): Chest: Iron Boots",
+    "instanceId": "6859289214373847284",
+    "howto": "在冰之洞窟 (0F)找到并打开宝箱，取得「铁靴」。部分宝箱需先清怪或解开本层机关。",
+    "reward": "铁靴",
+    "note": "沉入水底、吸附磁力地面。"
+  },
+  {
+    "id": "KI-007",
+    "map": "IceCavern",
+    "area": "0F",
+    "cat": "keyitem",
+    "x": 38.33,
+    "y": 67.93,
+    "world": [
+      -46.22,
+      109.71,
+      42.53
+    ],
+    "era": "Adult",
+    "time": "Any",
+    "req": "",
+    "zh": "冰之洞窟 (0F) · 铁靴",
+    "en": "Ice Cavern (0F): Iron Boots",
+    "instanceId": "6859289214373847284",
+    "howto": "在冰之洞窟 0F 打开宝箱取得「铁靴」，属于推进流程的关键道具。",
+    "reward": "铁靴",
+    "note": "与同位置「宝箱」点重合，已上移错开；按攻略顺序使用。"
   },
   {
     "id": "CH-053",
@@ -6605,11 +7304,12 @@
     "era": "Adult",
     "time": "Any",
     "req": "",
-    "zh": "冰之洞窟 (0F) · 宝箱 · Dungeon_Map",
-    "en": "Ice Cavern (0F): Chest: Dungeon_Map",
-    "descZh": "位于冰之洞窟 0F 层的官方宝箱（内容：宝箱 · Dungeon_Map，世界坐标 3.4, 113.7, -80.2）。",
-    "descEn": "Treasure chest on 0F of Ice Cavern (Chest: Dungeon_Map).",
-    "instanceId": "11498802739257120175"
+    "zh": "冰之洞窟 (0F) · 宝箱 · 迷宫地图",
+    "en": "Ice Cavern (0F): Chest: Dungeon Map",
+    "instanceId": "11498802739257120175",
+    "howto": "在冰之洞窟 (0F)找到并打开宝箱，取得「迷宫地图」。部分宝箱需先清怪或解开本层机关。",
+    "reward": "迷宫地图",
+    "note": "打开后地图页会显示本层平面，先拿图再规划路线。"
   },
   {
     "id": "CH-054",
@@ -6626,11 +7326,12 @@
     "era": "Child",
     "time": "Any",
     "req": "",
-    "zh": "加布加布腹中 (B1) · 宝箱 · Dungeon_Map",
-    "en": "Inside Jabu-Jabu's Belly (B1): Chest: Dungeon_Map",
-    "descZh": "位于加布加布腹中 B1 层的官方宝箱（内容：宝箱 · Dungeon_Map，世界坐标 37.7, 77.6, -57.1）。",
-    "descEn": "Treasure chest on B1 of Inside Jabu-Jabu's Belly (Chest: Dungeon_Map).",
-    "instanceId": "14933854942830098290"
+    "zh": "加布加布腹中 (B1) · 宝箱 · 迷宫地图",
+    "en": "Inside Jabu-Jabu's Belly (B1): Chest: Dungeon Map",
+    "instanceId": "14933854942830098290",
+    "howto": "在加布加布腹中 (B1)找到并打开宝箱，取得「迷宫地图」。部分宝箱需先清怪或解开本层机关。",
+    "reward": "迷宫地图",
+    "note": "打开后地图页会显示本层平面，先拿图再规划路线。"
   },
   {
     "id": "CH-055",
@@ -6649,9 +7350,10 @@
     "req": "",
     "zh": "加布加布腹中 (B1) · 宝箱 · 卢比",
     "en": "Inside Jabu-Jabu's Belly (B1): Chest: Rupee",
-    "descZh": "位于加布加布腹中 B1 层的官方宝箱（内容：宝箱 · 卢比，世界坐标 -34.2, 82.5, -52.0）。",
-    "descEn": "Treasure chest on B1 of Inside Jabu-Jabu's Belly (Chest: Rupee).",
-    "instanceId": "3609242017501283521"
+    "instanceId": "3609242017501283521",
+    "howto": "在加布加布腹中 (B1)找到并打开宝箱，取得「卢比」。部分宝箱需先清怪或解开本层机关。",
+    "reward": "卢比",
+    "note": "补充卢比，颜色不同面额不同。"
   },
   {
     "id": "CH-056",
@@ -6670,9 +7372,10 @@
     "req": "",
     "zh": "加布加布腹中 (1F) · 宝箱 · 指南针",
     "en": "Inside Jabu-Jabu's Belly (1F): Chest: Compass",
-    "descZh": "位于加布加布腹中 1F 层的官方宝箱（内容：宝箱 · 指南针，世界坐标 25.5, 92.3, -175.9）。",
-    "descEn": "Treasure chest on 1F of Inside Jabu-Jabu's Belly (Chest: Compass).",
-    "instanceId": "3510516276638146208"
+    "instanceId": "3510516276638146208",
+    "howto": "在加布加布腹中 (1F)找到并打开宝箱，取得「指南针」。部分宝箱需先清怪或解开本层机关。",
+    "reward": "指南针",
+    "note": "显示本层所有宝箱与首领房位置，和地图配套。"
   },
   {
     "id": "CH-057",
@@ -6691,9 +7394,32 @@
     "req": "",
     "zh": "加布加布腹中 (1F) · 宝箱 · 回旋镖",
     "en": "Inside Jabu-Jabu's Belly (1F): Chest: Boomerang",
-    "descZh": "位于加布加布腹中 1F 层的官方宝箱（内容：宝箱 · 回旋镖，世界坐标 -31.3, 92.4, -131.9）。",
-    "descEn": "Treasure chest on 1F of Inside Jabu-Jabu's Belly (Chest: Boomerang).",
-    "instanceId": "5527401621172639818"
+    "instanceId": "5527401621172639818",
+    "howto": "在加布加布腹中 (1F)找到并打开宝箱，取得「回旋镖」。部分宝箱需先清怪或解开本层机关。",
+    "reward": "回旋镖",
+    "note": "内容以官方宝箱数据为准，按用途使用。"
+  },
+  {
+    "id": "KI-008",
+    "map": "InsideJabuJabuBelly",
+    "area": "1F",
+    "cat": "keyitem",
+    "x": 59.83,
+    "y": 38.17,
+    "world": [
+      -31.3,
+      92.39,
+      -131.91
+    ],
+    "era": "Child",
+    "time": "Any",
+    "req": "",
+    "zh": "加布加布腹中 (1F) · 回旋镖",
+    "en": "Inside Jabu-Jabu's Belly (1F): Boomerang",
+    "instanceId": "5527401621172639818",
+    "howto": "在加布加布腹中 1F 打开宝箱取得「回旋镖」，属于推进流程的关键道具。",
+    "reward": "回旋镖",
+    "note": "与同位置「宝箱」点重合，已上移错开；按攻略顺序使用。"
   },
   {
     "id": "CH-058",
@@ -6712,9 +7438,10 @@
     "req": "",
     "zh": "德库树内部 (B1) · 宝箱 · 德库树枝",
     "en": "Inside the Deku Tree (B1): Chest: Deku Sticks",
-    "descZh": "位于德库树内部 B1 层的官方宝箱（内容：宝箱 · 德库树枝，世界坐标 -10.4, 79.4, -12.6）。",
-    "descEn": "Treasure chest on B1 of Inside the Deku Tree (Chest: Deku Sticks).",
-    "instanceId": "12889104996486369065"
+    "instanceId": "12889104996486369065",
+    "howto": "在德库树内部 (B1)找到并打开宝箱，取得「德库树枝」。部分宝箱需先清怪或解开本层机关。",
+    "reward": "德库树枝",
+    "note": "补给德库木棒，可点火/当武器。"
   },
   {
     "id": "CH-059",
@@ -6731,11 +7458,12 @@
     "era": "Child",
     "time": "Any",
     "req": "",
-    "zh": "德库树内部 (2F) · 宝箱 · Dungeon_Map",
-    "en": "Inside the Deku Tree (2F): Chest: Dungeon_Map",
-    "descZh": "位于德库树内部 2F 层的官方宝箱（内容：宝箱 · Dungeon_Map，世界坐标 6.5, 108.4, 7.2）。",
-    "descEn": "Treasure chest on 2F of Inside the Deku Tree (Chest: Dungeon_Map).",
-    "instanceId": "8579518566955184384"
+    "zh": "德库树内部 (2F) · 宝箱 · 迷宫地图",
+    "en": "Inside the Deku Tree (2F): Chest: Dungeon Map",
+    "instanceId": "8579518566955184384",
+    "howto": "在德库树内部 (2F)找到并打开宝箱，取得「迷宫地图」。部分宝箱需先清怪或解开本层机关。",
+    "reward": "迷宫地图",
+    "note": "打开后地图页会显示本层平面，先拿图再规划路线。"
   },
   {
     "id": "CH-060",
@@ -6754,9 +7482,32 @@
     "req": "",
     "zh": "德库树内部 (2F) · 宝箱 · 妖精弹弓",
     "en": "Inside the Deku Tree (2F): Chest: Fairy Slingshot",
-    "descZh": "位于德库树内部 2F 层的官方宝箱（内容：宝箱 · 妖精弹弓，世界坐标 -54.4, 112.0, 12.2）。",
-    "descEn": "Treasure chest on 2F of Inside the Deku Tree (Chest: Fairy Slingshot).",
-    "instanceId": "821372075822700622"
+    "instanceId": "821372075822700622",
+    "howto": "在德库树内部 (2F)找到并打开宝箱，取得「妖精弹弓」。部分宝箱需先清怪或解开本层机关。",
+    "reward": "妖精弹弓",
+    "note": "内容以官方宝箱数据为准，按用途使用。"
+  },
+  {
+    "id": "KI-009",
+    "map": "InsideTheDekuTree",
+    "area": "2F",
+    "cat": "keyitem",
+    "x": 39.45,
+    "y": 50.67,
+    "world": [
+      -54.39,
+      111.96,
+      12.21
+    ],
+    "era": "Child",
+    "time": "Any",
+    "req": "",
+    "zh": "德库树内部 (2F) · 妖精弹弓",
+    "en": "Inside the Deku Tree (2F): Fairy Slingshot",
+    "instanceId": "821372075822700622",
+    "howto": "在德库树内部 2F 打开宝箱取得「妖精弹弓」，属于推进流程的关键道具。",
+    "reward": "妖精弹弓",
+    "note": "与同位置「宝箱」点重合，已上移错开；按攻略顺序使用。"
   },
   {
     "id": "CH-061",
@@ -6775,9 +7526,10 @@
     "req": "",
     "zh": "德库树内部 (2F) · 宝箱 · 德库坚果",
     "en": "Inside the Deku Tree (2F): Chest: Deku Nuts",
-    "descZh": "位于德库树内部 2F 层的官方宝箱（内容：宝箱 · 德库坚果，世界坐标 -42.9, 116.2, 19.3）。",
-    "descEn": "Treasure chest on 2F of Inside the Deku Tree (Chest: Deku Nuts).",
-    "instanceId": "13027331340815880287"
+    "instanceId": "13027331340815880287",
+    "howto": "在德库树内部 (2F)找到并打开宝箱，取得「德库坚果」。部分宝箱需先清怪或解开本层机关。",
+    "reward": "德库坚果",
+    "note": "补给德库坚果，闪光定敌。"
   },
   {
     "id": "CH-062",
@@ -6796,9 +7548,10 @@
     "req": "",
     "zh": "德库树内部 (3F) · 宝箱 · 指南针",
     "en": "Inside the Deku Tree (3F): Chest: Compass",
-    "descZh": "位于德库树内部 3F 层的官方宝箱（内容：宝箱 · 指南针，世界坐标 -48.3, 120.4, 0.0）。",
-    "descEn": "Treasure chest on 3F of Inside the Deku Tree (Chest: Compass).",
-    "instanceId": "9284193025315608699"
+    "instanceId": "9284193025315608699",
+    "howto": "在德库树内部 (3F)找到并打开宝箱，取得「指南针」。部分宝箱需先清怪或解开本层机关。",
+    "reward": "指南针",
+    "note": "显示本层所有宝箱与首领房位置，和地图配套。"
   },
   {
     "id": "CH-063",
@@ -6817,9 +7570,10 @@
     "req": "",
     "zh": "德库树内部 (3F) · 宝箱 · 德库坚果",
     "en": "Inside the Deku Tree (3F): Chest: Deku Nuts",
-    "descZh": "位于德库树内部 3F 层的官方宝箱（内容：宝箱 · 德库坚果，世界坐标 -65.2, 125.6, 0.0）。",
-    "descEn": "Treasure chest on 3F of Inside the Deku Tree (Chest: Deku Nuts).",
-    "instanceId": "11368028582977069031"
+    "instanceId": "11368028582977069031",
+    "howto": "在德库树内部 (3F)找到并打开宝箱，取得「德库坚果」。部分宝箱需先清怪或解开本层机关。",
+    "reward": "德库坚果",
+    "note": "补给德库坚果，闪光定敌。"
   },
   {
     "id": "CH-064",
@@ -6836,11 +7590,12 @@
     "era": "Adult",
     "time": "Any",
     "req": "",
-    "zh": "暗之神殿 (B4) · 宝箱 · Tbox_MagicJar_Large",
-    "en": "Shadow Temple (B4): Chest: Tbox_MagicJar_Large",
-    "descZh": "位于暗之神殿 B4 层的官方宝箱（内容：宝箱 · Tbox_MagicJar_Large，世界坐标 -190.1, 41.3, -69.4）。",
-    "descEn": "Treasure chest on B4 of Shadow Temple (Chest: Tbox_MagicJar_Large).",
-    "instanceId": "9852624243105848451"
+    "zh": "暗之神殿 (B4) · 宝箱 · 大魔力罐",
+    "en": "Shadow Temple (B4): Chest: Large Magic Jar",
+    "instanceId": "9852624243105848451",
+    "howto": "在暗之神殿 (B4)找到并打开宝箱，取得「大魔力罐」。部分宝箱需先清怪或解开本层机关。",
+    "reward": "大魔力罐",
+    "note": "补满魔力槽。"
   },
   {
     "id": "CH-065",
@@ -6859,9 +7614,10 @@
     "req": "",
     "zh": "暗之神殿 (B4) · 宝箱 · 小钥匙",
     "en": "Shadow Temple (B4): Chest: Small Key",
-    "descZh": "位于暗之神殿 B4 层的官方宝箱（内容：宝箱 · 小钥匙，世界坐标 -181.9, 41.4, -12.6）。",
-    "descEn": "Treasure chest on B4 of Shadow Temple (Chest: Small Key).",
-    "instanceId": "17902550525792072472"
+    "instanceId": "17902550525792072472",
+    "howto": "在暗之神殿 (B4)找到并打开宝箱，取得「小钥匙」。部分宝箱需先清怪或解开本层机关。",
+    "reward": "小钥匙",
+    "note": "开启本层上锁的门，通常一把对应一扇。"
   },
   {
     "id": "CH-066",
@@ -6880,9 +7636,32 @@
     "req": "",
     "zh": "暗之神殿 (B4) · 宝箱 · 首领钥匙",
     "en": "Shadow Temple (B4): Chest: Boss Key",
-    "descZh": "位于暗之神殿 B4 层的官方宝箱（内容：宝箱 · 首领钥匙，世界坐标 -173.2, 41.4, -69.1）。",
-    "descEn": "Treasure chest on B4 of Shadow Temple (Chest: Boss Key).",
-    "instanceId": "9221365632831348137"
+    "instanceId": "9221365632831348137",
+    "howto": "在暗之神殿 (B4)找到并打开宝箱，取得「首领钥匙」。部分宝箱需先清怪或解开本层机关。",
+    "reward": "首领钥匙",
+    "note": "开启首领房大门，打 Boss 前必拿。"
+  },
+  {
+    "id": "KI-010",
+    "map": "ShadowTemple",
+    "area": "B4",
+    "cat": "keyitem",
+    "x": 16.52,
+    "y": 32.56,
+    "world": [
+      -173.23,
+      41.41,
+      -69.1
+    ],
+    "era": "Adult",
+    "time": "Any",
+    "req": "",
+    "zh": "暗之神殿 (B4) · 首领钥匙",
+    "en": "Shadow Temple (B4): Boss Key",
+    "instanceId": "9221365632831348137",
+    "howto": "在暗之神殿 B4 打开宝箱取得「首领钥匙」，属于推进流程的关键道具。",
+    "reward": "首领钥匙",
+    "note": "与同位置「宝箱」点重合，已上移错开；按攻略顺序使用。"
   },
   {
     "id": "CH-067",
@@ -6899,11 +7678,12 @@
     "era": "Adult",
     "time": "Any",
     "req": "",
-    "zh": "暗之神殿 (B3) · 宝箱 · ScrubBusinessSeed",
-    "en": "Shadow Temple (B3): Chest: ScrubBusinessSeed",
-    "descZh": "位于暗之神殿 B3 层的官方宝箱（内容：宝箱 · ScrubBusinessSeed，世界坐标 128.0, 52.0, 10.5）。",
-    "descEn": "Treasure chest on B3 of Shadow Temple (Chest: ScrubBusinessSeed).",
-    "instanceId": "12345747231768877602"
+    "zh": "暗之神殿 (B3) · 宝箱 · 德库种子",
+    "en": "Shadow Temple (B3): Chest: Deku Seeds",
+    "instanceId": "12345747231768877602",
+    "howto": "在暗之神殿 (B3)找到并打开宝箱，取得「德库种子」。部分宝箱需先清怪或解开本层机关。",
+    "reward": "德库种子",
+    "note": "弹弓弹药补给。"
   },
   {
     "id": "CH-068",
@@ -6922,9 +7702,10 @@
     "req": "",
     "zh": "暗之神殿 (B3) · 宝箱 · 卢比",
     "en": "Shadow Temple (B3): Chest: Rupee",
-    "descZh": "位于暗之神殿 B3 层的官方宝箱（内容：宝箱 · 卢比，世界坐标 101.2, 52.1, -17.6）。",
-    "descEn": "Treasure chest on B3 of Shadow Temple (Chest: Rupee).",
-    "instanceId": "5681107746948738726"
+    "instanceId": "5681107746948738726",
+    "howto": "在暗之神殿 (B3)找到并打开宝箱，取得「卢比」。部分宝箱需先清怪或解开本层机关。",
+    "reward": "卢比",
+    "note": "补充卢比，颜色不同面额不同。"
   },
   {
     "id": "CH-069",
@@ -6943,9 +7724,10 @@
     "req": "",
     "zh": "暗之神殿 (B3) · 宝箱 · 小钥匙",
     "en": "Shadow Temple (B3): Chest: Small Key",
-    "descZh": "位于暗之神殿 B3 层的官方宝箱（内容：宝箱 · 小钥匙，世界坐标 118.4, 52.1, -17.7）。",
-    "descEn": "Treasure chest on B3 of Shadow Temple (Chest: Small Key).",
-    "instanceId": "169081039115821925"
+    "instanceId": "169081039115821925",
+    "howto": "在暗之神殿 (B3)找到并打开宝箱，取得「小钥匙」。部分宝箱需先清怪或解开本层机关。",
+    "reward": "小钥匙",
+    "note": "开启本层上锁的门，通常一把对应一扇。"
   },
   {
     "id": "CH-070",
@@ -6964,9 +7746,10 @@
     "req": "",
     "zh": "暗之神殿 (B3) · 宝箱 · 卢比",
     "en": "Shadow Temple (B3): Chest: Rupee",
-    "descZh": "位于暗之神殿 B3 层的官方宝箱（内容：宝箱 · 卢比，世界坐标 21.1, 56.4, 98.4）。",
-    "descEn": "Treasure chest on B3 of Shadow Temple (Chest: Rupee).",
-    "instanceId": "8858270325665149688"
+    "instanceId": "8858270325665149688",
+    "howto": "在暗之神殿 (B3)找到并打开宝箱，取得「卢比」。部分宝箱需先清怪或解开本层机关。",
+    "reward": "卢比",
+    "note": "补充卢比，颜色不同面额不同。"
   },
   {
     "id": "CH-071",
@@ -6985,9 +7768,10 @@
     "req": "",
     "zh": "暗之神殿 (B3) · 宝箱",
     "en": "Shadow Temple (B3): Treasure Chest",
-    "descZh": "位于暗之神殿 B3 层的官方宝箱（内容：宝箱，世界坐标 175.8, 60.9, 92.2）。",
-    "descEn": "Treasure chest on B3 of Shadow Temple (Treasure Chest).",
-    "instanceId": "10344372963276519235"
+    "instanceId": "10344372963276519235",
+    "howto": "在暗之神殿 (B3)找到并打开宝箱，取得「未标注」。部分宝箱需先清怪或解开本层机关。",
+    "reward": "未标注",
+    "note": "官方 RomFS 该宝箱无掉落字段，多为剧情/机关宝箱，进游戏确认。"
   },
   {
     "id": "CH-072",
@@ -7006,9 +7790,10 @@
     "req": "",
     "zh": "暗之神殿 (B3) · 宝箱 · 卢比",
     "en": "Shadow Temple (B3): Chest: Rupee",
-    "descZh": "位于暗之神殿 B3 层的官方宝箱（内容：宝箱 · 卢比，世界坐标 175.8, 60.9, 100.6）。",
-    "descEn": "Treasure chest on B3 of Shadow Temple (Chest: Rupee).",
-    "instanceId": "3718790579351798247"
+    "instanceId": "3718790579351798247",
+    "howto": "在暗之神殿 (B3)找到并打开宝箱，取得「卢比」。部分宝箱需先清怪或解开本层机关。",
+    "reward": "卢比",
+    "note": "补充卢比，颜色不同面额不同。"
   },
   {
     "id": "CH-073",
@@ -7027,9 +7812,10 @@
     "req": "",
     "zh": "暗之神殿 (B3) · 宝箱 · 小钥匙",
     "en": "Shadow Temple (B3): Chest: Small Key",
-    "descZh": "位于暗之神殿 B3 层的官方宝箱（内容：宝箱 · 小钥匙，世界坐标 -1.5, 63.5, 98.6）。",
-    "descEn": "Treasure chest on B3 of Shadow Temple (Chest: Small Key).",
-    "instanceId": "5781953901224064730"
+    "instanceId": "5781953901224064730",
+    "howto": "在暗之神殿 (B3)找到并打开宝箱，取得「小钥匙」。部分宝箱需先清怪或解开本层机关。",
+    "reward": "小钥匙",
+    "note": "开启本层上锁的门，通常一把对应一扇。"
   },
   {
     "id": "CH-074",
@@ -7048,9 +7834,10 @@
     "req": "",
     "zh": "暗之神殿 (B2) · 宝箱 · 小钥匙",
     "en": "Shadow Temple (B2): Chest: Small Key",
-    "descZh": "位于暗之神殿 B2 层的官方宝箱（内容：宝箱 · 小钥匙，世界坐标 98.9, 87.2, -25.7）。",
-    "descEn": "Treasure chest on B2 of Shadow Temple (Chest: Small Key).",
-    "instanceId": "1111717451118505545"
+    "instanceId": "1111717451118505545",
+    "howto": "在暗之神殿 (B2)找到并打开宝箱，取得「小钥匙」。部分宝箱需先清怪或解开本层机关。",
+    "reward": "小钥匙",
+    "note": "开启本层上锁的门，通常一把对应一扇。"
   },
   {
     "id": "CH-075",
@@ -7069,9 +7856,10 @@
     "req": "",
     "zh": "暗之神殿 (B2) · 宝箱 · 指南针",
     "en": "Shadow Temple (B2): Chest: Compass",
-    "descZh": "位于暗之神殿 B2 层的官方宝箱（内容：宝箱 · 指南针，世界坐标 84.1, 87.3, 22.9）。",
-    "descEn": "Treasure chest on B2 of Shadow Temple (Chest: Compass).",
-    "instanceId": "1733372171176975157"
+    "instanceId": "1733372171176975157",
+    "howto": "在暗之神殿 (B2)找到并打开宝箱，取得「指南针」。部分宝箱需先清怪或解开本层机关。",
+    "reward": "指南针",
+    "note": "显示本层所有宝箱与首领房位置，和地图配套。"
   },
   {
     "id": "CH-076",
@@ -7088,11 +7876,34 @@
     "era": "Adult",
     "time": "Any",
     "req": "",
-    "zh": "暗之神殿 (B1) · 宝箱 · HoverBoot",
-    "en": "Shadow Temple (B1): Chest: HoverBoot",
-    "descZh": "位于暗之神殿 B1 层的官方宝箱（内容：宝箱 · HoverBoot，世界坐标 -72.6, 90.5, -10.1）。",
-    "descEn": "Treasure chest on B1 of Shadow Temple (Chest: HoverBoot).",
-    "instanceId": "14535080241831873137"
+    "zh": "暗之神殿 (B1) · 宝箱 · 悬浮靴",
+    "en": "Shadow Temple (B1): Chest: Hover Boots",
+    "instanceId": "14535080241831873137",
+    "howto": "在暗之神殿 (B1)找到并打开宝箱，取得「悬浮靴」。部分宝箱需先清怪或解开本层机关。",
+    "reward": "悬浮靴",
+    "note": "短距离悬浮，越过流沙与断桥。"
+  },
+  {
+    "id": "KI-011",
+    "map": "ShadowTemple",
+    "area": "B1",
+    "cat": "keyitem",
+    "x": 38.9,
+    "y": 53.58,
+    "world": [
+      -72.62,
+      90.52,
+      -10.15
+    ],
+    "era": "Adult",
+    "time": "Any",
+    "req": "",
+    "zh": "暗之神殿 (B1) · 悬浮靴",
+    "en": "Shadow Temple (B1): Hover Boots",
+    "instanceId": "14535080241831873137",
+    "howto": "在暗之神殿 B1 打开宝箱取得「悬浮靴」，属于推进流程的关键道具。",
+    "reward": "悬浮靴",
+    "note": "与同位置「宝箱」点重合，已上移错开；按攻略顺序使用。"
   },
   {
     "id": "CH-077",
@@ -7109,11 +7920,12 @@
     "era": "Adult",
     "time": "Any",
     "req": "",
-    "zh": "暗之神殿 (B1) · 宝箱 · Dungeon_Map",
-    "en": "Shadow Temple (B1): Chest: Dungeon_Map",
-    "descZh": "位于暗之神殿 B1 层的官方宝箱（内容：宝箱 · Dungeon_Map，世界坐标 2.6, 90.5, -26.2）。",
-    "descEn": "Treasure chest on B1 of Shadow Temple (Chest: Dungeon_Map).",
-    "instanceId": "13528903653876646082"
+    "zh": "暗之神殿 (B1) · 宝箱 · 迷宫地图",
+    "en": "Shadow Temple (B1): Chest: Dungeon Map",
+    "instanceId": "13528903653876646082",
+    "howto": "在暗之神殿 (B1)找到并打开宝箱，取得「迷宫地图」。部分宝箱需先清怪或解开本层机关。",
+    "reward": "迷宫地图",
+    "note": "打开后地图页会显示本层平面，先拿图再规划路线。"
   },
   {
     "id": "CH-078",
@@ -7132,9 +7944,10 @@
     "req": "",
     "zh": "魂之神殿 (0F) · 宝箱 · 小钥匙",
     "en": "Spirit Temple (0F): Chest: Small Key",
-    "descZh": "位于魂之神殿 0F 层的官方宝箱（内容：宝箱 · 小钥匙，世界坐标 48.9, 100.3, -78.0）。",
-    "descEn": "Treasure chest on 0F of Spirit Temple (Chest: Small Key).",
-    "instanceId": "4277978357934400600"
+    "instanceId": "4277978357934400600",
+    "howto": "在魂之神殿 (0F)找到并打开宝箱，取得「小钥匙」。部分宝箱需先清怪或解开本层机关。",
+    "reward": "小钥匙",
+    "note": "开启本层上锁的门，通常一把对应一扇。"
   },
   {
     "id": "CH-079",
@@ -7153,9 +7966,10 @@
     "req": "",
     "zh": "魂之神殿 (0F) · 宝箱 · 小钥匙",
     "en": "Spirit Temple (0F): Chest: Small Key",
-    "descZh": "位于魂之神殿 0F 层的官方宝箱（内容：宝箱 · 小钥匙，世界坐标 -15.3, 104.7, -60.2）。",
-    "descEn": "Treasure chest on 0F of Spirit Temple (Chest: Small Key).",
-    "instanceId": "5703423643219134246"
+    "instanceId": "5703423643219134246",
+    "howto": "在魂之神殿 (0F)找到并打开宝箱，取得「小钥匙」。部分宝箱需先清怪或解开本层机关。",
+    "reward": "小钥匙",
+    "note": "开启本层上锁的门，通常一把对应一扇。"
   },
   {
     "id": "CH-080",
@@ -7172,11 +7986,12 @@
     "era": "Both",
     "time": "Any",
     "req": "",
-    "zh": "魂之神殿 (0F) · 宝箱 · TBox_Shield_Deku",
-    "en": "Spirit Temple (0F): Chest: TBox_Shield_Deku",
-    "descZh": "位于魂之神殿 0F 层的官方宝箱（内容：宝箱 · TBox_Shield_Deku，世界坐标 -56.0, 104.7, -67.6）。",
-    "descEn": "Treasure chest on 0F of Spirit Temple (Chest: TBox_Shield_Deku).",
-    "instanceId": "5309180490719879013"
+    "zh": "魂之神殿 (0F) · 宝箱 · 德库盾",
+    "en": "Spirit Temple (0F): Chest: Deku Shield",
+    "instanceId": "5309180490719879013",
+    "howto": "在魂之神殿 (0F)找到并打开宝箱，取得「德库盾」。部分宝箱需先清怪或解开本层机关。",
+    "reward": "德库盾",
+    "note": "装备用；被火烧或落入岩浆会烧毁，备 1 面。"
   },
   {
     "id": "CH-081",
@@ -7195,9 +8010,10 @@
     "req": "",
     "zh": "魂之神殿 (0F) · 宝箱 · 指南针",
     "en": "Spirit Temple (0F): Chest: Compass",
-    "descZh": "位于魂之神殿 0F 层的官方宝箱（内容：宝箱 · 指南针，世界坐标 13.0, 104.8, -63.7）。",
-    "descEn": "Treasure chest on 0F of Spirit Temple (Chest: Compass).",
-    "instanceId": "15633505270333176438"
+    "instanceId": "15633505270333176438",
+    "howto": "在魂之神殿 (0F)找到并打开宝箱，取得「指南针」。部分宝箱需先清怪或解开本层机关。",
+    "reward": "指南针",
+    "note": "显示本层所有宝箱与首领房位置，和地图配套。"
   },
   {
     "id": "CH-082",
@@ -7214,11 +8030,12 @@
     "era": "Both",
     "time": "Any",
     "req": "",
-    "zh": "魂之神殿 (1F) · 宝箱 · Dungeon_Map",
-    "en": "Spirit Temple (1F): Chest: Dungeon_Map",
-    "descZh": "位于魂之神殿 1F 层的官方宝箱（内容：宝箱 · Dungeon_Map，世界坐标 0.0, 114.2, -57.6）。",
-    "descEn": "Treasure chest on 1F of Spirit Temple (Chest: Dungeon_Map).",
-    "instanceId": "13852283723126411131"
+    "zh": "魂之神殿 (1F) · 宝箱 · 迷宫地图",
+    "en": "Spirit Temple (1F): Chest: Dungeon Map",
+    "instanceId": "13852283723126411131",
+    "howto": "在魂之神殿 (1F)找到并打开宝箱，取得「迷宫地图」。部分宝箱需先清怪或解开本层机关。",
+    "reward": "迷宫地图",
+    "note": "打开后地图页会显示本层平面，先拿图再规划路线。"
   },
   {
     "id": "CH-083",
@@ -7237,9 +8054,10 @@
     "req": "",
     "zh": "魂之神殿 (1F) · 宝箱 · 炸弹",
     "en": "Spirit Temple (1F): Chest: Bombs",
-    "descZh": "位于魂之神殿 1F 层的官方宝箱（内容：宝箱 · 炸弹，世界坐标 -39.2, 119.2, -39.6）。",
-    "descEn": "Treasure chest on 1F of Spirit Temple (Chest: Bombs).",
-    "instanceId": "1501288453962537671"
+    "instanceId": "1501288453962537671",
+    "howto": "在魂之神殿 (1F)找到并打开宝箱，取得「炸弹」。部分宝箱需先清怪或解开本层机关。",
+    "reward": "炸弹",
+    "note": "补进炸弹袋，可炸裂缝、蛛网与假墙。"
   },
   {
     "id": "CH-084",
@@ -7258,9 +8076,10 @@
     "req": "",
     "zh": "魂之神殿 (1F) · 宝箱 · 炸弹",
     "en": "Spirit Temple (1F): Chest: Bombs",
-    "descZh": "位于魂之神殿 1F 层的官方宝箱（内容：宝箱 · 炸弹，世界坐标 43.4, 119.2, -47.5）。",
-    "descEn": "Treasure chest on 1F of Spirit Temple (Chest: Bombs).",
-    "instanceId": "12909857529499414969"
+    "instanceId": "12909857529499414969",
+    "howto": "在魂之神殿 (1F)找到并打开宝箱，取得「炸弹」。部分宝箱需先清怪或解开本层机关。",
+    "reward": "炸弹",
+    "note": "补进炸弹袋，可炸裂缝、蛛网与假墙。"
   },
   {
     "id": "CH-085",
@@ -7279,9 +8098,10 @@
     "req": "",
     "zh": "魂之神殿 (1F) · 宝箱 · 小钥匙",
     "en": "Spirit Temple (1F): Chest: Small Key",
-    "descZh": "位于魂之神殿 1F 层的官方宝箱（内容：宝箱 · 小钥匙，世界坐标 -10.9, 124.8, -60.6）。",
-    "descEn": "Treasure chest on 1F of Spirit Temple (Chest: Small Key).",
-    "instanceId": "2203243501006528435"
+    "instanceId": "2203243501006528435",
+    "howto": "在魂之神殿 (1F)找到并打开宝箱，取得「小钥匙」。部分宝箱需先清怪或解开本层机关。",
+    "reward": "小钥匙",
+    "note": "开启本层上锁的门，通常一把对应一扇。"
   },
   {
     "id": "CH-086",
@@ -7300,9 +8120,10 @@
     "req": "",
     "zh": "魂之神殿 (2F) · 宝箱 · 小钥匙",
     "en": "Spirit Temple (2F): Chest: Small Key",
-    "descZh": "位于魂之神殿 2F 层的官方宝箱（内容：宝箱 · 小钥匙，世界坐标 55.8, 130.9, -50.0）。",
-    "descEn": "Treasure chest on 2F of Spirit Temple (Chest: Small Key).",
-    "instanceId": "12042193296697281461"
+    "instanceId": "12042193296697281461",
+    "howto": "在魂之神殿 (2F)找到并打开宝箱，取得「小钥匙」。部分宝箱需先清怪或解开本层机关。",
+    "reward": "小钥匙",
+    "note": "开启本层上锁的门，通常一把对应一扇。"
   },
   {
     "id": "CH-087",
@@ -7321,9 +8142,10 @@
     "req": "",
     "zh": "魂之神殿 (2F) · 宝箱 · 卢比",
     "en": "Spirit Temple (2F): Chest: Rupee",
-    "descZh": "位于魂之神殿 2F 层的官方宝箱（内容：宝箱 · 卢比，世界坐标 58.8, 132.1, 4.7）。",
-    "descEn": "Treasure chest on 2F of Spirit Temple (Chest: Rupee).",
-    "instanceId": "14040210993541550542"
+    "instanceId": "14040210993541550542",
+    "howto": "在魂之神殿 (2F)找到并打开宝箱，取得「卢比」。部分宝箱需先清怪或解开本层机关。",
+    "reward": "卢比",
+    "note": "补充卢比，颜色不同面额不同。"
   },
   {
     "id": "CH-088",
@@ -7342,9 +8164,10 @@
     "req": "",
     "zh": "魂之神殿 (2F) · 宝箱 · 卢比",
     "en": "Spirit Temple (2F): Chest: Rupee",
-    "descZh": "位于魂之神殿 2F 层的官方宝箱（内容：宝箱 · 卢比，世界坐标 53.0, 132.1, 4.7）。",
-    "descEn": "Treasure chest on 2F of Spirit Temple (Chest: Rupee).",
-    "instanceId": "9143177002861777924"
+    "instanceId": "9143177002861777924",
+    "howto": "在魂之神殿 (2F)找到并打开宝箱，取得「卢比」。部分宝箱需先清怪或解开本层机关。",
+    "reward": "卢比",
+    "note": "补充卢比，颜色不同面额不同。"
   },
   {
     "id": "CH-089",
@@ -7363,9 +8186,10 @@
     "req": "",
     "zh": "魂之神殿 (2F) · 宝箱 · 小钥匙",
     "en": "Spirit Temple (2F): Chest: Small Key",
-    "descZh": "位于魂之神殿 2F 层的官方宝箱（内容：宝箱 · 小钥匙，世界坐标 -61.2, 132.8, -27.7）。",
-    "descEn": "Treasure chest on 2F of Spirit Temple (Chest: Small Key).",
-    "instanceId": "17407066694905911064"
+    "instanceId": "17407066694905911064",
+    "howto": "在魂之神殿 (2F)找到并打开宝箱，取得「小钥匙」。部分宝箱需先清怪或解开本层机关。",
+    "reward": "小钥匙",
+    "note": "开启本层上锁的门，通常一把对应一扇。"
   },
   {
     "id": "CH-090",
@@ -7384,9 +8208,32 @@
     "req": "",
     "zh": "魂之神殿 (3F) · 宝箱 · 首领钥匙",
     "en": "Spirit Temple (3F): Chest: Boss Key",
-    "descZh": "位于魂之神殿 3F 层的官方宝箱（内容：宝箱 · 首领钥匙，世界坐标 19.8, 151.0, -65.1）。",
-    "descEn": "Treasure chest on 3F of Spirit Temple (Chest: Boss Key).",
-    "instanceId": "16272168033146555902"
+    "instanceId": "16272168033146555902",
+    "howto": "在魂之神殿 (3F)找到并打开宝箱，取得「首领钥匙」。部分宝箱需先清怪或解开本层机关。",
+    "reward": "首领钥匙",
+    "note": "开启首领房大门，打 Boss 前必拿。"
+  },
+  {
+    "id": "KI-012",
+    "map": "SpiritTemple",
+    "area": "3F",
+    "cat": "keyitem",
+    "x": 59.41,
+    "y": 24.68,
+    "world": [
+      19.8,
+      151.02,
+      -65.09
+    ],
+    "era": "Both",
+    "time": "Any",
+    "req": "",
+    "zh": "魂之神殿 (3F) · 首领钥匙",
+    "en": "Spirit Temple (3F): Boss Key",
+    "instanceId": "16272168033146555902",
+    "howto": "在魂之神殿 3F 打开宝箱取得「首领钥匙」，属于推进流程的关键道具。",
+    "reward": "首领钥匙",
+    "note": "与同位置「宝箱」点重合，已上移错开；按攻略顺序使用。"
   },
   {
     "id": "CH-091",
@@ -7405,9 +8252,10 @@
     "req": "",
     "zh": "魂之神殿 (3F) · 宝箱 · 炸弹",
     "en": "Spirit Temple (3F): Chest: Bombs",
-    "descZh": "位于魂之神殿 3F 层的官方宝箱（内容：宝箱 · 炸弹，世界坐标 -25.4, 158.2, -51.3）。",
-    "descEn": "Treasure chest on 3F of Spirit Temple (Chest: Bombs).",
-    "instanceId": "13828480906010430010"
+    "instanceId": "13828480906010430010",
+    "howto": "在魂之神殿 (3F)找到并打开宝箱，取得「炸弹」。部分宝箱需先清怪或解开本层机关。",
+    "reward": "炸弹",
+    "note": "补进炸弹袋，可炸裂缝、蛛网与假墙。"
   },
   {
     "id": "CH-092",
@@ -7426,9 +8274,10 @@
     "req": "",
     "zh": "水之神殿 (B1) · 宝箱 · 卢比",
     "en": "Water Temple (B1): Chest: Rupee",
-    "descZh": "位于水之神殿 B1 层的官方宝箱（内容：宝箱 · 卢比，世界坐标 12.0, 92.7, -4.5）。",
-    "descEn": "Treasure chest on B1 of Water Temple (Chest: Rupee).",
-    "instanceId": "11682974908842171598"
+    "instanceId": "11682974908842171598",
+    "howto": "在水之神殿 (B1)找到并打开宝箱，取得「卢比」。部分宝箱需先清怪或解开本层机关。",
+    "reward": "卢比",
+    "note": "补充卢比，颜色不同面额不同。"
   },
   {
     "id": "CH-093",
@@ -7447,9 +8296,10 @@
     "req": "",
     "zh": "水之神殿 (1F) · 宝箱 · 小钥匙",
     "en": "Water Temple (1F): Chest: Small Key",
-    "descZh": "位于水之神殿 1F 层的官方宝箱（内容：宝箱 · 小钥匙，世界坐标 43.8, 100.0, -4.5）。",
-    "descEn": "Treasure chest on 1F of Water Temple (Chest: Small Key).",
-    "instanceId": "18099019250896853049"
+    "instanceId": "18099019250896853049",
+    "howto": "在水之神殿 (1F)找到并打开宝箱，取得「小钥匙」。部分宝箱需先清怪或解开本层机关。",
+    "reward": "小钥匙",
+    "note": "开启本层上锁的门，通常一把对应一扇。"
   },
   {
     "id": "CH-094",
@@ -7468,9 +8318,10 @@
     "req": "",
     "zh": "水之神殿 (1F) · 宝箱 · 小钥匙",
     "en": "Water Temple (1F): Chest: Small Key",
-    "descZh": "位于水之神殿 1F 层的官方宝箱（内容：宝箱 · 小钥匙，世界坐标 -44.0, 102.3, -19.5）。",
-    "descEn": "Treasure chest on 1F of Water Temple (Chest: Small Key).",
-    "instanceId": "2503861086004941173"
+    "instanceId": "2503861086004941173",
+    "howto": "在水之神殿 (1F)找到并打开宝箱，取得「小钥匙」。部分宝箱需先清怪或解开本层机关。",
+    "reward": "小钥匙",
+    "note": "开启本层上锁的门，通常一把对应一扇。"
   },
   {
     "id": "CH-095",
@@ -7489,9 +8340,32 @@
     "req": "",
     "zh": "水之神殿 (1F) · 宝箱 · 首领钥匙",
     "en": "Water Temple (1F): Chest: Boss Key",
-    "descZh": "位于水之神殿 1F 层的官方宝箱（内容：宝箱 · 首领钥匙，世界坐标 33.1, 103.7, -81.5）。",
-    "descEn": "Treasure chest on 1F of Water Temple (Chest: Boss Key).",
-    "instanceId": "10378828369334876242"
+    "instanceId": "10378828369334876242",
+    "howto": "在水之神殿 (1F)找到并打开宝箱，取得「首领钥匙」。部分宝箱需先清怪或解开本层机关。",
+    "reward": "首领钥匙",
+    "note": "开启首领房大门，打 Boss 前必拿。"
+  },
+  {
+    "id": "KI-013",
+    "map": "WaterTemple",
+    "area": "1F",
+    "cat": "keyitem",
+    "x": 84.6,
+    "y": 33.3,
+    "world": [
+      33.12,
+      103.66,
+      -81.49
+    ],
+    "era": "Adult",
+    "time": "Any",
+    "req": "",
+    "zh": "水之神殿 (1F) · 首领钥匙",
+    "en": "Water Temple (1F): Boss Key",
+    "instanceId": "10378828369334876242",
+    "howto": "在水之神殿 1F 打开宝箱取得「首领钥匙」，属于推进流程的关键道具。",
+    "reward": "首领钥匙",
+    "note": "与同位置「宝箱」点重合，已上移错开；按攻略顺序使用。"
   },
   {
     "id": "CH-096",
@@ -7510,9 +8384,10 @@
     "req": "",
     "zh": "水之神殿 (1F) · 宝箱 · 指南针",
     "en": "Water Temple (1F): Chest: Compass",
-    "descZh": "位于水之神殿 1F 层的官方宝箱（内容：宝箱 · 指南针，世界坐标 -68.3, 104.3, 20.1）。",
-    "descEn": "Treasure chest on 1F of Water Temple (Chest: Compass).",
-    "instanceId": "16424266294822218796"
+    "instanceId": "16424266294822218796",
+    "howto": "在水之神殿 (1F)找到并打开宝箱，取得「指南针」。部分宝箱需先清怪或解开本层机关。",
+    "reward": "指南针",
+    "note": "显示本层所有宝箱与首领房位置，和地图配套。"
   },
   {
     "id": "CH-097",
@@ -7531,9 +8406,10 @@
     "req": "",
     "zh": "水之神殿 (2F) · 宝箱 · 小钥匙",
     "en": "Water Temple (2F): Chest: Small Key",
-    "descZh": "位于水之神殿 2F 层的官方宝箱（内容：宝箱 · 小钥匙，世界坐标 -1.2, 112.0, -51.8）。",
-    "descEn": "Treasure chest on 2F of Water Temple (Chest: Small Key).",
-    "instanceId": "3693930347660122883"
+    "instanceId": "3693930347660122883",
+    "howto": "在水之神殿 (2F)找到并打开宝箱，取得「小钥匙」。部分宝箱需先清怪或解开本层机关。",
+    "reward": "小钥匙",
+    "note": "开启本层上锁的门，通常一把对应一扇。"
   },
   {
     "id": "CH-098",
@@ -7552,9 +8428,10 @@
     "req": "",
     "zh": "水之神殿 (2F) · 宝箱 · 小钥匙",
     "en": "Water Temple (2F): Chest: Small Key",
-    "descZh": "位于水之神殿 2F 层的官方宝箱（内容：宝箱 · 小钥匙，世界坐标 56.9, 118.4, -28.1）。",
-    "descEn": "Treasure chest on 2F of Water Temple (Chest: Small Key).",
-    "instanceId": "16490222392193949581"
+    "instanceId": "16490222392193949581",
+    "howto": "在水之神殿 (2F)找到并打开宝箱，取得「小钥匙」。部分宝箱需先清怪或解开本层机关。",
+    "reward": "小钥匙",
+    "note": "开启本层上锁的门，通常一把对应一扇。"
   },
   {
     "id": "CH-099",
@@ -7571,11 +8448,12 @@
     "era": "Adult",
     "time": "Any",
     "req": "",
-    "zh": "水之神殿 (3F) · 宝箱 · Dungeon_Map",
-    "en": "Water Temple (3F): Chest: Dungeon_Map",
-    "descZh": "位于水之神殿 3F 层的官方宝箱（内容：宝箱 · Dungeon_Map，世界坐标 33.9, 119.5, -4.5）。",
-    "descEn": "Treasure chest on 3F of Water Temple (Chest: Dungeon_Map).",
-    "instanceId": "16384925224245172970"
+    "zh": "水之神殿 (3F) · 宝箱 · 迷宫地图",
+    "en": "Water Temple (3F): Chest: Dungeon Map",
+    "instanceId": "16384925224245172970",
+    "howto": "在水之神殿 (3F)找到并打开宝箱，取得「迷宫地图」。部分宝箱需先清怪或解开本层机关。",
+    "reward": "迷宫地图",
+    "note": "打开后地图页会显示本层平面，先拿图再规划路线。"
   },
   {
     "id": "CH-100",
@@ -7594,9 +8472,2265 @@
     "req": "",
     "zh": "水之神殿 (3F) · 宝箱 · 长钩索",
     "en": "Water Temple (3F): Chest: Longshot",
-    "descZh": "位于水之神殿 3F 层的官方宝箱（内容：宝箱 · 长钩索，世界坐标 -77.9, 126.6, -99.2）。",
-    "descEn": "Treasure chest on 3F of Water Temple (Chest: Longshot).",
-    "instanceId": "18059711820131847165"
+    "instanceId": "18059711820131847165",
+    "howto": "在水之神殿 (3F)找到并打开宝箱，取得「长钩索」。部分宝箱需先清怪或解开本层机关。",
+    "reward": "长钩索",
+    "note": "内容以官方宝箱数据为准，按用途使用。"
+  },
+  {
+    "id": "KI-014",
+    "map": "WaterTemple",
+    "area": "3F",
+    "cat": "keyitem",
+    "x": 36.21,
+    "y": 24.34,
+    "world": [
+      -77.9,
+      126.6,
+      -99.17
+    ],
+    "era": "Adult",
+    "time": "Any",
+    "req": "",
+    "zh": "水之神殿 (3F) · 长钩索",
+    "en": "Water Temple (3F): Longshot",
+    "instanceId": "18059711820131847165",
+    "howto": "在水之神殿 3F 打开宝箱取得「长钩索」，属于推进流程的关键道具。",
+    "reward": "长钩索",
+    "note": "与同位置「宝箱」点重合，已上移错开；按攻略顺序使用。"
+  },
+  {
+    "id": "song-zelda",
+    "map": "hyrule",
+    "area": "HyruleCastle",
+    "cat": "song",
+    "x": 30.0,
+    "y": 12.0,
+    "world": null,
+    "era": "Child",
+    "time": "Any",
+    "req": "",
+    "zh": "塞尔达摇篮曲",
+    "en": "Zelda's Lullaby",
+    "descZh": "",
+    "descEn": "",
+    "howto": "幼年潜入海拉鲁城堡，在中庭草坪与塞尔达对话后，由英帕传授。",
+    "reward": "解王族纹章机关、召唤大妖精的通用曲",
+    "note": "城堡中庭即地图上方的大草坪。"
+  },
+  {
+    "id": "song-epona",
+    "map": "hyrule",
+    "area": "LonLonRanch",
+    "cat": "song",
+    "x": 67.66,
+    "y": 22.46,
+    "world": [
+      -53.6,
+      150.7,
+      197.8
+    ],
+    "era": "Child",
+    "time": "Any",
+    "req": "",
+    "zh": "伊波娜之歌",
+    "en": "Epona's Song",
+    "descZh": "",
+    "descEn": "",
+    "howto": "幼年到荣蓉牧场找玛蓉对话，听她吹奏后习得。",
+    "reward": "成年后可召唤伊波娜骑乘",
+    "note": "先陪玛蓉玩小游戏可加快进度。"
+  },
+  {
+    "id": "song-saria",
+    "map": "hyrule",
+    "area": "SacredForestMeadow",
+    "cat": "song",
+    "x": 54.28,
+    "y": 17.99,
+    "world": [
+      -2.2,
+      114.4,
+      -101.1
+    ],
+    "era": "Child",
+    "time": "Any",
+    "req": "",
+    "zh": "莎莉亚之歌",
+    "en": "Saria's Song",
+    "descZh": "",
+    "descEn": "",
+    "howto": "幼年穿过迷失森林抵达森之圣域，与莎莉亚对话习得。",
+    "reward": "随时联络莎莉亚获取提示；骷髅小子合奏要用"
+  },
+  {
+    "id": "song-sun",
+    "map": "hyrule",
+    "area": "Graveyard",
+    "cat": "song",
+    "x": 71.13,
+    "y": 47.75,
+    "world": [
+      53.0,
+      100.0,
+      2.6
+    ],
+    "era": "Both",
+    "time": "Any",
+    "req": "塞尔达摇篮曲",
+    "zh": "太阳之歌",
+    "en": "Sun's Song",
+    "descZh": "",
+    "descEn": "",
+    "howto": "在王族墓穴门前的三角神力纹章上吹塞尔达摇篮曲，进入后对石碑吹奏习得。",
+    "reward": "昼夜切换（白天变夜晚、夜晚变白天）",
+    "note": "王族墓穴在墓地东侧尽头。"
+  },
+  {
+    "id": "song-time",
+    "map": "hyrule",
+    "area": "HyruleCastle",
+    "cat": "song",
+    "x": 57.0,
+    "y": 86.0,
+    "world": null,
+    "era": "Child",
+    "time": "Any",
+    "req": "",
+    "zh": "时之歌",
+    "en": "Song of Time",
+    "descZh": "",
+    "descEn": "",
+    "howto": "幼年看完城堡中庭剧情后，到城堡护城河拾取塞尔达的信，读信习得。",
+    "reward": "开启时之神殿封印、吹奏时之歌",
+    "note": "信漂在护城河水面上，靠近拾取。"
+  },
+  {
+    "id": "song-storms",
+    "map": "hyrule",
+    "area": "KakarikoVillage",
+    "cat": "song",
+    "x": 80.24,
+    "y": 49.44,
+    "world": [
+      1.5,
+      107.6,
+      43.9
+    ],
+    "era": "Adult",
+    "time": "Any",
+    "req": "",
+    "zh": "暴风雨之歌",
+    "en": "Song of Storms",
+    "descZh": "",
+    "descEn": "",
+    "howto": "成年进入卡卡利科风车小屋，与音乐叔叔对话习得（时间悖论）。",
+    "reward": "召唤暴雨；幼年在井边吹可提前打开井底"
+  },
+  {
+    "id": "song-minuet",
+    "map": "hyrule",
+    "area": "SacredForestMeadow",
+    "cat": "song",
+    "x": 54.28,
+    "y": 21.19,
+    "world": [
+      -2.2,
+      105.0,
+      -101.1
+    ],
+    "era": "Adult",
+    "time": "Any",
+    "req": "",
+    "zh": "森之小步舞曲",
+    "en": "Minuet of Forest",
+    "descZh": "",
+    "descEn": "",
+    "howto": "成年到森之圣域，希克在森之神殿前传授。",
+    "reward": "森之神殿传送曲"
+  },
+  {
+    "id": "song-bolero",
+    "map": "hyrule",
+    "area": "DeathMountainCrater",
+    "cat": "song",
+    "x": 58.94,
+    "y": 33.98,
+    "world": [
+      0.4,
+      111.4,
+      -8.7
+    ],
+    "era": "Adult",
+    "time": "Any",
+    "req": "",
+    "zh": "火之波丽露舞曲",
+    "en": "Bolero of Fire",
+    "descZh": "",
+    "descEn": "",
+    "howto": "成年到死亡山火山口，希克在火之神殿前传授。",
+    "reward": "火之神殿传送曲"
+  },
+  {
+    "id": "song-serenade",
+    "map": "IceCavern",
+    "area": "1F",
+    "cat": "song",
+    "x": 37.72,
+    "y": 83.21,
+    "world": [
+      -47.7,
+      97.4,
+      78.2
+    ],
+    "era": "Adult",
+    "time": "Any",
+    "req": "",
+    "zh": "水之小夜曲",
+    "en": "Serenade of Water",
+    "descZh": "",
+    "descEn": "",
+    "howto": "成年进入冰之洞窟，希克在入口冰道处传授。",
+    "reward": "水之神殿传送曲"
+  },
+  {
+    "id": "song-nocturne",
+    "map": "hyrule",
+    "area": "KakarikoVillage",
+    "cat": "song",
+    "x": 63.48,
+    "y": 49.61,
+    "world": [
+      -29.0,
+      99.4,
+      44.2
+    ],
+    "era": "Adult",
+    "time": "Any",
+    "req": "",
+    "zh": "暗之梦幻曲",
+    "en": "Nocturne of Shadow",
+    "descZh": "",
+    "descEn": "",
+    "howto": "成年回到卡卡利科村，希克在村中央传授。",
+    "reward": "暗之神殿传送曲"
+  },
+  {
+    "id": "song-requiem",
+    "map": "hyrule",
+    "area": "DesertColossus",
+    "cat": "song",
+    "x": 23.12,
+    "y": 48.32,
+    "world": [
+      -160.9,
+      96.1,
+      10.3
+    ],
+    "era": "Adult",
+    "time": "Any",
+    "req": "",
+    "zh": "魂之慰灵曲",
+    "en": "Requiem of Spirit",
+    "descZh": "",
+    "descEn": "",
+    "howto": "成年穿过幻影沙漠到巨大邪神像前，希克传授。",
+    "reward": "魂之神殿传送曲"
+  },
+  {
+    "id": "song-prelude",
+    "map": "hyrule",
+    "area": "Market",
+    "cat": "song",
+    "x": 86.0,
+    "y": 22.0,
+    "world": null,
+    "era": "Adult",
+    "time": "Any",
+    "req": "",
+    "zh": "光之前奏曲",
+    "en": "Prelude of Light",
+    "descZh": "",
+    "descEn": "",
+    "howto": "成年在时之神殿内由希克传授。",
+    "reward": "光之前奏曲（可传送至时之神殿）",
+    "note": "时之神殿在城邑东北侧。"
+  },
+  {
+    "id": "song-scarecrow",
+    "map": "hyrule",
+    "area": "LakeHylia",
+    "cat": "song",
+    "x": 74.33,
+    "y": 29.53,
+    "world": [
+      -108.8,
+      132.4,
+      439.2
+    ],
+    "era": "Child",
+    "time": "Any",
+    "req": "幼年先教，成年后用同一曲调",
+    "zh": "稻草人之歌",
+    "en": "Scarecrow's Song",
+    "descZh": "",
+    "descEn": "",
+    "howto": "幼年在海利亚湖畔找到稻草人波努鲁，吹一段自定义曲调让他记住。",
+    "reward": "成年可在各地稻草人处召唤钩索锚点",
+    "note": "曲调由 8 个音符自由组合。"
+  },
+  {
+    "id": "bottle-potion",
+    "map": "hyrule",
+    "area": "Market",
+    "cat": "bottle",
+    "x": 62.84,
+    "y": 49.54,
+    "world": [
+      20.6,
+      112.2,
+      5.4
+    ],
+    "era": "Child",
+    "time": "Night",
+    "req": "",
+    "zh": "药铺借瓶",
+    "en": "Market Potion Shop Bottle",
+    "descZh": "",
+    "descEn": "",
+    "howto": "城邑药水店：借店主的瓶子，夜晚到后巷抓回逃跑的虫。",
+    "reward": "空瓶 ×1",
+    "note": "必须夜晚，虫在后巷乱窜。"
+  },
+  {
+    "id": "bottle-cucco",
+    "map": "hyrule",
+    "area": "KakarikoVillage",
+    "cat": "bottle",
+    "x": 70.07,
+    "y": 63.3,
+    "world": [
+      -17.0,
+      102.0,
+      68.4
+    ],
+    "era": "Child",
+    "time": "Any",
+    "req": "",
+    "zh": "咕咕鸡围栏",
+    "en": "Kakariko Cucco Bottle",
+    "descZh": "",
+    "descEn": "",
+    "howto": "把村里 7 只咕咕鸡全部抱回围栏（别让它们掉进井）。",
+    "reward": "空瓶 ×1"
+  },
+  {
+    "id": "bottle-supercucco",
+    "map": "hyrule",
+    "area": "LonLonRanch",
+    "cat": "bottle",
+    "x": 69.66,
+    "y": 24.06,
+    "world": [
+      -53.6,
+      150.7,
+      197.8
+    ],
+    "era": "Child",
+    "time": "Any",
+    "req": "",
+    "zh": "超级咕咕鸡",
+    "en": "Super Cucco Bottle",
+    "descZh": "",
+    "descEn": "",
+    "howto": "与塔隆玩「找超级咕咕鸡」，30 秒内找出 3 只指定鸡。",
+    "reward": "空瓶 ×1（装隆隆牛奶）"
+  },
+  {
+    "id": "bottle-ruto",
+    "map": "hyrule",
+    "area": "ZoraDomain",
+    "cat": "bottle",
+    "x": 75.57,
+    "y": 73.65,
+    "world": [
+      67.3,
+      118.9,
+      15.6
+    ],
+    "era": "Child",
+    "time": "Any",
+    "req": "",
+    "zh": "露朵的信",
+    "en": "Ruto's Letter Bottle",
+    "descZh": "",
+    "descEn": "",
+    "howto": "在加卜加卜腹中得到装信的瓶子，把露朵的信交给佐拉王。",
+    "reward": "空瓶 ×1",
+    "note": "信瓶交给佐拉王后瓶子归你。"
+  },
+  {
+    "id": "bottle-poe",
+    "map": "hyrule",
+    "area": "Market",
+    "cat": "bottle",
+    "x": 58.29,
+    "y": 84.88,
+    "world": [
+      12.5,
+      111.9,
+      57.0
+    ],
+    "era": "Adult",
+    "time": "Night",
+    "req": "",
+    "zh": "大魄收购屋",
+    "en": "Poe Collector Bottle",
+    "descZh": "",
+    "descEn": "",
+    "howto": "成年夜晚骑伊波娜在平原抓大怨灵装瓶，卖给城邑幽灵商店累计 500 点。",
+    "reward": "空瓶 ×1（第 5 瓶）",
+    "note": "累计 10 只可再换金卢比 200。"
+  },
+  {
+    "id": "mask-keaton",
+    "map": "hyrule",
+    "area": "KakarikoVillage",
+    "cat": "mask",
+    "x": 57.76,
+    "y": 8.61,
+    "world": [
+      -39.4,
+      110.3,
+      -28.3
+    ],
+    "era": "Child",
+    "time": "Any",
+    "req": "",
+    "zh": "奇坦面具",
+    "en": "Keaton Mask",
+    "descZh": "",
+    "descEn": "",
+    "howto": "先在城邑面具店借出奇坦面具，到卡卡利科村北口卖给守卫。",
+    "reward": "15 卢比（还回店后可借下一张）"
+  },
+  {
+    "id": "mask-skull",
+    "map": "hyrule",
+    "area": "LostWood",
+    "cat": "mask",
+    "x": 49.2,
+    "y": 29.43,
+    "world": [
+      3.8,
+      83.8,
+      -47.5
+    ],
+    "era": "Child",
+    "time": "Any",
+    "req": "",
+    "zh": "骷髅面具",
+    "en": "Skull Mask",
+    "descZh": "",
+    "descEn": "",
+    "howto": "借出骷髅面具，到迷失森林找骷髅小子卖出。",
+    "reward": "10 卢比",
+    "note": "骷髅小子在森林舞台一带。"
+  },
+  {
+    "id": "mask-spooky",
+    "map": "hyrule",
+    "area": "Graveyard",
+    "cat": "mask",
+    "x": 63.9,
+    "y": 55.07,
+    "world": [
+      42.5,
+      104.6,
+      7.0
+    ],
+    "era": "Child",
+    "time": "Night",
+    "req": "",
+    "zh": "恐怖面具",
+    "en": "Spooky Mask",
+    "descZh": "",
+    "descEn": "",
+    "howto": "借出恐怖面具，夜晚到墓地卖给看墓的小男孩。",
+    "reward": "50 卢比"
+  },
+  {
+    "id": "mask-bunny",
+    "map": "hyrule",
+    "area": "HyruleField",
+    "cat": "mask",
+    "x": 52.0,
+    "y": 58.0,
+    "world": null,
+    "era": "Child",
+    "time": "Day",
+    "req": "",
+    "zh": "兔子头箍",
+    "en": "Bunny Hood",
+    "descZh": "",
+    "descEn": "",
+    "howto": "借出兔子头箍，到海拉鲁平原找绕圈奔跑的跑步男卖出。",
+    "reward": "200 卢比（最贵的一张）",
+    "note": "他一直在平原上跑，追不上就在路口堵。"
+  },
+  {
+    "id": "mask-truth",
+    "map": "hyrule",
+    "area": "Market",
+    "cat": "mask",
+    "x": 56.32,
+    "y": 33.72,
+    "world": [
+      9.0,
+      110.3,
+      -17.7
+    ],
+    "era": "Child",
+    "time": "Any",
+    "req": "",
+    "zh": "真实面具",
+    "en": "Mask of Truth",
+    "descZh": "",
+    "descEn": "",
+    "howto": "把前四张面具全部卖出并还清欠款后，店主把真实面具借给你。",
+    "reward": "真实面具（不卖；戴上可读八卦石、看破幻影）",
+    "note": "面具链最后一步，别提前还钱。"
+  },
+  {
+    "id": "medal-emerald",
+    "map": "InsideTheDekuTree",
+    "area": "B2",
+    "cat": "medal",
+    "x": 60.89,
+    "y": 87.18,
+    "world": [
+      -29.0,
+      53.0,
+      46.6
+    ],
+    "era": "Child",
+    "time": "Any",
+    "req": "",
+    "zh": "科奇里翡翠",
+    "en": "Kokiri's Emerald",
+    "descZh": "",
+    "descEn": "",
+    "howto": "在德库树体内击败 Boss 哥马后取得。",
+    "reward": "科奇里翡翠（三精灵石之一）"
+  },
+  {
+    "id": "medal-ruby",
+    "map": "DodongoCavern",
+    "area": "0F",
+    "cat": "medal",
+    "x": 47.36,
+    "y": 24.53,
+    "world": [
+      10.3,
+      92.4,
+      -77.8
+    ],
+    "era": "Child",
+    "time": "Any",
+    "req": "",
+    "zh": "鼓隆红宝石",
+    "en": "Goron's Ruby",
+    "descZh": "",
+    "descEn": "",
+    "howto": "在多东哥洞窟击败 Boss 多东哥王后取得。",
+    "reward": "鼓隆红宝石（三精灵石之一）"
+  },
+  {
+    "id": "medal-sapphire",
+    "map": "InsideJabuJabuBelly",
+    "area": "2F",
+    "cat": "medal",
+    "x": 90.99,
+    "y": 50.93,
+    "world": [
+      41.9,
+      102.1,
+      -92.7
+    ],
+    "era": "Child",
+    "time": "Any",
+    "req": "",
+    "zh": "卓拉蓝宝石",
+    "en": "Zora's Sapphire",
+    "descZh": "",
+    "descEn": "",
+    "howto": "在加卜加卜腹中击败 Boss 啪哩内德取得。",
+    "reward": "卓拉蓝宝石（三精灵石之一）"
+  },
+  {
+    "id": "medal-light",
+    "map": "hyrule",
+    "area": "Market",
+    "cat": "medal",
+    "x": 86.0,
+    "y": 20.0,
+    "world": null,
+    "era": "Adult",
+    "time": "Any",
+    "req": "",
+    "zh": "光之勋章",
+    "en": "Light Medallion",
+    "descZh": "",
+    "descEn": "",
+    "howto": "成年首次进入时之神殿，由劳鲁授予。",
+    "reward": "光之勋章"
+  },
+  {
+    "id": "medal-forest",
+    "map": "ForestTemple",
+    "area": "B2",
+    "cat": "medal",
+    "x": 63.38,
+    "y": 23.39,
+    "world": [
+      0.0,
+      59.5,
+      -40.9
+    ],
+    "era": "Adult",
+    "time": "Any",
+    "req": "",
+    "zh": "森之勋章",
+    "en": "Forest Medallion",
+    "descZh": "",
+    "descEn": "",
+    "howto": "在森之神殿击败 Boss 幻影加侬取得。",
+    "reward": "森之勋章"
+  },
+  {
+    "id": "medal-fire",
+    "map": "FireTemple",
+    "area": "0F",
+    "cat": "medal",
+    "x": 26.2,
+    "y": 55.47,
+    "world": [
+      -39.0,
+      105.0,
+      0.0
+    ],
+    "era": "Adult",
+    "time": "Any",
+    "req": "",
+    "zh": "火之勋章",
+    "en": "Fire Medallion",
+    "descZh": "",
+    "descEn": "",
+    "howto": "在火之神殿击败 Boss 瓦尔巴基亚取得。",
+    "reward": "火之勋章"
+  },
+  {
+    "id": "medal-water",
+    "map": "WaterTemple",
+    "area": "3F",
+    "cat": "medal",
+    "x": 68.2,
+    "y": 34.12,
+    "world": [
+      -4.5,
+      131.4,
+      -71.2
+    ],
+    "era": "Adult",
+    "time": "Any",
+    "req": "",
+    "zh": "水之勋章",
+    "en": "Water Medallion",
+    "descZh": "",
+    "descEn": "",
+    "howto": "在水之神殿击败 Boss 魔发取得。",
+    "reward": "水之勋章"
+  },
+  {
+    "id": "medal-shadow",
+    "map": "ShadowTemple",
+    "area": "B4",
+    "cat": "medal",
+    "x": 24.25,
+    "y": 59.6,
+    "world": [
+      -138.5,
+      42.0,
+      19.1
+    ],
+    "era": "Adult",
+    "time": "Any",
+    "req": "",
+    "zh": "暗之勋章",
+    "en": "Shadow Medallion",
+    "descZh": "",
+    "descEn": "",
+    "howto": "在暗之神殿击败 Boss 崩鼓崩鼓取得。",
+    "reward": "暗之勋章"
+  },
+  {
+    "id": "medal-spirit",
+    "map": "SpiritTemple",
+    "area": "2F",
+    "cat": "medal",
+    "x": 50.0,
+    "y": 12.61,
+    "world": [
+      0.0,
+      135.0,
+      -76.7
+    ],
+    "era": "Adult",
+    "time": "Any",
+    "req": "",
+    "zh": "魂之勋章",
+    "en": "Spirit Medallion",
+    "descZh": "",
+    "descEn": "",
+    "howto": "在魂之神殿击败 Boss 双子妖婆取得。",
+    "reward": "魂之勋章"
+  },
+  {
+    "id": "owl-stone",
+    "map": "hyrule",
+    "area": "KokiriForest",
+    "cat": "owl",
+    "x": 33.27,
+    "y": 63.28,
+    "world": [
+      -44.7,
+      112.0,
+      15.6
+    ],
+    "era": "Adult",
+    "time": "Any",
+    "req": "集齐三精灵石，能进入万魔殿",
+    "zh": "猫头鹰石像",
+    "en": "Owl Statue (Stone)",
+    "descZh": "",
+    "descEn": "",
+    "howto": "在万魔殿通过「三块精灵石」连战试炼。",
+    "reward": "石像送到科奇里森林林克家陈列",
+    "note": "三种试炼各有一次首通奖励。"
+  },
+  {
+    "id": "owl-silver",
+    "map": "hyrule",
+    "area": "KokiriForest",
+    "cat": "owl",
+    "x": 34.87,
+    "y": 63.28,
+    "world": [
+      -44.7,
+      112.0,
+      15.6
+    ],
+    "era": "Adult",
+    "time": "Any",
+    "req": "打倒五座神殿头目",
+    "zh": "猫头鹰银像",
+    "en": "Owl Statue (Silver)",
+    "descZh": "",
+    "descEn": "",
+    "howto": "在万魔殿通过「五贤者的觉醒」连战试炼。",
+    "reward": "银像送到林克家",
+    "note": "五神殿 = 森/火/水/暗/魂。"
+  },
+  {
+    "id": "owl-gold",
+    "map": "hyrule",
+    "area": "KokiriForest",
+    "cat": "owl",
+    "x": 36.47,
+    "y": 63.28,
+    "world": [
+      -44.7,
+      112.0,
+      15.6
+    ],
+    "era": "Adult",
+    "time": "Any",
+    "req": "通关主线",
+    "zh": "猫头鹰金像",
+    "en": "Owl Statue (Gold)",
+    "descZh": "",
+    "descEn": "",
+    "howto": "在万魔殿通过「时之勇者的觉醒～决战」连战。",
+    "reward": "金像送到林克家",
+    "note": "三座像都在林克家屋内。"
+  },
+  {
+    "id": "soil-zora-river",
+    "map": "hyrule",
+    "area": "ZoraRiver",
+    "cat": "soil",
+    "x": 22.76,
+    "y": 47.44,
+    "world": [
+      -52.5,
+      100.4,
+      -14.4
+    ],
+    "era": "Child",
+    "time": "Any",
+    "req": "魔法豆（首颗 10 卢比）",
+    "zh": "佐拉河 · 豆商旁",
+    "en": "Zora River Soft Soil",
+    "descZh": "",
+    "descEn": "",
+    "howto": "幼年在魔豆商人旁的土地播下魔法豆；成年回来乘豆叶上升。",
+    "reward": "豆叶平台上的心之碎片 / 卢比"
+  },
+  {
+    "id": "soil-kokiri-shop",
+    "map": "hyrule",
+    "area": "KokiriForest",
+    "cat": "soil",
+    "x": 49.07,
+    "y": 38.5,
+    "world": [
+      -2.5,
+      120.8,
+      -23.5
+    ],
+    "era": "Child",
+    "time": "Any",
+    "req": "魔法豆",
+    "zh": "科奇里森林 · 商店后",
+    "en": "Kokiri Forest Soft Soil",
+    "descZh": "",
+    "descEn": "",
+    "howto": "幼年在科奇里商店后方的土地播豆；成年乘豆叶取物。",
+    "reward": "豆叶上的卢比 / 补给"
+  },
+  {
+    "id": "soil-lostwood-bridge",
+    "map": "hyrule",
+    "area": "LostWood",
+    "cat": "soil",
+    "x": 35.67,
+    "y": 69.62,
+    "world": [
+      -31.1,
+      95.4,
+      49.5
+    ],
+    "era": "Child",
+    "time": "Any",
+    "req": "魔法豆",
+    "zh": "迷失森林 · 桥边",
+    "en": "Lost Woods Bridge Soft Soil",
+    "descZh": "",
+    "descEn": "",
+    "howto": "幼年在迷失森林桥边的土地播豆；成年乘豆叶取物。",
+    "reward": "豆叶上的心之碎片"
+  },
+  {
+    "id": "soil-lostwood-stage",
+    "map": "hyrule",
+    "area": "LostWood",
+    "cat": "soil",
+    "x": 49.2,
+    "y": 32.03,
+    "world": [
+      3.8,
+      83.8,
+      -47.5
+    ],
+    "era": "Child",
+    "time": "Any",
+    "req": "魔法豆",
+    "zh": "迷失森林 · 森林舞台洞口",
+    "en": "Forest Stage Soft Soil",
+    "descZh": "",
+    "descEn": "",
+    "howto": "幼年在森林舞台洞口的土地播豆；成年乘豆叶取物。",
+    "reward": "豆叶上的卢比"
+  },
+  {
+    "id": "soil-graveyard-dampe",
+    "map": "hyrule",
+    "area": "Graveyard",
+    "cat": "soil",
+    "x": 26.34,
+    "y": 76.69,
+    "world": [
+      -12.0,
+      100.8,
+      20.0
+    ],
+    "era": "Child",
+    "time": "Any",
+    "req": "魔法豆",
+    "zh": "卡卡利科墓地 · 丹培墓左侧",
+    "en": "Graveyard Soft Soil",
+    "descZh": "",
+    "descEn": "",
+    "howto": "幼年在丹培墓左侧的土地播豆；成年乘豆叶取物。",
+    "reward": "豆叶上的心之碎片"
+  },
+  {
+    "id": "soil-dodongo-entrance",
+    "map": "hyrule",
+    "area": "DeathMountainTrail",
+    "cat": "soil",
+    "x": 32.91,
+    "y": 57.03,
+    "world": [
+      -50.8,
+      108.7,
+      -21.3
+    ],
+    "era": "Child",
+    "time": "Any",
+    "req": "魔法豆",
+    "zh": "死亡山山道 · 多东哥洞穴入口旁",
+    "en": "Dodongo Entrance Soft Soil",
+    "descZh": "",
+    "descEn": "",
+    "howto": "幼年在多东哥洞穴入口旁的土地播豆；成年乘豆叶取物。",
+    "reward": "豆叶上的心之碎片"
+  },
+  {
+    "id": "soil-crater-warp",
+    "map": "hyrule",
+    "area": "DeathMountainCrater",
+    "cat": "soil",
+    "x": 58.94,
+    "y": 36.98,
+    "world": [
+      0.4,
+      111.4,
+      -8.7
+    ],
+    "era": "Child",
+    "time": "Any",
+    "req": "魔法豆",
+    "zh": "死亡山火山口 · 传送台旁",
+    "en": "Crater Warp Soft Soil",
+    "descZh": "",
+    "descEn": "",
+    "howto": "幼年在火山口传送台旁的土地播豆；成年乘豆叶取物。",
+    "reward": "豆叶上的卢比"
+  },
+  {
+    "id": "soil-lake-lab",
+    "map": "hyrule",
+    "area": "LakeHylia",
+    "cat": "soil",
+    "x": 53.0,
+    "y": 20.0,
+    "world": null,
+    "era": "Child",
+    "time": "Any",
+    "req": "魔法豆",
+    "zh": "海利亚湖 · 湖畔研究所旁",
+    "en": "Lakeside Lab Soft Soil",
+    "descZh": "",
+    "descEn": "",
+    "howto": "幼年在湖畔研究所旁的土地播豆；成年乘豆叶取物。",
+    "reward": "豆叶上的心之碎片"
+  },
+  {
+    "id": "soil-gerudo-bridge",
+    "map": "hyrule",
+    "area": "GerudoValley",
+    "cat": "soil",
+    "x": 78.27,
+    "y": 61.32,
+    "world": [
+      57.5,
+      97.5,
+      7.5
+    ],
+    "era": "Child",
+    "time": "Any",
+    "req": "魔法豆",
+    "zh": "格鲁德峡谷 · 桥下",
+    "en": "Gerudo Valley Bridge Soft Soil",
+    "descZh": "",
+    "descEn": "",
+    "howto": "幼年走到格鲁德峡谷大桥下方，在土地播豆；成年乘豆叶取物。",
+    "reward": "豆叶上的心之碎片"
+  },
+  {
+    "id": "soil-spirit-entrance",
+    "map": "hyrule",
+    "area": "DesertColossus",
+    "cat": "soil",
+    "x": 23.12,
+    "y": 48.32,
+    "world": [
+      -160.9,
+      96.1,
+      10.3
+    ],
+    "era": "Child",
+    "time": "Any",
+    "req": "魔法豆",
+    "zh": "沙漠巨像 · 魂之神殿入口旁",
+    "en": "Spirit Temple Soft Soil",
+    "descZh": "",
+    "descEn": "",
+    "howto": "幼年在魂之神殿入口旁的土地播豆；成年乘豆叶取物。",
+    "reward": "豆叶上的心之碎片"
+  },
+  {
+    "id": "ki-stick",
+    "map": "hyrule",
+    "area": "KokiriForest",
+    "cat": "keyitem",
+    "x": 50.87,
+    "y": 40.3,
+    "world": [
+      -2.48,
+      120.79,
+      -23.5
+    ],
+    "era": "Child",
+    "time": "Any",
+    "req": "10 卢比",
+    "zh": "德库木棒",
+    "en": "Deku Stick",
+    "descZh": "",
+    "descEn": "",
+    "howto": "在科奇里商店花 10 卢比买一捆（上限 10/20/30 随袋升级）。",
+    "reward": "德库木棒 ×1 捆",
+    "note": "可点燃火把、当临时武器；雨天/水中会熄灭。"
+  },
+  {
+    "id": "ki-nut",
+    "map": "hyrule",
+    "area": "KokiriForest",
+    "cat": "keyitem",
+    "x": 47.27,
+    "y": 40.3,
+    "world": [
+      -2.48,
+      120.79,
+      -23.5
+    ],
+    "era": "Child",
+    "time": "Any",
+    "req": "5 卢比",
+    "zh": "德库坚果",
+    "en": "Deku Nut",
+    "descZh": "",
+    "descEn": "",
+    "howto": "科奇里商店购买，或打德库巴巴掉落补给。",
+    "reward": "德库坚果 ×5",
+    "note": "闪光弹效果，可定住敌人；对蜘蛛、骷髅怪有效。"
+  },
+  {
+    "id": "ki-fairy-ocarina",
+    "map": "hyrule",
+    "area": "KokiriForest",
+    "cat": "keyitem",
+    "x": 39.98,
+    "y": 54.93,
+    "world": [
+      -29.5,
+      114.0,
+      5.9
+    ],
+    "era": "Child",
+    "time": "Any",
+    "req": "",
+    "zh": "妖精之笛",
+    "en": "Fairy Ocarina",
+    "descZh": "",
+    "descEn": "",
+    "howto": "走出科奇里森林吊桥时莎莉亚追上赠送，同时得到莎莉亚之歌。",
+    "reward": "妖精之笛 + 莎莉亚之歌",
+    "note": "三天后换成正牌时之笛；在此之前是唯一能吹奏的乐器。"
+  },
+  {
+    "id": "ki-ocarina-time",
+    "map": "hyrule",
+    "area": "HyruleCastle",
+    "cat": "keyitem",
+    "x": 58.8,
+    "y": 86.0,
+    "world": null,
+    "era": "Child",
+    "time": "Any",
+    "req": "先取得妖精之笛",
+    "zh": "时之笛",
+    "en": "Ocarina of Time",
+    "descZh": "",
+    "descEn": "",
+    "howto": "幼年从城下町护城河潜入城堡庭院，遇见塞尔达后由英帕带出，塞尔达投来时之笛。",
+    "reward": "时之笛（可吹全部曲目）",
+    "note": "与「时之歌」同点，已右移错开。"
+  },
+  {
+    "id": "ki-bombchu",
+    "map": "hyrule",
+    "area": "Market",
+    "cat": "keyitem",
+    "x": 38.57,
+    "y": 49.22,
+    "world": [
+      -25.04,
+      116.72,
+      7.56
+    ],
+    "era": "Child",
+    "time": "Night",
+    "req": "30 卢比/局",
+    "zh": "炸弹鼠",
+    "en": "Bombchu",
+    "descZh": "",
+    "descEn": "",
+    "howto": "城下町炸弹鼠保龄球馆：一局 10 发，全中或打倒 20 个以上可获奖；也可在炸弹鼠专卖店买。",
+    "reward": "炸弹鼠 ×10 / 炸弹鼠袋",
+    "note": "能爬墙钻洞，是取心之碎片与开暗道的万能钥匙。"
+  },
+  {
+    "id": "ki-bean",
+    "map": "hyrule",
+    "area": "ZoraRiver",
+    "cat": "keyitem",
+    "x": 22.76,
+    "y": 49.64,
+    "world": [
+      -52.5,
+      100.4,
+      -14.4
+    ],
+    "era": "Child",
+    "time": "Any",
+    "req": "10 卢比/颗",
+    "zh": "魔法豆",
+    "en": "Magic Bean",
+    "descZh": "",
+    "descEn": "",
+    "howto": "佐拉河豆商处 10 卢比买 1 颗，幼年买齐 10 颗后成年全部长成豆叶。",
+    "reward": "魔法豆 ×1（上限 10）",
+    "note": "与豆田土点同坐标，已下移错开；成年人乘豆叶上台。"
+  },
+  {
+    "id": "ki-hookshot",
+    "map": "hyrule",
+    "area": "Graveyard",
+    "cat": "keyitem",
+    "x": 28.14,
+    "y": 76.69,
+    "world": [
+      -12.0,
+      100.8,
+      20.0
+    ],
+    "era": "Adult",
+    "time": "Any",
+    "req": "先拿到丹培的掘墓之旅",
+    "zh": "钩索",
+    "en": "Hookshot",
+    "descZh": "",
+    "descEn": "",
+    "howto": "与丹培赛跑（从墓园跑到他小屋）赢两次后，他倒地赠送钩索。",
+    "reward": "钩索",
+    "note": "可拉向木箱、藤蔓、铁网；成年后拿长钩索再升级。"
+  },
+  {
+    "id": "ki-fire-arrow",
+    "map": "hyrule",
+    "area": "LakeHylia",
+    "cat": "keyitem",
+    "x": 56.0,
+    "y": 52.0,
+    "world": null,
+    "era": "Adult",
+    "time": "Any",
+    "req": "弓",
+    "zh": "火箭",
+    "en": "Fire Arrow",
+    "descZh": "",
+    "descEn": "",
+    "howto": "成年站在湖畔码头，把箭射向日出方向的太阳，箭落在湖心岛，游过去拾取。",
+    "reward": "火箭",
+    "note": "点火把、烧蛛网、融冰；湖心岛位置以图为准。"
+  },
+  {
+    "id": "ki-ice-arrow",
+    "map": "hyrule",
+    "area": "GerudoFortress",
+    "cat": "keyitem",
+    "x": 24.59,
+    "y": 56.77,
+    "world": [
+      5.21,
+      110.23,
+      3.21
+    ],
+    "era": "Adult",
+    "time": "Any",
+    "req": "弓 + 真实眼镜",
+    "zh": "冰箭",
+    "en": "Ice Arrow",
+    "descZh": "",
+    "descEn": "",
+    "howto": "通关格鲁德训练场全部房间（用真实眼镜看隐藏通道），最后宝箱给冰箭。",
+    "reward": "冰箭",
+    "note": "冻敌、造冰台；与训练场入口同点，已错开。"
+  },
+  {
+    "id": "ki-light-arrow",
+    "map": "hyrule",
+    "area": "Market",
+    "cat": "keyitem",
+    "x": 86.0,
+    "y": 23.2,
+    "world": null,
+    "era": "Adult",
+    "time": "Any",
+    "req": "六贤者全部觉醒",
+    "zh": "光箭",
+    "en": "Light Arrow",
+    "descZh": "",
+    "descEn": "",
+    "howto": "成年集齐六贤者后回到时之神殿，希克授予光箭。",
+    "reward": "光箭",
+    "note": "与光之勋章同点，已下移错开；最终战必备。"
+  },
+  {
+    "id": "npc-dekutree",
+    "map": "hyrule",
+    "area": "KokiriForest",
+    "cat": "npc",
+    "x": 84.56,
+    "y": 34.64,
+    "world": [
+      103.0,
+      109.5,
+      -29.6
+    ],
+    "era": "Child",
+    "time": "Any",
+    "req": "",
+    "zh": "德库树长老",
+    "en": "Great Deku Tree",
+    "descZh": "",
+    "descEn": "",
+    "howto": "科奇里森林中央的大树，入口在树洞；幼年开场迷宫。",
+    "reward": "妖精弹弓、心之容器、精灵石",
+    "note": "树内长老本体不单独建模，落在树外坐标。"
+  },
+  {
+    "id": "npc-mido",
+    "map": "hyrule",
+    "area": "KokiriForest",
+    "cat": "npc",
+    "x": 58.49,
+    "y": 53.97,
+    "world": [
+      25.5,
+      111.6,
+      0.9
+    ],
+    "era": "Child",
+    "time": "Any",
+    "req": "",
+    "zh": "米多",
+    "en": "Mido",
+    "descZh": "",
+    "descEn": "",
+    "howto": "村中路中央挡道，需先在训练场拿到剑与盾才放行去德库树。",
+    "reward": "通行许可",
+    "note": "成年后可在迷失森林再遇。"
+  },
+  {
+    "id": "npc-saria",
+    "map": "hyrule",
+    "area": "KokiriForest",
+    "cat": "npc",
+    "x": 39.98,
+    "y": 59.33,
+    "world": [
+      -29.5,
+      114.0,
+      5.9
+    ],
+    "era": "Child",
+    "time": "Any",
+    "req": "",
+    "zh": "莎莉亚",
+    "en": "Saria",
+    "descZh": "",
+    "descEn": "",
+    "howto": "村口吊桥处，出门时赠送妖精之笛与莎莉亚之歌。",
+    "reward": "妖精之笛 + 莎莉亚之歌",
+    "note": "与「妖精之笛」同点，已上移错开；成年在圣域再见。"
+  },
+  {
+    "id": "npc-zelda",
+    "map": "hyrule",
+    "area": "HyruleCastle",
+    "cat": "npc",
+    "x": 28.3,
+    "y": 13.2,
+    "world": null,
+    "era": "Child",
+    "time": "Any",
+    "req": "潜入城堡",
+    "zh": "塞尔达",
+    "en": "Princess Zelda",
+    "descZh": "",
+    "descEn": "",
+    "howto": "幼年潜入城堡庭院，从护城河一侧翻入花园即触发剧情。",
+    "reward": "时之笛、光之勋章任务线",
+    "note": "与「塞尔达摇篮曲」点相近，已错开。"
+  },
+  {
+    "id": "npc-impa",
+    "map": "hyrule",
+    "area": "HyruleCastle",
+    "cat": "npc",
+    "x": 33.0,
+    "y": 10.8,
+    "world": null,
+    "era": "Child",
+    "time": "Any",
+    "req": "",
+    "zh": "英帕",
+    "en": "Impa",
+    "descZh": "",
+    "descEn": "",
+    "howto": "城堡庭院剧情中带走塞尔达；之后在卡卡利科村与墓地出现。",
+    "reward": "剧情推进",
+    "note": "地图上为庭院内位置，实际沿城堡外墙巡逻。"
+  },
+  {
+    "id": "npc-malon",
+    "map": "hyrule",
+    "area": "LonLonRanch",
+    "cat": "npc",
+    "x": 47.87,
+    "y": 54.03,
+    "world": [
+      -91.9,
+      150.6,
+      245.4
+    ],
+    "era": "Child",
+    "time": "Any",
+    "req": "",
+    "zh": "玛蓉",
+    "en": "Malon",
+    "descZh": "",
+    "descEn": "",
+    "howto": "牧场入口附近，幼年可教她伊波娜之歌（需先有妖精之笛）。",
+    "reward": "伊波娜之歌",
+    "note": "成年后在城堡市场卖牛奶。"
+  },
+  {
+    "id": "npc-talon",
+    "map": "hyrule",
+    "area": "LonLonRanch",
+    "cat": "npc",
+    "x": 70.35,
+    "y": 25.01,
+    "world": [
+      -52.4,
+      150.7,
+      199.3
+    ],
+    "era": "Child",
+    "time": "Any",
+    "req": "",
+    "zh": "塔隆",
+    "en": "Talon",
+    "descZh": "",
+    "descEn": "",
+    "howto": "牧场屋前打盹，用咕咕鸡叫醒可触发小游戏与剧情。",
+    "reward": "超级咕咕鸡线索",
+    "note": "成年后被英戈赶出牧场。"
+  },
+  {
+    "id": "npc-ingo",
+    "map": "hyrule",
+    "area": "LonLonRanch",
+    "cat": "npc",
+    "x": 53.1,
+    "y": 45.84,
+    "world": [
+      -82.7,
+      150.6,
+      232.4
+    ],
+    "era": "Both",
+    "time": "Any",
+    "req": "成年 + 伊波娜之歌",
+    "zh": "英戈",
+    "en": "Ingo",
+    "descZh": "",
+    "descEn": "",
+    "howto": "马厩旁，成年后接管牧场，赛马赢他可得伊波娜。",
+    "reward": "伊波娜（赛马获胜）",
+    "note": "幼年时段他也在这里喂马。"
+  },
+  {
+    "id": "npc-dampe",
+    "map": "hyrule",
+    "area": "Graveyard",
+    "cat": "npc",
+    "x": 28.14,
+    "y": 76.69,
+    "world": [
+      -12.0,
+      100.8,
+      20.0
+    ],
+    "era": "Both",
+    "time": "Any",
+    "req": "",
+    "zh": "丹培",
+    "en": "Dampé",
+    "descZh": "",
+    "descEn": "",
+    "howto": "墓地小屋，白天可玩掘墓之旅，成年后与其赛跑赢钩索。",
+    "reward": "钩索、心之碎片",
+    "note": "与「松软土地」同点，已右移错开。"
+  },
+  {
+    "id": "npc-ruto",
+    "map": "hyrule",
+    "area": "ZoraDomain",
+    "cat": "npc",
+    "x": 77.18,
+    "y": 69.94,
+    "world": [
+      67.6,
+      119.0,
+      13.5
+    ],
+    "era": "Child",
+    "time": "Any",
+    "req": "",
+    "zh": "露朵",
+    "en": "Princess Ruto",
+    "descZh": "",
+    "descEn": "",
+    "howto": "佐拉领地王座前，幼年请求找回佐拉蓝宝石；成年在水之神殿再遇。",
+    "reward": "佐拉蓝宝石",
+    "note": "与「露朵的信」瓶子点相邻，已错开。"
+  },
+  {
+    "id": "npc-kingzora",
+    "map": "hyrule",
+    "area": "ZoraDomain",
+    "cat": "npc",
+    "x": 74.17,
+    "y": 75.05,
+    "world": [
+      67.3,
+      118.9,
+      15.6
+    ],
+    "era": "Both",
+    "time": "Any",
+    "req": "露朵的信",
+    "zh": "佐拉王",
+    "en": "King Zora",
+    "descZh": "",
+    "descEn": "",
+    "howto": "王座上的佐拉王，幼年堵住通往佐拉之泉的路；出示露朵的信后让路。",
+    "reward": "佐拉之泉通行、心之碎片",
+    "note": "与露朵点重叠，已错开。"
+  },
+  {
+    "id": "npc-darunia",
+    "map": "hyrule",
+    "area": "GoronCity",
+    "cat": "npc",
+    "x": 53.78,
+    "y": 15.5,
+    "world": [
+      -0.2,
+      98.6,
+      -41.8
+    ],
+    "era": "Child",
+    "time": "Any",
+    "req": "先见塞尔达",
+    "zh": "达鲁尼亚",
+    "en": "Darunia",
+    "descZh": "",
+    "descEn": "",
+    "howto": "哥隆城最上层族长室，跳哥隆舞可拿到火之红宝石。",
+    "reward": "火之红宝石、炸弹袋任务",
+    "note": "成年后成为火之贤者。"
+  },
+  {
+    "id": "npc-nabooru",
+    "map": "SpiritTemple",
+    "area": "1F",
+    "cat": "npc",
+    "x": 45.01,
+    "y": 49.34,
+    "world": [
+      -10.5,
+      103.0,
+      -25.0
+    ],
+    "era": "Child",
+    "time": "Any",
+    "req": "",
+    "zh": "娜波露",
+    "en": "Nabooru",
+    "descZh": "",
+    "descEn": "",
+    "howto": "魂之神殿幼年段内部，被双子妖婆操控前在此相遇。",
+    "reward": "银手套线索",
+    "note": "落在魂之神殿 1F，需从沙漠巨像入口进入。"
+  },
+  {
+    "id": "npc-sheik",
+    "map": "hyrule",
+    "area": "Market",
+    "cat": "npc",
+    "x": 89.0,
+    "y": 26.0,
+    "world": null,
+    "era": "Adult",
+    "time": "Any",
+    "req": "",
+    "zh": "希克",
+    "en": "Sheik",
+    "descZh": "",
+    "descEn": "",
+    "howto": "成年后在时之神殿内现身，逐首传授传送曲。",
+    "reward": "各神殿传送曲",
+    "note": "时之神殿在地图边界外，点位落在城下町东北角示意。"
+  },
+  {
+    "id": "npc-rauru",
+    "map": "hyrule",
+    "area": "Market",
+    "cat": "npc",
+    "x": 84.0,
+    "y": 26.0,
+    "world": null,
+    "era": "Adult",
+    "time": "Any",
+    "req": "",
+    "zh": "劳鲁",
+    "en": "Rauru",
+    "descZh": "",
+    "descEn": "",
+    "howto": "时之神殿内的光之贤者，成年觉醒后在圣域指引收集六贤者。",
+    "reward": "光之勋章任务",
+    "note": "与希克同区域，已左移错开。"
+  },
+  {
+    "id": "npc-skullkid",
+    "map": "hyrule",
+    "area": "LostWood",
+    "cat": "npc",
+    "x": 34.55,
+    "y": 49.0,
+    "world": [
+      -34.0,
+      103.2,
+      -3.7
+    ],
+    "era": "Child",
+    "time": "Any",
+    "req": "",
+    "zh": "骷髅小子",
+    "en": "Skull Kid",
+    "descZh": "",
+    "descEn": "",
+    "howto": "迷失森林深处，吹陶笛可与他合奏；戴面具会触发不同反应。",
+    "reward": "心之碎片（合奏）",
+    "note": "森林舞台（面具展示）在另一处，已分开标注。"
+  },
+  {
+    "id": "npc-mask-salesman",
+    "map": "hyrule",
+    "area": "Market",
+    "cat": "npc",
+    "x": 54.89,
+    "y": 35.13,
+    "world": [
+      8.96,
+      110.26,
+      -17.69
+    ],
+    "era": "Both",
+    "time": "Any",
+    "req": "卢比",
+    "zh": "面具商",
+    "en": "Happy Mask Salesman",
+    "descZh": "",
+    "descEn": "",
+    "howto": "城下町快乐面具屋，可买/租四款面具；真实面具需先读八卦石。",
+    "reward": "面具（可租可买）",
+    "note": "与「真实面具」点同坐标，已错开。"
+  },
+  {
+    "id": "npc-poe-collector",
+    "map": "hyrule",
+    "area": "Market",
+    "cat": "npc",
+    "x": 59.7,
+    "y": 83.51,
+    "world": [
+      12.53,
+      111.94,
+      57.04
+    ],
+    "era": "Both",
+    "time": "Night",
+    "req": "大魄 ×10",
+    "zh": "怨灵收购商",
+    "en": "Poe Collector",
+    "descZh": "",
+    "descEn": "",
+    "howto": "城下町后巷小屋，交 10 只大魄可换瓶子；夜间营业。",
+    "reward": "空瓶（第 4 个）",
+    "note": "与「幽灵商店瓶子」同点，已错开。"
+  },
+  {
+    "id": "npc-bombchu-merchant",
+    "map": "hyrule",
+    "area": "Market",
+    "cat": "npc",
+    "x": 38.57,
+    "y": 51.02,
+    "world": [
+      -25.04,
+      116.72,
+      7.56
+    ],
+    "era": "Both",
+    "time": "Any",
+    "req": "",
+    "zh": "炸弹鼠商人",
+    "en": "Bombchu Merchant",
+    "descZh": "",
+    "descEn": "",
+    "howto": "城下町炸弹鼠专卖店，白天卖炸弹鼠与炸弹鼠袋。",
+    "reward": "炸弹鼠、炸弹鼠袋（上限提升）",
+    "note": "与保龄球馆相邻，已错开。"
+  },
+  {
+    "id": "npc-biggoron",
+    "map": "hyrule",
+    "area": "DeathMountainTrail",
+    "cat": "npc",
+    "x": 95.12,
+    "y": 17.93,
+    "world": [
+      25.8,
+      200.5,
+      -128.5
+    ],
+    "era": "Adult",
+    "time": "Any",
+    "req": "成年 + 世界最速跑腿链",
+    "zh": "大鼓隆",
+    "en": "Biggoron",
+    "descZh": "",
+    "descEn": "",
+    "howto": "死亡山口东侧山顶，成年后接大鼓隆之剑任务链（先拿眼药水）。",
+    "reward": "大鼓隆之剑（攻击力 2 倍）",
+    "note": "幼年只能看到他在山顶睡觉。"
+  },
+  {
+    "id": "npc-carpenter-boss",
+    "map": "hyrule",
+    "area": "GerudoValley",
+    "cat": "npc",
+    "x": 23.54,
+    "y": 49.54,
+    "world": [
+      -39.3,
+      106.5,
+      -16.9
+    ],
+    "era": "Adult",
+    "time": "Any",
+    "req": "救出四名木匠",
+    "zh": "木匠头目",
+    "en": "Carpenter Boss",
+    "descZh": "",
+    "descEn": "",
+    "howto": "格鲁德峡谷木匠营地帐篷，交回四名木匠后触发对话。",
+    "reward": "格鲁德要塞通行、心之碎片",
+    "note": "与「木匠营地」小游戏点同坐标，已下移错开。"
+  },
+  {
+    "id": "npc-kaepora",
+    "map": "hyrule",
+    "area": "HyruleField",
+    "cat": "npc",
+    "x": 43.0,
+    "y": 85.45,
+    "world": [
+      -90.7,
+      144.8,
+      383.8
+    ],
+    "era": "Both",
+    "time": "Any",
+    "req": "",
+    "zh": "卡佩拉猫头鹰",
+    "en": "Kaepora Gaebora",
+    "descZh": "",
+    "descEn": "",
+    "howto": "海拉鲁平原南侧，会主动降落说话；选「是」可听完整提示。",
+    "reward": "区域提示、传送点提示",
+    "note": "全地图多处出现，这里只标平原主点位。"
+  },
+  {
+    "id": "upg-wallet-500",
+    "map": "hyrule",
+    "area": "KakarikoVillage",
+    "cat": "upgrade",
+    "x": 63.53,
+    "y": 62.34,
+    "world": [
+      -28.9,
+      103.0,
+      66.7
+    ],
+    "era": "Both",
+    "time": "Any",
+    "req": "10 枚徽章",
+    "zh": "大人钱包（500）",
+    "en": "Adult Wallet",
+    "descZh": "",
+    "descEn": "",
+    "howto": "在卡卡利科村蜘蛛之家交 10 枚黄金骷髅蜘蛛徽章，屋内小孩给大人钱包。",
+    "reward": "钱包上限 500 卢比",
+    "note": "与蜘蛛之家同点，就是村中央那栋挂满蜘蛛的房子。"
+  },
+  {
+    "id": "upg-wallet-1000",
+    "map": "hyrule",
+    "area": "KakarikoVillage",
+    "cat": "upgrade",
+    "x": 63.53,
+    "y": 64.54,
+    "world": [
+      -28.9,
+      103.0,
+      66.7
+    ],
+    "era": "Both",
+    "time": "Any",
+    "req": "30 枚徽章",
+    "zh": "巨人钱包（1000）",
+    "en": "Giant Wallet",
+    "descZh": "",
+    "descEn": "",
+    "howto": "同一间蜘蛛之家，累计交 30 枚徽章换巨人钱包。",
+    "reward": "钱包上限 1000 卢比",
+    "note": "与「大人钱包」同点，已下移错开。"
+  },
+  {
+    "id": "upg-bombbag-30",
+    "map": "hyrule",
+    "area": "GoronCity",
+    "cat": "upgrade",
+    "x": 36.56,
+    "y": 37.67,
+    "world": [
+      -19.07,
+      99.89,
+      -20.12
+    ],
+    "era": "Child",
+    "time": "Any",
+    "req": "炸弹",
+    "zh": "炸弹袋（30）",
+    "en": "Bomb Bag 30",
+    "descZh": "",
+    "descEn": "",
+    "howto": "幼年在哥隆城帮助滚动哥隆族停下（先拿炸弹），族长给炸弹袋扩容。",
+    "reward": "炸弹携带上限 30",
+    "note": "哥隆商店同点，已上移错开。"
+  },
+  {
+    "id": "upg-bombbag-40",
+    "map": "hyrule",
+    "area": "Market",
+    "cat": "upgrade",
+    "x": 37.17,
+    "y": 48.82,
+    "world": [
+      -25.04,
+      116.72,
+      7.56
+    ],
+    "era": "Child",
+    "time": "Any",
+    "req": "30 卢比/局",
+    "zh": "炸弹袋（40）",
+    "en": "Bomb Bag 40",
+    "descZh": "",
+    "descEn": "",
+    "howto": "城邑炸弹鼠保龄球馆第二奖品：一局打出 20 个以上或全中。",
+    "reward": "炸弹携带上限 40",
+    "note": "与保龄球馆同点，已上移错开。"
+  },
+  {
+    "id": "upg-seed-40",
+    "map": "hyrule",
+    "area": "Market",
+    "cat": "upgrade",
+    "x": 43.95,
+    "y": 34.69,
+    "world": [
+      -12.99,
+      112.72,
+      -18.91
+    ],
+    "era": "Child",
+    "time": "Any",
+    "req": "10 卢比/局",
+    "zh": "种子袋（40）",
+    "en": "Seed Bag 40",
+    "descZh": "",
+    "descEn": "",
+    "howto": "城邑射靶场全中 10 靶，店主给种子袋。",
+    "reward": "德库种子上限 40",
+    "note": "与射靶场同点，已上移错开。"
+  },
+  {
+    "id": "upg-seed-50",
+    "map": "hyrule",
+    "area": "LostWood",
+    "cat": "upgrade",
+    "x": 63.65,
+    "y": 48.54,
+    "world": [
+      41.1,
+      102.6,
+      -4.9
+    ],
+    "era": "Child",
+    "time": "Any",
+    "req": "弹弓",
+    "zh": "种子袋（50）",
+    "en": "Seed Bag 50",
+    "descZh": "",
+    "descEn": "",
+    "howto": "迷失森林吊靶：打中挂在树间的靶子，全中后德库小贩给种子袋扩容。",
+    "reward": "德库种子上限 50",
+    "note": "该点是吊靶练习的德库族位置。"
+  },
+  {
+    "id": "upg-quiver-40",
+    "map": "hyrule",
+    "area": "KakarikoVillage",
+    "cat": "upgrade",
+    "x": 44.59,
+    "y": 61.91,
+    "world": [
+      -63.37,
+      103.3,
+      62.75
+    ],
+    "era": "Adult",
+    "time": "Any",
+    "req": "20 卢比/局",
+    "zh": "箭袋（40）",
+    "en": "Quiver 40",
+    "descZh": "",
+    "descEn": "",
+    "howto": "成年在卡卡利科射靶场全中 10 靶，店主给箭袋。",
+    "reward": "箭上限 40",
+    "note": "与射靶场同点，已上移错开。"
+  },
+  {
+    "id": "upg-quiver-50",
+    "map": "hyrule",
+    "area": "GerudoFortress",
+    "cat": "upgrade",
+    "x": 46.25,
+    "y": 75.64,
+    "world": [
+      73.08,
+      115.0,
+      41.23
+    ],
+    "era": "Adult",
+    "time": "Any",
+    "req": "弓 + 伊波娜",
+    "zh": "箭袋（50）",
+    "en": "Quiver 50",
+    "descZh": "",
+    "descEn": "",
+    "howto": "成年在格鲁德要塞骑射场骑马射靶，1400 分以上得箭袋。",
+    "reward": "箭上限 50",
+    "note": "与骑射场同点，已上移错开。"
+  },
+  {
+    "id": "upg-stick-20",
+    "map": "hyrule",
+    "area": "LostWood",
+    "cat": "upgrade",
+    "x": 30.21,
+    "y": 78.57,
+    "world": [
+      -45.2,
+      95.2,
+      72.6
+    ],
+    "era": "Child",
+    "time": "Any",
+    "req": "40 卢比",
+    "zh": "德库木棒袋（20）",
+    "en": "Deku Stick Bag 20",
+    "descZh": "",
+    "descEn": "",
+    "howto": "迷失森林里的德库小贩，花 40 卢比买木棒袋扩容。",
+    "reward": "木棒上限 20",
+    "note": "森林里有两个小贩果，认准桥边这个。"
+  },
+  {
+    "id": "upg-nut-30",
+    "map": "hyrule",
+    "area": "LostWood",
+    "cat": "upgrade",
+    "x": 50.55,
+    "y": 17.27,
+    "world": [
+      7.3,
+      82.9,
+      -85.6
+    ],
+    "era": "Child",
+    "time": "Any",
+    "req": "40 卢比",
+    "zh": "德库坚果袋（30）",
+    "en": "Deku Nut Bag 30",
+    "descZh": "",
+    "descEn": "",
+    "howto": "迷失森林裂石洞内的小贩果，40 卢比给坚果袋扩容。",
+    "reward": "坚果上限 30",
+    "note": "洞内小贩果，需先炸开入口。"
+  },
+  {
+    "id": "upg-nut-40",
+    "map": "hyrule",
+    "area": "LostWood",
+    "cat": "upgrade",
+    "x": 43.85,
+    "y": 29.32,
+    "world": [
+      -10.0,
+      83.2,
+      -54.5
+    ],
+    "era": "Child",
+    "time": "Any",
+    "req": "真实面具",
+    "zh": "德库坚果袋（40）",
+    "en": "Deku Nut Bag 40",
+    "descZh": "",
+    "descEn": "",
+    "howto": "迷失森林地下舞台，戴上真实面具与大德库族长老交谈，坚果袋扩容。",
+    "reward": "坚果上限 40",
+    "note": "与森林舞台面具点同区域，已错开。"
+  },
+  {
+    "id": "upg-scale-silver",
+    "map": "hyrule",
+    "area": "ZoraDomain",
+    "cat": "upgrade",
+    "x": 46.15,
+    "y": 50.75,
+    "world": [
+      24.83,
+      113.5,
+      -6.79
+    ],
+    "era": "Child",
+    "time": "Any",
+    "req": "潜水小游戏",
+    "zh": "银色鳞片",
+    "en": "Silver Scale",
+    "descZh": "",
+    "descEn": "",
+    "howto": "幼年在佐拉领地参加潜水小游戏，潜到最深处拿银色鳞片。",
+    "reward": "潜水深度 3 米",
+    "note": "与跳水小游戏同点，已上移错开。"
+  },
+  {
+    "id": "upg-scale-gold",
+    "map": "hyrule",
+    "area": "LakeHylia",
+    "cat": "upgrade",
+    "x": 77.61,
+    "y": 51.62,
+    "world": [
+      -97.91,
+      134.0,
+      492.27
+    ],
+    "era": "Adult",
+    "time": "Any",
+    "req": "20 卢比/次",
+    "zh": "金色鳞片",
+    "en": "Gold Scale",
+    "descZh": "",
+    "descEn": "",
+    "howto": "成年在海利亚湖钓鱼池钓上 60cm 以上的鱼，老板给金色鳞片。",
+    "reward": "潜水深度 6 米",
+    "note": "与钓鱼场同点，已上移错开。"
+  },
+  {
+    "id": "upg-bracelet",
+    "map": "hyrule",
+    "area": "GoronCity",
+    "cat": "upgrade",
+    "x": 53.78,
+    "y": 17.3,
+    "world": [
+      -0.2,
+      98.6,
+      -41.8
+    ],
+    "era": "Child",
+    "time": "Any",
+    "req": "先见塞尔达",
+    "zh": "鼓隆手环",
+    "en": "Goron Bracelet",
+    "descZh": "",
+    "descEn": "",
+    "howto": "幼年在哥隆城族长室跳哥隆舞，达鲁尼亚给鼓隆手环，可搬炸弹花。",
+    "reward": "可举炸弹花",
+    "note": "与达鲁尼亚同点，已上移错开。"
+  },
+  {
+    "id": "upg-glove-silver",
+    "map": "SpiritTemple",
+    "area": "1F",
+    "cat": "upgrade",
+    "x": 47.41,
+    "y": 51.74,
+    "world": [
+      -10.5,
+      103.0,
+      -25.0
+    ],
+    "era": "Child",
+    "time": "Any",
+    "req": "幼年 + 魂之神殿",
+    "zh": "银手套",
+    "en": "Silver Gauntlets",
+    "descZh": "",
+    "descEn": "",
+    "howto": "魂之神殿幼年段，击败铁甲蜥蜴后在宝箱取得银手套，可推沉重石块。",
+    "reward": "可推银块",
+    "note": "与娜波露同点，已错开；神殿 1F。"
+  },
+  {
+    "id": "upg-glove-gold",
+    "map": "hyrule",
+    "area": "GanonCastle",
+    "cat": "upgrade",
+    "x": 71.48,
+    "y": 72.0,
+    "world": [
+      78.4,
+      94.1,
+      328.38
+    ],
+    "era": "Adult",
+    "time": "Any",
+    "req": "成年 + 六贤者",
+    "zh": "金手套",
+    "en": "Golden Gauntlets",
+    "descZh": "",
+    "descEn": "",
+    "howto": "成年进入加侬之城，在城堡内宝箱取得金手套，可举巨大石柱。",
+    "reward": "可举黑柱",
+    "note": "落点在加侬之城内部，与骷髅点错开。"
+  },
+  {
+    "id": "HC-001",
+    "map": "DodongoCavern",
+    "area": "0F",
+    "cat": "heartc",
+    "x": 49.76,
+    "y": 27.13,
+    "world": [
+      10.32,
+      92.41,
+      -77.8
+    ],
+    "era": "Child",
+    "time": "Any",
+    "req": "",
+    "zh": "多东哥洞穴 (0F) · 心之容器：多东哥王后",
+    "en": "Dodongo's Cavern (0F): Heart Container - King Dodongo",
+    "howto": "在多东哥洞穴 (0F)击败 多东哥王后，胜利后取得心之容器。",
+    "reward": "心之容器（心上限 +1）",
+    "instanceId": "6735534919529993887",
+    "note": "与 Boss 房点同一房间，已右移错开；8 个容器全拿可多 8 颗心。"
+  },
+  {
+    "id": "HC-002",
+    "map": "FireTemple",
+    "area": "0F",
+    "cat": "heartc",
+    "x": 28.6,
+    "y": 58.07,
+    "world": [
+      -39.0,
+      105.0,
+      0.0
+    ],
+    "era": "Adult",
+    "time": "Any",
+    "req": "",
+    "zh": "火之神殿 (0F) · 心之容器：瓦尔巴基亚",
+    "en": "Fire Temple (0F): Heart Container - Volvagia",
+    "howto": "在火之神殿 (0F)击败 瓦尔巴基亚，胜利后取得心之容器。",
+    "reward": "心之容器（心上限 +1）",
+    "instanceId": "9275766067171822172",
+    "note": "与 Boss 房点同一房间，已右移错开；8 个容器全拿可多 8 颗心。"
+  },
+  {
+    "id": "HC-003",
+    "map": "ForestTemple",
+    "area": "B2",
+    "cat": "heartc",
+    "x": 65.76,
+    "y": 26.01,
+    "world": [
+      -0.04,
+      59.53,
+      -40.86
+    ],
+    "era": "Adult",
+    "time": "Any",
+    "req": "",
+    "zh": "森林神殿 (B2) · 心之容器：幻影加侬",
+    "en": "Forest Temple (B2): Heart Container - Phantom Ganon",
+    "howto": "在森林神殿 (B2)击败 幻影加侬，胜利后取得心之容器。",
+    "reward": "心之容器（心上限 +1）",
+    "instanceId": "8258358987204188069",
+    "note": "与 Boss 房点同一房间，已右移错开；8 个容器全拿可多 8 颗心。"
+  },
+  {
+    "id": "HC-004",
+    "map": "InsideJabuJabuBelly",
+    "area": "2F",
+    "cat": "heartc",
+    "x": 93.4,
+    "y": 53.51,
+    "world": [
+      41.93,
+      102.06,
+      -92.74
+    ],
+    "era": "Child",
+    "time": "Any",
+    "req": "",
+    "zh": "加布加布腹中 (2F) · 心之容器：啪哩内德",
+    "en": "Inside Jabu-Jabu's Belly (2F): Heart Container - Barinade",
+    "howto": "在加布加布腹中 (2F)击败 啪哩内德，胜利后取得心之容器。",
+    "reward": "心之容器（心上限 +1）",
+    "instanceId": "10044298509133306592",
+    "note": "与 Boss 房点同一房间，已右移错开；8 个容器全拿可多 8 颗心。"
+  },
+  {
+    "id": "HC-005",
+    "map": "InsideTheDekuTree",
+    "area": "B2",
+    "cat": "heartc",
+    "x": 63.29,
+    "y": 89.77,
+    "world": [
+      -29.0,
+      53.0,
+      46.59
+    ],
+    "era": "Child",
+    "time": "Any",
+    "req": "",
+    "zh": "德库树内部 (B2) · 心之容器：哥马",
+    "en": "Inside the Deku Tree (B2): Heart Container - Gohma",
+    "howto": "在德库树内部 (B2)击败 哥马，胜利后取得心之容器。",
+    "reward": "心之容器（心上限 +1）",
+    "instanceId": "12971031847538946406",
+    "note": "与 Boss 房点同一房间，已右移错开；8 个容器全拿可多 8 颗心。"
+  },
+  {
+    "id": "HC-006",
+    "map": "ShadowTemple",
+    "area": "B4",
+    "cat": "heartc",
+    "x": 26.64,
+    "y": 62.19,
+    "world": [
+      -138.51,
+      42.0,
+      19.06
+    ],
+    "era": "Adult",
+    "time": "Any",
+    "req": "",
+    "zh": "暗之神殿 (B4) · 心之容器：崩鼓崩鼓",
+    "en": "Shadow Temple (B4): Heart Container - Bongo Bongo",
+    "howto": "在暗之神殿 (B4)击败 崩鼓崩鼓，胜利后取得心之容器。",
+    "reward": "心之容器（心上限 +1）",
+    "instanceId": "16286836175896403549",
+    "note": "与 Boss 房点同一房间，已右移错开；8 个容器全拿可多 8 颗心。"
+  },
+  {
+    "id": "HC-007",
+    "map": "SpiritTemple",
+    "area": "2F",
+    "cat": "heartc",
+    "x": 52.4,
+    "y": 15.21,
+    "world": [
+      0.0,
+      135.0,
+      -76.7
+    ],
+    "era": "Both",
+    "time": "Any",
+    "req": "",
+    "zh": "魂之神殿 (2F) · 心之容器：双子妖婆",
+    "en": "Spirit Temple (2F): Heart Container - Twinrova",
+    "howto": "在魂之神殿 (2F)击败 双子妖婆，胜利后取得心之容器。",
+    "reward": "心之容器（心上限 +1）",
+    "instanceId": "6871288692468145393",
+    "note": "与 Boss 房点同一房间，已右移错开；8 个容器全拿可多 8 颗心。"
+  },
+  {
+    "id": "HC-008",
+    "map": "WaterTemple",
+    "area": "3F",
+    "cat": "heartc",
+    "x": 70.6,
+    "y": 36.73,
+    "world": [
+      -4.5,
+      131.36,
+      -71.18
+    ],
+    "era": "Adult",
+    "time": "Any",
+    "req": "",
+    "zh": "水之神殿 (3F) · 心之容器：魔发",
+    "en": "Water Temple (3F): Heart Container - Morpha",
+    "howto": "在水之神殿 (3F)击败 魔发，胜利后取得心之容器。",
+    "reward": "心之容器（心上限 +1）",
+    "instanceId": "17144458175705251477",
+    "note": "与 Boss 房点同一房间，已右移错开；8 个容器全拿可多 8 颗心。"
   }
 ];
 

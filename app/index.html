@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#18110b">
 <title>塞尔达传说：时之笛 全能互动地图 · Zelda OoT Interactive Map</title>
-<link rel="stylesheet" href="css/style.css?v=4">
+<link rel="stylesheet" href="css/style.css?v=6">
 </head>
 <body>
 
@@ -218,11 +218,31 @@
         </div>
       </div>
       <div class="card-body">
+        <div class="card-loc-row" id="cardLocRow" hidden>
+          <span class="info-label">位置</span>
+          <span class="info-val" id="cardLocVal">—</span>
+        </div>
+        <div class="card-block" id="cardHowBlock">
+          <div class="block-label">怎么拿</div>
+          <div class="block-text" id="cardHowVal">—</div>
+        </div>
         <div class="card-req-row" id="cardReqRow" hidden>
           <span class="req-label">前置要求:</span>
           <span class="req-val" id="cardReqVal">—</span>
         </div>
-        <div class="card-desc" id="cardDesc">—</div>
+        <div class="card-req-row" id="cardRewardRow" hidden>
+          <span class="req-label">奖励:</span>
+          <span class="req-val" id="cardRewardVal">—</span>
+        </div>
+        <div class="card-req-row" id="cardNoteRow" hidden>
+          <span class="req-label">备注:</span>
+          <span class="req-val" id="cardNoteVal">—</span>
+        </div>
+        <div class="card-desc" id="cardDesc" hidden>—</div>
+        <div class="card-coord-row">
+          <span class="coord-val" id="cardCoordVal">—</span>
+          <button class="coord-copy" id="cardCopyCoord">复制坐标</button>
+        </div>
       </div>
       <div class="card-footer">
         <label class="card-collect-btn">
@@ -260,11 +280,12 @@
   </main>
 </div>
 
-<script src="js/icons.js?v=2"></script>
+<script src="js/icons.js?v=3"></script>
+<script src="js/cat_tree.js?v=1"></script>
 <script src="data/topology_data.js?v=2"></script>
 <script src="data/regions.js?v=3"></script>
 <script src="data/world_data.js?v=2"></script>
 <script src="data/pins_data.js?v=2"></script>
-<script src="js/app.js?v=5"></script>
+<script src="js/app.js?v=7"></script>
 </body>
 </html>

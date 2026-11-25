@@ -928,6 +928,10 @@ body.cal-mode .map-pin:active {
   transform-origin: 50% 50%;
   transition: filter 0.15s ease, opacity 0.2s ease;
   z-index: 30;
+  /* 深色底盘：浅色（迷宫/沙漠）底图上金色图标也能看清 */
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(10, 7, 3, .42) 58%, rgba(10, 7, 3, .28) 100%);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, .42);
 }
 
 .map-pin:hover {
@@ -1529,7 +1533,7 @@ body.cal-mode .map-pin:active {
   transform-origin: 0 0;
   will-change: transform;
 }
-.region-world img {
+#regionImg {
   width: 100%;
   height: 100%;
   display: block;
@@ -2157,3 +2161,153 @@ body.side-collapsed .world-caption { left: 64px; }
 
 
 
+
+/* ==========================================================================
+   分类树 V1：大分类 + 双列小分类（TOTKmap 式组按钮）
+   ========================================================================== */
+.cat-list { padding: 2px 8px 12px; }
+
+.cat-group { margin-bottom: 2px; }
+
+.cat-group-head {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 5px 2px 3px;
+}
+
+.cat-group-toggle {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  background: none;
+  border: none;
+  padding: 2px 4px;
+  color: var(--gold);
+  font-size: 11.5px;
+  font-weight: 700;
+  letter-spacing: .4px;
+  cursor: pointer;
+  text-align: left;
+}
+
+.cg-caret { font-size: 9px; color: var(--text-mute); transition: transform .15s; }
+.cat-group-toggle.closed .cg-caret { transform: rotate(-90deg); }
+.cg-name { flex: 1; }
+.cg-total {
+  font-size: 10px;
+  color: var(--text-mute);
+  font-family: monospace;
+  background: #110905;
+  border: 1px solid rgba(255, 255, 255, .08);
+  border-radius: 8px;
+  padding: 1px 6px;
+}
+
+.cat-group-acts { display: flex; gap: 2px; }
+.cat-group-acts button {
+  font-size: 9.5px;
+  padding: 2px 5px;
+  border-radius: 5px;
+  border: 1px solid rgba(255, 255, 255, .08);
+  background: #1b100a;
+  color: var(--text-mute);
+  cursor: pointer;
+}
+.cat-group-acts button:hover { color: var(--gold); border-color: rgba(234, 179, 8, .4); }
+
+.cat-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2px 4px;
+}
+
+.cat-item {
+  gap: 5px;
+  padding: 4px 5px;
+  margin-bottom: 0;
+  border-radius: 6px;
+  min-height: 30px;
+}
+.cat-item input[type="checkbox"] { width: 11px; height: 11px; flex: 0 0 11px; margin: 0; }
+.cat-icon-slot { width: 20px; height: 20px; flex: 0 0 20px; }
+.cat-icon-slot .oot-pin-img, .cat-icon-slot .oot-pin-svg { display: block; }
+.cat-name { font-size: 10.5px; line-height: 1.2; }
+.cat-badge {
+  font-size: 9.5px;
+  padding: 1px 4px;
+  border-radius: 7px;
+  min-width: 16px;
+  text-align: center;
+  flex: 0 0 auto;
+}
+.cat-item:not(.active) { opacity: .5; }
+
+/* 官方图标点位 */
+.oot-pin-img {
+  display: block;
+  image-rendering: auto;
+  filter: drop-shadow(0 2px 3px rgba(0, 0, 0, .65));
+  pointer-events: none;
+}
+.map-pin.done { opacity: .62; filter: grayscale(.25); }
+
+/* 详情卡：位置 / 怎么拿 / 奖励 / 备注 / 坐标 */
+.card-loc-row {
+  display: flex;
+  gap: 8px;
+  font-size: 11.5px;
+  color: var(--text-dim);
+  margin-bottom: 8px;
+}
+.info-label { color: var(--text-mute); flex: 0 0 auto; }
+.info-val { color: var(--text-main); overflow-wrap: anywhere; }
+
+.card-block {
+  background: rgba(255, 255, 255, .035);
+  border-left: 2px solid rgba(234, 179, 8, .55);
+  border-radius: 6px;
+  padding: 7px 9px;
+  margin-bottom: 8px;
+}
+.block-label {
+  font-size: 10px;
+  color: var(--gold);
+  font-weight: 700;
+  letter-spacing: .5px;
+  margin-bottom: 3px;
+}
+.block-text {
+  font-size: 12px;
+  line-height: 1.55;
+  color: var(--text-main);
+  overflow-wrap: anywhere;
+}
+
+.card-coord-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 8px;
+  padding-top: 8px;
+  border-top: 1px dashed rgba(255, 255, 255, .08);
+}
+.coord-val { flex: 1; font-family: monospace; font-size: 10.5px; color: var(--text-mute); }
+.coord-copy {
+  font-size: 10px;
+  padding: 3px 8px;
+  border-radius: 5px;
+  border: 1px solid rgba(234, 179, 8, .3);
+  background: rgba(234, 179, 8, .1);
+  color: var(--gold);
+  cursor: pointer;
+}
+.coord-copy:hover { background: rgba(234, 179, 8, .2); }
+
+@media (max-width: 600px) {
+  .cat-name { font-size: 10px; }
+  .cat-icon-slot { width: 18px; height: 18px; flex: 0 0 18px; }
+  .card-block { padding: 6px 8px; }
+  .block-text { font-size: 11.5px; }
+}

@@ -1,0 +1,1820 @@
+{
+  "_doc": "P2 人工维护点位（攻略口径）。由 tools/extract_romfs_pins.py 合并进 pins_data.js；不要手改 pins_data.js。world 为游戏世界坐标 [x,y,z]，uv 为百分比覆盖（二者取一）。dungeon=true 时 area 为迷宫场景、floor 为楼层。",
+  "points": [
+    {
+      "id": "song-zelda",
+      "cat": "song",
+      "zh": "塞尔达摇篮曲",
+      "en": "Zelda's Lullaby",
+      "area": "HyruleCastle",
+      "uv": [
+        30,
+        12
+      ],
+      "era": "Child",
+      "time": "Any",
+      "howto": "幼年潜入海拉鲁城堡，在中庭草坪与塞尔达对话后，由英帕传授。",
+      "reward": "解王族纹章机关、召唤大妖精的通用曲",
+      "note": "城堡中庭即地图上方的大草坪。"
+    },
+    {
+      "id": "song-epona",
+      "cat": "song",
+      "zh": "伊波娜之歌",
+      "en": "Epona's Song",
+      "area": "LonLonRanch",
+      "world": [
+        -53.6,
+        150.7,
+        197.8
+      ],
+      "era": "Child",
+      "time": "Any",
+      "howto": "幼年到荣蓉牧场找玛蓉对话，听她吹奏后习得。",
+      "reward": "成年后可召唤伊波娜骑乘",
+      "note": "先陪玛蓉玩小游戏可加快进度。",
+      "uvOffset": [
+        -2.0,
+        -1.6
+      ]
+    },
+    {
+      "id": "song-saria",
+      "cat": "song",
+      "zh": "莎莉亚之歌",
+      "en": "Saria's Song",
+      "area": "SacredForestMeadow",
+      "world": [
+        -2.2,
+        114.4,
+        -101.1
+      ],
+      "era": "Child",
+      "time": "Any",
+      "howto": "幼年穿过迷失森林抵达森之圣域，与莎莉亚对话习得。",
+      "reward": "随时联络莎莉亚获取提示；骷髅小子合奏要用"
+    },
+    {
+      "id": "song-sun",
+      "cat": "song",
+      "zh": "太阳之歌",
+      "en": "Sun's Song",
+      "area": "Graveyard",
+      "world": [
+        53.0,
+        100.0,
+        2.6
+      ],
+      "era": "Both",
+      "time": "Any",
+      "howto": "在王族墓穴门前的三角神力纹章上吹塞尔达摇篮曲，进入后对石碑吹奏习得。",
+      "req": "塞尔达摇篮曲",
+      "reward": "昼夜切换（白天变夜晚、夜晚变白天）",
+      "note": "王族墓穴在墓地东侧尽头。"
+    },
+    {
+      "id": "song-time",
+      "cat": "song",
+      "zh": "时之歌",
+      "en": "Song of Time",
+      "area": "HyruleCastle",
+      "uv": [
+        57,
+        86
+      ],
+      "era": "Child",
+      "time": "Any",
+      "howto": "幼年看完城堡中庭剧情后，到城堡护城河拾取塞尔达的信，读信习得。",
+      "reward": "开启时之神殿封印、吹奏时之歌",
+      "note": "信漂在护城河水面上，靠近拾取。"
+    },
+    {
+      "id": "song-storms",
+      "cat": "song",
+      "zh": "暴风雨之歌",
+      "en": "Song of Storms",
+      "area": "KakarikoVillage",
+      "world": [
+        1.5,
+        107.6,
+        43.9
+      ],
+      "era": "Adult",
+      "time": "Any",
+      "howto": "成年进入卡卡利科风车小屋，与音乐叔叔对话习得（时间悖论）。",
+      "reward": "召唤暴雨；幼年在井边吹可提前打开井底"
+    },
+    {
+      "id": "song-minuet",
+      "cat": "song",
+      "zh": "森之小步舞曲",
+      "en": "Minuet of Forest",
+      "area": "SacredForestMeadow",
+      "world": [
+        -2.2,
+        105.0,
+        -101.1
+      ],
+      "era": "Adult",
+      "time": "Any",
+      "howto": "成年到森之圣域，希克在森之神殿前传授。",
+      "reward": "森之神殿传送曲",
+      "uvOffset": [
+        0,
+        3.2
+      ]
+    },
+    {
+      "id": "song-bolero",
+      "cat": "song",
+      "zh": "火之波丽露舞曲",
+      "en": "Bolero of Fire",
+      "area": "DeathMountainCrater",
+      "world": [
+        0.4,
+        111.4,
+        -8.7
+      ],
+      "era": "Adult",
+      "time": "Any",
+      "howto": "成年到死亡山火山口，希克在火之神殿前传授。",
+      "reward": "火之神殿传送曲",
+      "uvOffset": [
+        0,
+        -3.0
+      ]
+    },
+    {
+      "id": "song-serenade",
+      "cat": "song",
+      "zh": "水之小夜曲",
+      "en": "Serenade of Water",
+      "area": "IceCavern",
+      "dungeon": true,
+      "floor": "1F",
+      "world": [
+        -47.7,
+        97.4,
+        78.2
+      ],
+      "era": "Adult",
+      "time": "Any",
+      "howto": "成年进入冰之洞窟，希克在入口冰道处传授。",
+      "reward": "水之神殿传送曲"
+    },
+    {
+      "id": "song-nocturne",
+      "cat": "song",
+      "zh": "暗之梦幻曲",
+      "en": "Nocturne of Shadow",
+      "area": "KakarikoVillage",
+      "world": [
+        -29.0,
+        99.4,
+        44.2
+      ],
+      "era": "Adult",
+      "time": "Any",
+      "howto": "成年回到卡卡利科村，希克在村中央传授。",
+      "reward": "暗之神殿传送曲"
+    },
+    {
+      "id": "song-requiem",
+      "cat": "song",
+      "zh": "魂之慰灵曲",
+      "en": "Requiem of Spirit",
+      "area": "DesertColossus",
+      "world": [
+        -160.9,
+        96.1,
+        10.3
+      ],
+      "era": "Adult",
+      "time": "Any",
+      "howto": "成年穿过幻影沙漠到巨大邪神像前，希克传授。",
+      "reward": "魂之神殿传送曲"
+    },
+    {
+      "id": "song-prelude",
+      "cat": "song",
+      "zh": "光之前奏曲",
+      "en": "Prelude of Light",
+      "area": "Market",
+      "uv": [
+        86,
+        22
+      ],
+      "era": "Adult",
+      "time": "Any",
+      "howto": "成年在时之神殿内由希克传授。",
+      "reward": "光之前奏曲（可传送至时之神殿）",
+      "note": "时之神殿在城邑东北侧。"
+    },
+    {
+      "id": "song-scarecrow",
+      "cat": "song",
+      "zh": "稻草人之歌",
+      "en": "Scarecrow's Song",
+      "area": "LakeHylia",
+      "world": [
+        -108.8,
+        132.4,
+        439.2
+      ],
+      "era": "Child",
+      "time": "Any",
+      "howto": "幼年在海利亚湖畔找到稻草人波努鲁，吹一段自定义曲调让他记住。",
+      "req": "幼年先教，成年后用同一曲调",
+      "reward": "成年可在各地稻草人处召唤钩索锚点",
+      "note": "曲调由 8 个音符自由组合。"
+    },
+    {
+      "id": "bottle-potion",
+      "cat": "bottle",
+      "zh": "药铺借瓶",
+      "en": "Market Potion Shop Bottle",
+      "area": "Market",
+      "world": [
+        20.6,
+        112.2,
+        5.4
+      ],
+      "era": "Child",
+      "time": "Night",
+      "howto": "城邑药水店：借店主的瓶子，夜晚到后巷抓回逃跑的虫。",
+      "reward": "空瓶 ×1",
+      "note": "必须夜晚，虫在后巷乱窜。"
+    },
+    {
+      "id": "bottle-cucco",
+      "cat": "bottle",
+      "zh": "咕咕鸡围栏",
+      "en": "Kakariko Cucco Bottle",
+      "area": "KakarikoVillage",
+      "world": [
+        -17.0,
+        102.0,
+        68.4
+      ],
+      "era": "Child",
+      "time": "Any",
+      "howto": "把村里 7 只咕咕鸡全部抱回围栏（别让它们掉进井）。",
+      "reward": "空瓶 ×1"
+    },
+    {
+      "id": "bottle-supercucco",
+      "cat": "bottle",
+      "zh": "超级咕咕鸡",
+      "en": "Super Cucco Bottle",
+      "area": "LonLonRanch",
+      "world": [
+        -53.6,
+        150.7,
+        197.8
+      ],
+      "era": "Child",
+      "time": "Any",
+      "howto": "与塔隆玩「找超级咕咕鸡」，30 秒内找出 3 只指定鸡。",
+      "reward": "空瓶 ×1（装隆隆牛奶）"
+    },
+    {
+      "id": "bottle-ruto",
+      "cat": "bottle",
+      "zh": "露朵的信",
+      "en": "Ruto's Letter Bottle",
+      "area": "ZoraDomain",
+      "world": [
+        67.3,
+        118.9,
+        15.6
+      ],
+      "era": "Child",
+      "time": "Any",
+      "howto": "在加卜加卜腹中得到装信的瓶子，把露朵的信交给佐拉王。",
+      "reward": "空瓶 ×1",
+      "note": "信瓶交给佐拉王后瓶子归你。"
+    },
+    {
+      "id": "bottle-poe",
+      "cat": "bottle",
+      "zh": "大魄收购屋",
+      "en": "Poe Collector Bottle",
+      "area": "Market",
+      "world": [
+        12.5,
+        111.9,
+        57.0
+      ],
+      "era": "Adult",
+      "time": "Night",
+      "howto": "成年夜晚骑伊波娜在平原抓大怨灵装瓶，卖给城邑幽灵商店累计 500 点。",
+      "reward": "空瓶 ×1（第 5 瓶）",
+      "note": "累计 10 只可再换金卢比 200。"
+    },
+    {
+      "id": "mask-keaton",
+      "cat": "mask",
+      "zh": "奇坦面具",
+      "en": "Keaton Mask",
+      "area": "KakarikoVillage",
+      "world": [
+        -39.4,
+        110.3,
+        -28.3
+      ],
+      "era": "Child",
+      "time": "Any",
+      "howto": "先在城邑面具店借出奇坦面具，到卡卡利科村北口卖给守卫。",
+      "reward": "15 卢比（还回店后可借下一张）"
+    },
+    {
+      "id": "mask-skull",
+      "cat": "mask",
+      "zh": "骷髅面具",
+      "en": "Skull Mask",
+      "area": "LostWood",
+      "world": [
+        3.8,
+        83.8,
+        -47.5
+      ],
+      "era": "Child",
+      "time": "Any",
+      "howto": "借出骷髅面具，到迷失森林找骷髅小子卖出。",
+      "reward": "10 卢比",
+      "note": "骷髅小子在森林舞台一带。",
+      "uvOffset": [
+        0,
+        -2.6
+      ]
+    },
+    {
+      "id": "mask-spooky",
+      "cat": "mask",
+      "zh": "恐怖面具",
+      "en": "Spooky Mask",
+      "area": "Graveyard",
+      "world": [
+        42.5,
+        104.6,
+        7.0
+      ],
+      "era": "Child",
+      "time": "Night",
+      "howto": "借出恐怖面具，夜晚到墓地卖给看墓的小男孩。",
+      "reward": "50 卢比"
+    },
+    {
+      "id": "mask-bunny",
+      "cat": "mask",
+      "zh": "兔子头箍",
+      "en": "Bunny Hood",
+      "area": "HyruleField",
+      "uv": [
+        52,
+        58
+      ],
+      "era": "Child",
+      "time": "Day",
+      "howto": "借出兔子头箍，到海拉鲁平原找绕圈奔跑的跑步男卖出。",
+      "reward": "200 卢比（最贵的一张）",
+      "note": "他一直在平原上跑，追不上就在路口堵。"
+    },
+    {
+      "id": "mask-truth",
+      "cat": "mask",
+      "zh": "真实面具",
+      "en": "Mask of Truth",
+      "area": "Market",
+      "world": [
+        9.0,
+        110.3,
+        -17.7
+      ],
+      "era": "Child",
+      "time": "Any",
+      "howto": "把前四张面具全部卖出并还清欠款后，店主把真实面具借给你。",
+      "reward": "真实面具（不卖；戴上可读八卦石、看破幻影）",
+      "note": "面具链最后一步，别提前还钱。"
+    },
+    {
+      "id": "medal-emerald",
+      "cat": "medal",
+      "zh": "科奇里翡翠",
+      "en": "Kokiri's Emerald",
+      "area": "InsideTheDekuTree",
+      "dungeon": true,
+      "floor": "B2",
+      "world": [
+        -29.0,
+        53.0,
+        46.6
+      ],
+      "uvOffset": [
+        0,
+        -2.6
+      ],
+      "era": "Child",
+      "time": "Any",
+      "howto": "在德库树体内击败 Boss 哥马后取得。",
+      "reward": "科奇里翡翠（三精灵石之一）"
+    },
+    {
+      "id": "medal-ruby",
+      "cat": "medal",
+      "zh": "鼓隆红宝石",
+      "en": "Goron's Ruby",
+      "area": "DodongoCavern",
+      "dungeon": true,
+      "floor": "0F",
+      "world": [
+        10.3,
+        92.4,
+        -77.8
+      ],
+      "uvOffset": [
+        0,
+        -2.6
+      ],
+      "era": "Child",
+      "time": "Any",
+      "howto": "在多东哥洞窟击败 Boss 多东哥王后取得。",
+      "reward": "鼓隆红宝石（三精灵石之一）"
+    },
+    {
+      "id": "medal-sapphire",
+      "cat": "medal",
+      "zh": "卓拉蓝宝石",
+      "en": "Zora's Sapphire",
+      "area": "InsideJabuJabuBelly",
+      "dungeon": true,
+      "floor": "2F",
+      "world": [
+        41.9,
+        102.1,
+        -92.7
+      ],
+      "uvOffset": [
+        0,
+        -2.6
+      ],
+      "era": "Child",
+      "time": "Any",
+      "howto": "在加卜加卜腹中击败 Boss 啪哩内德取得。",
+      "reward": "卓拉蓝宝石（三精灵石之一）"
+    },
+    {
+      "id": "medal-light",
+      "cat": "medal",
+      "zh": "光之勋章",
+      "en": "Light Medallion",
+      "area": "Market",
+      "uv": [
+        86,
+        20
+      ],
+      "era": "Adult",
+      "time": "Any",
+      "howto": "成年首次进入时之神殿，由劳鲁授予。",
+      "reward": "光之勋章"
+    },
+    {
+      "id": "medal-forest",
+      "cat": "medal",
+      "zh": "森之勋章",
+      "en": "Forest Medallion",
+      "area": "ForestTemple",
+      "dungeon": true,
+      "floor": "B2",
+      "world": [
+        0.0,
+        59.5,
+        -40.9
+      ],
+      "uvOffset": [
+        0,
+        -2.6
+      ],
+      "era": "Adult",
+      "time": "Any",
+      "howto": "在森之神殿击败 Boss 幻影加侬取得。",
+      "reward": "森之勋章"
+    },
+    {
+      "id": "medal-fire",
+      "cat": "medal",
+      "zh": "火之勋章",
+      "en": "Fire Medallion",
+      "area": "FireTemple",
+      "dungeon": true,
+      "floor": "0F",
+      "world": [
+        -39.0,
+        105.0,
+        0.0
+      ],
+      "uvOffset": [
+        0,
+        -2.6
+      ],
+      "era": "Adult",
+      "time": "Any",
+      "howto": "在火之神殿击败 Boss 瓦尔巴基亚取得。",
+      "reward": "火之勋章"
+    },
+    {
+      "id": "medal-water",
+      "cat": "medal",
+      "zh": "水之勋章",
+      "en": "Water Medallion",
+      "area": "WaterTemple",
+      "dungeon": true,
+      "floor": "3F",
+      "world": [
+        -4.5,
+        131.4,
+        -71.2
+      ],
+      "uvOffset": [
+        0,
+        -2.6
+      ],
+      "era": "Adult",
+      "time": "Any",
+      "howto": "在水之神殿击败 Boss 魔发取得。",
+      "reward": "水之勋章"
+    },
+    {
+      "id": "medal-shadow",
+      "cat": "medal",
+      "zh": "暗之勋章",
+      "en": "Shadow Medallion",
+      "area": "ShadowTemple",
+      "dungeon": true,
+      "floor": "B4",
+      "world": [
+        -138.5,
+        42.0,
+        19.1
+      ],
+      "uvOffset": [
+        0,
+        -2.6
+      ],
+      "era": "Adult",
+      "time": "Any",
+      "howto": "在暗之神殿击败 Boss 崩鼓崩鼓取得。",
+      "reward": "暗之勋章"
+    },
+    {
+      "id": "medal-spirit",
+      "cat": "medal",
+      "zh": "魂之勋章",
+      "en": "Spirit Medallion",
+      "area": "SpiritTemple",
+      "dungeon": true,
+      "floor": "2F",
+      "world": [
+        0.0,
+        135.0,
+        -76.7
+      ],
+      "uvOffset": [
+        0,
+        -2.6
+      ],
+      "era": "Adult",
+      "time": "Any",
+      "howto": "在魂之神殿击败 Boss 双子妖婆取得。",
+      "reward": "魂之勋章"
+    },
+    {
+      "id": "owl-stone",
+      "cat": "owl",
+      "zh": "猫头鹰石像",
+      "en": "Owl Statue (Stone)",
+      "area": "KokiriForest",
+      "world": [
+        -44.7,
+        112.0,
+        15.6
+      ],
+      "uvOffset": [
+        -1.6,
+        0
+      ],
+      "era": "Adult",
+      "time": "Any",
+      "howto": "在万魔殿通过「三块精灵石」连战试炼。",
+      "req": "集齐三精灵石，能进入万魔殿",
+      "reward": "石像送到科奇里森林林克家陈列",
+      "note": "三种试炼各有一次首通奖励。"
+    },
+    {
+      "id": "owl-silver",
+      "cat": "owl",
+      "zh": "猫头鹰银像",
+      "en": "Owl Statue (Silver)",
+      "area": "KokiriForest",
+      "world": [
+        -44.7,
+        112.0,
+        15.6
+      ],
+      "era": "Adult",
+      "time": "Any",
+      "howto": "在万魔殿通过「五贤者的觉醒」连战试炼。",
+      "req": "打倒五座神殿头目",
+      "reward": "银像送到林克家",
+      "note": "五神殿 = 森/火/水/暗/魂。"
+    },
+    {
+      "id": "owl-gold",
+      "cat": "owl",
+      "zh": "猫头鹰金像",
+      "en": "Owl Statue (Gold)",
+      "area": "KokiriForest",
+      "world": [
+        -44.7,
+        112.0,
+        15.6
+      ],
+      "uvOffset": [
+        1.6,
+        0
+      ],
+      "era": "Adult",
+      "time": "Any",
+      "howto": "在万魔殿通过「时之勇者的觉醒～决战」连战。",
+      "req": "通关主线",
+      "reward": "金像送到林克家",
+      "note": "三座像都在林克家屋内。"
+    },
+    {
+      "id": "soil-zora-river",
+      "cat": "soil",
+      "zh": "佐拉河 · 豆商旁",
+      "en": "Zora River Soft Soil",
+      "area": "ZoraRiver",
+      "world": [
+        -52.5,
+        100.4,
+        -14.4
+      ],
+      "era": "Child",
+      "time": "Any",
+      "howto": "幼年在魔豆商人旁的土地播下魔法豆；成年回来乘豆叶上升。",
+      "req": "魔法豆（首颗 10 卢比）",
+      "reward": "豆叶平台上的心之碎片 / 卢比"
+    },
+    {
+      "id": "soil-kokiri-shop",
+      "cat": "soil",
+      "zh": "科奇里森林 · 商店后",
+      "en": "Kokiri Forest Soft Soil",
+      "area": "KokiriForest",
+      "world": [
+        -2.5,
+        120.8,
+        -23.5
+      ],
+      "era": "Child",
+      "time": "Any",
+      "howto": "幼年在科奇里商店后方的土地播豆；成年乘豆叶取物。",
+      "req": "魔法豆",
+      "reward": "豆叶上的卢比 / 补给"
+    },
+    {
+      "id": "soil-lostwood-bridge",
+      "cat": "soil",
+      "zh": "迷失森林 · 桥边",
+      "en": "Lost Woods Bridge Soft Soil",
+      "area": "LostWood",
+      "world": [
+        -31.1,
+        95.4,
+        49.5
+      ],
+      "era": "Child",
+      "time": "Any",
+      "howto": "幼年在迷失森林桥边的土地播豆；成年乘豆叶取物。",
+      "req": "魔法豆",
+      "reward": "豆叶上的心之碎片"
+    },
+    {
+      "id": "soil-lostwood-stage",
+      "cat": "soil",
+      "zh": "迷失森林 · 森林舞台洞口",
+      "en": "Forest Stage Soft Soil",
+      "area": "LostWood",
+      "world": [
+        3.8,
+        83.8,
+        -47.5
+      ],
+      "era": "Child",
+      "time": "Any",
+      "howto": "幼年在森林舞台洞口的土地播豆；成年乘豆叶取物。",
+      "req": "魔法豆",
+      "reward": "豆叶上的卢比"
+    },
+    {
+      "id": "soil-graveyard-dampe",
+      "cat": "soil",
+      "zh": "卡卡利科墓地 · 丹培墓左侧",
+      "en": "Graveyard Soft Soil",
+      "area": "Graveyard",
+      "world": [
+        -12.0,
+        100.8,
+        20.0
+      ],
+      "era": "Child",
+      "time": "Any",
+      "howto": "幼年在丹培墓左侧的土地播豆；成年乘豆叶取物。",
+      "req": "魔法豆",
+      "reward": "豆叶上的心之碎片"
+    },
+    {
+      "id": "soil-dodongo-entrance",
+      "cat": "soil",
+      "zh": "死亡山山道 · 多东哥洞穴入口旁",
+      "en": "Dodongo Entrance Soft Soil",
+      "area": "DeathMountainTrail",
+      "world": [
+        -50.8,
+        108.7,
+        -21.3
+      ],
+      "era": "Child",
+      "time": "Any",
+      "howto": "幼年在多东哥洞穴入口旁的土地播豆；成年乘豆叶取物。",
+      "req": "魔法豆",
+      "reward": "豆叶上的心之碎片"
+    },
+    {
+      "id": "soil-crater-warp",
+      "cat": "soil",
+      "zh": "死亡山火山口 · 传送台旁",
+      "en": "Crater Warp Soft Soil",
+      "area": "DeathMountainCrater",
+      "world": [
+        0.4,
+        111.4,
+        -8.7
+      ],
+      "era": "Child",
+      "time": "Any",
+      "howto": "幼年在火山口传送台旁的土地播豆；成年乘豆叶取物。",
+      "req": "魔法豆",
+      "reward": "豆叶上的卢比"
+    },
+    {
+      "id": "soil-lake-lab",
+      "cat": "soil",
+      "zh": "海利亚湖 · 湖畔研究所旁",
+      "en": "Lakeside Lab Soft Soil",
+      "area": "LakeHylia",
+      "uv": [
+        53,
+        20
+      ],
+      "era": "Child",
+      "time": "Any",
+      "howto": "幼年在湖畔研究所旁的土地播豆；成年乘豆叶取物。",
+      "req": "魔法豆",
+      "reward": "豆叶上的心之碎片"
+    },
+    {
+      "id": "soil-gerudo-bridge",
+      "cat": "soil",
+      "zh": "格鲁德峡谷 · 桥下",
+      "en": "Gerudo Valley Bridge Soft Soil",
+      "area": "GerudoValley",
+      "world": [
+        57.5,
+        97.5,
+        7.5
+      ],
+      "era": "Child",
+      "time": "Any",
+      "howto": "幼年走到格鲁德峡谷大桥下方，在土地播豆；成年乘豆叶取物。",
+      "req": "魔法豆",
+      "reward": "豆叶上的心之碎片"
+    },
+    {
+      "id": "soil-spirit-entrance",
+      "cat": "soil",
+      "zh": "沙漠巨像 · 魂之神殿入口旁",
+      "en": "Spirit Temple Soft Soil",
+      "area": "DesertColossus",
+      "world": [
+        -160.9,
+        96.1,
+        10.3
+      ],
+      "era": "Child",
+      "time": "Any",
+      "howto": "幼年在魂之神殿入口旁的土地播豆；成年乘豆叶取物。",
+      "req": "魔法豆",
+      "reward": "豆叶上的心之碎片"
+    },
+    {
+      "id": "ki-stick",
+      "cat": "keyitem",
+      "zh": "德库木棒",
+      "en": "Deku Stick",
+      "area": "KokiriForest",
+      "world": [
+        -2.48,
+        120.79,
+        -23.5
+      ],
+      "uvOffset": [
+        1.8,
+        1.8
+      ],
+      "era": "Child",
+      "time": "Any",
+      "howto": "在科奇里商店花 10 卢比买一捆（上限 10/20/30 随袋升级）。",
+      "req": "10 卢比",
+      "reward": "德库木棒 ×1 捆",
+      "note": "可点燃火把、当临时武器；雨天/水中会熄灭。"
+    },
+    {
+      "id": "ki-nut",
+      "cat": "keyitem",
+      "zh": "德库坚果",
+      "en": "Deku Nut",
+      "area": "KokiriForest",
+      "world": [
+        -2.48,
+        120.79,
+        -23.5
+      ],
+      "uvOffset": [
+        -1.8,
+        1.8
+      ],
+      "era": "Child",
+      "time": "Any",
+      "howto": "科奇里商店购买，或打德库巴巴掉落补给。",
+      "req": "5 卢比",
+      "reward": "德库坚果 ×5",
+      "note": "闪光弹效果，可定住敌人；对蜘蛛、骷髅怪有效。"
+    },
+    {
+      "id": "ki-fairy-ocarina",
+      "cat": "keyitem",
+      "zh": "妖精之笛",
+      "en": "Fairy Ocarina",
+      "area": "KokiriForest",
+      "world": [
+        -29.5,
+        114,
+        5.9
+      ],
+      "uvOffset": [
+        0,
+        -2.2
+      ],
+      "era": "Child",
+      "time": "Any",
+      "howto": "走出科奇里森林吊桥时莎莉亚追上赠送，同时得到莎莉亚之歌。",
+      "req": "",
+      "reward": "妖精之笛 + 莎莉亚之歌",
+      "note": "三天后换成正牌时之笛；在此之前是唯一能吹奏的乐器。"
+    },
+    {
+      "id": "ki-ocarina-time",
+      "cat": "keyitem",
+      "zh": "时之笛",
+      "en": "Ocarina of Time",
+      "area": "HyruleCastle",
+      "uv": [
+        57,
+        86
+      ],
+      "uvOffset": [
+        1.8,
+        0
+      ],
+      "era": "Child",
+      "time": "Any",
+      "howto": "幼年从城下町护城河潜入城堡庭院，遇见塞尔达后由英帕带出，塞尔达投来时之笛。",
+      "req": "先取得妖精之笛",
+      "reward": "时之笛（可吹全部曲目）",
+      "note": "与「时之歌」同点，已右移错开。"
+    },
+    {
+      "id": "ki-bombchu",
+      "cat": "keyitem",
+      "zh": "炸弹鼠",
+      "en": "Bombchu",
+      "area": "Market",
+      "world": [
+        -25.04,
+        116.72,
+        7.56
+      ],
+      "uvOffset": [
+        1.4,
+        -1.8
+      ],
+      "era": "Child",
+      "time": "Night",
+      "howto": "城下町炸弹鼠保龄球馆：一局 10 发，全中或打倒 20 个以上可获奖；也可在炸弹鼠专卖店买。",
+      "req": "30 卢比/局",
+      "reward": "炸弹鼠 ×10 / 炸弹鼠袋",
+      "note": "能爬墙钻洞，是取心之碎片与开暗道的万能钥匙。"
+    },
+    {
+      "id": "ki-bean",
+      "cat": "keyitem",
+      "zh": "魔法豆",
+      "en": "Magic Bean",
+      "area": "ZoraRiver",
+      "world": [
+        -52.5,
+        100.4,
+        -14.4
+      ],
+      "uvOffset": [
+        0,
+        2.2
+      ],
+      "era": "Child",
+      "time": "Any",
+      "howto": "佐拉河豆商处 10 卢比买 1 颗，幼年买齐 10 颗后成年全部长成豆叶。",
+      "req": "10 卢比/颗",
+      "reward": "魔法豆 ×1（上限 10）",
+      "note": "与豆田土点同坐标，已下移错开；成年人乘豆叶上台。"
+    },
+    {
+      "id": "ki-hookshot",
+      "cat": "keyitem",
+      "zh": "钩索",
+      "en": "Hookshot",
+      "area": "Graveyard",
+      "world": [
+        -12,
+        100.8,
+        20
+      ],
+      "uvOffset": [
+        1.8,
+        0
+      ],
+      "era": "Adult",
+      "time": "Any",
+      "howto": "与丹培赛跑（从墓园跑到他小屋）赢两次后，他倒地赠送钩索。",
+      "req": "先拿到丹培的掘墓之旅",
+      "reward": "钩索",
+      "note": "可拉向木箱、藤蔓、铁网；成年后拿长钩索再升级。"
+    },
+    {
+      "id": "ki-fire-arrow",
+      "cat": "keyitem",
+      "zh": "火箭",
+      "en": "Fire Arrow",
+      "area": "LakeHylia",
+      "uv": [
+        56,
+        52
+      ],
+      "era": "Adult",
+      "time": "Any",
+      "howto": "成年站在湖畔码头，把箭射向日出方向的太阳，箭落在湖心岛，游过去拾取。",
+      "req": "弓",
+      "reward": "火箭",
+      "note": "点火把、烧蛛网、融冰；湖心岛位置以图为准。"
+    },
+    {
+      "id": "ki-ice-arrow",
+      "cat": "keyitem",
+      "zh": "冰箭",
+      "en": "Ice Arrow",
+      "area": "GerudoFortress",
+      "world": [
+        5.21,
+        110.23,
+        3.21
+      ],
+      "uvOffset": [
+        1.6,
+        -1.6
+      ],
+      "era": "Adult",
+      "time": "Any",
+      "howto": "通关格鲁德训练场全部房间（用真实眼镜看隐藏通道），最后宝箱给冰箭。",
+      "req": "弓 + 真实眼镜",
+      "reward": "冰箭",
+      "note": "冻敌、造冰台；与训练场入口同点，已错开。"
+    },
+    {
+      "id": "ki-light-arrow",
+      "cat": "keyitem",
+      "zh": "光箭",
+      "en": "Light Arrow",
+      "area": "Market",
+      "uv": [
+        86,
+        20
+      ],
+      "uvOffset": [
+        0,
+        3.2
+      ],
+      "era": "Adult",
+      "time": "Any",
+      "howto": "成年集齐六贤者后回到时之神殿，希克授予光箭。",
+      "req": "六贤者全部觉醒",
+      "reward": "光箭",
+      "note": "与光之勋章同点，已下移错开；最终战必备。"
+    },
+    {
+      "id": "npc-dekutree",
+      "cat": "npc",
+      "zh": "德库树长老",
+      "en": "Great Deku Tree",
+      "area": "KokiriForest",
+      "world": [
+        103,
+        109.5,
+        -29.6
+      ],
+      "era": "Child",
+      "time": "Any",
+      "howto": "科奇里森林中央的大树，入口在树洞；幼年开场迷宫。",
+      "req": "",
+      "reward": "妖精弹弓、心之容器、精灵石",
+      "note": "树内长老本体不单独建模，落在树外坐标。"
+    },
+    {
+      "id": "npc-mido",
+      "cat": "npc",
+      "zh": "米多",
+      "en": "Mido",
+      "area": "KokiriForest",
+      "world": [
+        25.5,
+        111.6,
+        0.9
+      ],
+      "era": "Child",
+      "time": "Any",
+      "howto": "村中路中央挡道，需先在训练场拿到剑与盾才放行去德库树。",
+      "req": "",
+      "reward": "通行许可",
+      "note": "成年后可在迷失森林再遇。"
+    },
+    {
+      "id": "npc-saria",
+      "cat": "npc",
+      "zh": "莎莉亚",
+      "en": "Saria",
+      "area": "KokiriForest",
+      "world": [
+        -29.5,
+        114,
+        5.9
+      ],
+      "uvOffset": [
+        0,
+        2.2
+      ],
+      "era": "Child",
+      "time": "Any",
+      "howto": "村口吊桥处，出门时赠送妖精之笛与莎莉亚之歌。",
+      "req": "",
+      "reward": "妖精之笛 + 莎莉亚之歌",
+      "note": "与「妖精之笛」同点，已上移错开；成年在圣域再见。"
+    },
+    {
+      "id": "npc-zelda",
+      "cat": "npc",
+      "zh": "塞尔达",
+      "en": "Princess Zelda",
+      "area": "HyruleCastle",
+      "uv": [
+        28.3,
+        13.2
+      ],
+      "era": "Child",
+      "time": "Any",
+      "howto": "幼年潜入城堡庭院，从护城河一侧翻入花园即触发剧情。",
+      "req": "潜入城堡",
+      "reward": "时之笛、光之勋章任务线",
+      "note": "与「塞尔达摇篮曲」点相近，已错开。"
+    },
+    {
+      "id": "npc-impa",
+      "cat": "npc",
+      "zh": "英帕",
+      "en": "Impa",
+      "area": "HyruleCastle",
+      "uv": [
+        33,
+        10.8
+      ],
+      "era": "Child",
+      "time": "Any",
+      "howto": "城堡庭院剧情中带走塞尔达；之后在卡卡利科村与墓地出现。",
+      "req": "",
+      "reward": "剧情推进",
+      "note": "地图上为庭院内位置，实际沿城堡外墙巡逻。"
+    },
+    {
+      "id": "npc-malon",
+      "cat": "npc",
+      "zh": "玛蓉",
+      "en": "Malon",
+      "area": "LonLonRanch",
+      "world": [
+        -91.9,
+        150.6,
+        245.4
+      ],
+      "era": "Child",
+      "time": "Any",
+      "howto": "牧场入口附近，幼年可教她伊波娜之歌（需先有妖精之笛）。",
+      "req": "",
+      "reward": "伊波娜之歌",
+      "note": "成年后在城堡市场卖牛奶。"
+    },
+    {
+      "id": "npc-talon",
+      "cat": "npc",
+      "zh": "塔隆",
+      "en": "Talon",
+      "area": "LonLonRanch",
+      "world": [
+        -52.4,
+        150.7,
+        199.3
+      ],
+      "era": "Child",
+      "time": "Any",
+      "howto": "牧场屋前打盹，用咕咕鸡叫醒可触发小游戏与剧情。",
+      "req": "",
+      "reward": "超级咕咕鸡线索",
+      "note": "成年后被英戈赶出牧场。"
+    },
+    {
+      "id": "npc-ingo",
+      "cat": "npc",
+      "zh": "英戈",
+      "en": "Ingo",
+      "area": "LonLonRanch",
+      "world": [
+        -82.7,
+        150.6,
+        232.4
+      ],
+      "era": "Both",
+      "time": "Any",
+      "howto": "马厩旁，成年后接管牧场，赛马赢他可得伊波娜。",
+      "req": "成年 + 伊波娜之歌",
+      "reward": "伊波娜（赛马获胜）",
+      "note": "幼年时段他也在这里喂马。"
+    },
+    {
+      "id": "npc-dampe",
+      "cat": "npc",
+      "zh": "丹培",
+      "en": "Dampé",
+      "area": "Graveyard",
+      "world": [
+        -12,
+        100.8,
+        20
+      ],
+      "uvOffset": [
+        1.8,
+        0
+      ],
+      "era": "Both",
+      "time": "Any",
+      "howto": "墓地小屋，白天可玩掘墓之旅，成年后与其赛跑赢钩索。",
+      "req": "",
+      "reward": "钩索、心之碎片",
+      "note": "与「松软土地」同点，已右移错开。"
+    },
+    {
+      "id": "npc-ruto",
+      "cat": "npc",
+      "zh": "露朵",
+      "en": "Princess Ruto",
+      "area": "ZoraDomain",
+      "world": [
+        67.6,
+        119,
+        13.5
+      ],
+      "uvOffset": [
+        1.4,
+        -1.4
+      ],
+      "era": "Child",
+      "time": "Any",
+      "howto": "佐拉领地王座前，幼年请求找回佐拉蓝宝石；成年在水之神殿再遇。",
+      "req": "",
+      "reward": "佐拉蓝宝石",
+      "note": "与「露朵的信」瓶子点相邻，已错开。"
+    },
+    {
+      "id": "npc-kingzora",
+      "cat": "npc",
+      "zh": "佐拉王",
+      "en": "King Zora",
+      "area": "ZoraDomain",
+      "world": [
+        67.3,
+        118.9,
+        15.6
+      ],
+      "uvOffset": [
+        -1.4,
+        1.4
+      ],
+      "era": "Both",
+      "time": "Any",
+      "howto": "王座上的佐拉王，幼年堵住通往佐拉之泉的路；出示露朵的信后让路。",
+      "req": "露朵的信",
+      "reward": "佐拉之泉通行、心之碎片",
+      "note": "与露朵点重叠，已错开。"
+    },
+    {
+      "id": "npc-darunia",
+      "cat": "npc",
+      "zh": "达鲁尼亚",
+      "en": "Darunia",
+      "area": "GoronCity",
+      "world": [
+        -0.2,
+        98.6,
+        -41.8
+      ],
+      "era": "Child",
+      "time": "Any",
+      "howto": "哥隆城最上层族长室，跳哥隆舞可拿到火之红宝石。",
+      "req": "先见塞尔达",
+      "reward": "火之红宝石、炸弹袋任务",
+      "note": "成年后成为火之贤者。"
+    },
+    {
+      "id": "npc-nabooru",
+      "cat": "npc",
+      "zh": "娜波露",
+      "en": "Nabooru",
+      "area": "SpiritTemple",
+      "dungeon": true,
+      "floor": "1F",
+      "world": [
+        -10.5,
+        103,
+        -25
+      ],
+      "era": "Child",
+      "time": "Any",
+      "howto": "魂之神殿幼年段内部，被双子妖婆操控前在此相遇。",
+      "req": "",
+      "reward": "银手套线索",
+      "note": "落在魂之神殿 1F，需从沙漠巨像入口进入。"
+    },
+    {
+      "id": "npc-sheik",
+      "cat": "npc",
+      "zh": "希克",
+      "en": "Sheik",
+      "area": "Market",
+      "uv": [
+        89,
+        26
+      ],
+      "uvOffset": [
+        0,
+        0
+      ],
+      "era": "Adult",
+      "time": "Any",
+      "howto": "成年后在时之神殿内现身，逐首传授传送曲。",
+      "req": "",
+      "reward": "各神殿传送曲",
+      "note": "时之神殿在地图边界外，点位落在城下町东北角示意。"
+    },
+    {
+      "id": "npc-rauru",
+      "cat": "npc",
+      "zh": "劳鲁",
+      "en": "Rauru",
+      "area": "Market",
+      "uv": [
+        84,
+        26
+      ],
+      "era": "Adult",
+      "time": "Any",
+      "howto": "时之神殿内的光之贤者，成年觉醒后在圣域指引收集六贤者。",
+      "req": "",
+      "reward": "光之勋章任务",
+      "note": "与希克同区域，已左移错开。"
+    },
+    {
+      "id": "npc-skullkid",
+      "cat": "npc",
+      "zh": "骷髅小子",
+      "en": "Skull Kid",
+      "area": "LostWood",
+      "world": [
+        -34,
+        103.2,
+        -3.7
+      ],
+      "era": "Child",
+      "time": "Any",
+      "howto": "迷失森林深处，吹陶笛可与他合奏；戴面具会触发不同反应。",
+      "req": "",
+      "reward": "心之碎片（合奏）",
+      "note": "森林舞台（面具展示）在另一处，已分开标注。"
+    },
+    {
+      "id": "npc-mask-salesman",
+      "cat": "npc",
+      "zh": "面具商",
+      "en": "Happy Mask Salesman",
+      "area": "Market",
+      "world": [
+        8.96,
+        110.26,
+        -17.69
+      ],
+      "uvOffset": [
+        -1.4,
+        1.4
+      ],
+      "era": "Both",
+      "time": "Any",
+      "howto": "城下町快乐面具屋，可买/租四款面具；真实面具需先读八卦石。",
+      "req": "卢比",
+      "reward": "面具（可租可买）",
+      "note": "与「真实面具」点同坐标，已错开。"
+    },
+    {
+      "id": "npc-poe-collector",
+      "cat": "npc",
+      "zh": "怨灵收购商",
+      "en": "Poe Collector",
+      "area": "Market",
+      "world": [
+        12.53,
+        111.94,
+        57.04
+      ],
+      "uvOffset": [
+        1.4,
+        -1.4
+      ],
+      "era": "Both",
+      "time": "Night",
+      "howto": "城下町后巷小屋，交 10 只大魄可换瓶子；夜间营业。",
+      "req": "大魄 ×10",
+      "reward": "空瓶（第 4 个）",
+      "note": "与「幽灵商店瓶子」同点，已错开。"
+    },
+    {
+      "id": "npc-bombchu-merchant",
+      "cat": "npc",
+      "zh": "炸弹鼠商人",
+      "en": "Bombchu Merchant",
+      "area": "Market",
+      "world": [
+        -25.04,
+        116.72,
+        7.56
+      ],
+      "uvOffset": [
+        1.4,
+        0
+      ],
+      "era": "Both",
+      "time": "Any",
+      "howto": "城下町炸弹鼠专卖店，白天卖炸弹鼠与炸弹鼠袋。",
+      "req": "",
+      "reward": "炸弹鼠、炸弹鼠袋（上限提升）",
+      "note": "与保龄球馆相邻，已错开。"
+    },
+    {
+      "id": "npc-biggoron",
+      "cat": "npc",
+      "zh": "大鼓隆",
+      "en": "Biggoron",
+      "area": "DeathMountainTrail",
+      "world": [
+        25.8,
+        200.5,
+        -128.5
+      ],
+      "era": "Adult",
+      "time": "Any",
+      "howto": "死亡山口东侧山顶，成年后接大鼓隆之剑任务链（先拿眼药水）。",
+      "req": "成年 + 世界最速跑腿链",
+      "reward": "大鼓隆之剑（攻击力 2 倍）",
+      "note": "幼年只能看到他在山顶睡觉。"
+    },
+    {
+      "id": "npc-carpenter-boss",
+      "cat": "npc",
+      "zh": "木匠头目",
+      "en": "Carpenter Boss",
+      "area": "GerudoValley",
+      "world": [
+        -39.3,
+        106.5,
+        -16.9
+      ],
+      "uvOffset": [
+        0,
+        1.8
+      ],
+      "era": "Adult",
+      "time": "Any",
+      "howto": "格鲁德峡谷木匠营地帐篷，交回四名木匠后触发对话。",
+      "req": "救出四名木匠",
+      "reward": "格鲁德要塞通行、心之碎片",
+      "note": "与「木匠营地」小游戏点同坐标，已下移错开。"
+    },
+    {
+      "id": "npc-kaepora",
+      "cat": "npc",
+      "zh": "卡佩拉猫头鹰",
+      "en": "Kaepora Gaebora",
+      "area": "HyruleField",
+      "world": [
+        -90.7,
+        144.8,
+        383.8
+      ],
+      "era": "Both",
+      "time": "Any",
+      "howto": "海拉鲁平原南侧，会主动降落说话；选「是」可听完整提示。",
+      "req": "",
+      "reward": "区域提示、传送点提示",
+      "note": "全地图多处出现，这里只标平原主点位。"
+    },
+    {
+      "id": "upg-wallet-500",
+      "cat": "upgrade",
+      "zh": "大人钱包（500）",
+      "en": "Adult Wallet",
+      "area": "KakarikoVillage",
+      "world": [
+        -28.9,
+        103.0,
+        66.7
+      ],
+      "uvOffset": [
+        0,
+        0
+      ],
+      "era": "Both",
+      "time": "Any",
+      "howto": "在卡卡利科村蜘蛛之家交 10 枚黄金骷髅蜘蛛徽章，屋内小孩给大人钱包。",
+      "req": "10 枚徽章",
+      "reward": "钱包上限 500 卢比",
+      "note": "与蜘蛛之家同点，就是村中央那栋挂满蜘蛛的房子。"
+    },
+    {
+      "id": "upg-wallet-1000",
+      "cat": "upgrade",
+      "zh": "巨人钱包（1000）",
+      "en": "Giant Wallet",
+      "area": "KakarikoVillage",
+      "world": [
+        -28.9,
+        103.0,
+        66.7
+      ],
+      "uvOffset": [
+        0,
+        2.2
+      ],
+      "era": "Both",
+      "time": "Any",
+      "howto": "同一间蜘蛛之家，累计交 30 枚徽章换巨人钱包。",
+      "req": "30 枚徽章",
+      "reward": "钱包上限 1000 卢比",
+      "note": "与「大人钱包」同点，已下移错开。"
+    },
+    {
+      "id": "upg-bombbag-30",
+      "cat": "upgrade",
+      "zh": "炸弹袋（30）",
+      "en": "Bomb Bag 30",
+      "area": "GoronCity",
+      "world": [
+        -19.07,
+        99.89,
+        -20.12
+      ],
+      "uvOffset": [
+        0,
+        1.8
+      ],
+      "era": "Child",
+      "time": "Any",
+      "howto": "幼年在哥隆城帮助滚动哥隆族停下（先拿炸弹），族长给炸弹袋扩容。",
+      "req": "炸弹",
+      "reward": "炸弹携带上限 30",
+      "note": "哥隆商店同点，已上移错开。"
+    },
+    {
+      "id": "upg-bombbag-40",
+      "cat": "upgrade",
+      "zh": "炸弹袋（40）",
+      "en": "Bomb Bag 40",
+      "area": "Market",
+      "world": [
+        -25.04,
+        116.72,
+        7.56
+      ],
+      "uvOffset": [
+        0,
+        -2.2
+      ],
+      "era": "Child",
+      "time": "Any",
+      "howto": "城邑炸弹鼠保龄球馆第二奖品：一局打出 20 个以上或全中。",
+      "req": "30 卢比/局",
+      "reward": "炸弹携带上限 40",
+      "note": "与保龄球馆同点，已上移错开。"
+    },
+    {
+      "id": "upg-seed-40",
+      "cat": "upgrade",
+      "zh": "种子袋（40）",
+      "en": "Seed Bag 40",
+      "area": "Market",
+      "world": [
+        -12.99,
+        112.72,
+        -18.91
+      ],
+      "uvOffset": [
+        0,
+        1.8
+      ],
+      "era": "Child",
+      "time": "Any",
+      "howto": "城邑射靶场全中 10 靶，店主给种子袋。",
+      "req": "10 卢比/局",
+      "reward": "德库种子上限 40",
+      "note": "与射靶场同点，已上移错开。"
+    },
+    {
+      "id": "upg-seed-50",
+      "cat": "upgrade",
+      "zh": "种子袋（50）",
+      "en": "Seed Bag 50",
+      "area": "LostWood",
+      "world": [
+        41.1,
+        102.6,
+        -4.9
+      ],
+      "uvOffset": [
+        0,
+        0
+      ],
+      "era": "Child",
+      "time": "Any",
+      "howto": "迷失森林吊靶：打中挂在树间的靶子，全中后德库小贩给种子袋扩容。",
+      "req": "弹弓",
+      "reward": "德库种子上限 50",
+      "note": "该点是吊靶练习的德库族位置。"
+    },
+    {
+      "id": "upg-quiver-40",
+      "cat": "upgrade",
+      "zh": "箭袋（40）",
+      "en": "Quiver 40",
+      "area": "KakarikoVillage",
+      "world": [
+        -63.37,
+        103.3,
+        62.75
+      ],
+      "uvOffset": [
+        0,
+        1.8
+      ],
+      "era": "Adult",
+      "time": "Any",
+      "howto": "成年在卡卡利科射靶场全中 10 靶，店主给箭袋。",
+      "req": "20 卢比/局",
+      "reward": "箭上限 40",
+      "note": "与射靶场同点，已上移错开。"
+    },
+    {
+      "id": "upg-quiver-50",
+      "cat": "upgrade",
+      "zh": "箭袋（50）",
+      "en": "Quiver 50",
+      "area": "GerudoFortress",
+      "world": [
+        73.08,
+        115.0,
+        41.23
+      ],
+      "uvOffset": [
+        0,
+        1.8
+      ],
+      "era": "Adult",
+      "time": "Any",
+      "howto": "成年在格鲁德要塞骑射场骑马射靶，1400 分以上得箭袋。",
+      "req": "弓 + 伊波娜",
+      "reward": "箭上限 50",
+      "note": "与骑射场同点，已上移错开。"
+    },
+    {
+      "id": "upg-stick-20",
+      "cat": "upgrade",
+      "zh": "德库木棒袋（20）",
+      "en": "Deku Stick Bag 20",
+      "area": "LostWood",
+      "world": [
+        -45.2,
+        95.2,
+        72.6
+      ],
+      "uvOffset": [
+        0,
+        0
+      ],
+      "era": "Child",
+      "time": "Any",
+      "howto": "迷失森林里的德库小贩，花 40 卢比买木棒袋扩容。",
+      "req": "40 卢比",
+      "reward": "木棒上限 20",
+      "note": "森林里有两个小贩果，认准桥边这个。"
+    },
+    {
+      "id": "upg-nut-30",
+      "cat": "upgrade",
+      "zh": "德库坚果袋（30）",
+      "en": "Deku Nut Bag 30",
+      "area": "LostWood",
+      "world": [
+        7.3,
+        82.9,
+        -85.6
+      ],
+      "uvOffset": [
+        0,
+        0
+      ],
+      "era": "Child",
+      "time": "Any",
+      "howto": "迷失森林裂石洞内的小贩果，40 卢比给坚果袋扩容。",
+      "req": "40 卢比",
+      "reward": "坚果上限 30",
+      "note": "洞内小贩果，需先炸开入口。"
+    },
+    {
+      "id": "upg-nut-40",
+      "cat": "upgrade",
+      "zh": "德库坚果袋（40）",
+      "en": "Deku Nut Bag 40",
+      "area": "LostWood",
+      "world": [
+        -10.0,
+        83.2,
+        -54.5
+      ],
+      "uvOffset": [
+        0,
+        0
+      ],
+      "era": "Child",
+      "time": "Any",
+      "howto": "迷失森林地下舞台，戴上真实面具与大德库族长老交谈，坚果袋扩容。",
+      "req": "真实面具",
+      "reward": "坚果上限 40",
+      "note": "与森林舞台面具点同区域，已错开。"
+    },
+    {
+      "id": "upg-scale-silver",
+      "cat": "upgrade",
+      "zh": "银色鳞片",
+      "en": "Silver Scale",
+      "area": "ZoraDomain",
+      "world": [
+        24.83,
+        113.5,
+        -6.79
+      ],
+      "uvOffset": [
+        0,
+        1.8
+      ],
+      "era": "Child",
+      "time": "Any",
+      "howto": "幼年在佐拉领地参加潜水小游戏，潜到最深处拿银色鳞片。",
+      "req": "潜水小游戏",
+      "reward": "潜水深度 3 米",
+      "note": "与跳水小游戏同点，已上移错开。"
+    },
+    {
+      "id": "upg-scale-gold",
+      "cat": "upgrade",
+      "zh": "金色鳞片",
+      "en": "Gold Scale",
+      "area": "LakeHylia",
+      "world": [
+        -97.91,
+        134.0,
+        492.27
+      ],
+      "uvOffset": [
+        0,
+        1.8
+      ],
+      "era": "Adult",
+      "time": "Any",
+      "howto": "成年在海利亚湖钓鱼池钓上 60cm 以上的鱼，老板给金色鳞片。",
+      "req": "20 卢比/次",
+      "reward": "潜水深度 6 米",
+      "note": "与钓鱼场同点，已上移错开。"
+    },
+    {
+      "id": "upg-bracelet",
+      "cat": "upgrade",
+      "zh": "鼓隆手环",
+      "en": "Goron Bracelet",
+      "area": "GoronCity",
+      "world": [
+        -0.2,
+        98.6,
+        -41.8
+      ],
+      "uvOffset": [
+        0,
+        1.8
+      ],
+      "era": "Child",
+      "time": "Any",
+      "howto": "幼年在哥隆城族长室跳哥隆舞，达鲁尼亚给鼓隆手环，可搬炸弹花。",
+      "req": "先见塞尔达",
+      "reward": "可举炸弹花",
+      "note": "与达鲁尼亚同点，已上移错开。"
+    },
+    {
+      "id": "upg-glove-silver",
+      "cat": "upgrade",
+      "zh": "银手套",
+      "en": "Silver Gauntlets",
+      "area": "SpiritTemple",
+      "dungeon": true,
+      "floor": "1F",
+      "world": [
+        -10.5,
+        103,
+        -25
+      ],
+      "uvOffset": [
+        2.4,
+        2.4
+      ],
+      "era": "Child",
+      "time": "Any",
+      "howto": "魂之神殿幼年段，击败铁甲蜥蜴后在宝箱取得银手套，可推沉重石块。",
+      "req": "幼年 + 魂之神殿",
+      "reward": "可推银块",
+      "note": "与娜波露同点，已错开；神殿 1F。"
+    },
+    {
+      "id": "upg-glove-gold",
+      "cat": "upgrade",
+      "zh": "金手套",
+      "en": "Golden Gauntlets",
+      "area": "GanonCastle",
+      "world": [
+        78.4,
+        94.1,
+        328.38
+      ],
+      "uvOffset": [
+        2.4,
+        2.4
+      ],
+      "era": "Adult",
+      "time": "Any",
+      "howto": "成年进入加侬之城，在城堡内宝箱取得金手套，可举巨大石柱。",
+      "req": "成年 + 六贤者",
+      "reward": "可举黑柱",
+      "note": "落点在加侬之城内部，与骷髅点错开。"
+    }
+  ]
+}

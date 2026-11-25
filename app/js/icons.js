@@ -134,12 +134,81 @@
            '<circle cx="9" cy="13" r="1" fill="#facc15"/>'
     },
     npc: {
-      color: "#8b5cf6",
-      bg: "linear-gradient(135deg, #8b5cf6, #5b21b6)",
-      border: "#ddd6fe",
+      color: "#38bdf8",
+      bg: "linear-gradient(135deg, #38bdf8, #0369a1)",
+      border: "#bae6fd",
       svg: '<circle cx="12" cy="7" r="4" fill="#fff"/>' +
            '<path fill="#fff" d="M4 20c0-4.4 3.6-7 8-7s8 2.6 8 7v1H4v-1z"/>'
+    },
+    heartc: {
+      color: "#f43f5e",
+      bg: "linear-gradient(135deg, #f43f5e, #9f1239)",
+      border: "#fecdd3",
+      svg: '<path fill="#fff" d="M12 20.5l-1.6-1.5C5.3 14.7 2.6 12.2 2.6 9.3c0-2.4 1.9-4.3 4.3-4.3 1.5 0 2.9.7 3.9 1.9.9-1.2 2.3-1.9 3.8-1.9 2.4 0 4.3 1.9 4.3 4.3 0 2.9-2.7 5.4-7.8 9.7L12 20.5z"/>' +
+           '<path fill="#fecdd3" d="M12 7.2l1.2 2.5 2.7.3-2 1.9.5 2.7-2.4-1.3-2.4 1.3.5-2.7-2-1.9 2.7-.3z" opacity="0.85"/>'
+    },
+    song: {
+      color: "#a3e635",
+      bg: "linear-gradient(135deg, #a3e635, #4d7c0f)",
+      border: "#ecfccb",
+      svg: '<path fill="#fff" d="M9 17.5V6.2l9-2.4v11.2a3 3 0 1 1-2-2.8V7.4l-5 1.3v9.3a3 3 0 1 1-2-1.1z"/>'
+    },
+    medal: {
+      color: "#fbbf24",
+      bg: "linear-gradient(135deg, #fbbf24, #b45309)",
+      border: "#fef3c7",
+      svg: '<circle cx="12" cy="12" r="8" fill="none" stroke="#fff" stroke-width="1.8"/>' +
+           '<path fill="#fff" d="M12 7l1.6 3.3 3.6.5-2.6 2.5.6 3.6-3.2-1.7-3.2 1.7.6-3.6-2.6-2.5 3.6-.5z"/>' +
+           '<path fill="#fef3c7" d="M9 20l3-2 3 2-1-3.2h-4z"/>'
+    },
+    upgrade: {
+      color: "#22c55e",
+      bg: "linear-gradient(135deg, #22c55e, #166534)",
+      border: "#bbf7d0",
+      svg: '<path fill="#fff" d="M12 3.5l5.5 6.5h-3.3v4.5h-4.4V10H6.5z"/>' +
+           '<path fill="#bbf7d0" d="M5 17.5h14v3H5z"/>'
+    },
+    owl: {
+      color: "#cbd5e1",
+      bg: "linear-gradient(135deg, #64748b, #1e293b)",
+      border: "#e2e8f0",
+      svg: '<path fill="#fff" d="M3 9c0-3.2 2.6-5.5 6-5.5S15 5.8 15 9v7.5c0 2.2-1.8 4-4 4h-4c-2.2 0-4-1.8-4-4V9z"/>' +
+           '<circle cx="7" cy="10" r="2.4" fill="#1e293b"/><circle cx="13" cy="10" r="2.4" fill="#1e293b"/>' +
+           '<path fill="#fbbf24" d="M10 13.5l2 3.5h-4z"/>'
+    },
+    keyitem: {
+      color: "#14b8a6",
+      bg: "linear-gradient(135deg, #14b8a6, #0f766e)",
+      border: "#99f6e4",
+      svg: '<circle cx="8" cy="9" r="5" fill="none" stroke="#fff" stroke-width="2.2"/>' +
+           '<path fill="#fff" d="M11 11.5l8.5 8.5-2 2-2-2-2 2-2-2 2-2-2.5-2.5z"/>'
+    },
+    merchant: {
+      color: "#facc15",
+      bg: "linear-gradient(135deg, #facc15, #a16207)",
+      border: "#fef9c3",
+      svg: '<path fill="#fff" d="M12 3l6 5-6 5-6-5z"/>' +
+           '<path fill="#fef9c3" d="M12 11l6 5-6 5-6-5z" opacity="0.9"/>' +
+           '<path fill="#fff" d="M4 18.5h16v2.5H4z" opacity="0.7"/>'
     }
+  };
+
+  /* 官方 MapIcon PNG 映射（assets/ui/ 下，128×128 透明底）。
+     iconDone 为官方「已收集」状态图标；没有的沿用同一张。 */
+  var OFFICIAL = {
+    heart: ["MapIconCollectHeartPiece_00.png", "MapIconCollectHeartPieceCheck_00.png"],
+    skull: ["MapIconCollectSkullSign_00.png", "MapIconCollectSkullSignCheck_00.png"],
+    chest: ["MapIconTreasure_00.png", "MapIconTreasure_01.png"],
+    boss: ["MapIconBoss_01.png"],
+    dungeon: ["MapIconDoor_01.png"],
+    soil: ["MapIconMagicBean_00.png"],
+    sign: ["MapIconSign_00.png"],
+    shop: ["MapIconShopGeneral_00.png"],
+    minigame: ["MapIconMiniGameTarget_00.png"],
+    fairy: ["MapIconGreatFairy_00.png"],
+    training: ["MapIconTraining_00.png"],
+    carpenter: ["MapIconCarpenter_00.png"],
+    mask: ["MapIconShopMask_00.png"]
   };
 
   /**
@@ -157,13 +226,32 @@
            '</svg>';
   }
 
+  /**
+   * 点位图标 HTML：优先官方 MapIcon PNG，缺图回落矢量图标。
+   * @param {string} cat
+   * @param {number} size
+   * @param {boolean} done 是否已收集（用官方 Check 状态图）
+   */
+  function makeIconHtml(cat, size, done) {
+    size = size || 20;
+    var pair = OFFICIAL[cat];
+    if (pair) {
+      var file = (done && pair[1]) ? pair[1] : pair[0];
+      return '<img class="oot-pin-img" src="assets/ui/' + file + '" width="' + size + '" height="' + size +
+             '" alt="" draggable="false">';
+    }
+    return makeIconSvg(cat, size);
+  }
+
   function getCatColor(cat) {
     return (ICONS[cat] && ICONS[cat].color) || "#d9b45a";
   }
 
   window.OOT_ICONS = {
     defs: ICONS,
+    official: OFFICIAL,
     svg: makeIconSvg,
+    html: makeIconHtml,
     color: getCatColor
   };
 

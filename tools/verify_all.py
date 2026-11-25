@@ -48,11 +48,32 @@ def check_data() -> None:
     cats_used = {p["cat"] for p in pins}
     areas = {p["area"] for p in pins}
 
-    check("点位数 ≥ 300", len(pins) >= 300, f"实际 {len(pins)}")
-    check("分类 = 12", len(cats) == 12, f"实际 {len(cats)}")
+    check("点位数 ≥ 400", len(pins) >= 400, f"实际 {len(pins)}")
+    check("分类 = 27", len(cats) == 27, f"实际 {len(cats)}")
     check("所有点位分类都已声明", cats_used <= cats_declared, f"未声明 {cats_used - cats_declared}")
     check("地区数 ≥ 28", len(areas) >= 28, f"实际 {len(areas)}")
     check("每个点位都有 id/地图/坐标", all(p.get("id") and p.get("map") and "x" in p for p in pins))
+    xy_bad = [p["id"] for p in pins if not (0 <= p.get("x", -1) <= 100 and 0 <= p.get("y", -1) <= 100)]
+    check("点位坐标都在 0-100", not xy_bad, f"越界 {xy_bad[:6]}")
+
+    by_cat = {}
+    for p in pins:
+        by_cat[p["cat"]] = by_cat.get(p["cat"], 0) + 1
+    expect = {"song": 13, "medal": 9, "bottle": 5, "mask": 5, "owl": 3, "soil": 10,
+              "boss": 8, "keyitem": 24, "npc": 22, "upgrade": 16, "heartc": 8}
+    short = {k: (by_cat.get(k, 0), v) for k, v in expect.items() if by_cat.get(k, 0) < v}
+    check("P2 分类数量达标", not short, f"不足 {short}")
+    curated = [p for p in pins if p["cat"] in expect]
+    missing_howto = [p["id"] for p in curated if not p.get("howto")]
+    check("P2 点位都有怎么拿", not missing_howto, f"缺 {missing_howto[:6]}")
+
+    chest_json = ROOT / "data" / "chest_contents.json"
+    if chest_json.exists():
+        cj = json.loads(chest_json.read_text(encoding="utf-8"))
+        check("宝箱清单与点位数一致", cj.get("total") == by_cat.get("chest", 0),
+              f"清单 {cj.get('total')} / 点位 {by_cat.get('chest', 0)}")
+    else:
+        check("宝箱清单已生成", False, "缺 data/chest_contents.json")
 
     topo_txt = (APP / "data" / "topology_data.js").read_text(encoding="utf-8")
     nodes = len(re.findall(r'"childMap"\s*:', topo_txt))
