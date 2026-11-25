@@ -1,0 +1,64 @@
+{
+  "MapIconParamArray": [
+    {
+      "TextID": "MapIcon_00"
+    },
+    {
+      "TextID": "MapIcon_01"
+    },
+    {
+      "TextID": "MapIcon_02"
+    },
+    {
+      "TextID": "MapIcon_03"
+    },
+    {
+      "TextID": "MapIcon_04"
+    },
+    {
+      "TextID": "MapIcon_05"
+    },
+    {
+      "TextID": "MapIcon_06"
+    },
+    {
+      "TextID": "MapIcon_07"
+    },
+    {
+      "TextID": "MapIcon_08"
+    },
+    {
+      "TextID": "MapIcon_09"
+    },
+    {
+      "TextID": "MapMenu_10"
+    },
+    {
+      "TextID": "MapIcon_11"
+    },
+    {
+      "TextID": "MapIcon_12"
+    },
+    {
+      "TextID": "MapIcon_13"
+    },
+    {
+      "TextID": "MapIcon_14"
+    },
+    {
+      "TextID": "MapIcon_15"
+    },
+    {
+      "TextID": "MapIcon_16"
+    },
+    {
+      "TextID": "MapIcon_17"
+    },
+    {
+      "TextID": "MapIcon_MG"
+    },
+    {
+      "TextID": "MapIcon_19"
+    }
+  ]
+}

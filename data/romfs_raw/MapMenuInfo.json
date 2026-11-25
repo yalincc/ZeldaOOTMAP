@@ -1,0 +1,476 @@
+{
+  "MapMenuParamArray": [
+    {
+      "BancName": [
+        "KokiriForest_Child",
+        "KokiriForest_Adult"
+      ],
+      "IconOffset": {},
+      "Location": "Work/Location/KokiriForest.game__location__Location.gyml",
+      "LocationName": "KokiriForest",
+      "TextureName": [
+        "KokiriForest_Child_00",
+        "KokiriForest_Adult_00",
+        ""
+      ]
+    },
+    {
+      "BancName": [
+        "KakarikoVillage_Child",
+        "KakarikoVillage_Adult"
+      ],
+      "ChangeBancInfo": [
+        {
+          "BancName": "KakarikoVillage_Adult_Alternative"
+        }
+      ],
+      "Location": "Work/Location/KakarikoVillage.game__location__Location.gyml",
+      "LocationName": "KakarikoVillage",
+      "TextureName": [
+        "KakarikoVillage_Child_00",
+        "KakarikoVillage_Adult_00",
+        ""
+      ],
+      "WorldMapLocationType": 1237836715
+    },
+    {
+      "BancName": [
+        "LonLonRanch_Child",
+        "LonLonRanch_Adult"
+      ],
+      "Location": "Work/Location/LonLonRanch.game__location__Location.gyml",
+      "LocationName": "LonLonRanch",
+      "TextureName": [
+        "LonLonRanch_Child_00",
+        "LonLonRanch_Adult_00",
+        ""
+      ],
+      "WorldMapLocationType": 706881598
+    },
+    {
+      "BancName": [
+        "Market_Child",
+        "Market_Adult"
+      ],
+      "IsExistOcarinaWarp": true,
+      "Location": "Work/Location/Market.game__location__Location.gyml",
+      "LocationName": "Market",
+      "TextureName": [
+        "Market_Child_00",
+        "Market_Adult_00",
+        ""
+      ],
+      "WarpOcarinaMelodyType": 3042703042,
+      "WorldMapLocationType": 289880728
+    },
+    {
+      "BancName": [
+        "GoronCity_Child",
+        "GoronCity_Adult"
+      ],
+      "Location": "Work/Location/GoronCity.game__location__Location.gyml",
+      "LocationName": "GoronCity",
+      "TextureName": [
+        "GoronCity_Child_00",
+        "GoronCity_Adult_00",
+        ""
+      ],
+      "WorldMapLocationType": 1114439540
+    },
+    {
+      "BancName": [
+        "ZoraDomain_Child",
+        "ZoraDomain_Adult"
+      ],
+      "ChangeBancInfo": [
+        {
+          "BancName": "ZoraDomain_Adult_Alternative"
+        }
+      ],
+      "Location": "Work/Location/ZoraDomain.game__location__Location.gyml",
+      "LocationName": "ZoraDomain",
+      "TextureName": [
+        "ZoraDomain_Child_00",
+        "ZoraDomain_Adult_00",
+        ""
+      ],
+      "WorldMapLocationType": 3023047591
+    },
+    {
+      "BancName": [
+        "GerudoFortress_Child",
+        "GerudoFortress_Adult"
+      ],
+      "Location": "Work/Location/GerudoFortress.game__location__Location.gyml",
+      "LocationErasType": 3481606863,
+      "LocationName": "GerudoFortress",
+      "TextureName": [
+        "GerudoFortress_Child_00",
+        "GerudoFortress_Adult_00",
+        ""
+      ],
+      "WorldMapLocationType": 442368338
+    },
+    {
+      "BancName": [
+        "LostWood_Child",
+        "LostWood_Adult"
+      ],
+      "IsInvisibleMapIcon": true,
+      "Location": "Work/Location/LostWood.game__location__Location.gyml",
+      "LocationName": "LostWood",
+      "TextureName": [
+        "LostWood_Child_00",
+        "LostWood_Adult_00",
+        ""
+      ],
+      "WorldMapLocationType": 162328066
+    },
+    {
+      "BancName": [
+        "SacredForestMeadow_Child",
+        "SacredForestMeadow_Adult"
+      ],
+      "IsExistOcarinaWarp": true,
+      "Location": "Work/Location/SacredForestMeadow.game__location__Location.gyml",
+      "LocationName": "SacredForestMeadow",
+      "TextureName": [
+        "SacredForestMeadow_Child_00",
+        "SacredForestMeadow_Adult_00",
+        ""
+      ],
+      "WarpOcarinaMelodyType": 3730579522,
+      "WorldMapLocationType": 2512121619
+    },
+    {
+      "BancName": [
+        "HyruleField_Child",
+        "HyruleField_Adult"
+      ],
+      "Location": "Work/Location/HyruleField.game__location__Location.gyml",
+      "LocationName": "HyruleField",
+      "TextureName": [
+        "HyruleField_Child_00",
+        "HyruleField_Adult_00",
+        ""
+      ],
+      "WorldMapLocationType": 2537046678
+    },
+    {
+      "BancName": [
+        "HyruleCastle",
+        "GanonCastle"
+      ],
+      "Location": "Work/Location/HyruleCastle.game__location__Location.gyml",
+      "LocationErasType": 1517876668,
+      "LocationName": "HyruleCastle",
+      "TextureName": [
+        "HyruleCastle_Child_00",
+        "GanonCastle_Adult_00",
+        ""
+      ],
+      "WorldMapLocationType": 1335063633
+    },
+    {
+      "BancName": [
+        "Graveyard_Child",
+        "Graveyard_Adult"
+      ],
+      "IsExistOcarinaWarp": true,
+      "Location": "Work/Location/Graveyard.game__location__Location.gyml",
+      "LocationName": "Graveyard",
+      "TextureName": [
+        "Graveyard_Child_00",
+        "Graveyard_Adult_00",
+        ""
+      ],
+      "WarpOcarinaMelodyType": 3083053472,
+      "WorldMapLocationType": 700532349
+    },
+    {
+      "BancName": [
+        "DeathMountainTrail_Child",
+        "DeathMountainTrail_Adult"
+      ],
+      "Location": "Work/Location/DeathMountainTrail.game__location__Location.gyml",
+      "LocationName": "DeathMountainTrail",
+      "TextureName": [
+        "DeathMountainTrail_Child_00",
+        "DeathMountainTrail_Adult_00",
+        ""
+      ],
+      "WorldMapLocationType": 2761547695
+    },
+    {
+      "BancName": [
+        "DeathMountainCrater_Child",
+        "DeathMountainCrater_Adult"
+      ],
+      "IsExistOcarinaWarp": true,
+      "Location": "Work/Location/DeathMountainCrater.game__location__Location.gyml",
+      "LocationName": "DeathMountainCrater",
+      "TextureName": [
+        "DeathMountainCrater_Child_00",
+        "DeathMountainCrater_Adult_00",
+        ""
+      ],
+      "WarpOcarinaMelodyType": 2294896162,
+      "WorldMapLocationType": 4158828823
+    },
+    {
+      "BancName": [
+        "ZoraRiver_Child",
+        "ZoraRiver_Adult"
+      ],
+      "Location": "Work/Location/ZoraRiver.game__location__Location.gyml",
+      "LocationName": "ZoraRiver",
+      "TextureName": [
+        "ZoraRiver_Child_00",
+        "ZoraRiver_Adult_00",
+        ""
+      ],
+      "WorldMapLocationType": 2383670293
+    },
+    {
+      "BancName": [
+        "ZoraFountain_Child",
+        "ZoraFountain_Adult"
+      ],
+      "Location": "Work/Location/ZoraFountain.game__location__Location.gyml",
+      "LocationName": "ZoraFountain",
+      "TextureName": [
+        "ZoraFountain_Child_00",
+        "ZoraFountain_Adult_00",
+        ""
+      ],
+      "WorldMapLocationType": 730897705
+    },
+    {
+      "BancName": [
+        "LakeHylia_Child",
+        "LakeHylia_Adult"
+      ],
+      "IsExistOcarinaWarp": true,
+      "Location": "Work/Location/LakeHylia.game__location__Location.gyml",
+      "LocationName": "LakeHylia",
+      "TextureName": [
+        "LakeHylia_Child_00",
+        "LakeHylia_Adult_00",
+        ""
+      ],
+      "WarpOcarinaMelodyType": 2618337060,
+      "WorldMapLocationType": 2151463658
+    },
+    {
+      "BancName": [
+        "GerudoValley_Child",
+        "GerudoValley_Adult"
+      ],
+      "Location": "Work/Location/GerudoValley.game__location__Location.gyml",
+      "LocationName": "GerudoValley",
+      "TextureName": [
+        "GerudoValley_Child_00",
+        "GerudoValley_Adult_00",
+        ""
+      ],
+      "WorldMapLocationType": 884870073
+    },
+    {
+      "BancName": [
+        "HountedWasteland_Child",
+        "HountedWasteland_Adult"
+      ],
+      "IsInvisibleMapIcon": true,
+      "Location": "Work/Location/HountedWasteland.game__location__Location.gyml",
+      "LocationErasType": 1517876668,
+      "LocationName": "HountedWasteland",
+      "TextureName": [
+        "HountedWasteland_Child_00",
+        "HountedWasteland_Adult_00",
+        ""
+      ],
+      "WorldMapLocationType": 1496174486
+    },
+    {
+      "BancName": [
+        "DesertColossus_Child",
+        "DesertColossus_Adult"
+      ],
+      "IsExistOcarinaWarp": true,
+      "Location": "Work/Location/DesertColossus.game__location__Location.gyml",
+      "LocationName": "DesertColossus",
+      "TextureName": [
+        "DesertColossus_Child_00",
+        "DesertColossus_Adult_00",
+        ""
+      ],
+      "WarpOcarinaMelodyType": 2812177227,
+      "WorldMapLocationType": 2582342150
+    },
+    {
+      "BancName": [
+        "InsideTheDekuTree",
+        "InsideTheDekuTree"
+      ],
+      "IconOffset": {},
+      "Location": "Work/Location/InsideTheDekuTree.game__location__Location.gyml",
+      "LocationErasType": 2150803042,
+      "LocationName": "InsideTheDekuTree",
+      "TextureName": [
+        "InsideTheDekuTree",
+        "InsideTheDekuTree",
+        ""
+      ],
+      "WorldMapLocationType": 1633284834
+    },
+    {
+      "BancName": [
+        "DodongoCavern",
+        "DodongoCavern"
+      ],
+      "Location": "Work/Location/DodongoCavern.game__location__Location.gyml",
+      "LocationName": "DodongoCavern",
+      "TextureName": [
+        "DodongoCavern",
+        "DodongoCavern",
+        ""
+      ],
+      "WorldMapLocationType": 1530403595
+    },
+    {
+      "BancName": [
+        "InsideJabuJabuBelly",
+        "InsideJabuJabuBelly"
+      ],
+      "Location": "Work/Location/InsideJabuJabuBelly.game__location__Location.gyml",
+      "LocationErasType": 2150803042,
+      "LocationName": "InsideJabuJabuBelly",
+      "TextureName": [
+        "InsideJabuJabuBelly",
+        "InsideJabuJabuBelly",
+        ""
+      ],
+      "WorldMapLocationType": 2530262950
+    },
+    {
+      "BancName": [
+        "ForestTemple",
+        "ForestTemple"
+      ],
+      "Location": "Work/Location/ForestTemple.game__location__Location.gyml",
+      "LocationErasType": 3481606863,
+      "LocationName": "ForestTemple",
+      "TextureName": [
+        "ForestTemple",
+        "ForestTemple",
+        ""
+      ],
+      "WorldMapLocationType": 3177634312
+    },
+    {
+      "BancName": [
+        "FireTemple",
+        "FireTemple"
+      ],
+      "Location": "Work/Location/FireTemple.game__location__Location.gyml",
+      "LocationErasType": 3481606863,
+      "LocationName": "FireTemple",
+      "TextureName": [
+        "FireTemple",
+        "FireTemple",
+        ""
+      ],
+      "WorldMapLocationType": 1305706849
+    },
+    {
+      "BancName": [
+        "WaterTemple",
+        "WaterTemple"
+      ],
+      "Location": "Work/Location/WaterTemple.game__location__Location.gyml",
+      "LocationErasType": 3481606863,
+      "LocationName": "WaterTemple",
+      "TextureName": [
+        "WaterTemple",
+        "WaterTemple",
+        ""
+      ],
+      "WorldMapLocationType": 3525010870
+    },
+    {
+      "BancName": [
+        "ShadowTemple",
+        "ShadowTemple"
+      ],
+      "Location": "Work/Location/ShadowTemple.game__location__Location.gyml",
+      "LocationErasType": 1517876668,
+      "LocationName": "ShadowTemple",
+      "TextureName": [
+        "ShadowTemple",
+        "ShadowTemple",
+        ""
+      ],
+      "WorldMapLocationType": 2582248109
+    },
+    {
+      "BancName": [
+        "SpiritTemple",
+        "SpiritTemple"
+      ],
+      "Location": "Work/Location/SpiritTemple.game__location__Location.gyml",
+      "LocationName": "SpiritTemple",
+      "TextureName": [
+        "SpiritTemple",
+        "SpiritTemple",
+        ""
+      ],
+      "WorldMapLocationType": 1086560596
+    },
+    {
+      "BancName": [
+        "BottomOfTheWell",
+        "BottomOfTheWell"
+      ],
+      "Location": "Work/Location/BottomOfTheWell.game__location__Location.gyml",
+      "LocationErasType": 2150803042,
+      "LocationName": "BottomOfTheWell",
+      "TextureName": [
+        "BottomOfTheWell",
+        "BottomOfTheWell",
+        ""
+      ],
+      "WorldMapLocationType": 3021192519
+    },
+    {
+      "BancName": [
+        "IceCavern",
+        "IceCavern"
+      ],
+      "Location": "Work/Location/IceCavern.game__location__Location.gyml",
+      "LocationErasType": 3481606863,
+      "LocationName": "IceCavern",
+      "TextureName": [
+        "IceCavern",
+        "IceCavern",
+        ""
+      ],
+      "WorldMapLocationType": 200473926
+    },
+    {
+      "BancName": [
+        "GanonCastle",
+        "GanonCastle"
+      ],
+      "IsInvisibleMiniMap": true,
+      "Location": "Work/Location/GanonCastle.game__location__Location.gyml",
+      "LocationErasType": 1517876668,
+      "LocationName": "GanonCastle",
+      "TextureName": [
+        "GanonCastle_Adult_00",
+        "GanonCastle_Adult_00",
+        ""
+      ],
+      "WorldMapLocationType": 1335063633
+    }
+  ]
+}

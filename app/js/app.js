@@ -61,6 +61,7 @@
   var KEY_LANG = "oot_map_lang";
   var KEY_ERA = "oot_map_era";
   var KEY_HIDE_DONE = "oot_map_hide_done";
+  var KEY_AUTO_LEVEL = "oot_map_auto_level";
   var KEY_CUSTOM_COORDS = "oot_map_custom_coords_v2";
   var KEY_VIEW = "oot_map_view";
   var KEY_AREA = "oot_map_area";
@@ -94,6 +95,7 @@
     era: "Child", // Child | Adult | All
     lang: "zh",   // 默认简体中文，支持一键切 EN
     hideDone: false,
+    autoLevel: true,
     activeCats: new Set(CATS.filter(function (c) { return !c.defOff; }).map(function (c) { return c.id; })),
     donePins: {},
     selectedPinId: null,
@@ -131,8 +133,8 @@
 
     // 画布与相机
     zoom: 1,
-    minZoom: 0.12,
-    maxZoom: 3.5,
+    minZoom: 0.14,
+    maxZoom: 2.6,
     tx: 0,
     ty: 0,
     isDragging: false,
@@ -198,6 +200,8 @@
       if (e === "All" || e === "Child" || e === "Adult") state.era = e;
       var hd = localStorage.getItem(KEY_HIDE_DONE);
       if (hd !== null) state.hideDone = (hd === "1");
+      var al = localStorage.getItem(KEY_AUTO_LEVEL);
+      if (al !== null) state.autoLevel = (al === "1");
       var ar = localStorage.getItem(KEY_AREA);
       if (ar) state.area = ar;
     } catch (e) {}
@@ -222,6 +226,7 @@
     var board = $("mindmapBoard");
     if (board) {
       board.style.transform = "translate3d(" + state.tx + "px, " + state.ty + "px, 0) scale(" + state.zoom + ")";
+      board.classList.toggle("lod-far", state.zoom < 0.48);
     }
   }
 
@@ -432,8 +437,8 @@
     });
     $("btnZoomFit").addEventListener("click", function () {
       if (state.mode === "region") fitRegion();
-      else if (state.mode === "world") fitWorld();
-      else fitCamera();
+      else if (state.mode === "world") enterWorldDefault();
+      else focusNode("HyruleField", 0.33);
     });
   }
 
@@ -633,9 +638,23 @@
   }
 
   function fitRegion() {
-    state.regionZoom = 1;
-    state.regionTx = 0;
-    state.regionTy = 0;
+    var board = $("regionBoard");
+    var z = 1;
+    var tx = 0;
+    var ty = 0;
+    // 手机窄屏下若底图（如德库树 1F）远窄于视口，自动放大以铺满可用宽度
+    if (board && window.innerWidth <= 900 && regionBase.w > 0 && board.clientWidth > 0) {
+      if (regionBase.w < board.clientWidth * 0.72) {
+        z = Math.min(1.65, (board.clientWidth * 0.88) / regionBase.w);
+        var cx = board.clientWidth / 2;
+        var cy = board.clientHeight / 2;
+        tx = cx - regionBase.left - (regionBase.w / 2) * z;
+        ty = cy - regionBase.top - (regionBase.h / 2) * z;
+      }
+    }
+    state.regionZoom = z;
+    state.regionTx = tx;
+    state.regionTy = ty;
     applyRegionCam();
   }
 
@@ -646,7 +665,7 @@
     var px = (clientX !== undefined ? clientX - rect.left : rect.width / 2);
     var py = (clientY !== undefined ? clientY - rect.top : rect.height / 2);
     var oldZoom = state.regionZoom;
-    var newZoom = Math.max(0.28, Math.min(5, oldZoom * factor));
+    var newZoom = Math.max(0.32, Math.min(2.0, oldZoom * factor));
     if (Math.abs(newZoom - oldZoom) < 0.001) return;
     var wx = (px - regionBase.left - state.regionTx) / oldZoom;
     var wy = (py - regionBase.top - state.regionTy) / oldZoom;
@@ -699,11 +718,41 @@
       });
       box.appendChild(el);
     });
+
+    renderRegionGateways(r, box);
+  }
+
+  function renderRegionGateways(r, box) {
+    var topoNode = NODES.find(function (n) { return n.id === r.id; });
+    if (!topoNode || !topoNode.gateways || !topoNode.gateways.length) return;
+    topoNode.gateways.forEach(function (gw) {
+      var targetNode = NODES.find(function (n) { return n.id === gw.target; });
+      var targetReg = REGIONS.find(function (x) { return x.id === gw.target; });
+      if (targetReg && !isRegionAvailable(targetReg)) return;
+      var targetName = targetNode ? (state.lang === "zh" ? targetNode.zh : targetNode.en) : gw.target;
+      var gwEl = document.createElement("button");
+      gwEl.type = "button";
+      gwEl.className = "region-gw";
+      gwEl.style.left = gw.x + "%";
+      gwEl.style.top = gw.y + "%";
+      // MapIconArrow_00.png 原图朝上(▲)，+90 度使 0 度对齐正右方
+      var ang = Math.round(Math.atan2(gw.y - 50, gw.x - 50) * 180 / Math.PI) + 90;
+      gwEl.innerHTML =
+        '<img class="rgw-arrow" src="assets/ui/MapIconArrow_00.png" width="28" height="28" style="transform:rotate(' + ang + 'deg)" alt="">' +
+        '<span class="rgw-txt">' + targetName + '</span>';
+      gwEl.title = (state.lang === "zh" ? "前往 " : "To ") + targetName;
+      gwEl.addEventListener("click", function (e) {
+        e.stopPropagation();
+        openRegion(gw.target);
+      });
+      box.appendChild(gwEl);
+    });
   }
 
   function loadRegionMap(r, keepZoom) {
     var file = regionMapFile(r);
     var img = $("regionImg");
+    var world = $("regionWorld");
     if (!img || !file) return;
     if (file === regionFile) {
       if (!keepZoom) fitRegion();
@@ -711,12 +760,17 @@
       return;
     }
     regionFile = file;
+    if (world) world.style.opacity = "0";
+    var box = $("regionPins");
+    if (box) box.innerHTML = "";
     img.onload = function () {
       layoutRegionBase();
       if (!keepZoom) fitRegion(); else applyRegionCam();
       renderRegionPins();
+      if (world) world.style.opacity = "1";
     };
     img.onerror = function () {
+      if (world) world.style.opacity = "1";
       $("regionSub").textContent = "底图加载失败：" + file;
     };
     img.src = file;
@@ -827,8 +881,7 @@
       if (r) {
         updateRegionHead(r);
         buildRegionFloorBar(r);
-        if (!regionFile) loadRegionMap(r, false);
-        else { layoutRegionBase(); fitRegion(); renderRegionPins(); }
+        loadRegionMap(r, false);
       }
       applyRegionCam();
     } else {
@@ -964,7 +1017,14 @@
     if (!canvas) return;
     canvas.style.transform = "translate3d(" + state.worldTx + "px," + state.worldTy + "px,0) scale(" + state.worldZoom + ")";
     var pins = $("worldPins");
-    if (pins) pins.style.setProperty("--world-inv", (1 / state.worldZoom).toFixed(4));
+    if (pins) {
+      pins.style.left = (worldBase.left + state.worldTx) + "px";
+      pins.style.top = (worldBase.top + state.worldTy) + "px";
+      pins.style.width = (worldBase.w * state.worldZoom) + "px";
+      pins.style.height = (worldBase.h * state.worldZoom) + "px";
+      var sc = Math.min(1.45, Math.max(1, 0.85 + state.worldZoom * 0.15));
+      pins.style.setProperty("--world-scale", sc.toFixed(3));
+    }
     var zp = $("zoomPercent");
     if (zp && state.mode === "world") zp.textContent = Math.round(state.worldZoom * 100) + "%";
   }
@@ -1032,7 +1092,8 @@
     var px = (clientX !== undefined ? clientX - rect.left : rect.width / 2);
     var py = (clientY !== undefined ? clientY - rect.top : rect.height / 2);
     var oldZoom = state.worldZoom;
-    var newZoom = Math.max(0.85, Math.min(worldInThreshold() + 0.01, oldZoom * factor));
+    var maxWorldZoom = state.autoLevel ? (worldInThreshold() + 0.01) : 4.0;
+    var newZoom = Math.max(0.85, Math.min(maxWorldZoom, oldZoom * factor));
     if (Math.abs(newZoom - oldZoom) < 0.001) return;
     var wx = (px - worldBase.left - state.worldTx) / oldZoom;
     var wy = (py - worldBase.top - state.worldTy) / oldZoom;
@@ -1190,13 +1251,23 @@
   }
 
   // -------------------------------------------------------------
-  // 三层缩放换层：区域 ≤33% → 拓扑；拓扑 ≤17% → 全图；
-  // 全图 ≥150% → 拓扑；拓扑 ≥200% → 区域（手势停 140ms 判定，换层锁 550ms）
+  // 三层缩放换层：默认 区域(33%~200%) ↔ 拓扑(15%~250%) ↔ 全图(85%~250%)
+  // 可在设置面板自定义阈值，持久化到 localStorage
   // -------------------------------------------------------------
-  var LEVEL = { regionOut: 0.33, topoOut: 0.17, worldIn: 1.5, topoIn: 2.0, settle: 140, lock: 550 };
+  var KEY_LEVEL_TH = "oot_map_level_thresholds";
+  var LEVEL_DEFAULTS = { regionOut: 0.33, topoOut: 0.15, worldIn: 2.5, topoIn: 2.5, settle: 140, lock: 550 };
+  var LEVEL = Object.assign({}, LEVEL_DEFAULTS);
+  try {
+    var savedTh = JSON.parse(localStorage.getItem(KEY_LEVEL_TH) || "null");
+    if (savedTh && typeof savedTh === "object") {
+      ["regionOut", "topoOut", "worldIn", "topoIn"].forEach(function (k) {
+        if (typeof savedTh[k] === "number" && savedTh[k] > 0) LEVEL[k] = savedTh[k];
+      });
+    }
+  } catch (e) {}
 
   function worldInThreshold() {
-    return window.innerWidth <= 900 ? 2.6 : LEVEL.worldIn;
+    return LEVEL.worldIn;
   }
 
   function scheduleLevelCheck() {
@@ -1242,6 +1313,7 @@
   }
 
   function checkLevelThresholds() {
+    if (!state.autoLevel) return;
     if (Date.now() < state.levelLockUntil) return;
     var fx = state.levelFocusX;
     var fy = state.levelFocusY;
@@ -1354,6 +1426,7 @@
       img.id = "img-" + node.id;
       img.alt = node.en;
       img.draggable = false;
+      img.decoding = "async";
       var mapSrc = (state.era === "Adult" && node.adultMap) ? node.adultMap : (node.childMap || node.adultMap);
       img.src = mapSrc;
       card.appendChild(img);
@@ -1799,7 +1872,7 @@
   // -------------------------------------------------------------
   // 画布图标基准尺寸：桌面 20 / 手机 18（UI 规范：命中区仍由 padding 撑到 32）
   function pinIconSize() {
-    return (window.innerWidth <= 900) ? 22 : 24;
+    return (window.innerWidth <= 900) ? 30 : 34;
   }
 
   function isPinVisible(pin) {
@@ -1949,7 +2022,54 @@
     };
 
     card.hidden = false;
+    positionDetailCard(card, (state.mode === "region" ? rcur : cur) || rcur || cur);
     updateUrl(pin.id);
+  }
+
+  function positionDetailCard(card, anchorEl) {
+    if (!card) return;
+    var vw = window.innerWidth, vh = window.innerHeight;
+    if (vw <= 900 || !anchorEl) {
+      card.style.left = "";
+      card.style.top = "";
+      card.style.right = "";
+      return;
+    }
+    var ar = anchorEl.getBoundingClientRect();
+    var ax = ar.left + ar.width / 2;
+    var ay = ar.top + ar.height / 2;
+    var cw = card.offsetWidth || 360;
+    var ch = card.offsetHeight || 280;
+    var sb = $("sidebar");
+    var minL = (sb && !sb.classList.contains("collapsed")) ? (sb.offsetWidth + 14) : 14;
+    var maxL = vw - cw - 14;
+    var minT = 14;
+    var maxT = vh - ch - 14;
+    var pad = 28;
+    // 依次探测：右侧 → 左侧 → 下方 → 上方
+    var candidates = [
+      { l: ax + pad, t: ay - ch * 0.35 },
+      { l: ax - pad - cw, t: ay - ch * 0.35 },
+      { l: ax - cw / 2, t: ay + pad },
+      { l: ax - cw / 2, t: ay - pad - ch }
+    ];
+    var chosen = null;
+    for (var i = 0; i < candidates.length; i++) {
+      var c = candidates[i];
+      if (c.l >= minL && c.l <= maxL && c.t >= minT && c.t <= maxT) {
+        chosen = c;
+        break;
+      }
+    }
+    if (!chosen) {
+      chosen = {
+        l: Math.max(minL, Math.min(maxL, ax + pad <= maxL ? ax + pad : ax - pad - cw)),
+        t: Math.max(minT, Math.min(maxT, ay - ch * 0.35))
+      };
+    }
+    card.style.right = "auto";
+    card.style.left = Math.round(chosen.l) + "px";
+    card.style.top = Math.round(chosen.t) + "px";
   }
 
   function closeDetailCard() {
@@ -1989,6 +2109,86 @@
     });
   }
 
+  var exploreTab = "region";
+
+  function renderExplorePanel() {
+    var panel = $("explorePanel");
+    var grid = $("exploreGrid");
+    if (!panel || !grid || panel.hidden) return;
+    grid.innerHTML = "";
+
+    var items = [];
+    if (exploreTab === "region") {
+      REGIONS.forEach(function (r) {
+        if (!isRegionAvailable(r)) return;
+        var total = 0, done = 0;
+        PINS.forEach(function (p) {
+          if (state.era !== "All" && p.era !== "Both" && p.era !== state.era) return;
+          var host = (p.map && p.map !== "hyrule") ? p.map : p.area;
+          if (host !== r.id) return;
+          total++;
+          if (state.donePins[p.id]) done++;
+        });
+        if (!total) return;
+        items.push({
+          id: r.id,
+          label: state.lang === "zh" ? r.zh : (r.en || r.id),
+          done: done,
+          total: total,
+          isRegion: true
+        });
+      });
+    } else {
+      CATS.forEach(function (c) {
+        var total = 0, done = 0;
+        PINS.forEach(function (p) {
+          if (state.era !== "All" && p.era !== "Both" && p.era !== state.era) return;
+          if (p.cat !== c.id) return;
+          total++;
+          if (state.donePins[p.id]) done++;
+        });
+        if (!total) return;
+        items.push({
+          id: c.id,
+          label: state.lang === "zh" ? (c.short || c.zh) : (c.en || c.id),
+          done: done,
+          total: total,
+          badge: c.badge,
+          isRegion: false
+        });
+      });
+    }
+
+    items.forEach(function (it) {
+      var pct = it.total > 0 ? Math.round((it.done / it.total) * 100) : 0;
+      var card = document.createElement("button");
+      card.type = "button";
+      card.className = "explore-card" + (pct === 100 ? " full" : "");
+      card.title = it.label + " (" + it.done + "/" + it.total + ")";
+      card.innerHTML =
+        '<div class="ec-top">' +
+          (it.badge ? '<span class="ec-dot" style="background:' + it.badge + '"></span>' : '') +
+          '<span class="ec-name">' + it.label + '</span>' +
+          '<span class="ec-num">' + it.done + '/' + it.total + '</span>' +
+        '</div>' +
+        '<div class="ec-bar"><i style="width:' + pct + '%"></i></div>';
+      card.addEventListener("click", function () {
+        if (it.isRegion) {
+          openRegion(it.id);
+          if (window.innerWidth <= 900) {
+            $("sidebar").classList.add("collapsed");
+            document.body.classList.add("side-collapsed");
+          }
+        } else {
+          state.activeCats.add(it.id);
+          renderCategoriesSidebar();
+          renderAllPins();
+        }
+      });
+      grid.appendChild(card);
+    });
+  }
+
   function updateProgress() {
     var total = 0;
     var completed = 0;
@@ -2003,14 +2203,17 @@
     $("progNum").textContent = completed + " / " + total;
     $("progPct").textContent = pct + "%";
     $("progBar").style.width = pct + "%";
+    renderExplorePanel();
   }
 
   function renderCategoriesSidebar() {
     var list = $("catList");
     list.innerHTML = "";
+    var catTotals = {};
+    PINS.forEach(function (p) { catTotals[p.cat] = (catTotals[p.cat] || 0) + 1; });
 
     GROUPS.forEach(function (group) {
-      var cats = CATS.filter(function (c) { return c.group === group.id; });
+      var cats = CATS.filter(function (c) { return c.group === group.id && (catTotals[c.id] || 0) > 0; });
       if (!cats.length) return;
 
       var box = document.createElement("div");
@@ -2079,7 +2282,7 @@
 
         var iconSlot = document.createElement("div");
         iconSlot.className = "cat-icon-slot";
-        iconSlot.innerHTML = ICONS.html(cat.id, 18);
+        iconSlot.innerHTML = ICONS.html(cat.id, 16);
 
         var name = document.createElement("span");
         name.className = "cat-name";
@@ -2285,6 +2488,36 @@
       });
     });
 
+    var btnSideCal = $("btnSideCal");
+    if (btnSideCal) {
+      btnSideCal.addEventListener("click", function (e) {
+        e.stopPropagation();
+        toggleCalibrationMode();
+      });
+    }
+
+    // 所有画布点击空白处关闭打开的卡片/面板
+    var mapStageEl = $("mapStage");
+    if (mapStageEl) {
+      mapStageEl.addEventListener("click", function (e) {
+        if (state.dragMoved || state.regionDragMoved || state.worldDragMoved) return;
+        if (e.target.closest(".detail-card") || e.target.closest(".map-pin") ||
+            e.target.closest(".region-gw") || e.target.closest(".world-seal") ||
+            e.target.closest(".world-entry") || e.target.closest(".settings-panel") ||
+            e.target.closest(".zoom-controls") || e.target.closest("button")) return;
+        var dc = $("detailCard");
+        if (dc && !dc.hidden) closeDetailCard();
+        var sp = $("settingsPanel");
+        if (sp && !sp.hidden) sp.hidden = true;
+        var ep = $("explorePanel");
+        if (ep && !ep.hidden) {
+          ep.hidden = true;
+          var caret = $("progCaret");
+          if (caret) caret.textContent = "▴";
+        }
+      });
+    }
+
     var hideChk = $("hideDoneChk");
     hideChk.checked = state.hideDone;
     hideChk.addEventListener("change", function () {
@@ -2293,12 +2526,71 @@
       renderAllPins();
     });
 
+    var autoLevelChk = $("autoLevelChk");
+    if (autoLevelChk) {
+      autoLevelChk.checked = state.autoLevel;
+      autoLevelChk.addEventListener("change", function () {
+        state.autoLevel = autoLevelChk.checked;
+        try { localStorage.setItem(KEY_AUTO_LEVEL, state.autoLevel ? "1" : "0"); } catch (e) {}
+      });
+    }
+
     var langBtn = $("langBtn");
     langBtn.addEventListener("click", function () {
       state.lang = state.lang === "zh" ? "en" : "zh";
       saveStorage();
       updateLanguageUI();
     });
+
+    // 设置页：三层缩放换层阈值调节
+    var thMap = [
+      ["thRegionOut", "regionOut"],
+      ["thTopoIn", "topoIn"],
+      ["thTopoOut", "topoOut"],
+      ["thWorldIn", "worldIn"]
+    ];
+    function syncThresholdInputs() {
+      thMap.forEach(function (pair) {
+        var inp = $(pair[0]);
+        if (inp) inp.value = Math.round(LEVEL[pair[1]] * 100);
+      });
+    }
+    function saveThresholds() {
+      try {
+        localStorage.setItem(KEY_LEVEL_TH, JSON.stringify({
+          regionOut: LEVEL.regionOut,
+          topoOut: LEVEL.topoOut,
+          worldIn: LEVEL.worldIn,
+          topoIn: LEVEL.topoIn
+        }));
+      } catch (e) {}
+    }
+    syncThresholdInputs();
+    thMap.forEach(function (pair) {
+      var inp = $(pair[0]);
+      if (!inp) return;
+      inp.addEventListener("change", function () {
+        var v = parseFloat(inp.value);
+        if (!isFinite(v) || v <= 0) { syncThresholdInputs(); return; }
+        var min = parseFloat(inp.min) || 10;
+        var max = parseFloat(inp.max) || 400;
+        v = Math.max(min, Math.min(max, v));
+        LEVEL[pair[1]] = v / 100;
+        inp.value = Math.round(v);
+        saveThresholds();
+      });
+    });
+    var thReset = $("thReset");
+    if (thReset) {
+      thReset.addEventListener("click", function () {
+        LEVEL.regionOut = LEVEL_DEFAULTS.regionOut;
+        LEVEL.topoIn = LEVEL_DEFAULTS.topoIn;
+        LEVEL.topoOut = LEVEL_DEFAULTS.topoOut;
+        LEVEL.worldIn = LEVEL_DEFAULTS.worldIn;
+        syncThresholdInputs();
+        saveThresholds();
+      });
+    }
 
     $("btnSelectAll").addEventListener("click", function () {
       CATS.forEach(function (c) { state.activeCats.add(c.id); });
@@ -2542,6 +2834,42 @@
     bindWorldEvents();
     bindUI();
     bindSearch();
+    // 探索度总览面板交互
+    var progBox = $("progressBox");
+    var expPanel = $("explorePanel");
+    var expClose = $("exploreClose");
+    var expTabs = $("exploreTabs");
+    if (progBox && expPanel) {
+      var toggleExp = function () {
+        expPanel.hidden = !expPanel.hidden;
+        var caret = $("progCaret");
+        if (caret) caret.textContent = expPanel.hidden ? "▴" : "▾";
+        if (!expPanel.hidden) renderExplorePanel();
+      };
+      progBox.addEventListener("click", toggleExp);
+      progBox.addEventListener("keydown", function (e) {
+        if (e.key === "Enter" || e.key === " ") { e.preventDefault(); toggleExp(); }
+      });
+    }
+    if (expClose && expPanel) {
+      expClose.addEventListener("click", function (e) {
+        e.stopPropagation();
+        expPanel.hidden = true;
+        var caret = $("progCaret");
+        if (caret) caret.textContent = "▴";
+      });
+    }
+    if (expTabs) {
+      expTabs.querySelectorAll(".explore-tab").forEach(function (btn) {
+        btn.addEventListener("click", function () {
+          exploreTab = btn.getAttribute("data-etab") || "region";
+          expTabs.querySelectorAll(".explore-tab").forEach(function (b) {
+            b.classList.toggle("on", b === btn);
+          });
+          renderExplorePanel();
+        });
+      });
+    }
     renderVersion();
     renderCategoriesSidebar();
     renderJumpChips();

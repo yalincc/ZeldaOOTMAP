@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#18110b">
 <title>塞尔达传说：时之笛 全能互动地图 · Zelda OoT Interactive Map</title>
-<link rel="stylesheet" href="css/style.css?v=6">
+<link rel="stylesheet" href="css/style.css?v=12">
 </head>
 <body>
 
@@ -112,16 +112,33 @@
       <div class="jump-chips" id="jumpChips"></div>
     </div>
 
-    <!-- 侧栏底部：总进度 -->
+    <!-- 侧栏底部：总进度 + 探索度面板 -->
     <div class="side-foot">
-      <div class="progress-box" id="progressBox" title="全收集进度">
+      <div class="explore-panel" id="explorePanel" hidden>
+        <div class="explore-head">
+          <div class="explore-tabs" id="exploreTabs">
+            <button type="button" class="explore-tab on" data-etab="region">按区域</button>
+            <button type="button" class="explore-tab" data-etab="cat">按分类</button>
+          </div>
+          <button type="button" class="explore-close" id="exploreClose" aria-label="收起探索度">×</button>
+        </div>
+        <div class="explore-grid" id="exploreGrid"></div>
+      </div>
+      <div class="progress-box" id="progressBox" title="点击展开探索度总览" role="button" tabindex="0">
         <div class="progress-info">
           <span class="prog-txt">全收集进度</span>
           <span class="prog-num" id="progNum">0 / 0</span>
           <span class="prog-pct" id="progPct">0%</span>
+          <span class="prog-caret" id="progCaret">▴</span>
         </div>
         <div class="progress-bar-bg"><div class="progress-bar-fill" id="progBar"></div></div>
       </div>
+      <div class="side-links">
+        <button type="button" class="side-link-btn" id="settingsBtn">⚙ 设置</button>
+        <a class="side-link-btn" href="../docs/oot100-guide.html" target="_blank" rel="noopener">📖 全收集攻略</a>
+        <button type="button" class="side-link-btn" id="btnSideCal">🎯 校准</button>
+      </div>
+      <div class="side-meta" id="verBadge">ZELDA OOT MAP</div>
     </div>
   </aside>
 
@@ -161,8 +178,8 @@
         <div class="world-viewport" id="worldViewport">
           <div class="world-canvas" id="worldCanvas">
             <img id="worldImg" alt="海拉鲁全图" draggable="false" data-src="assets/ui/basemap_2400.webp">
-            <div class="world-pins" id="worldPins"></div>
           </div>
+          <div class="world-pins" id="worldPins"></div>
         </div>
         <div class="world-caption">
           <span>海拉鲁全境</span>
@@ -177,7 +194,7 @@
       <button id="btnZoomIn" title="放大 (+)">+</button>
       <span id="zoomPercent">100%</span>
       <button id="btnZoomOut" title="缩小 (−)">−</button>
-      <button id="btnZoomFit" title="自适应全景 (⤢)">⤢</button>
+      <button id="btnZoomFit" title="回到默认视角">⌂</button>
     </div>
 
     <!-- 出入口与近道悬浮说明卡片 -->
@@ -252,14 +269,6 @@
       </div>
     </div>
 
-    <!-- 左下角设置 -->
-    <button class="settings-btn" id="settingsBtn" title="设置" aria-label="设置">
-      <svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.7">
-        <circle cx="12" cy="12" r="3.2"/>
-        <path d="M12 4v2.2M12 17.8V20M4 12h2.2M17.8 12H20M6.3 6.3l1.6 1.6M16.1 16.1l1.6 1.6M17.7 6.3l-1.6 1.6M7.9 16.1l-1.6 1.6"/>
-      </svg>
-    </button>
-
     <div class="settings-panel" id="settingsPanel" hidden>
       <div class="settings-head">
         <span>设置</span>
@@ -269,12 +278,36 @@
         <span>隐藏已收集</span>
         <input type="checkbox" id="hideDoneChk">
       </label>
+      <label class="setting-row">
+        <span>缩放自动换层</span>
+        <input type="checkbox" id="autoLevelChk" checked>
+      </label>
       <button class="setting-row" id="langBtn">
         <span>语言</span><em>中 / EN</em>
       </button>
       <button class="setting-row" id="btnEditMode">
         <span>点位校准</span><em>高级</em>
       </button>
+      <div class="settings-subhead">
+        <span>三层缩放换层阈值 (%)</span>
+        <button type="button" class="th-reset" id="thReset">默认</button>
+      </div>
+      <div class="setting-row setting-th">
+        <span>区域 → 拓扑</span>
+        <input type="number" id="thRegionOut" min="15" max="80" step="1">
+      </div>
+      <div class="setting-row setting-th">
+        <span>拓扑 → 区域</span>
+        <input type="number" id="thTopoIn" min="120" max="400" step="5">
+      </div>
+      <div class="setting-row setting-th">
+        <span>拓扑 → 全图</span>
+        <input type="number" id="thTopoOut" min="10" max="40" step="1">
+      </div>
+      <div class="setting-row setting-th">
+        <span>全图 → 拓扑</span>
+        <input type="number" id="thWorldIn" min="120" max="400" step="5">
+      </div>
       <div class="settings-version" id="verBadge">ZELDA OOT MAP</div>
     </div>
   </main>
@@ -286,6 +319,6 @@
 <script src="data/regions.js?v=3"></script>
 <script src="data/world_data.js?v=2"></script>
 <script src="data/pins_data.js?v=2"></script>
-<script src="js/app.js?v=7"></script>
+<script src="js/app.js?v=13"></script>
 </body>
 </html>
