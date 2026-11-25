@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#18110b">
 <title>塞尔达传说：时之笛 全能互动地图 · Zelda OoT Interactive Map</title>
-<link rel="stylesheet" href="css/style.css?v=12">
+<link rel="stylesheet" href="css/style.css?v=14">
 </head>
 <body>
 
@@ -78,14 +78,10 @@
       <button data-era="Adult" class="era-btn">成年</button>
     </div>
 
-    <!-- 区域列表（区域 / 全图共用；按野外 / 迷宫分组） -->
+    <!-- 区域列表（大地图 / 迷宫） -->
     <div class="region-panel" id="regionPanel">
-      <div class="panel-head">
-        <span class="action-title">区域 · <em id="regionEraLbl">童年</em></span>
-        <button class="panel-toggle" id="regionToggle">收起</button>
-      </div>
       <div id="regionBody">
-        <div class="region-group-title">野外 <span id="regionFieldCount">0</span></div>
+        <div class="region-group-title">大地图 <span id="regionFieldCount">0</span></div>
         <div class="region-list" id="regionFieldList"></div>
         <div class="region-group-title">迷宫 <span id="regionDungeonCount">0</span></div>
         <div class="region-list" id="regionDungeonList"></div>
@@ -93,18 +89,15 @@
       </div>
     </div>
 
-    <!-- 批量控制 -->
-    <div class="filter-actions" id="filterActions">
-      <span class="action-title">分类筛选</span>
-      <div class="action-btns">
-        <button id="btnSelectAll">全选</button>
-        <button id="btnDeselectAll">清空</button>
-        <button id="catToggle" class="cat-toggle">收起</button>
-      </div>
+    <!-- 当前地图图标面板（可收起/展开） -->
+    <div class="cat-section" id="catSection">
+      <button type="button" class="cat-panel-head" id="catPanelToggle" aria-expanded="true">
+        <span class="cat-section-title" id="catPanelTitle">本区图标</span>
+        <span class="cat-panel-sub" id="catPanelSub"></span>
+        <span class="cat-caret" id="catCaret">▾</span>
+      </button>
+      <div class="cat-list" id="catList"></div>
     </div>
-
-    <!-- 分类列表 (带自制矢量图标与计数) -->
-    <div class="cat-list" id="catList"></div>
 
     <!-- 地标快速跳转 -->
     <div class="jump-section" id="jumpSection">
@@ -133,12 +126,19 @@
         </div>
         <div class="progress-bar-bg"><div class="progress-bar-fill" id="progBar"></div></div>
       </div>
+      <div class="save-cta-row">
+        <button type="button" class="save-cta-btn" id="saveSyncBtn">加载存档</button>
+        <button type="button" class="save-help-btn" id="saveHelpBtn" title="存档同步说明" aria-label="存档同步说明">?</button>
+      </div>
       <div class="side-links">
         <button type="button" class="side-link-btn" id="settingsBtn">⚙ 设置</button>
-        <a class="side-link-btn" href="../docs/oot100-guide.html" target="_blank" rel="noopener">📖 全收集攻略</a>
-        <button type="button" class="side-link-btn" id="btnSideCal">🎯 校准</button>
+        <button type="button" class="side-link-btn" id="navBtn">🧭 导航</button>
+        <a class="side-link-btn" href="../docs/oot100-guide.html" target="_blank" rel="noopener">📖 攻略</a>
       </div>
-      <div class="side-meta" id="verBadge">ZELDA OOT MAP</div>
+      <div class="side-meta">
+        <div class="side-meta-copy" id="verBadge">OOTMAP V0.1.0 © 2026 yalincc</div>
+        <div class="side-meta-repo">GitHub <a href="https://github.com/yalincc/ZeldaOOTMAP" target="_blank" rel="noopener">https://github.com/yalincc/ZeldaOOTMAP</a></div>
+      </div>
     </div>
   </aside>
 
@@ -319,6 +319,6 @@
 <script src="data/regions.js?v=3"></script>
 <script src="data/world_data.js?v=2"></script>
 <script src="data/pins_data.js?v=2"></script>
-<script src="js/app.js?v=13"></script>
+<script src="js/app.js?v=14"></script>
 </body>
 </html>

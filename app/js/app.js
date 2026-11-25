@@ -96,7 +96,7 @@
     lang: "zh",   // 默认简体中文，支持一键切 EN
     hideDone: false,
     autoLevel: true,
-    activeCats: new Set(CATS.filter(function (c) { return !c.defOff; }).map(function (c) { return c.id; })),
+    activeCats: new Set(CATS.map(function (c) { return c.id; })),
     donePins: {},
     selectedPinId: null,
 
@@ -516,18 +516,21 @@
 
     $("regionFieldCount").textContent = field.length;
     $("regionDungeonCount").textContent = dungeon.length;
-    $("regionEraLbl").textContent = state.era === "All" ? "全部时代" : (state.era === "Child" ? "童年" : "成年");
+    var eraLbl = $("regionEraLbl");
+    if (eraLbl) eraLbl.textContent = state.era === "All" ? "全部时代" : (state.era === "Child" ? "童年" : "成年");
 
     function buildOne(r, box) {
       var b = document.createElement("button");
-      b.className = "region-item" + (r.id === state.area ? " on" : "");
+      var rPins = regionPinsForEra(r);
+      var n = rPins.length;
+      var d = 0;
+      for (var i = 0; i < rPins.length; i++) {
+        if (state.donePins[rPins[i].id]) d++;
+      }
+      b.className = "region-item" + (r.id === state.area ? " on" : "") + (d > 0 ? " has-done" : "");
       b.setAttribute("data-region", r.id);
-      var n = regionPinsForEra(r).length;
-      var fl = (r.kind === "dungeon")
-        ? '<span class="region-floors">' + Math.max(0, (r.floors || []).length - 1) + ' 层</span>'
-        : "";
-      b.innerHTML = "<span>" + (state.lang === "zh" ? r.zh : r.en) + "</span>" + fl +
-        "<em>" + n + "</em>";
+      b.innerHTML = "<span>" + (state.lang === "zh" ? r.zh : r.en) + "</span>" +
+        "<em>" + d + "/" + n + "</em>";
       b.addEventListener("click", function () { openRegion(r.id); });
       box.appendChild(b);
     }
@@ -793,6 +796,7 @@
       return;
     }
     renderRegionList();
+    renderCategoriesSidebar();
     updateRegionHead(r);
     buildRegionFloorBar(r);
     if (isRegionAvailable(r)) loadRegionMap(r, opts.keepZoom);
@@ -870,12 +874,14 @@
         wi.addEventListener("load", loadWorld, { once: true });
       }
       renderRegionList();
+      renderCategoriesSidebar();
       updateUrl();
       return;
     }
 
     if (mode === "region") {
       renderRegionList();
+      renderCategoriesSidebar();
       var r = currentRegion();
       if (r && !isRegionAvailable(r)) {
         var pick = chooseRegionForEra();
@@ -889,6 +895,7 @@
       applyRegionCam();
     } else {
       // 拓扑模式保留原有的“聚焦海拉鲁平原 hub”视野
+      renderCategoriesSidebar();
       focusNode("HyruleField", 0.52);
     }
     updateUrl();
@@ -1998,6 +2005,7 @@
       }
       saveStorage();
       renderAllPins();
+      renderRegionList();
       updateCategoriesCount();
       updateProgress();
     };
@@ -2063,31 +2071,7 @@
   // 分类统计与全收集进度管理 (GamerGuides 核心体验)
   // -------------------------------------------------------------
   function updateCategoriesCount() {
-    var validPins = PINS.filter(function (p) {
-      if (state.era !== "All" && p.era !== "Both" && p.era !== state.era) return false;
-      return true;
-    });
-
-    var countByCat = {};
-    validPins.forEach(function (p) {
-      countByCat[p.cat] = (countByCat[p.cat] || 0) + 1;
-    });
-
-    CATS.forEach(function (cat) {
-      var badge = $("cat-count-" + cat.id);
-      if (badge) {
-        badge.textContent = countByCat[cat.id] || 0;
-      }
-    });
-
-    GROUPS.forEach(function (g) {
-      var total = 0;
-      CATS.forEach(function (c) {
-        if (c.group === g.id) total += (countByCat[c.id] || 0);
-      });
-      var el = $("cgroup-" + g.id);
-      if (el) el.textContent = total;
-    });
+    renderCategoriesSidebar();
   }
 
   var exploreTab = "region";
@@ -2189,104 +2173,78 @@
 
   function renderCategoriesSidebar() {
     var list = $("catList");
+    if (!list) return;
     list.innerHTML = "";
-    var catTotals = {};
-    PINS.forEach(function (p) { catTotals[p.cat] = (catTotals[p.cat] || 0) + 1; });
 
-    GROUPS.forEach(function (group) {
-      var cats = CATS.filter(function (c) { return c.group === group.id && (catTotals[c.id] || 0) > 0; });
-      if (!cats.length) return;
+    var titleEl = $("catPanelTitle");
+    var subEl = $("catPanelSub");
+    var r = (state.mode === "region") ? currentRegion() : null;
+    if (titleEl) {
+      titleEl.textContent = r
+        ? (state.lang === "zh" ? "本区图标" : "Area Icons")
+        : (state.lang === "zh" ? "全图图标" : "All Icons");
+    }
+    if (subEl) {
+      subEl.textContent = r
+        ? (state.lang === "zh" ? r.zh : r.en)
+        : (state.lang === "zh" ? "海拉鲁全境" : "Hyrule");
+    }
 
-      var box = document.createElement("div");
-      box.className = "cat-group";
-
-      var head = document.createElement("div");
-      head.className = "cat-group-head";
-
-      var toggle = document.createElement("button");
-      toggle.className = "cat-group-toggle" + (group.open === false ? " closed" : "");
-      toggle.innerHTML = '<span class="cg-caret">▾</span>' +
-                         '<span class="cg-name">' + (state.lang === "zh" ? group.zh : group.en) + '</span>' +
-                         '<span class="cg-total" id="cgroup-' + group.id + '">0</span>';
-
-      var acts = document.createElement("div");
-      acts.className = "cat-group-acts";
-      var btnAll = document.createElement("button");
-      btnAll.textContent = state.lang === "zh" ? "全选" : "All";
-      var btnNone = document.createElement("button");
-      btnNone.textContent = state.lang === "zh" ? "清空" : "None";
-      btnAll.addEventListener("click", function (e) {
-        e.stopPropagation();
-        cats.forEach(function (c) { state.activeCats.add(c.id); });
-        renderCategoriesSidebar();
-        renderAllPins();
-      });
-      btnNone.addEventListener("click", function (e) {
-        e.stopPropagation();
-        cats.forEach(function (c) { state.activeCats.delete(c.id); });
-        renderCategoriesSidebar();
-        renderAllPins();
-      });
-      acts.appendChild(btnAll);
-      acts.appendChild(btnNone);
-      head.appendChild(toggle);
-      head.appendChild(acts);
-
-      var grid = document.createElement("div");
-      grid.className = "cat-grid";
-      grid.hidden = (group.open === false);
-
-      toggle.addEventListener("click", function () {
-        grid.hidden = !grid.hidden;
-        toggle.classList.toggle("closed", grid.hidden);
-        group.open = !grid.hidden;
-      });
-
-      cats.forEach(function (cat) {
-        var item = document.createElement("label");
-        item.className = "cat-item" + (state.activeCats.has(cat.id) ? " active" : "");
-        item.title = (state.lang === "zh" ? cat.zh : cat.en) + " · " + cat.id;
-
-        var chk = document.createElement("input");
-        chk.type = "checkbox";
-        chk.checked = state.activeCats.has(cat.id);
-        chk.addEventListener("change", function () {
-          if (chk.checked) {
-            state.activeCats.add(cat.id);
-            item.classList.add("active");
-          } else {
-            state.activeCats.delete(cat.id);
-            item.classList.remove("active");
-          }
-          renderAllPins();
-        });
-
-        var iconSlot = document.createElement("div");
-        iconSlot.className = "cat-icon-slot";
-        iconSlot.innerHTML = ICONS.html(cat.id, 16);
-
-        var name = document.createElement("span");
-        name.className = "cat-name";
-        name.textContent = state.lang === "zh" ? cat.short : cat.en;
-
-        var badge = document.createElement("span");
-        badge.className = "cat-badge";
-        badge.id = "cat-count-" + cat.id;
-        badge.textContent = "0";
-
-        item.appendChild(chk);
-        item.appendChild(iconSlot);
-        item.appendChild(name);
-        item.appendChild(badge);
-        grid.appendChild(item);
-      });
-
-      box.appendChild(head);
-      box.appendChild(grid);
-      list.appendChild(box);
+    var stats = {};
+    PINS.forEach(function (p) {
+      if (state.era !== "All" && p.era !== "Both" && p.era !== state.era) return;
+      if (r && !pinBelongsToRegion(p, r)) return;
+      if (!stats[p.cat]) stats[p.cat] = { total: 0, done: 0 };
+      stats[p.cat].total++;
+      if (state.donePins[p.id]) stats[p.cat].done++;
     });
 
-    updateCategoriesCount();
+    var visibleCats = CATS.filter(function (c) {
+      return stats[c.id] && stats[c.id].total > 0;
+    });
+
+    if (!visibleCats.length) {
+      list.innerHTML = '<div class="cat-empty">' +
+        (state.lang === "zh" ? "当前时代暂无图标" : "No icons in this era") +
+        "</div>";
+      return;
+    }
+
+    visibleCats.forEach(function (cat) {
+      var st = stats[cat.id];
+      var isActive = state.activeCats.has(cat.id);
+      var item = document.createElement("button");
+      item.type = "button";
+      item.className = "cat-item" + (isActive ? " active" : "") + (st.done > 0 ? " has-done" : "");
+      item.title = (state.lang === "zh" ? cat.zh : cat.en) + " (" + st.done + "/" + st.total + ")";
+
+      var iconSlot = document.createElement("div");
+      iconSlot.className = "cat-icon-slot";
+      iconSlot.innerHTML = ICONS.html(cat.id, 16);
+
+      var name = document.createElement("span");
+      name.className = "cat-name";
+      name.textContent = state.lang === "zh" ? cat.short : cat.en;
+
+      var badge = document.createElement("span");
+      badge.className = "cat-badge";
+      badge.textContent = st.done + "/" + st.total;
+
+      item.appendChild(iconSlot);
+      item.appendChild(name);
+      item.appendChild(badge);
+      item.addEventListener("click", function () {
+        if (state.activeCats.has(cat.id)) {
+          state.activeCats.delete(cat.id);
+          item.classList.remove("active");
+        } else {
+          state.activeCats.add(cat.id);
+          item.classList.add("active");
+        }
+        renderAllPins();
+      });
+      list.appendChild(item);
+    });
   }
 
   function renderJumpChips() {
@@ -2436,19 +2394,29 @@
       if (settingsClose) settingsClose.addEventListener("click", function () { settingsPanel.hidden = true; });
     }
 
-    // 分类与区域列表折叠（TOTKmap 式收起/展开）
-    $("catToggle").addEventListener("click", function () {
-      var list = $("catList");
-      var hidden = list.hidden;
-      list.hidden = !hidden;
-      this.textContent = hidden ? "收起" : "展开";
-    });
-    $("regionToggle").addEventListener("click", function () {
-      var body = $("regionBody");
-      var hidden = body.hidden;
-      body.hidden = !hidden;
-      this.textContent = hidden ? "收起" : "展开";
-    });
+    // 本区图标面板折叠
+    var catPanelToggle = $("catPanelToggle");
+    if (catPanelToggle) {
+      catPanelToggle.addEventListener("click", function () {
+        var list = $("catList");
+        var caret = $("catCaret");
+        var isHidden = list.hidden;
+        list.hidden = !isHidden;
+        catPanelToggle.setAttribute("aria-expanded", isHidden ? "true" : "false");
+        if (caret) caret.textContent = isHidden ? "▾" : "▴";
+      });
+    }
+
+    // 区域列表折叠（TOTKmap 式收起/展开）
+    var regionToggle = $("regionToggle");
+    if (regionToggle) {
+      regionToggle.addEventListener("click", function () {
+        var body = $("regionBody");
+        var hidden = body.hidden;
+        body.hidden = !hidden;
+        this.textContent = hidden ? "收起" : "展开";
+      });
+    }
 
     var eraBtns = document.querySelectorAll("#eraSeg .era-btn");
     eraBtns.forEach(function (btn) {
@@ -2469,11 +2437,28 @@
       });
     });
 
-    var btnSideCal = $("btnSideCal");
-    if (btnSideCal) {
-      btnSideCal.addEventListener("click", function (e) {
-        e.stopPropagation();
-        toggleCalibrationMode();
+    var navBtn = $("navBtn");
+    if (navBtn) {
+      navBtn.addEventListener("click", function () {
+        var orig = navBtn.textContent;
+        navBtn.textContent = state.lang === "zh" ? "即将上线" : "Soon";
+        setTimeout(function () { navBtn.textContent = orig; }, 1200);
+      });
+    }
+
+    var saveSyncBtn = $("saveSyncBtn");
+    if (saveSyncBtn) {
+      saveSyncBtn.addEventListener("click", function () {
+        var orig = saveSyncBtn.textContent;
+        saveSyncBtn.textContent = state.lang === "zh" ? "存档同步即将上线" : "Coming soon";
+        setTimeout(function () { saveSyncBtn.textContent = orig; }, 1200);
+      });
+    }
+
+    var saveHelpBtn = $("saveHelpBtn");
+    if (saveHelpBtn) {
+      saveHelpBtn.addEventListener("click", function () {
+        if (saveSyncBtn) saveSyncBtn.click();
       });
     }
 
@@ -2572,17 +2557,6 @@
         saveThresholds();
       });
     }
-
-    $("btnSelectAll").addEventListener("click", function () {
-      CATS.forEach(function (c) { state.activeCats.add(c.id); });
-      renderCategoriesSidebar();
-      renderAllPins();
-    });
-    $("btnDeselectAll").addEventListener("click", function () {
-      state.activeCats.clear();
-      renderCategoriesSidebar();
-      renderAllPins();
-    });
 
     $("cardClose").addEventListener("click", closeDetailCard);
 
@@ -2776,7 +2750,7 @@
   // -------------------------------------------------------------
   function renderVersion() {
     var el = $("verBadge");
-    if (el) el.textContent = "ZELDA OOT MAP V" + APP_VERSION;
+    if (el) el.textContent = "OOTMAP V" + APP_VERSION + " © 2026 yalincc";
   }
 
   function initResponsiveShell() {

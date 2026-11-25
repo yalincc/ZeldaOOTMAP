@@ -26,10 +26,10 @@
 ## 2. 字体与字号
 
 - 字族：`-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif`
-- 字号阶梯：**10 / 10.5 / 11 / 11.5 / 12 / 12.5 / 13 / 14 px**
-  - 顶部品牌 14 px，主标题 13 px，正文 12~12.5 px，标签/角标 10~11 px。
-  - 不新增 15 px 以上字号（除详情卡标题）。
-- 数字与百分比用等宽（`monospace`），避免进度跳动。
+- 字号阶梯：**10 / 11 / 12 / 12.5 / 13 / 13.5 / 14 / 15 / 16 px**
+  - 顶部品牌 16 px，大分类标题（大地图 / 迷宫）16 px，收缩栏标题（本区图标 / 全收集进度）15 px，列表项（区域 / 图标）13.5 px，计数与辅助标签 12~12.5 px。
+  - 不新增 17 px 以上字号（除详情卡标题）。
+- 数字对齐：`tabular-nums`（`font-variant-numeric: tabular-nums`），避免侧栏与正文混用 `monospace` 导致视觉割裂；仅坐标等技术字段使用 `monospace`。
 
 ## 3. 布局基线
 
@@ -71,3 +71,5 @@
 - 禁止把分类色写死在 JS 里另建一套（色值只认 `pins_data.js` 的 `badge`）。
 - 禁止未经确认改 `--sidebar-w` / `--topbar-h` / 断点（会连带影响校准与卡片定位）。
 - 禁止用截图当底图（底图只认官方解码产物）。
+- **禁止在 `style.css` 末尾追加同名覆盖块**：改 `.cat-item` / `.region-item` 等组件样式时先全局搜同名选择器，避免前改后被旧规则覆盖（2026-11-26 踩坑）。
+- **侧栏磨砂与缓存**：`.sidebar` 与 `.side-foot` 保持半透明磨砂底色；修改 `style.css` / `app.js` 后须同步递增 `index.html` 的 `?v=` 查询参数。
