@@ -3,6 +3,23 @@
 > 只追加，不散落成新文件。版本号语义见 `开发手册.md` §3.2。
 > 当前状态：**内测 V0.1.0 · 已上线**（`https://oot.yalin.site`；无 tag、无 Release）。
 
+## [未发布] · 2026-11-25 · 全能地图 P1–P3（分类树 + 攻略卡 + 485 点）
+
+**新增**
+- 分类树 5 组 27 小类：收集 10 / 迷宫 4 / 探索 5 / 设施 4 / 剧情 4；双列侧栏、组级全选/清空/折叠。
+- 点位 362 → **485**：Boss 8、勋章 9、歌曲 13、瓶子 5、面具 5、猫头鹰 3、松软土地 10、关键道具 24、主线 NPC 22、升级 16、心之容器 8。
+- 详情卡统一「位置 / 怎么拿 / 前置 / 奖励 / 备注 / 坐标+复制」；面具写明买家。
+- 宝箱内容清单：`data/chest_contents.json` + `.csv` + `docs/宝箱清单.md`（100 条）。
+
+**工程**
+- `data/curated_points.json` 成为人工点位真源；`extract_romfs_pins.py` 合并后重生成 `pins_data.js`（派生 keyitem / heartc、补 drop actor 名、按分类批量写卡片口径）。
+- `tools/export_chest_list.py` 一键导出清单；`verify_all.py` 增加关键道具/NPC/升级/心之容器/宝箱清单一致性校验。
+- 迷宫浅底图给点位加深色底盘，修金色图标不可辨。
+
+**验收**
+- `python tools/verify_all.py` 全 PASS；PC 1360×860 与手机 390×844 实测，console 0 error。
+- 本地 commit `ac934bc`（未 push）。
+
 ## [未发布] · 2026-11-24 · 双远端 + EdgeOne 上线
 
 **新增**
