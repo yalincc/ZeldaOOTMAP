@@ -65,8 +65,9 @@
                 "target": "LakeHylia",
                 "zh": "海利亚湖栅门",
                 "en": "Lake Gate",
-                "x": 42.63,
-                "y": 88.3
+                "x": 42.6,
+                "y": 92.2,
+                "dir": "down"
             },
             {
                 "id": "hf_to_gerudo",
@@ -83,7 +84,7 @@
     {
         "id": "LonLonRanch",
         "en": "Lon Lon Ranch",
-        "zh": "隆隆牧场",
+        "zh": "荣蓉牧场",
         "type": "field",
         "x": -1040,
         "y": 440,
@@ -177,24 +178,27 @@
                 "target": "HyruleField",
                 "zh": "出森林吊桥",
                 "en": "Forest Bridge",
-                "x": 6.36,
-                "y": 29.32
+                "x": 4.2,
+                "y": 31.0,
+                "dir": "left"
             },
             {
                 "id": "kf_to_lw",
                 "target": "LostWood",
                 "zh": "上层树洞(迷失森林)",
                 "en": "Tree Hollow to Lost Woods",
-                "x": 38.64,
-                "y": 10.13
+                "x": 38.8,
+                "y": 10.2,
+                "dir": "up"
             },
             {
                 "id": "kf_to_deku",
                 "target": "InsideTheDekuTree",
                 "zh": "德库树通道",
                 "en": "Deku Tree Trunk",
-                "x": 81.34,
-                "y": 35.28
+                "x": 67.5,
+                "y": 45.5,
+                "dir": "right"
             }
         ],
         "imgW": 1522,
@@ -235,7 +239,7 @@
     {
         "id": "LostWood",
         "en": "Lost Woods",
-        "zh": "迷失森林",
+        "zh": "迷途森林",
         "type": "field",
         "x": 620,
         "y": -160,
@@ -283,7 +287,7 @@
     {
         "id": "SacredForestMeadow",
         "en": "Sacred Meadow",
-        "zh": "神圣森林草原",
+        "zh": "森之圣域",
         "type": "field",
         "x": 1280,
         "y": -160,
@@ -315,7 +319,7 @@
     {
         "id": "ForestTemple",
         "en": "Forest Temple",
-        "zh": "森林神殿",
+        "zh": "森之神殿",
         "type": "dungeon",
         "x": 1920,
         "y": -155,
@@ -457,8 +461,9 @@
                 "target": "IceCavern",
                 "zh": "冰之洞窟裂隙",
                 "en": "Ice Cavern Rift",
-                "x": 85.0,
-                "y": 78.0
+                "x": 83.2,
+                "y": 65.5,
+                "dir": "right"
             }
         ],
         "imgW": 1066,
@@ -467,7 +472,7 @@
     {
         "id": "InsideJabuJabuBelly",
         "en": "Jabu-Jabu's Belly",
-        "zh": "加布加布肚内",
+        "zh": "加卜加卜大人腹中",
         "type": "dungeon",
         "x": 2560,
         "y": -1040,
@@ -547,8 +552,9 @@
                 "target": "DeathMountainTrail",
                 "zh": "卫兵关卡山门",
                 "en": "Guard Gate",
-                "x": 57.78,
-                "y": 8.62
+                "x": 57.8,
+                "y": 3.5,
+                "dir": "up"
             },
             {
                 "id": "kak_to_gy",
@@ -563,8 +569,9 @@
                 "target": "BottomOfTheWell",
                 "zh": "水井入口",
                 "en": "Well Entrance",
-                "x": 63.47,
-                "y": 49.62
+                "x": 63.5,
+                "y": 55.2,
+                "dir": "down"
             }
         ],
         "imgW": 1136,
@@ -665,7 +672,7 @@
     {
         "id": "DeathMountainTrail",
         "en": "Death Mountain",
-        "zh": "死亡山登山道",
+        "zh": "死亡之山登山道",
         "type": "field",
         "x": 1280,
         "y": -1980,
@@ -687,8 +694,9 @@
                 "target": "DodongoCavern",
                 "zh": "恐龙头洞穴门",
                 "en": "Dodongo Jaws Gate",
-                "x": 32.92,
-                "y": 57.03
+                "x": 27.2,
+                "y": 57.0,
+                "dir": "left"
             },
             {
                 "id": "dmt_to_gc",
@@ -713,7 +721,7 @@
     {
         "id": "DodongoCavern",
         "en": "Dodongo's Cavern",
-        "zh": "多东哥洞穴",
+        "zh": "多东哥洞窟",
         "type": "dungeon",
         "x": 1920,
         "y": -1975,
@@ -742,7 +750,7 @@
     {
         "id": "DeathMountainCrater",
         "en": "Mountain Crater",
-        "zh": "死亡山火山口",
+        "zh": "死亡之山火山口",
         "type": "field",
         "x": 1280,
         "y": -2580,
@@ -838,7 +846,7 @@
     {
         "id": "LakeHylia",
         "en": "Lake Hylia",
-        "zh": "海利亚湖",
+        "zh": "海利亚湖畔",
         "type": "field",
         "x": -240,
         "y": 440,
@@ -860,8 +868,9 @@
                 "target": "WaterTemple",
                 "zh": "湖心水底神殿大门",
                 "en": "Underwater Gate",
-                "x": 51.1,
-                "y": 52.57
+                "x": 49.0,
+                "y": 56.5,
+                "dir": "down"
             },
             {
                 "id": "lh_to_zd",
@@ -909,7 +918,7 @@
     {
         "id": "GerudoValley",
         "en": "Gerudo Valley",
-        "zh": "格鲁德峡谷",
+        "zh": "格鲁德之谷",
         "type": "field",
         "x": -1080,
         "y": -220,
@@ -963,8 +972,9 @@
                 "target": "GerudoTrainingGround",
                 "zh": "修练场大门",
                 "en": "Training Ground Gate",
-                "x": 21.95,
-                "y": 60.18
+                "x": 16.5,
+                "y": 62.5,
+                "dir": "left"
             },
             {
                 "id": "gf_to_hw",
@@ -981,7 +991,7 @@
     {
         "id": "GerudoTrainingGround",
         "en": "Training Ground",
-        "zh": "格鲁德修练场",
+        "zh": "格鲁德训练场",
         "type": "dungeon",
         "x": -1730,
         "y": -780,
@@ -1000,7 +1010,8 @@
                 "zh": "离开修练场",
                 "en": "Exit Training",
                 "x": 50.0,
-                "y": 88.0
+                "y": 82.0,
+                "dir": "down"
             }
         ]
     },
@@ -1061,8 +1072,9 @@
                 "target": "SpiritTemple",
                 "zh": "邪神像正门通道",
                 "en": "Temple Gate",
-                "x": 23.11,
-                "y": 48.32
+                "x": 17.2,
+                "y": 48.3,
+                "dir": "left"
             }
         ],
         "imgW": 1193,

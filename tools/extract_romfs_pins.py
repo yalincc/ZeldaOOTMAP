@@ -96,29 +96,29 @@ BOSS_INFO = {
 AREA_NAMES = {
     "HyruleField": ("海拉鲁平原", "Hyrule Field"),
     "KokiriForest": ("科奇里森林", "Kokiri Forest"),
-    "LostWood": ("迷失森林", "Lost Woods"),
-    "SacredForestMeadow": ("圣域森林草原", "Sacred Forest Meadow"),
-    "Market": ("城下町集市", "Hyrule Market"),
+    "LostWood": ("迷途森林", "Lost Woods"),
+    "SacredForestMeadow": ("森之圣域", "Sacred Forest Meadow"),
+    "Market": ("海拉鲁城邑", "Hyrule Market"),
     "HyruleCastle": ("海拉鲁城堡", "Hyrule Castle"),
-    "GanonCastle": ("加侬之城", "Ganon's Castle"),
-    "LonLonRanch": ("隆隆牧场", "Lon Lon Ranch"),
+    "GanonCastle": ("加侬多夫城堡", "Ganon's Castle"),
+    "LonLonRanch": ("荣蓉牧场", "Lon Lon Ranch"),
     "KakarikoVillage": ("卡卡利科村", "Kakariko Village"),
-    "Graveyard": ("卡卡利科墓地", "Kakariko Graveyard"),
-    "DeathMountainTrail": ("死亡山山道", "Death Mountain Trail"),
-    "DeathMountainCrater": ("死亡山火山口", "Death Mountain Crater"),
-    "GoronCity": ("哥隆城", "Goron City"),
-    "ZoraRiver": ("佐拉河", "Zora's River"),
-    "ZoraDomain": ("佐拉族领地", "Zora's Domain"),
-    "ZoraFountain": ("佐拉之泉", "Zora's Fountain"),
-    "LakeHylia": ("海利亚湖", "Lake Hylia"),
-    "GerudoValley": ("格鲁德峡谷", "Gerudo Valley"),
+    "Graveyard": ("墓地", "Kakariko Graveyard"),
+    "DeathMountainTrail": ("死亡之山登山道", "Death Mountain Trail"),
+    "DeathMountainCrater": ("死亡之山火山口", "Death Mountain Crater"),
+    "GoronCity": ("鼓隆城", "Goron City"),
+    "ZoraRiver": ("卓拉河", "Zora's River"),
+    "ZoraDomain": ("卓拉领地", "Zora's Domain"),
+    "ZoraFountain": ("卓拉之泉", "Zora's Fountain"),
+    "LakeHylia": ("海利亚湖畔", "Lake Hylia"),
+    "GerudoValley": ("格鲁德之谷", "Gerudo Valley"),
     "GerudoFortress": ("格鲁德要塞", "Gerudo's Fortress"),
     "HountedWasteland": ("幻影沙漠", "Haunted Wasteland"),
-    "DesertColossus": ("沙漠巨像", "Desert Colossus"),
-    "InsideTheDekuTree": ("德库树内部", "Inside the Deku Tree"),
-    "DodongoCavern": ("多东哥洞穴", "Dodongo's Cavern"),
-    "InsideJabuJabuBelly": ("加布加布腹中", "Inside Jabu-Jabu's Belly"),
-    "ForestTemple": ("森林神殿", "Forest Temple"),
+    "DesertColossus": ("巨大邪神像", "Desert Colossus"),
+    "InsideTheDekuTree": ("德库树长老体内", "Inside the Deku Tree"),
+    "DodongoCavern": ("多东哥洞窟", "Dodongo's Cavern"),
+    "InsideJabuJabuBelly": ("加卜加卜大人腹中", "Inside Jabu-Jabu's Belly"),
+    "ForestTemple": ("森之神殿", "Forest Temple"),
     "FireTemple": ("火之神殿", "Fire Temple"),
     "WaterTemple": ("水之神殿", "Water Temple"),
     "ShadowTemple": ("暗之神殿", "Shadow Temple"),
@@ -126,7 +126,7 @@ AREA_NAMES = {
     "BottomOfTheWell": ("井底", "Bottom of the Well"),
     "IceCavern": ("冰之洞窟", "Ice Cavern"),
     "GerudoTrainingGround": ("格鲁德训练场", "Gerudo Training Ground"),
-    "InsideGanonCastle": ("加侬城内部", "Inside Ganon's Castle"),
+    "InsideGanonCastle": ("加侬多夫城堡内部", "Inside Ganon's Castle"),
 }
 
 # Facility IconType -> (cat, zh, en, descZh, descEn)
@@ -843,8 +843,15 @@ def main() -> int:
         cat_counters["heartc"] += 1
 
     # ------------------------------------------------------------------
-    # 7. WRITE app/data/pins_data.js
+    # 7. WRITE app/data/pins_data.js (with pin_gateway_overrides.json)
     # ------------------------------------------------------------------
+    ov_path = ROOT / "data" / "pin_gateway_overrides.json"
+    overrides = json.loads(ov_path.read_text(encoding="utf-8")) if ov_path.exists() else {}
+    pin_uv = overrides.get("pin_uv", {})
+    for p in pins:
+        if p["id"] in pin_uv:
+            p["x"], p["y"] = pin_uv[p["id"]]
+
     categories = [
         {"id": cid, "zh": czh, "en": cen, "badge": badge}
         for cid, czh, cen, badge in CATEGORY_META
@@ -898,11 +905,14 @@ def main() -> int:
         gw_updated = 0
         for node in nodes:
             aid = node["id"]
+            if aid in AREA_NAMES:
+                node["zh"] = AREA_NAMES[aid][0]
             proj = projections.get(aid)
             if proj:
                 node["imgW"] = proj["webpW"]
                 node["imgH"] = proj["webpH"]
             ancs = anchor_lookup.get(aid, {})
+            gw_ov = overrides.get("gateway_uv", {})
             for gw in node.get("gateways", []):
                 tgt = gw.get("target")
                 pts = ancs.get(tgt)
@@ -912,6 +922,11 @@ def main() -> int:
                     gw["x"] = best_pt[0]
                     gw["y"] = best_pt[1]
                     gw_updated += 1
+                if gw.get("id") in gw_ov:
+                    ov = gw_ov[gw["id"]]
+                    if "x" in ov: gw["x"] = ov["x"]
+                    if "y" in ov: gw["y"] = ov["y"]
+                    if "dir" in ov: gw["dir"] = ov["dir"]
         new_nodes_str = json.dumps(nodes, ensure_ascii=False, indent=4)
         new_topo = topo_text[:m_nodes.start(1)] + new_nodes_str + topo_text[m_nodes.end(1):]
         TOPO_PATH.write_text(new_topo, encoding="utf-8")

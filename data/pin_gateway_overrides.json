@@ -1,0 +1,33 @@
+{
+  "_doc": "地图显示坐标与出入口校准覆盖表；由 tools/extract_romfs_pins.py 读取并合入 pins_data.js 与 topology_data.js。",
+  "pin_uv": {
+    "HP-027": [40.44, 58.21],
+    "GF-004": [69.38, 60.13],
+    "MG-011": [47.34, 32.82],
+    "MG-012": [40.6, 47.33],
+    "MG-013": [40.36, 58.3],
+    "SH-007": [40.83, 62.02],
+    "SH-009": [60.11, 53.63],
+    "ST-001": [45.02, 85.66],
+    "ST-018": [9.13, 31.44],
+    "ST-030": [65.75, 24.65],
+    "ST-034": [13.42, 41.99],
+    "npc-biggoron": [85.15, 13.43],
+    "upg-bombbag-40": [40.44, 45.9],
+    "upg-seed-40": [47.34, 34.06]
+  },
+  "gateway_uv": {
+    "hf_to_lake": { "x": 42.6, "y": 92.2, "dir": "down" },
+    "kf_to_hf": { "x": 4.2, "y": 31.0, "dir": "left" },
+    "kf_to_lw": { "x": 38.8, "y": 10.2, "dir": "up" },
+    "kf_to_deku": { "x": 67.5, "y": 45.5, "dir": "right" },
+    "zf_to_ice": { "x": 83.2, "y": 65.5, "dir": "right" },
+    "kak_to_dmt": { "x": 57.8, "y": 3.5, "dir": "up" },
+    "kak_to_well": { "x": 63.5, "y": 55.2, "dir": "down" },
+    "dmt_to_dodongo": { "x": 27.2, "y": 57.0, "dir": "left" },
+    "lh_to_water": { "x": 49.0, "y": 56.5, "dir": "down" },
+    "gf_to_gtg": { "x": 16.5, "y": 62.5, "dir": "left" },
+    "dc_to_spirit": { "x": 17.2, "y": 48.3, "dir": "left" },
+    "gtg_to_gf": { "x": 50.0, "y": 82.0, "dir": "down" }
+  }
+}

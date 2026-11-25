@@ -193,8 +193,8 @@
     }
   };
 
-  /* 官方 MapIcon PNG 映射（assets/ui/ 下，128×128 透明底）。
-     iconDone 为官方「已收集」状态图标；没有的沿用同一张。 */
+  /* 分类 MapIcon PNG 映射（assets/ui/ 下，统一 128×128 透明底，主体占比 84%）。
+     13 个官方原图 + 14 个柔和版 AI 补全图；iconDone 为「已收集」状态图标。 */
   var OFFICIAL = {
     heart: ["MapIconCollectHeartPiece_00.png", "MapIconCollectHeartPieceCheck_00.png"],
     skull: ["MapIconCollectSkullSign_00.png", "MapIconCollectSkullSignCheck_00.png"],
@@ -208,7 +208,21 @@
     fairy: ["MapIconGreatFairy_00.png"],
     training: ["MapIconTraining_00.png"],
     carpenter: ["MapIconCarpenter_00.png"],
-    mask: ["MapIconShopMask_00.png"]
+    mask: ["MapIconShopMask_00.png"],
+    heartc: ["MapIconAi_heartc.png"],
+    song: ["MapIconAi_song.png"],
+    medal: ["MapIconAi_medal.png"],
+    bottle: ["MapIconAi_bottle.png"],
+    upgrade: ["MapIconAi_upgrade.png"],
+    owl: ["MapIconAi_owl.png"],
+    poe: ["MapIconAi_poe.png"],
+    keyitem: ["MapIconAi_keyitem.png"],
+    grotto: ["MapIconAi_grotto.png"],
+    stone: ["MapIconAi_stone.png"],
+    warp: ["MapIconAi_warp.png"],
+    item: ["MapIconAi_item.png"],
+    npc: ["MapIconAi_npc.png"],
+    merchant: ["MapIconAi_merchant.png"]
   };
 
   /**

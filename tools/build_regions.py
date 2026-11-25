@@ -10,34 +10,34 @@ MAPS = ROOT / "app" / "assets" / "maps"
 OUT = ROOT / "app" / "data" / "regions.js"
 
 FIELD_ZH = {
-    "DeathMountainCrater": ("死亡山火山口", "Death Mountain Crater"),
-    "DeathMountainTrail": ("死亡山山道", "Death Mountain Trail"),
-    "DesertColossus": ("沙漠巨像", "Desert Colossus"),
-    "GanonCastle": ("加侬之城", "Ganon's Castle"),
+    "DeathMountainCrater": ("死亡之山火山口", "Death Mountain Crater"),
+    "DeathMountainTrail": ("死亡之山登山道", "Death Mountain Trail"),
+    "DesertColossus": ("巨大邪神像", "Desert Colossus"),
+    "GanonCastle": ("加侬多夫城堡", "Ganon's Castle"),
     "GerudoFortress": ("格鲁德要塞", "Gerudo's Fortress"),
-    "GerudoValley": ("格鲁德峡谷", "Gerudo Valley"),
-    "GoronCity": ("哥隆城", "Goron City"),
-    "Graveyard": ("卡卡利科墓地", "Kakariko Graveyard"),
-    "HountedWasteland": ("魂之荒地", "Haunted Wasteland"),
+    "GerudoValley": ("格鲁德之谷", "Gerudo Valley"),
+    "GoronCity": ("鼓隆城", "Goron City"),
+    "Graveyard": ("墓地", "Kakariko Graveyard"),
+    "HountedWasteland": ("幻影沙漠", "Haunted Wasteland"),
     "HyruleCastle": ("海拉鲁城堡", "Hyrule Castle"),
     "HyruleField": ("海拉鲁平原", "Hyrule Field"),
     "KakarikoVillage": ("卡卡利科村", "Kakariko Village"),
-    "KokiriForest": ("科吉里森林", "Kokiri Forest"),
-    "LakeHylia": ("海利亚湖", "Lake Hylia"),
-    "LonLonRanch": ("隆隆牧场", "Lon Lon Ranch"),
-    "LostWood": ("迷失森林", "Lost Woods"),
-    "Market": ("城下町集市", "Market"),
-    "SacredForestMeadow": ("圣域森林草原", "Sacred Forest Meadow"),
-    "ZoraDomain": ("佐拉族领地", "Zora's Domain"),
-    "ZoraFountain": ("佐拉之泉", "Zora's Fountain"),
-    "ZoraRiver": ("佐拉河", "Zora's River"),
+    "KokiriForest": ("科奇里森林", "Kokiri Forest"),
+    "LakeHylia": ("海利亚湖畔", "Lake Hylia"),
+    "LonLonRanch": ("荣蓉牧场", "Lon Lon Ranch"),
+    "LostWood": ("迷途森林", "Lost Woods"),
+    "Market": ("海拉鲁城邑", "Market"),
+    "SacredForestMeadow": ("森之圣域", "Sacred Forest Meadow"),
+    "ZoraDomain": ("卓拉领地", "Zora's Domain"),
+    "ZoraFountain": ("卓拉之泉", "Zora's Fountain"),
+    "ZoraRiver": ("卓拉河", "Zora's River"),
 }
 
 DUNGEON_ZH = {
-    "InsideTheDekuTree": ("德库树内部", "Inside the Great Deku Tree"),
-    "DodongoCavern": ("多多哥洞窟", "Dodongo's Cavern"),
-    "InsideJabuJabuBelly": ("加布加布腹中", "Inside Jabu-Jabu's Belly"),
-    "ForestTemple": ("森林神殿", "Forest Temple"),
+    "InsideTheDekuTree": ("德库树长老体内", "Inside the Great Deku Tree"),
+    "DodongoCavern": ("多东哥洞窟", "Dodongo's Cavern"),
+    "InsideJabuJabuBelly": ("加卜加卜大人腹中", "Inside Jabu-Jabu's Belly"),
+    "ForestTemple": ("森之神殿", "Forest Temple"),
     "FireTemple": ("火之神殿", "Fire Temple"),
     "WaterTemple": ("水之神殿", "Water Temple"),
     "ShadowTemple": ("暗之神殿", "Shadow Temple"),
@@ -141,8 +141,9 @@ def main() -> int:
             "eras": sorted(eras.keys()),
             "maps": eras,
         })
+    dungeons = {k: v for k, v in dungeons.items() if k in DUNGEON_ZH}
     for area, r in sorted(dungeons.items()):
-        zh, en = DUNGEON_ZH.get(area, (area, area))
+        zh, en = DUNGEON_ZH[area]
         areas.append({
             "id": area, "kind": "dungeon", "zh": zh, "en": en,
             "floors": r["floorList"],

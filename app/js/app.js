@@ -735,8 +735,11 @@
       gwEl.className = "region-gw";
       gwEl.style.left = gw.x + "%";
       gwEl.style.top = gw.y + "%";
-      // MapIconArrow_00.png 原图朝上(▲)，+90 度使 0 度对齐正右方
-      var ang = Math.round(Math.atan2(gw.y - 50, gw.x - 50) * 180 / Math.PI) + 90;
+      // MapIconArrow_00.png 原图朝上(▲)，仅保留上下左右四方向（up:0 / right:90 / down:180 / left:270）
+      var dirMap = { up: 0, right: 90, down: 180, left: 270 };
+      var ang = (gw.dir && Object.prototype.hasOwnProperty.call(dirMap, gw.dir))
+        ? dirMap[gw.dir]
+        : Math.round((Math.atan2(gw.y - 50, gw.x - 50) * 180 / Math.PI + 90) / 90) * 90;
       gwEl.innerHTML =
         '<img class="rgw-arrow" src="assets/ui/MapIconArrow_00.png" width="28" height="28" style="transform:rotate(' + ang + 'deg)" alt="">' +
         '<span class="rgw-txt">' + targetName + '</span>';
@@ -1485,29 +1488,7 @@
       }
       card.appendChild(gatewaysBox);
 
-      // 神殿地下城楼层切换标签栏 (GamerGuides 风格)
-      if (node.type === "dungeon" && node.floors && node.floors.length > 1) {
-        var floorBar = document.createElement("div");
-        floorBar.className = "floor-bar";
-        node.currentFloor = "All";
-
-        node.floors.forEach(function (fl) {
-          var btn = document.createElement("button");
-          btn.className = "floor-btn" + (fl === "All" ? " active" : "");
-          btn.textContent = fl === "All" ? (state.lang === "zh" ? "全层" : "All") : fl;
-          btn.setAttribute("data-floor", fl);
-
-          btn.addEventListener("click", function (ev) {
-            ev.stopPropagation();
-            floorBar.querySelectorAll(".floor-btn").forEach(function (b) { b.classList.remove("active"); });
-            btn.classList.add("active");
-            node.currentFloor = fl;
-            switchDungeonFloor(node, fl);
-          });
-          floorBar.appendChild(btn);
-        });
-        card.appendChild(floorBar);
-      }
+      // 拓扑图保持单张总览，迷宫楼层切换专注留在区域地图 (#regionFloorBar)
 
       // 悬停高亮与相连连线
       card.addEventListener("mouseenter", function () {

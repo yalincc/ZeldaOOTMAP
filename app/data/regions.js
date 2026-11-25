@@ -4,7 +4,7 @@ window.OOT_REGIONS = {
   {
    "id": "DeathMountainCrater",
    "kind": "field",
-   "zh": "死亡山火山口",
+   "zh": "死亡之山火山口",
    "en": "Death Mountain Crater",
    "eras": [
     "Adult",
@@ -28,7 +28,7 @@ window.OOT_REGIONS = {
   {
    "id": "DeathMountainTrail",
    "kind": "field",
-   "zh": "死亡山山道",
+   "zh": "死亡之山登山道",
    "en": "Death Mountain Trail",
    "eras": [
     "Adult",
@@ -52,7 +52,7 @@ window.OOT_REGIONS = {
   {
    "id": "DesertColossus",
    "kind": "field",
-   "zh": "沙漠巨像",
+   "zh": "巨大邪神像",
    "en": "Desert Colossus",
    "eras": [
     "Adult",
@@ -84,7 +84,7 @@ window.OOT_REGIONS = {
   {
    "id": "GanonCastle",
    "kind": "field",
-   "zh": "加侬之城",
+   "zh": "加侬多夫城堡",
    "en": "Ganon's Castle",
    "eras": [
     "Adult"
@@ -122,7 +122,7 @@ window.OOT_REGIONS = {
   {
    "id": "GerudoValley",
    "kind": "field",
-   "zh": "格鲁德峡谷",
+   "zh": "格鲁德之谷",
    "en": "Gerudo Valley",
    "eras": [
     "Adult",
@@ -150,7 +150,7 @@ window.OOT_REGIONS = {
   {
    "id": "GoronCity",
    "kind": "field",
-   "zh": "哥隆城",
+   "zh": "鼓隆城",
    "en": "Goron City",
    "eras": [
     "Adult",
@@ -174,7 +174,7 @@ window.OOT_REGIONS = {
   {
    "id": "Graveyard",
    "kind": "field",
-   "zh": "卡卡利科墓地",
+   "zh": "墓地",
    "en": "Kakariko Graveyard",
    "eras": [
     "Adult",
@@ -206,7 +206,7 @@ window.OOT_REGIONS = {
   {
    "id": "HountedWasteland",
    "kind": "field",
-   "zh": "魂之荒地",
+   "zh": "幻影沙漠",
    "en": "Haunted Wasteland",
    "eras": [
     "Adult",
@@ -303,7 +303,7 @@ window.OOT_REGIONS = {
   {
    "id": "KokiriForest",
    "kind": "field",
-   "zh": "科吉里森林",
+   "zh": "科奇里森林",
    "en": "Kokiri Forest",
    "eras": [
     "Adult",
@@ -331,7 +331,7 @@ window.OOT_REGIONS = {
   {
    "id": "LakeHylia",
    "kind": "field",
-   "zh": "海利亚湖",
+   "zh": "海利亚湖畔",
    "en": "Lake Hylia",
    "eras": [
     "Adult",
@@ -359,7 +359,7 @@ window.OOT_REGIONS = {
   {
    "id": "LonLonRanch",
    "kind": "field",
-   "zh": "隆隆牧场",
+   "zh": "荣蓉牧场",
    "en": "Lon Lon Ranch",
    "eras": [
     "Adult",
@@ -383,7 +383,7 @@ window.OOT_REGIONS = {
   {
    "id": "LostWood",
    "kind": "field",
-   "zh": "迷失森林",
+   "zh": "迷途森林",
    "en": "Lost Woods",
    "eras": [
     "Adult",
@@ -407,7 +407,7 @@ window.OOT_REGIONS = {
   {
    "id": "Market",
    "kind": "field",
-   "zh": "城下町集市",
+   "zh": "海拉鲁城邑",
    "en": "Market",
    "eras": [
     "Adult",
@@ -431,7 +431,7 @@ window.OOT_REGIONS = {
   {
    "id": "SacredForestMeadow",
    "kind": "field",
-   "zh": "圣域森林草原",
+   "zh": "森之圣域",
    "en": "Sacred Forest Meadow",
    "eras": [
     "Adult",
@@ -455,7 +455,7 @@ window.OOT_REGIONS = {
   {
    "id": "ZoraDomain",
    "kind": "field",
-   "zh": "佐拉族领地",
+   "zh": "卓拉领地",
    "en": "Zora's Domain",
    "eras": [
     "Adult",
@@ -483,7 +483,7 @@ window.OOT_REGIONS = {
   {
    "id": "ZoraFountain",
    "kind": "field",
-   "zh": "佐拉之泉",
+   "zh": "卓拉之泉",
    "en": "Zora's Fountain",
    "eras": [
     "Adult",
@@ -511,7 +511,7 @@ window.OOT_REGIONS = {
   {
    "id": "ZoraRiver",
    "kind": "field",
-   "zh": "佐拉河",
+   "zh": "卓拉河",
    "en": "Zora's River",
    "eras": [
     "Adult",
@@ -555,7 +555,7 @@ window.OOT_REGIONS = {
   {
    "id": "DodongoCavern",
    "kind": "dungeon",
-   "zh": "多多哥洞窟",
+   "zh": "多东哥洞窟",
    "en": "Dodongo's Cavern",
    "floors": [
     {
@@ -607,7 +607,7 @@ window.OOT_REGIONS = {
   {
    "id": "ForestTemple",
    "kind": "dungeon",
-   "zh": "森林神殿",
+   "zh": "森之神殿",
    "en": "Forest Temple",
    "floors": [
     {
@@ -655,7 +655,7 @@ window.OOT_REGIONS = {
   {
    "id": "InsideJabuJabuBelly",
    "kind": "dungeon",
-   "zh": "加布加布腹中",
+   "zh": "加卜加卜大人腹中",
    "en": "Inside Jabu-Jabu's Belly",
    "floors": [
     {
@@ -679,7 +679,7 @@ window.OOT_REGIONS = {
   {
    "id": "InsideTheDekuTree",
    "kind": "dungeon",
-   "zh": "德库树内部",
+   "zh": "德库树长老体内",
    "en": "Inside the Great Deku Tree",
    "floors": [
     {
