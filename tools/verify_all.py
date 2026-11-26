@@ -89,6 +89,32 @@ def check_data() -> None:
     check("攻略口径 243 项", guide.exists() and "243" in guide.read_text(encoding="utf-8"))
     check_regions(pins)
     check_world_anchors()
+    check_save_flags(pins)
+
+
+def check_save_flags(pins: list[dict]) -> None:
+    """存档同步映射表 save_flags.js 校验。"""
+    sf_path = APP / "data" / "save_flags.js"
+    if not sf_path.exists():
+        check("存档映射表 save_flags.js 存在", False)
+        return
+    txt = sf_path.read_text(encoding="utf-8")
+    m = re.search(r"window\.OOT_SAVE_FLAGS\s*=\s*(\{.*\});", txt, re.S)
+    if not m:
+        check("存档映射表格式有效", False)
+        return
+    sf = json.loads(m.group(1))
+    pin_ids = {p["id"] for p in pins}
+    mapped = set()
+    bad = []
+    for tbl in (sf.get("actor64", {}), sf.get("gd32", {})):
+        for lst in tbl.values():
+            for pid in lst:
+                mapped.add(pid)
+                if pid not in pin_ids:
+                    bad.append(pid)
+    check("存档映射表点位 ID 全部有效", not bad, f"无效 {bad[:6]}")
+    check("存档映射点位数 ≥ 180", len(mapped) >= 180, f"实际 {len(mapped)}")
 
 
 def check_world_anchors() -> None:

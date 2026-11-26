@@ -225,6 +225,49 @@
     merchant: ["MapIconAi_merchant.png"]
   };
 
+  /* 点位级官方专属图标映射（基于 RomFS 48 张 MapIcon 原图） */
+  var PIN_ICON_BY_ID = {
+    // 商店 (12)
+    "SH-001": "MapIconGoronShop_00.png",
+    "SH-002": "MapIconShopMedicine_00.png",
+    "SH-003": "MapIconShopGeneral_00.png",
+    "SH-004": "MapIconObaba_00.png",
+    "SH-005": "MapIconKokiriShop_00.png",
+    "SH-006": "MapIconShopMask_00.png",
+    "SH-007": "MapIconShopBombchu_00.png",
+    "SH-008": "MapIconShopMedicine_00.png",
+    "SH-009": "MapIconShopGeneral_00.png",
+    "SH-010": "MapIconGhostShop_00.png",
+    "SH-011": "MapIconZolaShop_00.png",
+    "SH-012": "MapIconMagicBean_00.png",
+    // 小游戏 (15)
+    "MG-001": "MapIconMiniGameArchery_00.png",
+    "MG-002": "MapIconRunningRace_00.png",
+    "MG-003": "MapIconMiniGameDampe_00.png",
+    "MG-004": "MapIconMiniGameDampe_00.png",
+    "MG-005": "MapIconMiniGameTarget_00.png",
+    "MG-006": "MapIconMiniGameFishing_00.png",
+    "MG-007": "MapIconMiniGameCocco_00.png",
+    "MG-008": "MapIconMiniGameEpona_00.png",
+    "MG-009": "MapIconSkullKid_00.png",
+    "MG-010": "MapIconShopMask_00.png",
+    "MG-011": "MapIconMiniGameTarget_00.png",
+    "MG-012": "MapIconMiniGameBowling_00.png",
+    "MG-013": "MapIconShopTreasure_00.png",
+    "MG-014": "MapIconMiniGameDiving_00.png",
+    "MG-015": "MapIconMiniGameFrog_00.png",
+    // 迷宫入口 / 特殊 NPC
+    "DG-001": "MapIconTraining_00.png",
+    "npc-dampe": "MapIconMiniGameDampe_00.png",
+    "npc-ruto": "MapIconRuto_00.png",
+    "npc-skullkid": "MapIconSkullKid_00.png",
+    "npc-mask-salesman": "MapIconShopMask_00.png",
+    "npc-poe-collector": "MapIconGhostShop_00.png",
+    "npc-bombchu-merchant": "MapIconShopBombchu_00.png",
+    "npc-carpenter-boss": "MapIconCarpenter_00.png",
+    "npc-kaepora": "MapIconAi_owl.png"
+  };
+
   /**
    * 生成统一风格的 SVG 图标 HTML
    * @param {string} cat 分类 ID
@@ -241,13 +284,19 @@
   }
 
   /**
-   * 点位图标 HTML：优先官方 MapIcon PNG，缺图回落矢量图标。
+   * 点位图标 HTML：优先点位专属官方 MapIcon PNG，其次分类 MapIcon，缺图回落矢量图标。
    * @param {string} cat
    * @param {number} size
    * @param {boolean} done 是否已收集（用官方 Check 状态图）
+   * @param {string} [pinId] 点位 ID（用于匹配专属官方图标）
    */
-  function makeIconHtml(cat, size, done) {
+  function makeIconHtml(cat, size, done, pinId) {
     size = size || 20;
+    var customFile = pinId && PIN_ICON_BY_ID[pinId];
+    if (customFile) {
+      return '<img class="oot-pin-img" src="assets/ui/' + customFile + '" width="' + size + '" height="' + size +
+             '" alt="" draggable="false">';
+    }
     var pair = OFFICIAL[cat];
     if (pair) {
       var file = (done && pair[1]) ? pair[1] : pair[0];

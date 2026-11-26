@@ -54,6 +54,18 @@
     GROUPS.push({ id: "other", zh: "其他", en: "Other" });
   }
   var PINS = window.OOT_PINS_DATA || [];
+  var COLLECT_CATS = {
+    heart: 1, heartc: 1, skull: 1, song: 1, medal: 1,
+    bottle: 1, mask: 1, keyitem: 1, upgrade: 1, fairy: 1,
+    poe: 1, owl: 1, item: 1
+  };
+  var QUEST_CATS = { boss: 1, dungeon: 1, minigame: 1, npc: 1, soil: 1 };
+  var FACILITY_CATS = { shop: 1, grotto: 1, stone: 1, warp: 1, chest: 1 };
+  function isCollectCat(cat) { return !!COLLECT_CATS[cat]; }
+  function pinDoneClass(pin) {
+    if (!state.donePins[pin.id]) return "";
+    return isCollectCat(pin.cat) ? " done" : " visited";
+  }
   var REGIONS = (window.OOT_REGIONS && window.OOT_REGIONS.areas) || [];
   var ICONS = window.OOT_ICONS;
 
@@ -521,7 +533,7 @@
 
     function buildOne(r, box) {
       var b = document.createElement("button");
-      var rPins = regionPinsForEra(r);
+      var rPins = regionPinsForEra(r).filter(function (p) { return isCollectCat(p.cat); });
       var n = rPins.length;
       var d = 0;
       for (var i = 0; i < rPins.length; i++) {
@@ -531,7 +543,15 @@
       b.setAttribute("data-region", r.id);
       b.innerHTML = "<span>" + (state.lang === "zh" ? r.zh : r.en) + "</span>" +
         "<em>" + d + "/" + n + "</em>";
-      b.addEventListener("click", function () { openRegion(r.id); });
+      b.addEventListener("click", function () {
+        if (state.mode === "topology") {
+          state.area = r.id;
+          renderRegionList();
+          focusNode(r.id, 0.85);
+        } else {
+          openRegion(r.id);
+        }
+      });
       box.appendChild(b);
     }
     field.forEach(function (r) { buildOne(r, fieldBox); });
@@ -633,6 +653,13 @@
     var world = $("regionWorld");
     if (!world) return;
     world.style.transform = "translate3d(" + state.regionTx + "px," + state.regionTy + "px,0) scale(" + state.regionZoom + ")";
+    var pins = $("regionPins");
+    if (pins) {
+      pins.style.left = (regionBase.left + state.regionTx) + "px";
+      pins.style.top = (regionBase.top + state.regionTy) + "px";
+      pins.style.width = (regionBase.w * state.regionZoom) + "px";
+      pins.style.height = (regionBase.h * state.regionZoom) + "px";
+    }
     var inv = (1 / state.regionZoom).toFixed(4);
     var board = $("regionBoard");
     if (board) board.style.setProperty("--region-inv", inv);
@@ -701,12 +728,12 @@
     list.forEach(function (pin) {
       var el = document.createElement("div");
       el.className = "map-pin" +
-        (state.donePins[pin.id] ? " done" : "") +
+        pinDoneClass(pin) +
         (state.selectedPinId === pin.id ? " selected" : "");
       el.id = "rpin-" + pin.id;
       el.style.left = pin.x + "%";
       el.style.top = pin.y + "%";
-      el.innerHTML = ICONS.html(pin.cat, pinIconSize(), !!state.donePins[pin.id]);
+      el.innerHTML = ICONS.html(pin.cat, pinIconSize(), !!state.donePins[pin.id], pin.id);
 
       el.addEventListener("mousedown", function (e) {
         if (calState.active) {
@@ -717,7 +744,27 @@
       });
       el.addEventListener("click", function (e) {
         e.stopPropagation();
-        if (!calState.active) selectPin(pin);
+        if (calState.active) return;
+        var rect = el.getBoundingClientRect();
+        var cx = rect.left + rect.width / 2;
+        var cy = rect.top + rect.height / 2;
+        var cluster = [];
+        box.querySelectorAll(".map-pin").forEach(function (otherEl) {
+          var r2 = otherEl.getBoundingClientRect();
+          var dx = (r2.left + r2.width / 2) - cx;
+          var dy = (r2.top + r2.height / 2) - cy;
+          if (dx * dx + dy * dy <= 20 * 20) {
+            var oid = otherEl.id.replace(/^rpin-/, "");
+            var op = list.find(function (x) { return x.id === oid; });
+            if (op) cluster.push(op);
+          }
+        });
+        if (cluster.length <= 1) {
+          closeClusterMenu();
+          selectPin(pin);
+        } else {
+          openClusterMenu(cluster, e.clientX, e.clientY);
+        }
       });
       box.appendChild(el);
     });
@@ -740,12 +787,16 @@
       gwEl.style.top = gw.y + "%";
       // MapIconArrow_00.png 原图朝上(▲)，仅保留上下左右四方向（up:0 / right:90 / down:180 / left:270）
       var dirMap = { up: 0, right: 90, down: 180, left: 270 };
-      var ang = (gw.dir && Object.prototype.hasOwnProperty.call(dirMap, gw.dir))
-        ? dirMap[gw.dir]
-        : Math.round((Math.atan2(gw.y - 50, gw.x - 50) * 180 / Math.PI + 90) / 90) * 90;
+      var dir = (gw.dir && Object.prototype.hasOwnProperty.call(dirMap, gw.dir)) ? gw.dir : "";
+      if (!dir) {
+        var angRaw = Math.round((Math.atan2(gw.y - 50, gw.x - 50) * 180 / Math.PI + 90) / 90) * 90;
+        var normAng = ((angRaw % 360) + 360) % 360;
+        dir = normAng === 90 ? "right" : (normAng === 180 ? "down" : (normAng === 270 ? "left" : "up"));
+      }
+      var ang = dirMap[dir];
       gwEl.innerHTML =
-        '<img class="rgw-arrow" src="assets/ui/MapIconArrow_00.png" width="28" height="28" style="transform:rotate(' + ang + 'deg)" alt="">' +
-        '<span class="rgw-txt">' + targetName + '</span>';
+        '<img class="rgw-arrow" src="assets/ui/MapIconArrow_00.png" width="24" height="24" style="transform:rotate(' + ang + 'deg)" alt="">' +
+        '<span class="rgw-txt rgw-dir-' + dir + '">' + targetName + '</span>';
       gwEl.title = (state.lang === "zh" ? "前往 " : "To ") + targetName;
       gwEl.addEventListener("click", function (e) {
         e.stopPropagation();
@@ -846,8 +897,8 @@
     if (regionBoard) regionBoard.hidden = (mode !== "region");
     if (mindmap) mindmap.hidden = (mode !== "topology");
     if (worldBoard) worldBoard.hidden = (mode !== "world");
-    if (rp) rp.hidden = (mode === "topology");
-    if (js) js.hidden = (mode !== "topology");
+    if (rp) rp.hidden = false;
+    if (js) js.hidden = true;
 
     document.querySelectorAll("#viewTabs .view-tab").forEach(function (b) {
       b.classList.toggle("on", b.getAttribute("data-view") === mode);
@@ -894,7 +945,8 @@
       }
       applyRegionCam();
     } else {
-      // 拓扑模式保留原有的“聚焦海拉鲁平原 hub”视野
+      // 拓扑模式保留原有的“聚焦海拉鲁平原 hub”视野，左侧栏同步区域列表
+      renderRegionList();
       renderCategoriesSidebar();
       focusNode("HyruleField", 0.52);
     }
@@ -1126,7 +1178,7 @@
       var r = availableRegion(f.id);
       if (!r || !isRegionAvailable(r)) return;
       fieldCount++;
-      var list = regionPinsForEra(r);
+      var list = regionPinsForEra(r).filter(function (p) { return isCollectCat(p.cat); });
       var done = list.filter(function (p) { return !!state.donePins[p.id]; }).length;
       var total = list.length;
       var pct = total ? Math.round(done / total * 100) : 0;
@@ -1858,9 +1910,48 @@
   // -------------------------------------------------------------
   // 点位渲染与交互
   // -------------------------------------------------------------
-  // 画布图标基准尺寸：桌面 20 / 手机 18（UI 规范：命中区仍由 padding 撑到 32）
-  function pinIconSize() {
-    return (window.innerWidth <= 900) ? 30 : 34;
+  // 画布图标基准尺寸：桌面 36 / 手机 30（原版 MapIcon 自带深褐描边，无需缩小）
+  function pinIconSize(isTopo) {
+    if (isTopo) return (window.innerWidth <= 900) ? 22 : 26;
+    return (window.innerWidth <= 900) ? 30 : 36;
+  }
+
+  function closeClusterMenu() {
+    var m = $("pinClusterMenu");
+    if (m) { m.hidden = true; m.innerHTML = ""; }
+  }
+
+  function openClusterMenu(cluster, clientX, clientY) {
+    var m = $("pinClusterMenu");
+    var stage = $("mapStage");
+    if (!m || !stage) return;
+    var sRect = stage.getBoundingClientRect();
+    m.innerHTML = '<div class="pin-cluster-head">' +
+      (state.lang === "zh" ? ("此处有 " + cluster.length + " 个重叠点位") : (cluster.length + " overlapping pins")) +
+      "</div>";
+    cluster.forEach(function (p) {
+      var btn = document.createElement("button");
+      btn.type = "button";
+      var done = !!state.donePins[p.id];
+      var cls = "pin-cluster-item" + (done ? (isCollectCat(p.cat) ? " is-done" : " is-visited") : "");
+      btn.className = cls;
+      var label = state.lang === "zh" ? (p.zh || p.en || p.id) : (p.en || p.zh || p.id);
+      btn.innerHTML =
+        ICONS.html(p.cat, 18, done, p.id) +
+        '<span class="pin-cluster-name">' + label + "</span>" +
+        (done ? '<span class="pin-cluster-chk">✓</span>' : "");
+      btn.addEventListener("click", function (ev) {
+        ev.stopPropagation();
+        closeClusterMenu();
+        selectPin(p);
+      });
+      m.appendChild(btn);
+    });
+    m.hidden = false;
+    var left = Math.min(Math.max(10, clientX - sRect.left + 10), Math.max(10, sRect.width - m.offsetWidth - 12));
+    var top = Math.min(Math.max(10, clientY - sRect.top + 10), Math.max(10, sRect.height - m.offsetHeight - 12));
+    m.style.left = left + "px";
+    m.style.top = top + "px";
   }
 
   function isPinVisible(pin) {
@@ -1898,13 +1989,13 @@
 
       var el = document.createElement("div");
       el.className = "map-pin" +
-                     (state.donePins[pin.id] ? " done" : "") +
+                     pinDoneClass(pin) +
                      (state.selectedPinId === pin.id ? " selected" : "");
       el.id = "pin-" + pin.id;
       el.style.left = pin.x + "%";
       el.style.top = pin.y + "%";
 
-      el.innerHTML = ICONS.html(pin.cat, pinIconSize(), !!state.donePins[pin.id]);
+      el.innerHTML = ICONS.html(pin.cat, pinIconSize(false), !!state.donePins[pin.id], pin.id);
 
       // 点位拖拽微调支持
       el.addEventListener("mousedown", function (e) {
@@ -1940,7 +2031,7 @@
     if (rcur) rcur.classList.add("selected");
 
     var card = $("detailCard");
-    $("cardIconWrap").innerHTML = ICONS.html(pin.cat, 26, !!state.donePins[pin.id]);
+    $("cardIconWrap").innerHTML = ICONS.html(pin.cat, 26, !!state.donePins[pin.id], pin.id);
 
     var catObj = CATS.find(function (c) { return c.id === pin.cat; });
     $("cardCatTag").textContent = catObj ? (state.lang === "zh" ? catObj.zh : catObj.en) : pin.cat;
@@ -1997,6 +2088,12 @@
 
     var chk = $("cardDoneChk");
     chk.checked = !!state.donePins[pin.id];
+    var chkTxt = document.querySelector("#detailCard .collect-text");
+    if (chkTxt) {
+      if (isCollectCat(pin.cat)) chkTxt.textContent = state.lang === "zh" ? "标记为已收集" : "Collected";
+      else if (QUEST_CATS[pin.cat]) chkTxt.textContent = state.lang === "zh" ? "标记为已完成" : "Completed";
+      else chkTxt.textContent = state.lang === "zh" ? "标记为已访问" : "Visited";
+    }
     chk.onchange = function () {
       if (chk.checked) {
         state.donePins[pin.id] = true;
@@ -2088,6 +2185,7 @@
         if (!isRegionAvailable(r)) return;
         var total = 0, done = 0;
         PINS.forEach(function (p) {
+          if (!isCollectCat(p.cat)) return;
           if (state.era !== "All" && p.era !== "Both" && p.era !== state.era) return;
           var host = (p.map && p.map !== "hyrule") ? p.map : p.area;
           if (host !== r.id) return;
@@ -2105,6 +2203,7 @@
       });
     } else {
       CATS.forEach(function (c) {
+        if (!isCollectCat(c.id)) return;
         var total = 0, done = 0;
         PINS.forEach(function (p) {
           if (state.era !== "All" && p.era !== "Both" && p.era !== state.era) return;
@@ -2159,6 +2258,7 @@
     var completed = 0;
 
     PINS.forEach(function (p) {
+      if (!isCollectCat(p.cat)) return;
       if (state.era !== "All" && p.era !== "Both" && p.era !== state.era) return;
       total++;
       if (state.donePins[p.id]) completed++;
@@ -2181,8 +2281,8 @@
     var r = (state.mode === "region") ? currentRegion() : null;
     if (titleEl) {
       titleEl.textContent = r
-        ? (state.lang === "zh" ? "本区图标" : "Area Icons")
-        : (state.lang === "zh" ? "全图图标" : "All Icons");
+        ? (state.lang === "zh" ? "本区可收集" : "Area Collectibles")
+        : (state.lang === "zh" ? "全图可收集" : "All Collectibles");
     }
     if (subEl) {
       subEl.textContent = r
@@ -2210,41 +2310,54 @@
       return;
     }
 
-    visibleCats.forEach(function (cat) {
-      var st = stats[cat.id];
-      var isActive = state.activeCats.has(cat.id);
-      var item = document.createElement("button");
-      item.type = "button";
-      item.className = "cat-item" + (isActive ? " active" : "") + (st.done > 0 ? " has-done" : "");
-      item.title = (state.lang === "zh" ? cat.zh : cat.en) + " (" + st.done + "/" + st.total + ")";
+    function appendCatGroup(cats, heading) {
+      if (!cats.length) return;
+      if (heading) {
+        var hd = document.createElement("div");
+        hd.className = "cat-subhead";
+        hd.textContent = heading;
+        list.appendChild(hd);
+      }
+      cats.forEach(function (cat) {
+        var st = stats[cat.id];
+        var isActive = state.activeCats.has(cat.id);
+        var item = document.createElement("button");
+        item.type = "button";
+        item.className = "cat-item" + (isActive ? " active" : "") + (st.done > 0 ? " has-done" : "");
+        item.title = (state.lang === "zh" ? cat.zh : cat.en) + " (" + st.done + "/" + st.total + ")";
 
-      var iconSlot = document.createElement("div");
-      iconSlot.className = "cat-icon-slot";
-      iconSlot.innerHTML = ICONS.html(cat.id, 16);
+        var iconSlot = document.createElement("div");
+        iconSlot.className = "cat-icon-slot";
+        iconSlot.innerHTML = ICONS.html(cat.id, 16);
 
-      var name = document.createElement("span");
-      name.className = "cat-name";
-      name.textContent = state.lang === "zh" ? cat.short : cat.en;
+        var name = document.createElement("span");
+        name.className = "cat-name";
+        name.textContent = state.lang === "zh" ? cat.short : cat.en;
 
-      var badge = document.createElement("span");
-      badge.className = "cat-badge";
-      badge.textContent = st.done + "/" + st.total;
+        var badge = document.createElement("span");
+        badge.className = "cat-badge";
+        badge.textContent = st.done + "/" + st.total;
 
-      item.appendChild(iconSlot);
-      item.appendChild(name);
-      item.appendChild(badge);
-      item.addEventListener("click", function () {
-        if (state.activeCats.has(cat.id)) {
-          state.activeCats.delete(cat.id);
-          item.classList.remove("active");
-        } else {
-          state.activeCats.add(cat.id);
-          item.classList.add("active");
-        }
-        renderAllPins();
+        item.appendChild(iconSlot);
+        item.appendChild(name);
+        item.appendChild(badge);
+        item.addEventListener("click", function () {
+          if (state.activeCats.has(cat.id)) {
+            state.activeCats.delete(cat.id);
+            item.classList.remove("active");
+          } else {
+            state.activeCats.add(cat.id);
+            item.classList.add("active");
+          }
+          renderAllPins();
+        });
+        list.appendChild(item);
       });
-      list.appendChild(item);
-    });
+    }
+
+    appendCatGroup(visibleCats.filter(function (c) { return !!COLLECT_CATS[c.id]; }), "");
+    appendCatGroup(visibleCats.filter(function (c) { return !!QUEST_CATS[c.id]; }), state.lang === "zh" ? (r ? "本区任务" : "全图任务") : "Quests");
+    appendCatGroup(visibleCats.filter(function (c) { return !!FACILITY_CATS[c.id]; }), state.lang === "zh" ? (r ? "本区设施" : "全图设施") : "Facilities");
   }
 
   function renderJumpChips() {
@@ -2471,6 +2584,7 @@
             e.target.closest(".zoom-controls") || e.target.closest("button")) return;
         var dc = $("detailCard");
         if (dc && !dc.hidden) closeDetailCard();
+        closeClusterMenu();
         var sp = $("settingsPanel");
         if (sp && !sp.hidden) sp.hidden = true;
         var ep = $("explorePanel");
@@ -2496,6 +2610,16 @@
       autoLevelChk.addEventListener("change", function () {
         state.autoLevel = autoLevelChk.checked;
         try { localStorage.setItem(KEY_AUTO_LEVEL, state.autoLevel ? "1" : "0"); } catch (e) {}
+      });
+    }
+
+    var clearDoneBtn = $("clearDoneBtn");
+    if (clearDoneBtn) {
+      clearDoneBtn.addEventListener("click", function () {
+        if (!window.confirm("确定清空所有已收集标记吗？此操作不会修改你的游戏存档文件。")) return;
+        if (window.OOT_MAP_API && window.OOT_MAP_API.clearDonePins) {
+          window.OOT_MAP_API.clearDonePins();
+        }
       });
     }
 
@@ -2888,6 +3012,50 @@
     window.OOT_MAP_API = {
       openRegion: openRegion,
       getState: function () { return state; },
+      mergeDonePins: function (ids) {
+        var added = 0;
+        if (Array.isArray(ids)) {
+          for (var i = 0; i < ids.length; i++) {
+            var id = ids[i];
+            if (id && !state.donePins[id]) {
+              state.donePins[id] = true;
+              added++;
+            }
+          }
+        }
+        if (added > 0) {
+          saveStorage();
+          renderAllPins();
+          updateProgress();
+          updateCategoriesCount();
+          renderRegionList();
+          renderWorldMarkers();
+          renderJumpChips();
+          if (currentRegion()) updateRegionHead(currentRegion());
+          renderExplorePanel();
+          if (state.selectedPin) {
+            var chk = $("cardDoneChk");
+            if (chk) chk.checked = !!state.donePins[state.selectedPin.id];
+          }
+        }
+        return { added: added, total: Object.keys(state.donePins).length };
+      },
+      clearDonePins: function () {
+        state.donePins = {};
+        saveStorage();
+        renderAllPins();
+        updateProgress();
+        updateCategoriesCount();
+        renderRegionList();
+        renderWorldMarkers();
+        renderJumpChips();
+        if (currentRegion()) updateRegionHead(currentRegion());
+        renderExplorePanel();
+        if (state.selectedPin) {
+          var chk = $("cardDoneChk");
+          if (chk) chk.checked = false;
+        }
+      },
       centerRegionUV: function (uPct, vPct) {
         var board = $("regionBoard");
         if (!board || regionBase.w <= 0 || regionBase.h <= 0) return;

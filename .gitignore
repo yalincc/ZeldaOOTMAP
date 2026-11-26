@@ -1,7 +1,4 @@
-# 大体积可再生产物：解码自官方 romfs（F:\SWITCH2\ZeldaOOT-RomFS），用 tools 重跑即可重建，不入库
-app/assets/**/*.png
-app/assets/**/*.webp
-app/assets/**/*.jpg
+# 工具临时与缓存产物（app/assets 随 master 单分支入库供 EdgeOne 直建）
 tools/_vendor/
 tools/__pycache__/
 **/__pycache__/
@@ -27,4 +24,5 @@ desktop.ini
 *.log
 *.tmp
 *.zip
+*.pkl
 release/

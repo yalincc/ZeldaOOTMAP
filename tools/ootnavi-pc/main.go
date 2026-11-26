@@ -20,11 +20,13 @@ func main() {
 	port := flag.Int("port", 8766, "HTTP 起始端口")
 	noOpen := flag.Bool("no-open", false, "启动时不自动打开浏览器")
 	appDirFlag := flag.String("app-dir", "", "指定 app/ 静态目录路径")
+	saveFlag := flag.String("save", "", "指定 progress.sav 路径（留空则自动探测最新槽位）")
 	debug := flag.Bool("debug", false, "打印调试日志")
 	flag.Parse()
 
 	tracker := NewTracker(*debug)
 	defer tracker.Close()
+	saveWatcher := NewSaveWatcher(*saveFlag)
 
 	if *watch {
 		fmt.Println("=== OOTNavi PC 实时坐标监视 (5Hz, Ctrl+C 退出) ===")
@@ -56,7 +58,7 @@ func main() {
 		log.Printf("[ootnavi] 托管静态目录: %s", appDir)
 	}
 
-	actualPort, lanURL, err := startServer(tracker, *port, appDir)
+	actualPort, lanURL, err := startServer(tracker, saveWatcher, *port, appDir)
 	if err != nil {
 		log.Fatalf("[ootnavi] %v", err)
 	}

@@ -54,7 +54,7 @@ func writeCORS(w http.ResponseWriter) {
 	w.Header().Set("Access-Control-Allow-Private-Network", "true")
 }
 
-func startServer(tracker *Tracker, startPort int, appDir string) (int, string, error) {
+func startServer(tracker *Tracker, saveWatcher *SaveWatcher, startPort int, appDir string) (int, string, error) {
 	var ln net.Listener
 	port := startPort
 	var err error
@@ -87,6 +87,17 @@ func startServer(tracker *Tracker, startPort int, appDir string) (int, string, e
 		writeCORS(w)
 		w.Header().Set("Content-Type", "application/json; charset=utf-8")
 		_ = json.NewEncoder(w).Encode(map[string]string{"url": lanURL})
+	})
+
+	mux.HandleFunc("/save", func(w http.ResponseWriter, r *http.Request) {
+		writeCORS(w)
+		if r.Method == http.MethodOptions {
+			w.WriteHeader(http.StatusNoContent)
+			return
+		}
+		w.Header().Set("Content-Type", "application/json; charset=utf-8")
+		w.Header().Set("Cache-Control", "no-store")
+		_ = json.NewEncoder(w).Encode(saveWatcher.Snapshot())
 	})
 
 	if appDir != "" {
@@ -151,6 +162,7 @@ const statusPageHTML = `<!DOCTYPE html>
     <input id="lan" class="url" readonly value="%s">
   </div>
   <p style="font-size:12px;opacity:.75;margin:4px 0 10px">手机连接同一 WiFi 后访问上方链接：%s</p>
+  <div id="sav" class="badge wait" style="margin-bottom:10px">存档检测中…</div>
   <pre id="out">{}</pre>
 </div>
 <script>
@@ -171,8 +183,25 @@ async function poll() {
     document.getElementById('st').textContent = '服务离线';
   }
 }
+async function pollSave() {
+  try {
+    const r = await fetch('/save');
+    const s = await r.json();
+    const el = document.getElementById('sav');
+    if (s.ok) {
+      el.className = 'badge ok';
+      const slot = (s.path || '').match(/slot_\d+/i);
+      el.textContent = '存档已就绪：' + (slot ? slot[0] : s.path) + ' · gd32 ' + (s.gd32 ? s.gd32.length : 0) + ' / actor64 ' + (s.actor64 ? s.actor64.length : 0);
+    } else {
+      el.className = 'badge wait';
+      el.textContent = s.error || '未检测到 progress.sav';
+    }
+  } catch (e) {}
+}
 poll();
+pollSave();
 setInterval(poll, 500);
+setInterval(pollSave, 5000);
 </script>
 </body>
 </html>`

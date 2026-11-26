@@ -508,6 +508,15 @@ button, input {
   font-size: 11.5px;
   color: var(--text-mute);
 }
+.cat-subhead {
+  grid-column: 1 / -1;
+  font-size: 11px;
+  font-weight: 600;
+  color: #b4a490;
+  padding: 6px 2px 2px;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  margin-top: 2px;
+}
 
 .jump-section {
   border-top: 1px solid rgba(255, 255, 255, 0.08);
@@ -863,7 +872,7 @@ body.cal-mode .map-pin:active {
   position: absolute;
   top: -16px;
   left: 50%;
-  transform: translateX(-50%) scale(clamp(1, calc(var(--zoom-inv) * 0.72), 2.2));
+  transform: translateX(-50%) scale(clamp(1, calc(var(--zoom-inv) * 0.82), 3.6));
   transform-origin: center bottom;
   background: rgba(14, 9, 5, 0.95);
   border: 1.5px solid rgba(255, 255, 255, 0.25);
@@ -974,10 +983,11 @@ body.cal-mode .map-pin:active {
   transform-origin: 50% 50%;
   transition: filter 0.15s ease, opacity 0.2s ease;
   z-index: 30;
-  /* 深色底盘：浅色（迷宫/沙漠）底图上金色图标也能看清 */
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(10, 7, 3, .42) 58%, rgba(10, 7, 3, .28) 100%);
-  box-shadow: 0 2px 6px rgba(0, 0, 0, .42);
+  background: transparent;
+}
+.map-pin .oot-pin-img {
+  display: block;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.65));
 }
 
 .map-pin:hover {
@@ -992,13 +1002,38 @@ body.cal-mode .map-pin:active {
 }
 
 .map-pin.done {
-  opacity: 0.35;
-  filter: grayscale(0.85);
+  opacity: 0.78;
+  filter: sepia(0.34) saturate(0.82) brightness(0.92);
 }
 
-.map-pin.done:hover {
-  opacity: 0.85;
-  filter: grayscale(0.2);
+.map-pin.visited {
+  opacity: 0.82;
+  filter: sepia(0.22) saturate(0.85) brightness(0.94);
+}
+
+.map-pin.done::after,
+.map-pin.visited::after {
+  content: "";
+  position: absolute;
+  top: -3px;
+  right: -3px;
+  width: 17px;
+  height: 17px;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpolygon points='7,1 17,1 23,7 23,17 17,23 7,23 1,17 1,7' fill='%23561f06'/%3E%3Cpath d='M6.2 12.4 L10.2 16.4 L17.8 8.2' fill='none' stroke='%23fefbe6' stroke-width='3.2' stroke-linecap='square' stroke-linejoin='miter'/%3E%3C/svg%3E");
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.55));
+  pointer-events: none;
+}
+
+.map-pin.visited::after {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpolygon points='7,1 17,1 23,7 23,17 17,23 7,23 1,17 1,7' fill='%2316436b'/%3E%3Cpath d='M6.2 12.4 L10.2 16.4 L17.8 8.2' fill='none' stroke='%23e8f7ff' stroke-width='3.2' stroke-linecap='square' stroke-linejoin='miter'/%3E%3C/svg%3E");
+}
+
+.map-pin.done:hover,
+.map-pin.visited:hover {
+  opacity: 0.98;
+  filter: none;
 }
 
 @keyframes pinPulse {
@@ -1241,19 +1276,19 @@ body.cal-mode .map-pin:active {
   position: absolute;
   pointer-events: auto;
   cursor: pointer;
-  transform: translate(-50%, -50%) scale(clamp(0.7, calc(var(--zoom-inv) * 0.5), 1.3));
+  transform: translate(-50%, -50%) scale(clamp(0.55, calc(var(--zoom-inv) * 0.42), 1.05));
   transform-origin: 50% 50%;
   z-index: 32;
   display: inline-flex;
   align-items: center;
-  gap: 4px;
-  padding: 3px 8px;
-  background: rgba(15, 23, 42, 0.9);
-  border: 1.5px solid #d99a4e;
-  border-radius: 14px;
-  box-shadow: 0 0 10px rgba(217, 154, 78, 0.45), 0 2px 6px rgba(0, 0, 0, 0.6);
-  color: #fef08a;
-  font-size: 11px;
+  gap: 3px;
+  padding: 2px 6px;
+  background: rgba(16, 10, 6, 0.72);
+  border: 1px solid rgba(217, 154, 78, 0.55);
+  border-radius: 999px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.55);
+  color: #f6e3b4;
+  font-size: 10.5px;
   font-weight: 600;
   white-space: nowrap;
   user-select: none;
@@ -2379,7 +2414,200 @@ body.side-collapsed .world-caption { left: 64px; }
 .mindmap-board.lod-far .node-gateways {
   display: none;
 }
-.map-pin.done { opacity: .62; filter: grayscale(.25); }
+
+/* 存档同步：拖入遮罩 / Toast / 帮助弹窗 / 清空按钮 */
+.setting-danger em { color: #f87171; }
+.save-drop-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 900;
+  background: rgba(14, 10, 8, 0.72);
+  backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+.save-drop-overlay[hidden] { display: none; }
+.save-drop-box {
+  padding: 24px 36px;
+  border: 2px dashed rgba(240, 195, 109, 0.75);
+  border-radius: 14px;
+  background: rgba(24, 18, 14, 0.9);
+  color: #f6e7c8;
+  font-size: 16px;
+  font-weight: 600;
+}
+.save-toast {
+  position: absolute;
+  left: 50%;
+  bottom: 24px;
+  transform: translateX(-50%);
+  z-index: 860;
+  padding: 9px 16px;
+  border-radius: 999px;
+  background: rgba(20, 15, 11, 0.92);
+  border: 1px solid rgba(240, 195, 109, 0.55);
+  color: #f6e7c8;
+  font-size: 12.5px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.55);
+  max-width: min(90vw, 540px);
+  text-align: center;
+  pointer-events: none;
+}
+.save-toast.err { border-color: rgba(248, 113, 113, 0.75); color: #fecaca; }
+.save-toast[hidden] { display: none; }
+.save-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 950;
+  background: rgba(8, 6, 4, 0.65);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+}
+.save-modal-backdrop[hidden] { display: none; }
+.save-modal {
+  width: min(520px, 100%);
+  max-height: min(88vh, 680px);
+  display: flex;
+  flex-direction: column;
+  background: rgba(22, 16, 12, 0.96);
+  border: 1px solid rgba(240, 195, 109, 0.35);
+  border-radius: 12px;
+  color: #efe4d2;
+  box-shadow: 0 18px 48px rgba(0, 0, 0, 0.7);
+  overflow: hidden;
+}
+.save-modal-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  flex: 0 0 auto;
+}
+.save-modal-head h3 { margin: 0; font-size: 15px; color: #f0c36d; }
+.save-modal-close {
+  background: none;
+  border: none;
+  color: #cfc3b2;
+  font-size: 20px;
+  cursor: pointer;
+  line-height: 1;
+}
+.save-modal-body { padding: 14px 16px; font-size: 13px; line-height: 1.55; overflow-y: auto; }
+.save-status-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 12px;
+  flex-wrap: wrap;
+}
+.save-status-pill {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+  background: rgba(255, 255, 255, 0.07);
+}
+.save-status-pill.ok { background: rgba(34, 197, 94, 0.18); color: #86efac; border: 1px solid rgba(34, 197, 94, 0.35); }
+.save-status-pill.manual { background: rgba(240, 195, 109, 0.16); color: #f6d58b; border: 1px solid rgba(240, 195, 109, 0.35); }
+.save-status-pill.off { color: #b9ab99; border: 1px solid rgba(255, 255, 255, 0.12); }
+.save-status-time { font-size: 11.5px; color: #a99b89; font-variant-numeric: tabular-nums; }
+.save-drop-zone {
+  border: 1.5px dashed rgba(240, 195, 109, 0.42);
+  border-radius: 10px;
+  padding: 14px 12px;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.025);
+  margin-bottom: 14px;
+  transition: border-color .15s, background .15s;
+}
+.save-drop-zone.dragover {
+  border-color: #f0c36d;
+  background: rgba(240, 195, 109, 0.1);
+}
+.save-drop-zone-txt { font-size: 12.5px; color: #d5c7b5; margin-bottom: 10px; }
+.save-action-row { display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; }
+.save-primary-btn {
+  background: #e2b857;
+  color: #16100a;
+  border: none;
+  border-radius: 8px;
+  padding: 7px 14px;
+  font-size: 12.5px;
+  font-weight: 700;
+  cursor: pointer;
+}
+.save-primary-btn:hover { background: #f0c96d; }
+.save-secondary-btn {
+  background: rgba(255, 255, 255, 0.08);
+  color: #efe4d2;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 8px;
+  padding: 7px 12px;
+  font-size: 12.5px;
+  cursor: pointer;
+}
+.save-secondary-btn:hover { background: rgba(255, 255, 255, 0.14); }
+.save-cat-title { font-size: 12px; color: #c7b8a5; margin-bottom: 8px; font-weight: 600; }
+.save-cat-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 7px;
+  margin-bottom: 12px;
+}
+.save-cat-item {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 8px;
+  padding: 6px 9px;
+}
+.save-cat-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  margin-bottom: 4px;
+}
+.save-cat-name { color: #efe4d2; }
+.save-cat-num { color: #f0c36d; font-variant-numeric: tabular-nums; font-weight: 600; }
+.save-cat-bar { height: 4px; border-radius: 99px; background: rgba(255, 255, 255, 0.08); overflow: hidden; }
+.save-cat-fill { height: 100%; background: linear-gradient(90deg, #d4a64a, #22c55e); border-radius: 99px; }
+.save-help-details { font-size: 12px; color: #bdb09e; margin-top: 4px; }
+.save-help-details summary { cursor: pointer; color: #d8cab8; margin-bottom: 6px; }
+.save-help-details ul { margin: 4px 0 0; padding-left: 18px; }
+.save-help-details li { margin-bottom: 4px; }
+.save-modal-body code {
+  background: rgba(255, 255, 255, 0.08);
+  padding: 1px 5px;
+  border-radius: 4px;
+  font-size: 11.5px;
+  word-break: break-all;
+}
+.save-modal-foot {
+  padding: 10px 16px 14px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  flex: 0 0 auto;
+}
+.save-clear-btn {
+  background: rgba(239, 68, 68, 0.16);
+  color: #fca5a5;
+  border: 1px solid rgba(239, 68, 68, 0.45);
+  border-radius: 8px;
+  padding: 6px 12px;
+  font-size: 12.5px;
+  cursor: pointer;
+}
+.save-clear-btn:hover { background: rgba(239, 68, 68, 0.28); }
 
 /* 详情卡：位置 / 怎么拿 / 奖励 / 备注 / 坐标 */
 .card-loc-row {
@@ -2594,33 +2822,112 @@ body.side-collapsed .world-caption { left: 64px; }
   text-align: right;
 }
 
-/* 区域地图出入口箭头标点 + 四周快捷切换 */
+/* 区域地图点位层（与 regionWorld 分离，1:1 原生像素渲染，缩放不糊） */
+.region-pins {
+  position: absolute;
+  transform-origin: 0 0;
+  pointer-events: none;
+  z-index: 20;
+}
+.region-pins .map-pin {
+  transform: translate(-50%, -50%);
+  padding: 4px;
+}
+.region-pins .map-pin:hover {
+  transform: translate(-50%, -50%) scale(1.16);
+}
+.region-pins .map-pin.selected {
+  animation: regionPinPulse 1.5s infinite;
+}
+@keyframes regionPinPulse {
+  0%, 100% { transform: translate(-50%, -50%) scale(1.12); }
+  50% { transform: translate(-50%, -50%) scale(1.26); }
+}
+
+/* 区域地图出入口标记：两部分（出口箭头 + 地图外侧地名） */
 .region-gw {
   position: absolute;
-  display: inline-flex;
-  align-items: center;
-  gap: 4px;
-  padding: 3px 8px 3px 5px;
-  border-radius: 999px;
-  border: 1px solid rgba(234, 179, 8, .55);
-  background: rgba(16, 10, 6, .9);
-  color: var(--gold);
-  font-size: 11px;
-  font-weight: 600;
-  white-space: nowrap;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  border: none;
+  background: transparent;
   cursor: pointer;
   pointer-events: auto;
-  transform: translate(-50%, -50%) scale(var(--region-inv, 1));
-  box-shadow: 0 3px 10px rgba(0, 0, 0, .7);
+  transform: translate(-50%, -50%);
   z-index: 25;
 }
-.region-gw:hover {
-  background: rgba(34, 22, 12, .98);
-  border-color: var(--gold);
-  color: #fff;
-  z-index: 35;
+.region-gw:hover { z-index: 35; }
+.region-gw:hover .rgw-txt { color: #fde047; }
+.rgw-arrow {
+  display: block;
+  width: 24px;
+  height: 24px;
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.85));
 }
-.rgw-arrow { display: block; flex: 0 0 auto; }
+.rgw-txt {
+  position: absolute;
+  white-space: nowrap;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  color: #f3dfb2;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.98), 0 0 6px rgba(0, 0, 0, 0.95);
+  pointer-events: auto;
+}
+.rgw-dir-up    { left: 50%; bottom: calc(100% + 7px); transform: translateX(-50%); }
+.rgw-dir-down  { left: 50%; top: calc(100% + 7px);    transform: translateX(-50%); }
+.rgw-dir-left  { right: calc(100% + 8px); top: 50%;   transform: translateY(-50%); }
+.rgw-dir-right { left: calc(100% + 8px);  top: 50%;   transform: translateY(-50%); }
+
+/* 拓扑图点位尺寸与区域图对齐 */
+.mindmap-board .map-pin {
+  padding: 4px;
+  transform: translate(-50%, -50%) scale(clamp(0.45, calc(var(--zoom-inv) * 0.65), 1.0));
+}
+
+/* 重叠点位选择气泡 */
+.pin-cluster-menu {
+  position: absolute;
+  z-index: 820;
+  min-width: 190px;
+  max-width: min(290px, 82vw);
+  max-height: 260px;
+  overflow-y: auto;
+  background: rgba(20, 14, 10, 0.94);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(240, 195, 109, 0.45);
+  border-radius: 10px;
+  padding: 5px;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.68);
+}
+.pin-cluster-menu[hidden] { display: none; }
+.pin-cluster-head {
+  font-size: 11px;
+  color: #c7b8a5;
+  padding: 3px 8px 5px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  margin-bottom: 3px;
+}
+.pin-cluster-item {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 8px;
+  border: none;
+  border-radius: 7px;
+  background: transparent;
+  color: #efe4d2;
+  font-size: 12.5px;
+  text-align: left;
+  cursor: pointer;
+}
+.pin-cluster-item:hover { background: rgba(240, 195, 109, 0.16); }
+.pin-cluster-item.is-done { opacity: 0.78; }
+.pin-cluster-name { flex: 1 1 auto; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.pin-cluster-chk { font-size: 11px; color: #86efac; font-weight: 700; }
+.pin-cluster-item.is-visited .pin-cluster-chk { color: #7dd3fc; }
 
 .region-nav-edges {
   position: absolute;

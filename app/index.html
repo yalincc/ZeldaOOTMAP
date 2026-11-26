@@ -127,6 +127,7 @@
         <div class="progress-bar-bg"><div class="progress-bar-fill" id="progBar"></div></div>
       </div>
       <div class="save-cta-row">
+        <input type="file" id="saveFileInput" accept=".sav" hidden>
         <button type="button" class="save-cta-btn" id="saveSyncBtn">加载存档</button>
         <button type="button" class="save-help-btn" id="saveHelpBtn" title="存档同步说明" aria-label="存档同步说明">?</button>
       </div>
@@ -156,9 +157,9 @@
       <div class="region-board" id="regionBoard" hidden>
         <div class="region-world" id="regionWorld">
           <img id="regionImg" alt="区域地图" draggable="false">
-          <div class="region-pins" id="regionPins"></div>
           <div class="navi-layer" id="naviLayer"></div>
         </div>
+        <div class="region-pins" id="regionPins"></div>
         <div class="region-head">
           <span class="region-kicker" id="regionKicker">FIELD REGION</span>
           <h2 id="regionName">科吉里森林</h2>
@@ -289,6 +290,9 @@
       <button class="setting-row" id="btnEditMode">
         <span>点位校准</span><em>高级</em>
       </button>
+      <button class="setting-row setting-danger" id="clearDoneBtn">
+        <span>清空收集记录</span><em>重置</em>
+      </button>
       <div class="settings-subhead">
         <span>三层缩放换层阈值 (%)</span>
         <button type="button" class="th-reset" id="thReset">默认</button>
@@ -327,6 +331,49 @@
         <button type="button" id="naviCopyLanBtn">复制</button>
       </div>
     </div>
+    <!-- 重叠点位选择气泡 -->
+    <div class="pin-cluster-menu" id="pinClusterMenu" hidden></div>
+
+    <!-- 存档拖入遮罩 / 同步提示 / 存档同步 GUI 面板 -->
+    <div class="save-drop-overlay" id="saveDropOverlay" hidden>
+      <div class="save-drop-box">松手导入 <code>progress.sav</code> 同步收集进度</div>
+    </div>
+    <div class="save-toast" id="saveToast" hidden></div>
+    <div class="save-modal-backdrop" id="saveHelpModal" hidden>
+      <div class="save-modal save-gui-modal" role="dialog" aria-labelledby="saveHelpTitle">
+        <div class="save-modal-head">
+          <h3 id="saveHelpTitle">存档只读同步</h3>
+          <button type="button" class="save-modal-close" id="saveHelpClose" aria-label="关闭">×</button>
+        </div>
+        <div class="save-modal-body">
+          <div class="save-status-bar">
+            <span class="save-status-pill off" id="saveStatusPill">⚪ 尚未同步存档</span>
+            <span class="save-status-time" id="saveStatusTime">—</span>
+          </div>
+          <div class="save-drop-zone" id="saveModalDropZone">
+            <div class="save-drop-zone-txt">将 Switch 2 / Longshot 的 <code>progress.sav</code> 拖到这里</div>
+            <div class="save-action-row">
+              <button type="button" class="save-primary-btn" id="savePickFileBtn">选择 progress.sav 文件</button>
+              <button type="button" class="save-secondary-btn" id="saveRefreshAutoBtn">立即从 ootnavi-pc 同步</button>
+            </div>
+          </div>
+          <div class="save-cat-title">当前已点亮收集进度（合并模式）</div>
+          <div class="save-cat-grid" id="saveCatGrid"></div>
+          <details class="save-help-details">
+            <summary>存档路径与支持说明</summary>
+            <ul>
+              <li><strong>自动同步：</strong>双击 <code>tools/ootnavi-pc/serve.bat</code> 后自动探测 <code>LongshotLauncher-data\user\save\*\slot_*\progress.sav</code> 最新槽位，每 5 秒静默同步。</li>
+              <li><strong>纯本地解析：</strong>文件仅在浏览器内存中读取，不上传服务器。</li>
+              <li><strong>已支持：</strong>黄金骷髅蜘蛛 (100)、心之碎片 (36)、心之容器 &amp; Boss (8)、歌曲 (13)、精灵石与勋章 (9)、大妖精 (6)、面具 (5)、升级 (16)、主要关键道具与瓶子。</li>
+            </ul>
+          </details>
+        </div>
+        <div class="save-modal-foot">
+          <button type="button" class="save-clear-btn" id="saveClearDoneBtn">清空本地收集记录</button>
+          <button type="button" class="save-secondary-btn" id="saveHelpDoneBtn">完成</button>
+        </div>
+      </div>
+    </div>
   </main>
 </div>
 
@@ -337,7 +384,9 @@
 <script src="data/projections.js?v=1"></script>
 <script src="data/world_data.js?v=2"></script>
 <script src="data/pins_data.js?v=2"></script>
-<script src="js/app.js?v=15"></script>
+<script src="data/save_flags.js?v=1"></script>
+<script src="js/app.js?v=16"></script>
 <script src="js/navi.js?v=8"></script>
+<script src="js/save_sync.js?v=1"></script>
 </body>
 </html>

@@ -38,4 +38,4 @@
 - **网页应用 PC + 手机双端适配**：改动后必须两档实测
 - **每完成一个阶段先给老大看效果，确认后再继续**
 - **commit / push / tag / Release 前须老大确认**；本地 commit 优先，不盲目 push
-- **assets 不入库**（`.gitignore` 已排除，可由 romfs + tools 重建）
+- **单分支 `master` 直建**：`app/assets` 随 `master` 入库，不再维护 `deploy` 分支
