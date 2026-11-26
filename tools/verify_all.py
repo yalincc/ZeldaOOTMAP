@@ -82,7 +82,7 @@ def check_data() -> None:
     check("拓扑连线 = 33", edges == 33, f"实际 {edges}")
 
     md = ROOT / "data" / "时之笛重制版-100全收集攻略.md"
-    guide = ROOT / "docs" / "oot100-guide.html"
+    guide = APP / "guide.html"
     check("攻略数据源存在", md.exists(), str(md))
     check("攻略产出存在且 >100KB", guide.exists() and guide.stat().st_size > 100_000,
           f"{guide.stat().st_size if guide.exists() else 0} bytes")
@@ -220,7 +220,15 @@ def check_pages() -> None:
         target = (APP / rel).resolve() if not rel.startswith("../") else (APP / rel).resolve()
         check(f"引用存在 {rel}", target.exists(), str(target))
 
-    check("攻略页互跳（../docs/oot100-guide.html）", (ROOT / "docs" / "oot100-guide.html").exists())
+    gp = APP / "guide.html"
+    check("攻略页在 app 内（guide.html）", gp.exists())
+    if gp.exists():
+        gtxt = gp.read_text(encoding="utf-8")
+        grefs = set(re.findall(r"assets/[^\s\"'`,)]+\.(?:webp|png)", gtxt))
+        gmissing = sorted(r for r in grefs if not (APP / r).exists())
+        check("攻略页内部图片无断链", not gmissing, f"缺失 {len(gmissing)}：{gmissing[:3]}")
+        check("攻略页无越界引用（../）", "../" not in gtxt)
+        check("攻略页地图回跳 index.html", 'href="index.html"' in gtxt)
     check("版本徽章存在", 'id="verBadge"' in html)
     app_js = (APP / "js" / "app.js").read_text(encoding="utf-8")
     check("APP_VERSION 单一真源", 'APP_VERSION = "' in app_js)

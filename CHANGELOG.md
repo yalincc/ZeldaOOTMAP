@@ -3,6 +3,18 @@
 > 只追加，不散落成新文件。版本号语义见 `开发手册.md` §3.2。
 > 当前状态：**内测 V0.1.0 · 已上线**（`https://oot.yalin.site`；无 tag、无 Release）。
 
+## [未发布] · 2026-11-26 · 部署收敛单分支 master + 攻略页并入 app
+
+**变更**
+- `tools/build_guide.py` 产出由 `docs/oot100-guide.html` 改为 `app/guide.html`；位置图引用 `../app/assets/` → `assets/`，回跳链接 `../app/index.html` → `index.html`；`app/index.html` 侧栏攻略入口改 `guide.html`。旧页快照（含 97 张位置图）移入 `归档/弃用/旧攻略页-20261126/`。
+
+**修复**
+- 线上攻略页 404：EdgeOne 输出目录是 `app`，原页在 `docs/` 根本不在构建产物内。
+- EdgeOne 生产分支仍挂 `deploy`（线上 `?v=4`、11-26 新图标 404）：已切至 `master`，`deploy` 分支双端删除。
+
+**验收**
+- `verify_all.py` 新增 4 项：攻略页在 `app` 内 / 内部图片无断链 / 无 `../` 越界 / 回跳 `index.html`；全 PASS。
+
 ## [未发布] · 2026-11-26 · 实时定位 `ootnavi-pc`（Go 版，适配 Longshot v3.2.0）
 
 **新增**

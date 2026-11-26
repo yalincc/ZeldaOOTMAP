@@ -3,7 +3,7 @@
 build_guide.py —— 从全收集攻略 Markdown 生成完整交互式 HTML 攻略文档
 
 数据源: data/时之笛重制版-100全收集攻略.md (243 项 / 14 大类)
-产出:   docs/oot100-guide.html (自包含, 无外部依赖, file:// 可直接打开)
+产出:   app/guide.html (站内页面, 与地图同目录; 位置图引用 ../app/assets → assets)
 
 设计原则:
 - 单一数据源: Markdown 表格 -> 结构化 JSON -> 内嵌 HTML, 编号/地区/时期逐条保真
@@ -20,7 +20,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 MD = ROOT / "data" / "时之笛重制版-100全收集攻略.md"
-OUT = ROOT / "docs" / "oot100-guide.html"
+OUT = ROOT / "app" / "guide.html"
 PINS_JS = ROOT / "app" / "data" / "pins_data.js"
 REGIONS_JS = ROOT / "app" / "data" / "regions.js"
 sys.path.insert(0, str(ROOT / "tools"))
@@ -79,13 +79,13 @@ def build_pin_images():
                 file = fl["file"]
         if not file:
             continue
-        img_rel = "../app/assets/" + file.replace("assets/", "", 1)
+        img_rel = "assets/" + file.replace("assets/", "", 1)
         # 配置文件里个别楼层图名与实际不符，回退到迷宫总览图（坐标仍近似可用）
-        if not (ROOT / "docs" / img_rel).exists() and not p.get("map") == "hyrule":
+        if not (ROOT / "app" / img_rel).exists() and not p.get("map") == "hyrule":
             dungeon = dungeon_by_id.get(p.get("map"), {})
             overview = next((f for f in dungeon.get("floors", []) if f["id"] == "All"), None)
             if overview:
-                img_rel = "../app/assets/" + overview["file"].replace("assets/", "", 1)
+                img_rel = "assets/" + overview["file"].replace("assets/", "", 1)
         out[item_id] = {
             "x": p["x"], "y": p["y"],
             "img": img_rel,
@@ -1072,7 +1072,7 @@ def main():
     html = html.replace("__PIN_IMAGES__", json.dumps(pin_images, ensure_ascii=False))
     html = html.replace("__ITEMS__", json.dumps(items, ensure_ascii=False))
     print(f"  位置图配对: {len(pin_images)} 条")
-    html = html.replace("__MAP_LINK__", "../app/index.html")
+    html = html.replace("__MAP_LINK__", "index.html")
     OUT.write_text(html, encoding="utf-8")
     print(f"\n生成完成: {OUT}  ({OUT.stat().st_size} bytes)")
 
