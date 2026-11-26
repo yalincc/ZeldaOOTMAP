@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#18110b">
 <title>塞尔达传说：时之笛 全能互动地图 · Zelda OoT Interactive Map</title>
-<link rel="stylesheet" href="css/style.css?v=14">
+<link rel="stylesheet" href="css/style.css?v=20">
 </head>
 <body>
 
@@ -157,6 +157,7 @@
         <div class="region-world" id="regionWorld">
           <img id="regionImg" alt="区域地图" draggable="false">
           <div class="region-pins" id="regionPins"></div>
+          <div class="navi-layer" id="naviLayer"></div>
         </div>
         <div class="region-head">
           <span class="region-kicker" id="regionKicker">FIELD REGION</span>
@@ -310,6 +311,22 @@
       </div>
       <div class="settings-version" id="verBadge">ZELDA OOT MAP</div>
     </div>
+    <!-- 实时定位导航面板 -->
+    <div class="navi-panel" id="naviPanel" hidden>
+      <div class="navi-head">
+        <span class="navi-title">🧭 实时定位</span>
+        <button type="button" class="navi-close" id="naviCloseBtn" aria-label="关闭">×</button>
+      </div>
+      <div class="navi-badge off" id="naviStatusBadge">未开启</div>
+      <div class="navi-coords" id="naviCoords">—</div>
+      <label class="navi-row"><span>开启定位</span><input type="checkbox" id="naviEnableChk"></label>
+      <label class="navi-row"><span>自动切区</span><input type="checkbox" id="naviAutoSwitchChk" checked></label>
+      <label class="navi-row"><span>视角跟随</span><input type="checkbox" id="naviFollowChk"></label>
+      <div class="navi-lan-box">
+        <input id="naviLanInput" readonly placeholder="启动 ootnavi-pc 后生成局域网链接">
+        <button type="button" id="naviCopyLanBtn">复制</button>
+      </div>
+    </div>
   </main>
 </div>
 
@@ -317,8 +334,10 @@
 <script src="js/cat_tree.js?v=1"></script>
 <script src="data/topology_data.js?v=2"></script>
 <script src="data/regions.js?v=3"></script>
+<script src="data/projections.js?v=1"></script>
 <script src="data/world_data.js?v=2"></script>
 <script src="data/pins_data.js?v=2"></script>
-<script src="js/app.js?v=14"></script>
+<script src="js/app.js?v=15"></script>
+<script src="js/navi.js?v=8"></script>
 </body>
 </html>

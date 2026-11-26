@@ -2658,3 +2658,145 @@ body.side-collapsed .world-caption { left: 64px; }
   .rne-right { right: 56px; }
   .rne-bottom { bottom: 60px; }
 }
+
+/* ---------- 实时定位导航层与面板 ---------- */
+.navi-layer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 25;
+}
+.navi-link-dot {
+  position: absolute;
+  width: 28px;
+  height: 28px;
+  transform: translate(-50%, -50%) scale(var(--region-inv, 1));
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.navi-fov {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 168px;
+  height: 168px;
+  pointer-events: none;
+}
+.navi-arrow {
+  position: relative;
+  width: 64px;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, .65));
+}
+.navi-arrow-img {
+  width: 64px;
+  height: 64px;
+  object-fit: contain;
+  display: block;
+}
+.side-link-btn.active {
+  border-color: var(--gold);
+  color: var(--gold);
+}
+.navi-panel {
+  position: fixed;
+  right: 16px;
+  top: 16px;
+  width: 288px;
+  background: rgba(18, 13, 10, .86);
+  backdrop-filter: blur(18px) saturate(130%);
+  -webkit-backdrop-filter: blur(18px) saturate(130%);
+  border: 1px solid rgba(212, 175, 55, .32);
+  border-radius: 12px;
+  padding: 12px 14px;
+  color: var(--text-main);
+  z-index: 60;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, .55);
+  font-size: 12.5px;
+}
+.navi-panel[hidden] { display: none; }
+.navi-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+.navi-title { font-weight: 700; color: var(--gold); font-size: 13.5px; }
+.navi-close {
+  background: none; border: none; color: var(--text-sub);
+  font-size: 16px; cursor: pointer; padding: 2px 6px;
+}
+.navi-badge {
+  display: inline-block;
+  padding: 3px 9px;
+  border-radius: 999px;
+  font-size: 11.5px;
+  margin-bottom: 8px;
+  background: rgba(255, 255, 255, .07);
+}
+.navi-badge.ok { color: #7ce38b; background: rgba(124, 227, 139, .14); }
+.navi-badge.warn { color: #f0c36d; background: rgba(240, 195, 109, .14); }
+.navi-badge.off { color: var(--text-sub); }
+.navi-coords {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 11.5px;
+  color: var(--text-sub);
+  margin-bottom: 10px;
+  font-variant-numeric: tabular-nums;
+}
+.navi-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 5px 0;
+  cursor: pointer;
+}
+.navi-lan-box {
+  display: flex;
+  gap: 6px;
+  margin-top: 8px;
+  padding-top: 8px;
+  border-top: 1px solid rgba(255, 255, 255, .08);
+}
+.navi-lan-box input {
+  flex: 1;
+  min-width: 0;
+  background: rgba(0, 0, 0, .35);
+  border: 1px solid rgba(255, 255, 255, .14);
+  border-radius: 6px;
+  color: var(--text-main);
+  padding: 4px 7px;
+  font-size: 11px;
+}
+.navi-lan-box button {
+  background: rgba(212, 175, 55, .2);
+  border: 1px solid rgba(212, 175, 55, .45);
+  color: var(--gold);
+  border-radius: 6px;
+  padding: 4px 9px;
+  font-size: 11px;
+  cursor: pointer;
+}
+@media (max-width: 900px) {
+  .navi-fov {
+    width: 120px;
+    height: 120px;
+  }
+  .navi-arrow,
+  .navi-arrow-img {
+    width: 46px;
+    height: 46px;
+  }
+  .navi-panel {
+    right: 10px;
+    left: 10px;
+    top: auto;
+    bottom: 68px;
+    width: auto;
+  }
+}

@@ -2440,9 +2440,7 @@
     var navBtn = $("navBtn");
     if (navBtn) {
       navBtn.addEventListener("click", function () {
-        var orig = navBtn.textContent;
-        navBtn.textContent = state.lang === "zh" ? "即将上线" : "Soon";
-        setTimeout(function () { navBtn.textContent = orig; }, 1200);
+        if (window.OOT_NAVI) window.OOT_NAVI.togglePanel();
       });
     }
 
@@ -2887,6 +2885,19 @@
       }
     } catch (e) {}
     prefetchWorldImage();
+    window.OOT_MAP_API = {
+      openRegion: openRegion,
+      getState: function () { return state; },
+      centerRegionUV: function (uPct, vPct) {
+        var board = $("regionBoard");
+        if (!board || regionBase.w <= 0 || regionBase.h <= 0) return;
+        var wx = (uPct / 100) * regionBase.w;
+        var wy = (vPct / 100) * regionBase.h;
+        state.regionTx = board.clientWidth / 2 - regionBase.left - wx * state.regionZoom;
+        state.regionTy = board.clientHeight / 2 - regionBase.top - wy * state.regionZoom;
+        applyRegionCam();
+      },
+    };
   }
 
   window.addEventListener("DOMContentLoaded", init);

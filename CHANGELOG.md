@@ -3,6 +3,15 @@
 > 只追加，不散落成新文件。版本号语义见 `开发手册.md` §3.2。
 > 当前状态：**内测 V0.1.0 · 已上线**（`https://oot.yalin.site`；无 tag、无 Release）。
 
+## [未发布] · 2026-11-26 · 实时定位 `ootnavi-pc`（Go 版，适配 Longshot v3.2.0）
+
+**新增**
+- `tools/ootnavi-pc/`：Go 单文件定位核心与 `:8766` 同源服务（`winapi.go` / `chain.go` / `tracker.go` / `server.go` / `main.go`、`serve.bat`、`watch.bat`），支持 20Hz 静态链直读 Longshot v3.2.0 坐标、朝向、相机方位与地图名（`scene`/`era`），含 L1 `.bss` 自动漏斗与 `FILE_SHARE_DELETE` 存档锚点兜底、乒乓振荡自愈及 `/oot/` 同源静态托管。
+- `app/js/navi.js` & `app/data/projections.js`：接入 `#navBtn` 导航面板、`/pos` 12.5Hz 轮询、`scene` 自动切区与 `?follow=1` 视角跟随；接入官方 `MapIconPlayer_01.png` 箭头、80° 径向渐变相机视野扇形、60fps `requestAnimationFrame` 平滑插值（带静止收敛优化）及 PC/手机双端尺寸分档。
+
+**验收**
+- `ootnavi-pc.exe` 实机验证通过（16.1 MB 内存，跨区自动切图与 60fps 跟随/视野正常）；`python tools/verify_all.py` 全 PASS（未 commit / push）。
+
 ## [未发布] · 2026-11-25 · 资源瘦身与交互体验优化（第 1 批）
 
 **新增**
