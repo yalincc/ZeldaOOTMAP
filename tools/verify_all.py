@@ -115,6 +115,21 @@ def check_phase1_guides(pins: list[dict]) -> None:
     ]
     check("核心点位 0 条残留旧模板句", not tpl_left, f"残留 {tpl_left[:6]}")
 
+    # 36 秘密洞穴均有专属精炼攻略（无残留通用模板句）
+    grottos = [p for p in pins if p["cat"] == "grotto"]
+    bad_grottos = [p["id"] for p in grottos if not p.get("howto") or "掀开地面裂缝" in p.get("howto", "")]
+    check("36 秘密洞穴均有专属精炼攻略", len(grottos) == 36 and not bad_grottos, f"问题 {bad_grottos[:5]}")
+
+    # 验证所有文本内联 [[pinId|...]] 链接有效性
+    bad_inline = [
+        f"{p['id']}.{fld}->{tid}"
+        for p in pins
+        for fld in ("req", "reward", "howto", "note")
+        for tid in re.findall(r"\[\[([^|\]]+)\|", p.get(fld, ""))
+        if tid.strip() not in pin_ids
+    ]
+    check("文本内联 [[pinId|...]] 链接 100% 有效", not bad_inline, f"无效 {bad_inline[:6]}")
+
     # 2. 100 个宝箱不再出现「未标注」
     unlabeled_chests = [
         p["id"] for p in pins
