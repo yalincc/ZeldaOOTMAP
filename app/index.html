@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#18110b">
 <title>塞尔达传说：时之笛 全能互动地图 · Zelda OoT Interactive Map</title>
-<link rel="stylesheet" href="css/style.css?v=21">
+<link rel="stylesheet" href="css/style.css?v=24">
 </head>
 <body>
 
@@ -221,54 +221,54 @@
       </div>
     </div>
 
-    <!-- 点位详情卡片 -->
+    <!-- 点位详情卡片（TOTKmap 对齐 · 槽位驱动） -->
     <div class="detail-card" id="detailCard" hidden>
-      <button class="card-close" id="cardClose" aria-label="关闭详情卡">×</button>
-      <div class="card-header">
-        <div class="card-icon-wrap" id="cardIconWrap"></div>
-        <div class="card-titles">
-          <div class="card-tags">
-            <span class="tag-cat" id="cardCatTag">心之碎片</span>
-            <span class="tag-era" id="cardEraTag">童年</span>
-            <span class="tag-time" id="cardTimeTag">白天</span>
+      <div class="dc-head">
+        <span class="dc-cat-chip" id="cardCatTag">心之碎片</span>
+        <div class="dc-head-acts">
+          <span class="dc-pager" id="cardPager" hidden>
+            <button type="button" class="dc-icon-btn" id="cardPrevBtn" title="上一个 (←)" aria-label="上一个">‹</button>
+            <button type="button" class="dc-icon-btn" id="cardNextBtn" title="下一个 (→)" aria-label="下一个">›</button>
+          </span>
+          <button type="button" class="dc-icon-btn dc-close" id="cardClose" title="关闭" aria-label="关闭详情卡">×</button>
+        </div>
+      </div>
+      <div class="dc-title-row">
+        <span class="dc-seq-badge" id="cardSeqBadge" hidden>#1</span>
+        <h2 class="dc-title" id="cardTitle">—</h2>
+      </div>
+      <div class="dc-group-tabs" id="cardGroupTabs" hidden></div>
+      <div class="dc-slots" id="cardSlots">
+        <div class="dc-slot" id="slot-req" data-slot="req" hidden>
+          <span class="dc-slot-k" id="slotReqK">前置</span>
+          <div class="dc-slot-v" id="slotReqV"></div>
+        </div>
+        <div class="dc-slot" id="slot-next" data-slot="next" hidden>
+          <span class="dc-slot-k" id="slotNextK">后续</span>
+          <div class="dc-slot-v" id="slotNextV"></div>
+        </div>
+        <div class="dc-slot" id="slot-loc" data-slot="loc" hidden>
+          <span class="dc-slot-k" id="slotLocK">位置</span>
+          <div class="dc-slot-v" id="slotLocV"></div>
+        </div>
+        <div class="dc-slot" id="slot-reward" data-slot="reward" hidden>
+          <span class="dc-slot-k" id="slotRewardK">奖励</span>
+          <div class="dc-slot-v" id="slotRewardV"></div>
+        </div>
+        <div class="dc-slot" id="slot-tip" data-slot="tip" hidden>
+          <span class="dc-slot-k" id="slotTipK">提示</span>
+          <div class="dc-slot-v" id="slotTipV"></div>
+        </div>
+        <div class="dc-slot dc-slot-coord" id="slot-coord" data-slot="coord" hidden>
+          <span class="dc-slot-k" id="slotCoordK">坐标</span>
+          <div class="dc-slot-v dc-coord-wrap">
+            <span class="dc-coord-val" id="cardCoordVal">—</span>
+            <button type="button" class="dc-coord-copy" id="cardCopyCoord">复制</button>
           </div>
-          <h2 class="card-title" id="cardTitle">—</h2>
-          <div class="card-area" id="cardArea">—</div>
         </div>
       </div>
-      <div class="card-body">
-        <div class="card-loc-row" id="cardLocRow" hidden>
-          <span class="info-label">位置</span>
-          <span class="info-val" id="cardLocVal">—</span>
-        </div>
-        <div class="card-block" id="cardHowBlock">
-          <div class="block-label">怎么拿</div>
-          <div class="block-text" id="cardHowVal">—</div>
-        </div>
-        <div class="card-req-row" id="cardReqRow" hidden>
-          <span class="req-label">前置要求:</span>
-          <span class="req-val" id="cardReqVal">—</span>
-        </div>
-        <div class="card-req-row" id="cardRewardRow" hidden>
-          <span class="req-label">奖励:</span>
-          <span class="req-val" id="cardRewardVal">—</span>
-        </div>
-        <div class="card-req-row" id="cardNoteRow" hidden>
-          <span class="req-label">备注:</span>
-          <span class="req-val" id="cardNoteVal">—</span>
-        </div>
-        <div class="card-desc" id="cardDesc" hidden>—</div>
-        <div class="card-links-row" id="cardLinksRow" hidden></div>
-        <div class="card-coord-row">
-          <span class="coord-val" id="cardCoordVal">—</span>
-          <button class="coord-copy" id="cardCopyCoord">复制坐标</button>
-        </div>
-      </div>
-      <div class="card-footer">
-        <label class="card-collect-btn">
-          <input type="checkbox" id="cardDoneChk">
-          <span class="collect-text">标记为已收集</span>
-        </label>
+      <div class="dc-footer">
+        <button type="button" class="dc-done-btn" id="cardDoneBtn">标记已完成</button>
       </div>
     </div>
 
@@ -384,9 +384,9 @@
 <script src="data/regions.js?v=3"></script>
 <script src="data/projections.js?v=1"></script>
 <script src="data/world_data.js?v=2"></script>
-<script src="data/pins_data.js?v=3"></script>
+<script src="data/pins_data.js?v=5"></script>
 <script src="data/save_flags.js?v=2"></script>
-<script src="js/app.js?v=17"></script>
+<script src="js/app.js?v=20"></script>
 <script src="js/navi.js?v=8"></script>
 <script src="js/save_sync.js?v=1"></script>
 </body>

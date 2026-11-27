@@ -147,6 +147,35 @@ def check_phase1_guides(pins: list[dict]) -> None:
         check("guide.html 位置图 ≥ 200 张", pi_cnt >= 200, f"实际 {pi_cnt}")
         check("guide.html 接入地图进度双向同步", "oot_map_done_pins_v3" in gtxt)
 
+    # 6. 540 官方中文底表 + 八卦石原文 + 同类 seq/shortZh/tpl + hostPinId/subPins 一致性
+    cnzh_path = ROOT / "data" / "romfs_raw" / "cnzh_texts.json"
+    gossip_path = ROOT / "data" / "romfs_raw" / "gossip_stones_cnzh.json"
+    check("官方中文底表 cnzh_texts.json = 540 文件",
+          cnzh_path.exists() and len(json.loads(cnzh_path.read_text(encoding="utf-8"))) == 540)
+    check("八卦石官方原文 ≥ 30 条",
+          gossip_path.exists() and len(json.loads(gossip_path.read_text(encoding="utf-8"))) >= 30)
+
+    missing_meta = [p["id"] for p in pins if not (p.get("seq") and p.get("shortZh") and p.get("tpl"))]
+    check("全部点位含 seq/shortZh/tpl", not missing_meta, f"缺失 {missing_meta[:6]}")
+
+    stones = [p for p in pins if p["cat"] == "stone"]
+    stones_no_rumor = [p["id"] for p in stones if not p.get("rumor")]
+    check("全部 37 块八卦石含官方中文传闻", not stones_no_rumor, f"缺失 {stones_no_rumor[:6]}")
+
+    pin_by_id = {p["id"]: p for p in pins}
+    bad_group = []
+    for p in pins:
+        hid = p.get("hostPinId")
+        if hid:
+            h = pin_by_id.get(hid)
+            if not h or p["id"] not in (h.get("subPins") or []):
+                bad_group.append(f"sub:{p['id']}->{hid}")
+        for sid in (p.get("subPins") or []):
+            s = pin_by_id.get(sid)
+            if not s or s.get("hostPinId") != p["id"]:
+                bad_group.append(f"host:{p['id']}->{sid}")
+    check("重叠点位 hostPinId/subPins 双向一致", not bad_group, f"不一致 {bad_group[:6]}")
+
 
 def check_save_flags(pins: list[dict]) -> None:
     """存档同步映射表 save_flags.js 校验。"""

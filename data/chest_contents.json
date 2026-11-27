@@ -1,6 +1,6 @@
 {
   "_doc": "时之笛重制版全部迷宫宝箱内容清单；由 tools/export_chest_list.py 从 pins_data.js 生成，勿手改。",
-  "generated": "2026-11-27",
+  "generated": "2026-11-28",
   "total": 100,
   "byItem": {
     "小钥匙": 27,

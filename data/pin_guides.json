@@ -21,8 +21,14 @@
       "era": "Adult",
       "time": "Any",
       "links": [
-        { "label": "前置：传送台旁种魔法豆", "pinId": "soil-crater-warp" },
-        { "label": "关联：火之波丽露舞曲", "pinId": "song-bolero" }
+        {
+          "label": "前置：传送台旁种魔法豆",
+          "pinId": "soil-crater-warp"
+        },
+        {
+          "label": "关联：火之波丽露舞曲",
+          "pinId": "song-bolero"
+        }
       ]
     },
     "HP-003": {
@@ -45,7 +51,10 @@
       "era": "Adult",
       "time": "Any",
       "links": [
-        { "label": "前置：多东哥入口旁种魔法豆", "pinId": "soil-dodongo-entrance" }
+        {
+          "label": "前置：多东哥入口旁种魔法豆",
+          "pinId": "soil-dodongo-entrance"
+        }
       ]
     },
     "HP-005": {
@@ -58,8 +67,14 @@
       "era": "Adult",
       "time": "Any",
       "links": [
-        { "label": "前置：神殿入口旁种魔法豆", "pinId": "soil-spirit-entrance" },
-        { "label": "关联：魂之慰灵曲", "pinId": "song-requiem" }
+        {
+          "label": "前置：神殿入口旁种魔法豆",
+          "pinId": "soil-spirit-entrance"
+        },
+        {
+          "label": "关联：魂之慰灵曲",
+          "pinId": "song-requiem"
+        }
       ]
     },
     "HP-006": {
@@ -72,7 +87,10 @@
       "era": "Adult",
       "time": "Any",
       "links": [
-        { "label": "前置：激活稻草人之歌", "pinId": "song-scarecrow" }
+        {
+          "label": "前置：激活稻草人之歌",
+          "pinId": "song-scarecrow"
+        }
       ]
     },
     "HP-007": {
@@ -85,7 +103,10 @@
       "era": "Adult",
       "time": "Any",
       "links": [
-        { "label": "前置：救木匠/开骑射场", "pinId": "DG-001" }
+        {
+          "label": "前置：救木匠/开骑射场",
+          "pinId": "DG-001"
+        }
       ]
     },
     "HP-008": {
@@ -128,7 +149,10 @@
       "era": "Adult",
       "time": "Any",
       "links": [
-        { "label": "前置：丹培墓旁种魔法豆", "pinId": "soil-graveyard-dampe" }
+        {
+          "label": "前置：丹培墓旁种魔法豆",
+          "pinId": "soil-graveyard-dampe"
+        }
       ]
     },
     "HP-012": {
@@ -141,7 +165,10 @@
       "era": "Both",
       "time": "Any",
       "links": [
-        { "label": "前置：太阳之歌", "pinId": "song-sun" }
+        {
+          "label": "前置：太阳之歌",
+          "pinId": "song-sun"
+        }
       ]
     },
     "HP-013": {
@@ -164,7 +191,10 @@
       "era": "Adult",
       "time": "Any",
       "links": [
-        { "label": "关联：钩索（首胜奖励）", "pinId": "ki-hookshot" }
+        {
+          "label": "关联：钩索（首胜奖励）",
+          "pinId": "ki-hookshot"
+        }
       ]
     },
     "HP-015": {
@@ -177,7 +207,10 @@
       "era": "Both",
       "time": "Any",
       "links": [
-        { "label": "关联：金色鳞片", "pinId": "upg-scale-gold" }
+        {
+          "label": "关联：金色鳞片",
+          "pinId": "upg-scale-gold"
+        }
       ]
     },
     "HP-016": {
@@ -220,7 +253,10 @@
       "era": "Both",
       "time": "Any",
       "links": [
-        { "label": "关联：丹培幽灵赛跑", "pinId": "HP-014" }
+        {
+          "label": "关联：丹培幽灵赛跑",
+          "pinId": "HP-014"
+        }
       ]
     },
     "HP-020": {
@@ -233,7 +269,10 @@
       "era": "Both",
       "time": "Any",
       "links": [
-        { "label": "交付点：骷髅之家", "pinId": "IT-005" }
+        {
+          "label": "交付点：骷髅之家",
+          "pinId": "IT-005"
+        }
       ]
     },
     "HP-021": {
@@ -246,7 +285,10 @@
       "era": "Adult",
       "time": "Any",
       "links": [
-        { "label": "前置：钓鱼拿金色鳞片", "pinId": "upg-scale-gold" }
+        {
+          "label": "前置：钓鱼拿金色鳞片",
+          "pinId": "upg-scale-gold"
+        }
       ]
     },
     "HP-022": {
@@ -269,7 +311,10 @@
       "era": "Adult",
       "time": "Any",
       "links": [
-        { "label": "前置：研究所旁种魔法豆", "pinId": "soil-lake-lab" }
+        {
+          "label": "前置：研究所旁种魔法豆",
+          "pinId": "soil-lake-lab"
+        }
       ]
     },
     "HP-024": {
@@ -292,7 +337,10 @@
       "era": "Child",
       "time": "Any",
       "links": [
-        { "label": "前置：莎莉亚之歌", "pinId": "song-saria" }
+        {
+          "label": "前置：莎莉亚之歌",
+          "pinId": "song-saria"
+        }
       ]
     },
     "HP-026": {
@@ -315,7 +363,10 @@
       "era": "Child",
       "time": "Night",
       "links": [
-        { "label": "前置：井底拿真实之镜", "pinId": "KI-001" }
+        {
+          "label": "前置：井底拿真实之镜",
+          "pinId": "KI-001"
+        }
       ]
     },
     "HP-028": {
@@ -358,7 +409,10 @@
       "era": "Adult",
       "time": "Any",
       "links": [
-        { "label": "前置：冰之洞窟拿重铁靴", "pinId": "KI-007" }
+        {
+          "label": "前置：冰之洞窟拿重铁靴",
+          "pinId": "KI-007"
+        }
       ]
     },
     "HP-032": {
@@ -391,7 +445,10 @@
       "era": "Child",
       "time": "Any",
       "links": [
-        { "label": "前置：暴风雨之歌", "pinId": "song-storms" }
+        {
+          "label": "前置：暴风雨之歌",
+          "pinId": "song-storms"
+        }
       ]
     },
     "HP-035": {
@@ -414,7 +471,10 @@
       "era": "Child",
       "time": "Any",
       "links": [
-        { "label": "前置：先吹暴风雨之歌", "pinId": "HP-034" }
+        {
+          "label": "前置：先吹暴风雨之歌",
+          "pinId": "HP-034"
+        }
       ]
     },
     "GS-001": {
@@ -427,7 +487,10 @@
       "era": "Child",
       "time": "Any",
       "links": [
-        { "label": "位置：传送台软土", "pinId": "soil-crater-warp" }
+        {
+          "label": "位置：传送台软土",
+          "pinId": "soil-crater-warp"
+        }
       ]
     },
     "GS-002": {
@@ -470,7 +533,10 @@
       "era": "Child",
       "time": "Any",
       "links": [
-        { "label": "位置：洞口旁软土", "pinId": "soil-dodongo-entrance" }
+        {
+          "label": "位置：洞口旁软土",
+          "pinId": "soil-dodongo-entrance"
+        }
       ]
     },
     "GS-006": {
@@ -493,7 +559,10 @@
       "era": "Child",
       "time": "Any",
       "links": [
-        { "label": "位置：神殿入口软土", "pinId": "soil-spirit-entrance" }
+        {
+          "label": "位置：神殿入口软土",
+          "pinId": "soil-spirit-entrance"
+        }
       ]
     },
     "GS-008": {
@@ -556,7 +625,10 @@
       "era": "Child",
       "time": "Any",
       "links": [
-        { "label": "位置：谷底桥下软土", "pinId": "soil-gerudo-bridge" }
+        {
+          "label": "位置：谷底桥下软土",
+          "pinId": "soil-gerudo-bridge"
+        }
       ]
     },
     "GS-014": {
@@ -629,7 +701,10 @@
       "era": "Child",
       "time": "Any",
       "links": [
-        { "label": "位置：丹培墓旁软土", "pinId": "soil-graveyard-dampe" }
+        {
+          "label": "位置：丹培墓旁软土",
+          "pinId": "soil-graveyard-dampe"
+        }
       ]
     },
     "GS-021": {
@@ -662,7 +737,10 @@
       "era": "Child",
       "time": "Any",
       "links": [
-        { "label": "前置：暴风雨之歌", "pinId": "song-storms" }
+        {
+          "label": "前置：暴风雨之歌",
+          "pinId": "song-storms"
+        }
       ]
     },
     "GS-024": {
@@ -755,7 +833,10 @@
       "era": "Child",
       "time": "Night",
       "links": [
-        { "label": "位置：骷髅之家旁", "pinId": "IT-005" }
+        {
+          "label": "位置：骷髅之家旁",
+          "pinId": "IT-005"
+        }
       ]
     },
     "GS-033": {
@@ -778,7 +859,10 @@
       "era": "Child",
       "time": "Any",
       "links": [
-        { "label": "位置：商店后软土", "pinId": "soil-kokiri-shop" }
+        {
+          "label": "位置：商店后软土",
+          "pinId": "soil-kokiri-shop"
+        }
       ]
     },
     "GS-035": {
@@ -811,7 +895,10 @@
       "era": "Child",
       "time": "Any",
       "links": [
-        { "label": "位置：研究所旁软土", "pinId": "soil-lake-lab" }
+        {
+          "label": "位置：研究所旁软土",
+          "pinId": "soil-lake-lab"
+        }
       ]
     },
     "GS-038": {
@@ -824,7 +911,10 @@
       "era": "Adult",
       "time": "Any",
       "links": [
-        { "label": "关联：研究所深池心碎", "pinId": "HP-021" }
+        {
+          "label": "关联：研究所深池心碎",
+          "pinId": "HP-021"
+        }
       ]
     },
     "GS-039": {
@@ -887,7 +977,10 @@
       "era": "Adult",
       "time": "Any",
       "links": [
-        { "label": "前置：森林舞台旁种豆", "pinId": "soil-lostwood-stage" }
+        {
+          "label": "前置：森林舞台旁种豆",
+          "pinId": "soil-lostwood-stage"
+        }
       ]
     },
     "GS-045": {
@@ -900,7 +993,10 @@
       "era": "Child",
       "time": "Any",
       "links": [
-        { "label": "位置：木桥旁软土", "pinId": "soil-lostwood-bridge" }
+        {
+          "label": "位置：木桥旁软土",
+          "pinId": "soil-lostwood-bridge"
+        }
       ]
     },
     "GS-046": {
@@ -913,7 +1009,10 @@
       "era": "Child",
       "time": "Any",
       "links": [
-        { "label": "位置：舞台旁软土", "pinId": "soil-lostwood-stage" }
+        {
+          "label": "位置：舞台旁软土",
+          "pinId": "soil-lostwood-stage"
+        }
       ]
     },
     "GS-047": {
@@ -1016,7 +1115,10 @@
       "era": "Child",
       "time": "Any",
       "links": [
-        { "label": "位置：豆商旁软土", "pinId": "soil-zora-river" }
+        {
+          "label": "位置：豆商旁软土",
+          "pinId": "soil-zora-river"
+        }
       ]
     },
     "GS-057": {
@@ -1079,7 +1181,10 @@
       "era": "Adult",
       "time": "Any",
       "links": [
-        { "label": "前置：稻草人之歌", "pinId": "song-scarecrow" }
+        {
+          "label": "前置：稻草人之歌",
+          "pinId": "song-scarecrow"
+        }
       ]
     },
     "GS-063": {
@@ -1142,7 +1247,10 @@
       "era": "Adult",
       "time": "Any",
       "links": [
-        { "label": "前置：稻草人之歌", "pinId": "song-scarecrow" }
+        {
+          "label": "前置：稻草人之歌",
+          "pinId": "song-scarecrow"
+        }
       ]
     },
     "GS-069": {
@@ -1335,7 +1443,10 @@
       "era": "Adult",
       "time": "Any",
       "links": [
-        { "label": "前置：稻草人之歌", "pinId": "song-scarecrow" }
+        {
+          "label": "前置：稻草人之歌",
+          "pinId": "song-scarecrow"
+        }
       ]
     },
     "GS-088": {
@@ -1408,7 +1519,10 @@
       "era": "Adult",
       "time": "Any",
       "links": [
-        { "label": "前置：稻草人之歌", "pinId": "song-scarecrow" }
+        {
+          "label": "前置：稻草人之歌",
+          "pinId": "song-scarecrow"
+        }
       ]
     },
     "GS-095": {
@@ -1480,7 +1594,12 @@
       "note": "必须成年骑伊波娜触发；推荐夜晚视野清晰。集齐 10 只卖给城邑废墟幽灵商店换第 5 个空瓶（500 点）与 200 金卢比。",
       "era": "Adult",
       "time": "Any",
-      "links": [{ "label": "交付：城邑大魄收购屋", "pinId": "bottle-poe" }]
+      "links": [
+        {
+          "label": "交付：城邑大魄收购屋",
+          "pinId": "bottle-poe"
+        }
+      ]
     },
     "BP-002": {
       "zh": "海拉鲁平原 · 大怨灵 #10（牧场东路）",
@@ -1491,7 +1610,12 @@
       "note": "必须成年骑伊波娜触发；推荐夜晚视野清晰。",
       "era": "Adult",
       "time": "Any",
-      "links": [{ "label": "交付：城邑大魄收购屋", "pinId": "bottle-poe" }]
+      "links": [
+        {
+          "label": "交付：城邑大魄收购屋",
+          "pinId": "bottle-poe"
+        }
+      ]
     },
     "BP-003": {
       "zh": "海拉鲁平原 · 大怨灵 #9（科奇里入口西南）",
@@ -1502,7 +1626,12 @@
       "note": "必须成年骑伊波娜触发；推荐夜晚视野清晰。",
       "era": "Adult",
       "time": "Any",
-      "links": [{ "label": "交付：城邑大魄收购屋", "pinId": "bottle-poe" }]
+      "links": [
+        {
+          "label": "交付：城邑大魄收购屋",
+          "pinId": "bottle-poe"
+        }
+      ]
     },
     "BP-004": {
       "zh": "海拉鲁平原 · 大怨灵 #7（牧场南侧树丛）",
@@ -1513,7 +1642,12 @@
       "note": "必须成年骑伊波娜触发；推荐夜晚视野清晰。",
       "era": "Adult",
       "time": "Any",
-      "links": [{ "label": "交付：城邑大魄收购屋", "pinId": "bottle-poe" }]
+      "links": [
+        {
+          "label": "交付：城邑大魄收购屋",
+          "pinId": "bottle-poe"
+        }
+      ]
     },
     "BP-005": {
       "zh": "海拉鲁平原 · 大怨灵 #2（牧场正北缓坡）",
@@ -1524,7 +1658,12 @@
       "note": "必须成年骑伊波娜触发；推荐夜晚视野清晰。",
       "era": "Adult",
       "time": "Any",
-      "links": [{ "label": "交付：城邑大魄收购屋", "pinId": "bottle-poe" }]
+      "links": [
+        {
+          "label": "交付：城邑大魄收购屋",
+          "pinId": "bottle-poe"
+        }
+      ]
     },
     "BP-006": {
       "zh": "海拉鲁平原 · 大怨灵 #6（牧场与格鲁德之间）",
@@ -1535,7 +1674,12 @@
       "note": "必须成年骑伊波娜触发；推荐夜晚视野清晰。",
       "era": "Adult",
       "time": "Any",
-      "links": [{ "label": "交付：城邑大魄收购屋", "pinId": "bottle-poe" }]
+      "links": [
+        {
+          "label": "交付：城邑大魄收购屋",
+          "pinId": "bottle-poe"
+        }
+      ]
     },
     "BP-007": {
       "zh": "海拉鲁平原 · 大怨灵 #5（格鲁德之谷入口）",
@@ -1546,7 +1690,12 @@
       "note": "必须成年骑伊波娜触发；推荐夜晚视野清晰。",
       "era": "Adult",
       "time": "Any",
-      "links": [{ "label": "交付：城邑大魄收购屋", "pinId": "bottle-poe" }]
+      "links": [
+        {
+          "label": "交付：城邑大魄收购屋",
+          "pinId": "bottle-poe"
+        }
+      ]
     },
     "BP-008": {
       "zh": "海拉鲁平原 · 大怨灵 #8（海利亚湖入口东北）",
@@ -1557,7 +1706,12 @@
       "note": "必须成年骑伊波娜触发；推荐夜晚视野清晰。",
       "era": "Adult",
       "time": "Any",
-      "links": [{ "label": "交付：城邑大魄收购屋", "pinId": "bottle-poe" }]
+      "links": [
+        {
+          "label": "交付：城邑大魄收购屋",
+          "pinId": "bottle-poe"
+        }
+      ]
     },
     "BP-009": {
       "zh": "海拉鲁平原 · 大怨灵 #3（吊桥西侧河岸）",
@@ -1568,7 +1722,12 @@
       "note": "必须成年骑伊波娜触发；推荐夜晚视野清晰。",
       "era": "Adult",
       "time": "Any",
-      "links": [{ "label": "交付：城邑大魄收购屋", "pinId": "bottle-poe" }]
+      "links": [
+        {
+          "label": "交付：城邑大魄收购屋",
+          "pinId": "bottle-poe"
+        }
+      ]
     },
     "BP-010": {
       "zh": "海拉鲁平原 · 大怨灵 #1（吊桥南侧招牌旁）",
@@ -1579,7 +1738,12 @@
       "note": "必须成年骑伊波娜触发；推荐夜晚视野清晰。",
       "era": "Adult",
       "time": "Any",
-      "links": [{ "label": "交付：城邑大魄收购屋", "pinId": "bottle-poe" }]
+      "links": [
+        {
+          "label": "交付：城邑大魄收购屋",
+          "pinId": "bottle-poe"
+        }
+      ]
     },
     "GF-001": {
       "zh": "死亡之山火山口 · 大妖精之泉 · 魔力加倍",
@@ -1590,7 +1754,12 @@
       "note": "火之神殿拿大锤后顺手进来开。",
       "era": "Adult",
       "time": "Any",
-      "links": [{ "label": "前置：百万吨大锤", "pinId": "KI-004" }]
+      "links": [
+        {
+          "label": "前置：百万吨大锤",
+          "pinId": "KI-004"
+        }
+      ]
     },
     "GF-002": {
       "zh": "死亡之山登山道 · 大妖精之泉 · 迪荧之火",
@@ -1601,7 +1770,12 @@
       "note": "重制版奉献 25 卢比（原版免费且位置与城堡泉互换）。",
       "era": "Both",
       "time": "Any",
-      "links": [{ "label": "前置：塞尔达摇篮曲", "pinId": "song-zelda" }]
+      "links": [
+        {
+          "label": "前置：塞尔达摇篮曲",
+          "pinId": "song-zelda"
+        }
+      ]
     },
     "GF-003": {
       "zh": "巨大邪神像 · 大妖精之泉 · 娜如之爱",
@@ -1612,7 +1786,12 @@
       "note": "先到蜘蛛之家拿 500 卢比大人钱包才够付。",
       "era": "Both",
       "time": "Any",
-      "links": [{ "label": "前置：大人钱包（500）", "pinId": "upg-wallet-500" }]
+      "links": [
+        {
+          "label": "前置：大人钱包（500）",
+          "pinId": "upg-wallet-500"
+        }
+      ]
     },
     "GF-004": {
       "zh": "加侬多夫城堡 · 大妖精之泉 · 伤害减半",
@@ -1624,8 +1803,14 @@
       "era": "Adult",
       "time": "Any",
       "links": [
-        { "label": "前置：金手套", "pinId": "upg-glove-gold" },
-        { "label": "前置：大人钱包（500）", "pinId": "upg-wallet-500" }
+        {
+          "label": "前置：金手套",
+          "pinId": "upg-glove-gold"
+        },
+        {
+          "label": "前置：大人钱包（500）",
+          "pinId": "upg-wallet-500"
+        }
       ]
     },
     "GF-005": {
@@ -1637,7 +1822,12 @@
       "note": "幼年限定入口（重制版奉献 50 卢比，位置与山顶泉互换）。",
       "era": "Child",
       "time": "Any",
-      "links": [{ "label": "前置：塞尔达摇篮曲", "pinId": "song-zelda" }]
+      "links": [
+        {
+          "label": "前置：塞尔达摇篮曲",
+          "pinId": "song-zelda"
+        }
+      ]
     },
     "GF-006": {
       "zh": "卓拉之泉 · 大妖精之泉 · 花柔之风",
@@ -1648,7 +1838,12 @@
       "note": "重制版需奉献 100 卢比；幼年穿过卓拉王即可来拿。",
       "era": "Both",
       "time": "Any",
-      "links": [{ "label": "前置：塞尔达摇篮曲", "pinId": "song-zelda" }]
+      "links": [
+        {
+          "label": "前置：塞尔达摇篮曲",
+          "pinId": "song-zelda"
+        }
+      ]
     },
     "IT-001": {
       "zh": "格鲁德要塞 · 被囚木匠 #1（底层牢房）",
@@ -1689,7 +1884,12 @@
       "note": "救齐后格鲁德族将承认林克，可自由进出要塞、骑射场与格鲁德训练场。",
       "era": "Adult",
       "time": "Any",
-      "links": [{ "label": "解锁：格鲁德训练场", "pinId": "DG-001" }]
+      "links": [
+        {
+          "label": "解锁：格鲁德训练场",
+          "pinId": "DG-001"
+        }
+      ]
     },
     "IT-005": {
       "zh": "卡卡利科村 · 骷髅之家（蜘蛛兑奖）",
@@ -1711,8 +1911,14 @@
       "era": "Adult",
       "time": "Any",
       "links": [
-        { "label": "终极奖励：冰箭", "pinId": "ki-ice-arrow" },
-        { "label": "前置：救木匠拿许可证", "pinId": "IT-004" }
+        {
+          "label": "终极奖励：冰箭",
+          "pinId": "ki-ice-arrow"
+        },
+        {
+          "label": "前置：救木匠拿许可证",
+          "pinId": "IT-004"
+        }
       ]
     },
     "BS-001": {
@@ -1725,8 +1931,14 @@
       "era": "Child",
       "time": "Any",
       "links": [
-        { "label": "掉落：心之容器", "pinId": "HC-001" },
-        { "label": "奖励：鼓隆红宝石", "pinId": "medal-ruby" }
+        {
+          "label": "掉落：心之容器",
+          "pinId": "HC-001"
+        },
+        {
+          "label": "奖励：鼓隆红宝石",
+          "pinId": "medal-ruby"
+        }
       ]
     },
     "BS-002": {
@@ -1739,8 +1951,14 @@
       "era": "Adult",
       "time": "Any",
       "links": [
-        { "label": "掉落：心之容器", "pinId": "HC-002" },
-        { "label": "奖励：火之勋章", "pinId": "medal-fire" }
+        {
+          "label": "掉落：心之容器",
+          "pinId": "HC-002"
+        },
+        {
+          "label": "奖励：火之勋章",
+          "pinId": "medal-fire"
+        }
       ]
     },
     "BS-003": {
@@ -1753,8 +1971,14 @@
       "era": "Adult",
       "time": "Any",
       "links": [
-        { "label": "掉落：心之容器", "pinId": "HC-003" },
-        { "label": "奖励：森之勋章", "pinId": "medal-forest" }
+        {
+          "label": "掉落：心之容器",
+          "pinId": "HC-003"
+        },
+        {
+          "label": "奖励：森之勋章",
+          "pinId": "medal-forest"
+        }
       ]
     },
     "BS-004": {
@@ -1767,8 +1991,14 @@
       "era": "Child",
       "time": "Any",
       "links": [
-        { "label": "掉落：心之容器", "pinId": "HC-004" },
-        { "label": "奖励：卓拉蓝宝石", "pinId": "medal-sapphire" }
+        {
+          "label": "掉落：心之容器",
+          "pinId": "HC-004"
+        },
+        {
+          "label": "奖励：卓拉蓝宝石",
+          "pinId": "medal-sapphire"
+        }
       ]
     },
     "BS-005": {
@@ -1781,8 +2011,14 @@
       "era": "Child",
       "time": "Any",
       "links": [
-        { "label": "掉落：心之容器", "pinId": "HC-005" },
-        { "label": "奖励：科奇里翡翠", "pinId": "medal-emerald" }
+        {
+          "label": "掉落：心之容器",
+          "pinId": "HC-005"
+        },
+        {
+          "label": "奖励：科奇里翡翠",
+          "pinId": "medal-emerald"
+        }
       ]
     },
     "BS-006": {
@@ -1795,8 +2031,14 @@
       "era": "Adult",
       "time": "Any",
       "links": [
-        { "label": "掉落：心之容器", "pinId": "HC-006" },
-        { "label": "奖励：暗之勋章", "pinId": "medal-shadow" }
+        {
+          "label": "掉落：心之容器",
+          "pinId": "HC-006"
+        },
+        {
+          "label": "奖励：暗之勋章",
+          "pinId": "medal-shadow"
+        }
       ]
     },
     "BS-007": {
@@ -1809,8 +2051,14 @@
       "era": "Both",
       "time": "Any",
       "links": [
-        { "label": "掉落：心之容器", "pinId": "HC-007" },
-        { "label": "奖励：魂之勋章", "pinId": "medal-spirit" }
+        {
+          "label": "掉落：心之容器",
+          "pinId": "HC-007"
+        },
+        {
+          "label": "奖励：魂之勋章",
+          "pinId": "medal-spirit"
+        }
       ]
     },
     "BS-008": {
@@ -1823,8 +2071,14 @@
       "era": "Adult",
       "time": "Any",
       "links": [
-        { "label": "掉落：心之容器", "pinId": "HC-008" },
-        { "label": "奖励：水之勋章", "pinId": "medal-water" }
+        {
+          "label": "掉落：心之容器",
+          "pinId": "HC-008"
+        },
+        {
+          "label": "奖励：水之勋章",
+          "pinId": "medal-water"
+        }
       ]
     },
     "CH-035": {
@@ -1836,7 +2090,12 @@
       "note": "与 CH-034（紫卢比）、CH-036 同室；房间内还有蜘蛛 GS-068。",
       "era": "Adult",
       "time": "Any",
-      "links": [{ "label": "前置：稻草人之歌", "pinId": "song-scarecrow" }]
+      "links": [
+        {
+          "label": "前置：稻草人之歌",
+          "pinId": "song-scarecrow"
+        }
+      ]
     },
     "CH-036": {
       "zh": "火之神殿 (4F) · 宝箱 · 红卢比",
@@ -1847,7 +2106,12 @@
       "note": "与 CH-034（紫卢比）、CH-035 同在隐藏顶室。",
       "era": "Adult",
       "time": "Any",
-      "links": [{ "label": "前置：稻草人之歌", "pinId": "song-scarecrow" }]
+      "links": [
+        {
+          "label": "前置：稻草人之歌",
+          "pinId": "song-scarecrow"
+        }
+      ]
     },
     "CH-041": {
       "zh": "森之神殿 (1F) · 宝箱 · 补给宝箱",
@@ -1868,6 +2132,225 @@
       "note": "同一间密室中还有一个需用真实之镜才看得见的宝箱（CH-072）与蜘蛛 GS-090。",
       "era": "Adult",
       "time": "Any"
+    },
+    "SH-001": {
+      "loc": "鼓隆城二层商店",
+      "howto": "出售炸弹(5/10/20/30)、鼓隆耐火服（成年 200 卢比，部分攻略作 600）、回复心等物资。",
+      "req": "幼年需停住滚动鼓隆打开店门 / 成年直接营业",
+      "reward": "鼓隆服 / 炸弹补给",
+      "note": "耐火服也可在成年令滚动小鼓隆停下免费获赠。"
+    },
+    "SH-002": {
+      "loc": "卡卡利科村北侧药水店",
+      "howto": "成年后代替城邑药水店营业，出售红/绿/蓝药水、鱼、虫与妖精。",
+      "req": "成年",
+      "reward": "各类药水与瓶装补给",
+      "note": "从本店后门可通往婆婆药水屋（大鼓隆剑支线）。"
+    },
+    "SH-003": {
+      "loc": "卡卡利科村西北角杂货店",
+      "howto": "成年后代替城邑杂货店营业，出售海利亚盾（80 卢比）、箭矢、炸弹、德库木棒与坚果。",
+      "req": "成年",
+      "reward": "海利亚盾 / 箭 / 炸弹"
+    },
+    "SH-004": {
+      "loc": "卡卡利科药水店后巷婆婆屋",
+      "howto": "成年大鼓隆剑支线关键站点：把迷途森林拿到的「奇怪蘑菇」限时送来，婆婆会熬出「奇怪药水」交给迷途森林的女孩。",
+      "req": "奇怪蘑菇（大鼓隆剑交易链）",
+      "reward": "奇怪药水（推进大鼓隆剑支线）",
+      "links": [
+        {
+          "label": "终点：大鼓隆",
+          "pinId": "npc-biggoron"
+        }
+      ]
+    },
+    "SH-005": {
+      "loc": "科奇里森林中北部商店",
+      "howto": "出售德库盾（40 卢比，进德库树前必买）、德库坚果、德库木棒、弹弓种子与回复心。",
+      "req": "40 卢比（买德库盾）",
+      "reward": "德库盾 / 早期消耗品"
+    },
+    "SH-006": {
+      "loc": "海拉鲁城邑广场东北角快乐面具屋",
+      "howto": "幼年借出 4 张交易面具并逐个卖出还钱，全部还清后店主将「真实面具」借给你（以后随时可免费借用各类面具）。",
+      "req": "见塞尔达公主并拿英帕推荐后开业",
+      "reward": "真实面具 + 4 张面具交易链",
+      "links": [
+        {
+          "label": "#1 奇坦面具",
+          "pinId": "mask-keaton"
+        },
+        {
+          "label": "#2 骷髅面具",
+          "pinId": "mask-skull"
+        },
+        {
+          "label": "#3 恐怖面具",
+          "pinId": "mask-spooky"
+        },
+        {
+          "label": "#4 兔子头箍",
+          "pinId": "mask-bunny"
+        }
+      ]
+    },
+    "SH-007": {
+      "loc": "海拉鲁城邑后巷（仅幼年夜晚）",
+      "howto": "幼年夜晚从城邑后巷门进入，专门出售炸弹鼠（10 只 100 卢比 / 20 只 180 卢比），卖完限量库存后关门。",
+      "req": "幼年夜晚",
+      "reward": "炸弹鼠补给",
+      "time": "Night"
+    },
+    "SH-008": {
+      "loc": "海拉鲁城邑广场东侧药水店",
+      "howto": "幼年出售红/绿药水与瓶装虫/鱼；晚上后巷还会出现店主的空瓶任务（抓回逃跑的虫直接获空瓶 #1）。",
+      "req": "幼年",
+      "reward": "空瓶 #1（药铺借瓶） / 各类药水"
+    },
+    "SH-009": {
+      "loc": "海拉鲁城邑广场东侧杂货店",
+      "howto": "幼年出售海利亚盾（80 卢比，戴奇坦面具打折至 60 卢比）、德库木棒、弹弓种子与箭矢。",
+      "req": "幼年",
+      "reward": "海利亚盾 / 基础冒险补给"
+    },
+    "SH-010": {
+      "loc": "海拉鲁城邑废墟入口守卫室（成年）",
+      "howto": "成年后原守卫室变为幽灵收购屋，每带回一只装瓶的大怨灵可卖 50 卢比并累计 100 点；累计 500 点（Switch 2 为 10 只/500点）获第 5 个空瓶。",
+      "req": "成年 · 弓 + 伊波娜 + 空瓶",
+      "reward": "第 5 个空瓶（大魄收购奖励）"
+    },
+    "SH-011": {
+      "loc": "卓拉领地底层东侧洞壁商店",
+      "howto": "出售卓拉服（300 卢比）、箭矢、鱼与德库坚果；若在底层被冰封，需先用蓝色火焰解冻国王或店面。",
+      "req": "卓拉领地",
+      "reward": "卓拉服 / 箭矢补给"
+    },
+    "SH-012": {
+      "loc": "卓拉河入口西岸河边",
+      "howto": "幼年限定：向正坐在地上吃豆的魔豆商人购买魔法豆（共 10 颗，价格从 10 卢比每颗递增 10 卢比，买满需 550 卢比）。",
+      "req": "幼年 · 卢比（首颗 10 卢比）",
+      "reward": "魔法豆（全 10 个软土通用）"
+    },
+    "MG-001": {
+      "loc": "格鲁德要塞南侧骑射场",
+      "howto": "救出 4 名木匠拿许可证后花 30 卢比/局骑伊波娜射靶：1000 分奖心之碎片，1500 分奖最大箭袋（50）。",
+      "req": "格鲁德许可证 · 伊波娜 · 妖精之弓 · 30 卢比",
+      "reward": "心之碎片 #35 + 箭袋（50）"
+    },
+    "MG-002": {
+      "loc": "格鲁德之谷西岸木匠营地",
+      "howto": "成年大鼓隆剑支线中，带奇怪药水来找帐篷旁的木匠头目换「破损的哥隆刀」，或与坐着不动的跑步男对话（小游戏/剧情点）。",
+      "req": "成年（长钩索/伊波娜过断桥）",
+      "reward": "大鼓隆剑支线推进",
+      "links": [
+        {
+          "label": "后续：大鼓隆",
+          "pinId": "npc-biggoron"
+        }
+      ]
+    },
+    "MG-003": {
+      "loc": "卡卡利科墓地西侧丹培墓碑下",
+      "howto": "成年拉开丹培墓碑跳入地下赛道追随幽灵丹培到达终点：首次通关必得「钩索」，再次挑战 1 分钟内完赛奖心之碎片！",
+      "req": "成年",
+      "reward": "钩索 + 心之碎片 #20"
+    },
+    "MG-004": {
+      "loc": "卡卡利科墓地主道",
+      "howto": "幼年 18:00–21:00 付费 10 卢比/次请巡逻的丹培挖掘棕色松软泥土，随机挖出卢比或心之碎片。",
+      "req": "幼年 · 夜晚 18:00-21:00 · 10 卢比/次",
+      "reward": "心之碎片 #2",
+      "time": "Night"
+    },
+    "MG-005": {
+      "loc": "卡卡利科村中心广场西侧射击屋",
+      "howto": "成年花 20 卢比/局用妖精之弓射击弹出卢比靶，全部 10 发全中（允许 1 次失误后重射）即可升级箭袋至 40。",
+      "req": "成年 · 妖精之弓 · 20 卢比",
+      "reward": "箭袋（40）"
+    },
+    "MG-006": {
+      "loc": "海利亚湖东岸钓鱼池",
+      "howto": "20 卢比入场钓鱼：幼年钓 10 磅以上大鱼换心之碎片；成年钓 60cm/15 磅以上大鱼换金色鳞片（沉入池底 9m）。",
+      "req": "20 卢比",
+      "reward": "心之碎片 #6（幼年） / 金色鳞片（成年）"
+    },
+    "MG-007": {
+      "loc": "荣蓉牧场入口屋（塔隆家）",
+      "howto": "幼年与塔隆玩 30 秒找 3 只超级咕咕鸡小游戏（10 卢比），从一堆鸡中挑出指定 3 只即赠空瓶（可重复喝牛奶）。",
+      "req": "幼年 · 10 卢比",
+      "reward": "空瓶 #3（隆隆牛奶）"
+    },
+    "MG-008": {
+      "loc": "荣蓉牧场中央马场跑道",
+      "howto": "幼年先跟玛蓉学「伊波娜之歌」；成年花 10 卢比找英戈租马，对伊波娜吹曲骑乘，连赢英戈两场赛马并跳出牧场栅栏永久获得伊波娜！（另可挑战玛蓉 40 秒障碍赛赢家奶牛）",
+      "req": "成年 · 伊波娜之歌 · 10~50 卢比",
+      "reward": "坐骑伊波娜 / 林克家乳牛",
+      "links": [
+        {
+          "label": "前置：伊波娜之歌",
+          "pinId": "song-epona"
+        }
+      ]
+    },
+    "MG-009": {
+      "loc": "迷途森林右→左→右双骷髅树桩",
+      "howto": "幼年站上矮树桩掏出笛子，按两只骷髅小子吹出的音符连续跟吹 3 轮记忆合奏，全中后获赠心之碎片。",
+      "req": "幼年 · 妖精之笛/时之笛",
+      "reward": "心之碎片 #7"
+    },
+    "MG-010": {
+      "loc": "迷途森林草地秘密地洞（森林舞台）",
+      "howto": "进入迷途森林小舞台树洞，戴「骷髅面具」表演获木棒容量升 20/30（注：20/30），戴「真实面具」获德库坚果容量升至 40。",
+      "req": "幼年 · 骷髅面具 / 真实面具",
+      "reward": "德库坚果袋（40）等升级",
+      "links": [
+        {
+          "label": "升级：坚果袋(40)",
+          "pinId": "upg-nut-40"
+        },
+        {
+          "label": "前置：真实面具",
+          "pinId": "mask-truth"
+        }
+      ]
+    },
+    "MG-011": {
+      "loc": "海拉鲁城邑广场西北角射击屋",
+      "howto": "幼年花 20 卢比/局用妖精弹弓射击弹出卢比靶，10 个目标全中即升级种子袋至 40。",
+      "req": "幼年 · 妖精弹弓 · 20 卢比",
+      "reward": "种子袋（40）"
+    },
+    "MG-012": {
+      "loc": "海拉鲁城邑西侧炸弹鼠保龄球馆",
+      "howto": "花 30 卢比挑战，发射炸弹鼠穿越障碍连中 3 次靶心，轮换刷出大奖",
+      "req": "30 卢比/局 / [[KI-002|炸弹袋]]",
+      "reward": "炸弹鼠 ×10"
+    },
+    "MG-013": {
+      "loc": "海拉鲁城邑市集入口旁宝箱店（仅幼年夜晚）",
+      "howto": "花 10 卢比进门，每间房有 2 个宝箱（1 个是钥匙），用「真实之镜」看穿一路开到第 6 间终点拿心之碎片。",
+      "req": "幼年 · 夜晚 · 真实之镜 · 10 卢比",
+      "reward": "心之碎片 #33",
+      "time": "Night",
+      "links": [
+        {
+          "label": "前置：井底拿真实之镜",
+          "pinId": "KI-001"
+        }
+      ]
+    },
+    "MG-014": {
+      "loc": "卓拉领地王座旁瀑布高台",
+      "howto": "幼年与高台上的卓拉对话花 20 卢比玩跳水拾卢比小游戏，限时间内捞齐全部 5 枚绿卢比即获「银色鳞片」（深潜 6m）。",
+      "req": "幼年 · 20 卢比",
+      "reward": "银色鳞片（潜入海底通往海利亚湖近道）"
+    },
+    "MG-015": {
+      "loc": "卓拉河中段水边圆木桩",
+      "howto": "幼年站上圆木桩对 5 只青蛙吹奏「暴风雨之歌」得第 1 片心之碎片；吹完其余 5 首普通曲目令青蛙全部长大后再完成捕虫五重奏得第 2 片！",
+      "req": "幼年 · 6 首非传送曲",
+      "reward": "心之碎片 #31 + 心之碎片 #32"
     }
   }
 }

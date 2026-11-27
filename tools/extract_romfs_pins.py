@@ -47,6 +47,7 @@ ROMFS = Path(r"F:\SWITCH2\ZeldaOOT-RomFS")
 PROJ_PATH = ROOT / "data" / "map_projections.json"
 CURATED_PATH = ROOT / "data" / "curated_points.json"
 GUIDES_PATH = ROOT / "data" / "pin_guides.json"
+GOSSIP_CNZH_PATH = ROOT / "data" / "romfs_raw" / "gossip_stones_cnzh.json"
 PINS_OUT = ROOT / "app" / "data" / "pins_data.js"
 TOPO_PATH = ROOT / "app" / "data" / "topology_data.js"
 
@@ -295,6 +296,10 @@ def load_bcett_actors(scene_folder: str, banc_name: str) -> list[dict]:
 def main() -> int:
     projections = json.loads(PROJ_PATH.read_text(encoding="utf-8"))
     ensure_lostwood_webp(projections)
+    gossip_cnzh: dict[str, str] = (
+        json.loads(GOSSIP_CNZH_PATH.read_text(encoding="utf-8"))
+        if GOSSIP_CNZH_PATH.exists() else {}
+    )
 
     mp = byml.Byml((ROMFS / "Banc/BancBasedResource/MapParam.byml").read_bytes()).parse()
 
@@ -553,6 +558,7 @@ def main() -> int:
         grotto_pos: dict[tuple, list[float]] = {}
         stones: dict[tuple, set[str]] = {}
         stone_pos: dict[tuple, list[float]] = {}
+        stone_names: dict[tuple, str] = {}
         warps: dict[tuple, set[str]] = {}
         warp_pos: dict[tuple, list[float]] = {}
 
@@ -586,6 +592,9 @@ def main() -> int:
                     k = (round(tx / 2), round(tz / 2))
                     stones.setdefault(k, set()).add(era)
                     stone_pos[k] = [tx, ty, tz]
+                    nm = a.get("Name") or ""
+                    if nm and k not in stone_names:
+                        stone_names[k] = nm
                 elif "WarpPoint_A_" in g and g.startswith("Obj_"):
                     k = (round(tx / 5), round(tz / 5))
                     warps.setdefault(k, set()).add(era)
@@ -605,6 +614,10 @@ def main() -> int:
         for k, eras in sorted(stones.items()):
             tx, ty, tz = stone_pos[k]
             era = "Both" if len(eras) > 1 else next(iter(eras))
+            gname = stone_names.get(k, "")
+            if not gname and area_id == "ZoraDomain":
+                gname = "GOSSIP_ZORA_DOMAIN_01"
+            rumor = gossip_cnzh.get(gname, "")
             add_pin(
                 area_id, "stone", tx, tz, ty, era,
                 f"{azh} · 八卦石",
@@ -612,6 +625,10 @@ def main() -> int:
                 f"佩戴真实面具可与之对话获取线索；吹奏曲目可召唤妖精（世界坐标 {tx:.1f}, {ty:.1f}, {tz:.1f}）。",
                 f"Wear the Mask of Truth to hear secrets or play songs for fairies.",
             )
+            if gname:
+                pins[-1]["gossipId"] = gname
+            if rumor:
+                pins[-1]["rumor"] = rumor
 
         for k, eras in sorted(warps.items()):
             tx, ty, tz = warp_pos[k]
@@ -731,9 +748,11 @@ def main() -> int:
                 "descEn": cp.get("descEn", ""),
             }
             for k_src, k_out in (
+                ("loc", "loc"),
                 ("howto", "howto"), ("howtoEn", "howtoEn"),
                 ("reward", "reward"), ("rewardEn", "rewardEn"),
                 ("note", "note"), ("noteEn", "noteEn"),
+                ("links", "links"),
             ):
                 if cp.get(k_src):
                     entry[k_out] = cp[k_src]
@@ -805,9 +824,11 @@ def main() -> int:
             p.pop("descZh", None)
             p.pop("descEn", None)
         elif cat == "stone":
-            p["howto"] = "戴上真实面具与八卦石对话获取线索；对着石吹曲还能召唤妖精。"
-            p["reward"] = "情报 / 妖精"
-            p["note"] = "不戴真实面具只会听到含糊的低语。"
+            p["req"] = "[[mask-truth|获取真实面具]] / 陶笛演奏"
+            p["howto"] = "佩戴真实面具对话可听取传闻；吹奏摇篮曲/伊波娜/太阳/时之歌/暴风雨可召出妖精；放炸弹会倒计时发射升空"
+            p["note"] = "存档仅统计互动总次数，不支持单块同步"
+            p["links"] = [{"label": "前置：获取真实面具", "pinId": "mask-truth"}]
+            p.pop("reward", None)
             p.pop("descZh", None)
             p.pop("descEn", None)
         elif cat == "warp":
@@ -863,6 +884,119 @@ def main() -> int:
                 p.pop("descZh", None)
                 p.pop("descEn", None)
             guides_applied += 1
+
+    # ------------------------------------------------------------------
+    # 6.9 重叠点位收编（hostPinId/subPins）+ 同类 seq + 精简 shortZh + 模板 tpl
+    # ------------------------------------------------------------------
+    pin_by_id = {p["id"]: p for p in pins}
+
+    def _bind_group(host_id: str, sub_ids: list[str]) -> None:
+        host = pin_by_id.get(host_id)
+        if not host:
+            return
+        subs = host.setdefault("subPins", [])
+        for sid in sub_ids:
+            sub = pin_by_id.get(sid)
+            if not sub or sid == host_id:
+                continue
+            sub["hostPinId"] = host_id
+            if sid not in subs:
+                subs.append(sid)
+
+    # 8 对 Boss ↔ 心之容器
+    boss_by_map = {p["map"]: p["id"] for p in pins if p["cat"] == "boss"}
+    for p in pins:
+        if p["cat"] == "heartc" and p["map"] in boss_by_map:
+            _bind_group(boss_by_map[p["map"]], [p["id"]])
+
+    # 14 对关键道具 ↔ 同址宝箱
+    for kp in pins:
+        if kp["cat"] == "keyitem" and kp["id"].startswith("KI-"):
+            cands = [
+                c for c in pins
+                if c["cat"] == "chest" and c["map"] == kp["map"] and c["area"] == kp["area"]
+            ]
+            if cands:
+                best_ch = min(cands, key=lambda c: math.hypot(c["x"] - kp["x"], c["y"] - kp["y"]))
+                if math.hypot(best_ch["x"] - kp["x"], best_ch["y"] - kp["y"]) <= 3.5:
+                    _bind_group(kp["id"], [best_ch["id"]])
+
+    # 设施 / 商店 / 小游戏主卡收编同址奖励与重复店员 NPC
+    FACILITY_GROUPS = {
+        "SH-008": ["bottle-potion"],
+        "SH-006": ["mask-truth", "npc-mask-salesman"],
+        "SH-010": ["bottle-poe", "npc-poe-collector"],
+        "SH-012": ["ki-bean", "soil-zora-river"],
+        "MG-001": ["HP-007", "upg-quiver-50"],
+        "MG-003": ["HP-014"],
+        "MG-004": ["HP-013"],
+        "MG-005": ["upg-quiver-40"],
+        "MG-006": ["HP-022", "upg-scale-gold"],
+        "MG-007": ["bottle-supercucco", "npc-talon"],
+        "MG-008": ["npc-ingo"],
+        "MG-011": ["upg-seed-40"],
+        "MG-012": ["HP-029", "upg-bombbag-40", "ki-bombchu", "npc-bombchu-merchant"],
+        "MG-013": ["HP-027"],
+        "MG-014": ["upg-scale-silver"],
+        "MG-015": ["HP-034", "HP-036"],
+        "IT-005": ["HP-020", "upg-wallet-500", "upg-wallet-1000"],
+        "DG-001": ["ki-ice-arrow"],
+    }
+    for hid, sids in FACILITY_GROUPS.items():
+        _bind_group(hid, sids)
+
+    # 模板分配 + 精简去重标题 shortZh
+    FACILITY_CATS = {"fairy", "dungeon"}
+    LANDMARK_CATS = {"grotto", "soil", "warp", "npc", "item"}
+    for p in pins:
+        cat = p["cat"]
+        if cat == "stone":
+            p["tpl"] = "gossip"
+        elif cat == "minigame":
+            p["tpl"] = "minigame"
+        elif cat == "shop":
+            p["tpl"] = "shop"
+        elif cat in FACILITY_CATS or p["id"] == "IT-005":
+            p["tpl"] = "facility"
+        elif cat == "boss":
+            p["tpl"] = "boss"
+        elif cat == "chest":
+            p["tpl"] = "chest"
+        elif cat in LANDMARK_CATS:
+            p["tpl"] = "landmark"
+        else:
+            p["tpl"] = "collect"
+
+        zh = p.get("zh", "")
+        if cat == "boss":
+            p["shortZh"] = "Boss：" + zh.split("Boss 房：")[-1]
+        elif " · " in zh:
+            p["shortZh"] = zh.split(" · ", 1)[1]
+        else:
+            p["shortZh"] = zh
+
+    # 同类稳定编号 seq (1..N)
+    CUSTOM_ORDER = {
+        "mask": ["mask-keaton", "mask-skull", "mask-spooky", "mask-bunny", "mask-truth"],
+        "bottle": ["bottle-potion", "bottle-cucco", "bottle-supercucco", "bottle-ruto", "bottle-poe"],
+        "fairy": ["GF-002", "GF-005", "GF-006", "GF-001", "GF-003", "GF-004"],
+    }
+    pins_by_cat: dict[str, list[dict]] = {}
+    for p in pins:
+        pins_by_cat.setdefault(p["cat"], []).append(p)
+    for cat, lst in pins_by_cat.items():
+        if cat in CUSTOM_ORDER:
+            order_map = {pid: idx for idx, pid in enumerate(CUSTOM_ORDER[cat])}
+            lst.sort(key=lambda x: (order_map.get(x["id"], 999), x["id"]))
+        elif cat == "poe":
+            def _poe_no(x: dict) -> int:
+                m = re.search(r"#(\d+)", x.get("zh", ""))
+                return int(m.group(1)) if m else 999
+            lst.sort(key=lambda x: (_poe_no(x), x["id"]))
+        else:
+            lst.sort(key=lambda x: x["id"])
+        for idx, p in enumerate(lst, 1):
+            p["seq"] = idx
 
     # ------------------------------------------------------------------
     # 7. WRITE app/data/pins_data.js (with pin_gateway_overrides.json)
