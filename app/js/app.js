@@ -534,6 +534,9 @@
 
   function regionMapFile(r) {
     if (!r) return "";
+    if (r.id === "GanonCastle" && state.floor === "Inside") {
+      return "assets/ui/ganon_inside_schematic.webp";
+    }
     if (r.kind === "dungeon") {
       var floors = r.floors || [];
       var pick = floors.find(function (f) { return f.label === state.floor; });
@@ -611,20 +614,25 @@
 
   function updateRegionHead(r) {
     if (!r) return;
-    $("regionKicker").textContent = r.kind === "field" ? "FIELD REGION" : "DUNGEON · " + Math.max(0, (r.floors || []).length - 1) + " FLOORS";
+    var isGanonInside = (r.id === "GanonCastle" && state.floor === "Inside");
+    $("regionKicker").textContent = (r.kind === "field" && !isGanonInside) ? "FIELD REGION" : (isGanonInside ? "INSIDE GANON'S CASTLE · SCHEMATIC" : "DUNGEON · " + Math.max(0, (r.floors || []).length - 1) + " FLOORS");
     $("regionName").textContent = state.lang === "zh" ? r.zh : r.en;
     var available = isRegionAvailable(r);
     var sub = "";
     if (available) {
       var total = regionPinsForEra(r).length;
-      if (r.kind === "dungeon" && state.floor !== "All") {
+      if (isGanonInside) {
+        sub = state.lang === "zh" ? "城内六道结界（ROMFS 方位示意 · 官方无 2D 迷宫图）" : "Inside Barriers (Schematic · No Official 2D Map)";
+      } else if (r.kind === "dungeon" && state.floor !== "All") {
         var shown = PINS.filter(function (p) {
           if (state.era !== "All" && p.era !== "Both" && p.era !== state.era) return false;
           return pinBelongsToRegion(p, r) && pinOnFloor(p, state.floor);
         }).length;
         sub = shown + " / " + total + " 个点位 · " + state.floor;
       } else {
-        var mapNote = r.kind === "dungeon" ? regionFloorLabel(r) : (state.era === "Adult" ? "成年底图" : "童年底图");
+        var mapNote = r.id === "GanonCastle"
+          ? (state.lang === "zh" ? "城外区域" : "Exterior")
+          : (r.kind === "dungeon" ? regionFloorLabel(r) : (state.era === "Adult" ? "成年底图" : "童年底图"));
         sub = total + " 个点位 · " + mapNote;
       }
     } else {
@@ -638,6 +646,29 @@
   function buildRegionFloorBar(r) {
     var bar = $("regionFloorBar");
     if (!bar) return;
+    if (r && r.id === "GanonCastle") {
+      var gcViews = [
+        { label: "All", txt: state.lang === "zh" ? "城外区域" : "Exterior" },
+        { label: "Inside", txt: state.lang === "zh" ? "城内六道结界（示意）" : "Inside Barriers" }
+      ];
+      bar.innerHTML = "";
+      gcViews.forEach(function (v) {
+        var b = document.createElement("button");
+        b.className = "region-floor-btn" + (state.floor === v.label ? " on" : "");
+        b.textContent = v.txt;
+        b.setAttribute("data-floor", v.label);
+        b.addEventListener("click", function (e) {
+          e.stopPropagation();
+          state.floor = v.label;
+          buildRegionFloorBar(r);
+          updateRegionHead(r);
+          loadRegionMap(r, true);
+        });
+        bar.appendChild(b);
+      });
+      bar.hidden = false;
+      return;
+    }
     if (!r || r.kind !== "dungeon") {
       bar.hidden = true;
       bar.innerHTML = "";
@@ -765,9 +796,11 @@
     var r = currentRegion();
     if (!r || !isRegionAvailable(r)) return;
 
-    var list = PINS.filter(function (p) {
-      return isPinVisible(p) && !isPinFoldedIntoHost(p) && pinBelongsToRegion(p, r) && pinOnFloor(p, state.floor);
-    });
+    var list = (r.id === "GanonCastle" && state.floor === "Inside")
+      ? []
+      : PINS.filter(function (p) {
+          return isPinVisible(p) && !isPinFoldedIntoHost(p) && pinBelongsToRegion(p, r) && pinOnFloor(p, state.floor);
+        });
 
     list.forEach(function (pin) {
       var el = document.createElement("div");
@@ -815,7 +848,9 @@
       box.appendChild(el);
     });
 
-    renderRegionGateways(r, box);
+    if (!(r.id === "GanonCastle" && state.floor === "Inside")) {
+      renderRegionGateways(r, box);
+    }
 
     if (pendingSelectPinId) {
       var pendId = pendingSelectPinId;
@@ -823,6 +858,7 @@
       var pendPin = PINS.find(function (x) { return x.id === pendId; });
       if (pendPin) selectPin(pendPin);
     }
+    window.dispatchEvent(new CustomEvent("oot:regionRendered", { detail: { region: r } }));
   }
 
   function renderRegionGateways(r, box) {
@@ -906,6 +942,7 @@
     if (isRegionAvailable(r)) loadRegionMap(r, opts.keepZoom);
     else renderRegionPins();
     updateUrl();
+    window.dispatchEvent(new CustomEvent("oot:stateChanged", { detail: { area: state.area, era: state.era, mode: state.mode } }));
   }
 
   function chooseRegionForEra() {
@@ -1290,6 +1327,7 @@
         : (mobile ? fieldCount + "+" + entryCount + " · pinch · ⤢ overview · tap a seal"
                   : fieldCount + " regions · " + entryCount + " dungeon entrances · click a seal");
     }
+    window.dispatchEvent(new CustomEvent("oot:worldRendered"));
   }
 
   function bindWorldEvents() {
@@ -2238,6 +2276,9 @@
   }
 
   function selectPin(pin) {
+    if (window.OOT_QUESTS_API && window.OOT_QUESTS_API.closeCardOnly) {
+      window.OOT_QUESTS_API.closeCardOnly();
+    }
     state.selectedPinId = pin.id;
 
     var anchorPinId = isPinFoldedIntoHost(pin) ? pin.hostPinId : pin.id;
@@ -2534,8 +2575,6 @@
     return true;
   }
 
-  var cardDragPinned = false;
-
   function clampDetailCard(card) {
     if (!card || window.innerWidth <= 900) return;
     var parent = card.offsetParent || document.body;
@@ -2590,7 +2629,7 @@
       if (!st.moved) {
         if (Math.abs(dx) < DRAG_THRESHOLD && Math.abs(dy) < DRAG_THRESHOLD) return;
         st.moved = true;
-        cardDragPinned = true;
+        card.__dcDragPinned = true;
         card.classList.add("dc-dragging");
       }
       var pr = (card.offsetParent || document.body).getBoundingClientRect();
@@ -2622,12 +2661,12 @@
     window.addEventListener("resize", function () {
       if (card.hidden) return;
       if (window.innerWidth <= 900) {
-        cardDragPinned = false;
+        card.__dcDragPinned = false;
         card.style.left = "";
         card.style.top = "";
         card.style.right = "";
         card.style.bottom = "";
-      } else if (cardDragPinned) {
+      } else if (card.__dcDragPinned) {
         clampDetailCard(card);
       }
     });
@@ -2637,14 +2676,14 @@
     if (!card) return;
     var vw = window.innerWidth, vh = window.innerHeight;
     if (vw <= 900) {
-      cardDragPinned = false;
+      card.__dcDragPinned = false;
       card.style.left = "";
       card.style.top = "";
       card.style.right = "";
       card.style.bottom = "";
       return;
     }
-    if (cardDragPinned && card.style.left && card.style.top) {
+    if (card.__dcDragPinned && card.style.left && card.style.top) {
       clampDetailCard(card);
       return;
     }
@@ -2693,8 +2732,11 @@
   }
 
   function closeDetailCard() {
-    $("detailCard").hidden = true;
-    cardDragPinned = false;
+    var dc = $("detailCard");
+    if (dc) {
+      dc.hidden = true;
+      dc.__dcDragPinned = false;
+    }
     state.selectedPinId = null;
     document.querySelectorAll(".map-pin.selected").forEach(function (el) { el.classList.remove("selected"); });
   }
@@ -2706,85 +2748,72 @@
     renderCategoriesSidebar();
   }
 
-  var exploreTab = "region";
-
   function renderExplorePanel() {
     var panel = $("explorePanel");
     var grid = $("exploreGrid");
-    if (!panel || !grid || panel.hidden) return;
-    grid.innerHTML = "";
+    if (!panel || !grid) return;
 
-    var items = [];
-    if (exploreTab === "region") {
-      REGIONS.forEach(function (r) {
-        if (!isRegionAvailable(r)) return;
-        var total = 0, done = 0;
-        PINS.forEach(function (p) {
-          if (!isCollectCat(p.cat)) return;
-          if (state.era !== "All" && p.era !== "Both" && p.era !== state.era) return;
-          var host = (p.map && p.map !== "hyrule") ? p.map : p.area;
-          if (host !== r.id) return;
-          total++;
-          if (state.donePins[p.id]) done++;
-        });
-        if (!total) return;
-        items.push({
-          id: r.id,
-          label: state.lang === "zh" ? r.zh : (r.en || r.id),
-          done: done,
-          total: total,
-          isRegion: true
-        });
-      });
-    } else {
-      CATS.forEach(function (c) {
-        if (!isCollectCat(c.id)) return;
-        var total = 0, done = 0;
-        PINS.forEach(function (p) {
-          if (state.era !== "All" && p.era !== "Both" && p.era !== state.era) return;
-          if (p.cat !== c.id) return;
-          total++;
-          if (state.donePins[p.id]) done++;
-        });
-        if (!total) return;
-        items.push({
-          id: c.id,
-          label: state.lang === "zh" ? (c.short || c.zh) : (c.en || c.id),
-          done: done,
-          total: total,
-          badge: c.badge,
-          isRegion: false
-        });
-      });
+    var titleEl = $("exploreTitle");
+    var subEl = $("exploreSub");
+    var isZh = state.lang === "zh";
+    if (titleEl) titleEl.textContent = isZh ? "全收集进度" : "All Collectibles";
+    if (subEl) {
+      subEl.textContent = isZh
+        ? (state.era === "All" ? "全时代 · 按分类" : (state.era === "Child" ? "童年 · 按分类" : "成年 · 按分类"))
+        : (state.era + " · By Category");
     }
 
-    items.forEach(function (it) {
-      var pct = it.total > 0 ? Math.round((it.done / it.total) * 100) : 0;
-      var card = document.createElement("button");
-      card.type = "button";
-      card.className = "explore-card" + (pct === 100 ? " full" : "");
-      card.title = it.label + " (" + it.done + "/" + it.total + ")";
-      card.innerHTML =
-        '<div class="ec-top">' +
-          (it.badge ? '<span class="ec-dot" style="background:' + it.badge + '"></span>' : '') +
-          '<span class="ec-name">' + it.label + '</span>' +
-          '<span class="ec-num">' + it.done + '/' + it.total + '</span>' +
-        '</div>' +
-        '<div class="ec-bar"><i style="width:' + pct + '%"></i></div>';
-      card.addEventListener("click", function () {
-        if (it.isRegion) {
-          openRegion(it.id);
-          if (window.innerWidth <= 900) {
-            $("sidebar").classList.add("collapsed");
-            document.body.classList.add("side-collapsed");
-          }
-        } else {
-          state.activeCats.add(it.id);
-          renderCategoriesSidebar();
-          renderAllPins();
-        }
+    if (panel.hidden) return;
+    grid.innerHTML = "";
+
+    var cats = [];
+    CATS.forEach(function (c) {
+      if (!isCollectCat(c.id)) return;
+      var total = 0, done = 0;
+      PINS.forEach(function (p) {
+        if (state.era !== "All" && p.era !== "Both" && p.era !== state.era) return;
+        if (p.cat !== c.id) return;
+        total++;
+        if (state.donePins[p.id]) done++;
       });
-      grid.appendChild(card);
+      if (!total) return;
+      cats.push({ cat: c, done: done, total: total });
+    });
+
+    cats.forEach(function (it) {
+      var c = it.cat;
+      var isActive = state.activeCats.has(c.id);
+      var item = document.createElement("button");
+      item.type = "button";
+      item.className = "cat-item" + (isActive ? " active" : "") + (it.done > 0 ? " has-done" : "");
+      item.title = (isZh ? c.zh : c.en) + " (" + it.done + "/" + it.total + ")";
+
+      var iconSlot = document.createElement("div");
+      iconSlot.className = "cat-icon-slot";
+      iconSlot.innerHTML = ICONS.html(c.id, 16);
+
+      var name = document.createElement("span");
+      name.className = "cat-name";
+      name.textContent = isZh ? (c.short || c.zh) : (c.en || c.id);
+
+      var badge = document.createElement("span");
+      badge.className = "cat-badge";
+      badge.textContent = it.done + "/" + it.total;
+
+      item.appendChild(iconSlot);
+      item.appendChild(name);
+      item.appendChild(badge);
+      item.addEventListener("click", function () {
+        if (state.activeCats.has(c.id)) {
+          state.activeCats.delete(c.id);
+        } else {
+          state.activeCats.add(c.id);
+        }
+        renderCategoriesSidebar();
+        renderExplorePanel();
+        renderAllPins();
+      });
+      grid.appendChild(item);
     });
   }
 
@@ -2806,6 +2835,31 @@
     renderExplorePanel();
   }
 
+  function setExplorePanelOpen(open) {
+    var expPanel = $("explorePanel");
+    var progBox = $("progressBox");
+    var caret = $("progCaret");
+    if (!expPanel) return;
+    var want = !!open;
+    if (want) setAreaDrawerOpen(false);
+    expPanel.hidden = !want;
+    if (progBox) progBox.setAttribute("aria-expanded", want ? "true" : "false");
+    if (caret) caret.textContent = want ? "▾" : "▴";
+    if (want) renderExplorePanel();
+  }
+
+  function setAreaDrawerOpen(open) {
+    var drawer = $("areaDrawer");
+    var caret = $("catCaret");
+    var btn = $("catPanelToggle");
+    if (!drawer) return;
+    var want = !!open;
+    if (want) setExplorePanelOpen(false);
+    drawer.hidden = !want;
+    if (btn) btn.setAttribute("aria-expanded", want ? "true" : "false");
+    if (caret) caret.textContent = want ? "▾" : "▴";
+  }
+
   function renderCategoriesSidebar() {
     var list = $("catList");
     if (!list) return;
@@ -2813,17 +2867,19 @@
 
     var titleEl = $("catPanelTitle");
     var subEl = $("catPanelSub");
+    var drawerTitle = $("areaDrawerTitle");
+    var drawerSub = $("areaDrawerSub");
     var r = (state.mode === "region") ? currentRegion() : null;
-    if (titleEl) {
-      titleEl.textContent = r
-        ? (state.lang === "zh" ? "本区可收集" : "Area Collectibles")
-        : (state.lang === "zh" ? "全图可收集" : "All Collectibles");
-    }
-    if (subEl) {
-      subEl.textContent = r
-        ? (state.lang === "zh" ? r.zh : r.en)
-        : (state.lang === "zh" ? "海拉鲁全境" : "Hyrule");
-    }
+    var titleTxt = r
+      ? (state.lang === "zh" ? "本区内容" : "Area Details")
+      : (state.lang === "zh" ? "全图内容" : "All Details");
+    var subTxt = r
+      ? (state.lang === "zh" ? r.zh : r.en)
+      : (state.lang === "zh" ? "海拉鲁全境" : "Hyrule");
+    if (titleEl) titleEl.textContent = titleTxt;
+    if (subEl) subEl.textContent = subTxt;
+    if (drawerTitle) drawerTitle.textContent = titleTxt;
+    if (drawerSub) drawerSub.textContent = subTxt;
 
     var stats = {};
     PINS.forEach(function (p) {
@@ -2890,9 +2946,14 @@
       });
     }
 
-    appendCatGroup(visibleCats.filter(function (c) { return !!COLLECT_CATS[c.id]; }), "");
-    appendCatGroup(visibleCats.filter(function (c) { return !!QUEST_CATS[c.id]; }), state.lang === "zh" ? (r ? "本区任务" : "全图任务") : "Quests");
-    appendCatGroup(visibleCats.filter(function (c) { return !!FACILITY_CATS[c.id]; }), state.lang === "zh" ? (r ? "本区设施" : "全图设施") : "Facilities");
+    var mergedCats = []
+      .concat(visibleCats.filter(function (c) { return !!COLLECT_CATS[c.id]; }))
+      .concat(visibleCats.filter(function (c) { return !!QUEST_CATS[c.id]; }))
+      .concat(visibleCats.filter(function (c) { return !!FACILITY_CATS[c.id]; }));
+    visibleCats.forEach(function (c) {
+      if (mergedCats.indexOf(c) === -1) mergedCats.push(c);
+    });
+    appendCatGroup(mergedCats, r ? (state.lang === "zh" ? "收集" : "Collectibles") : "");
   }
 
   function renderJumpChips() {
@@ -2951,13 +3012,38 @@
         return b.score - a.score;
       }).slice(0, 14).map(function (x) { return x.pin; });
 
-      if (!matches.length && !regionMatches.length) {
+      var questMatches = (window.OOT_QUESTS || []).filter(function (qt) {
+        if (state.era !== "All" && qt.era !== "Both" && qt.era !== state.era) return false;
+        if ((qt.zh && qt.zh.toLowerCase().indexOf(q) !== -1) ||
+            (qt.en && qt.en.toLowerCase().indexOf(q) !== -1) ||
+            (qt.npcZh && qt.npcZh.toLowerCase().indexOf(q) !== -1) ||
+            (qt.regionText && qt.regionText.toLowerCase().indexOf(q) !== -1)) return true;
+        return Array.isArray(qt.aliasZh) && qt.aliasZh.some(function (al) { return String(al).toLowerCase().indexOf(q) !== -1; });
+      }).slice(0, 6);
+
+      if (!matches.length && !regionMatches.length && !questMatches.length) {
         resBox.innerHTML = '<div style="padding:10px;font-size:12px;color:#7d725d;text-align:center;">未找到匹配点位</div>';
         resBox.hidden = false;
         return;
       }
 
       resBox.innerHTML = "";
+      questMatches.forEach(function (qm) {
+        var row = document.createElement("div");
+        row.className = "search-item";
+        var grpLbl = qm.group === "main" ? "主线" : (qm.group === "dungeon" ? "迷宫" : "支线");
+        row.innerHTML = '<div style="flex:0 0 24px;color:#eac27e;text-align:center;font-weight:700;">⚑</div>' +
+                        '<div class="search-item-info">' +
+                        '  <span class="search-item-title">#' + qm.seq + ' ' + (state.lang === "zh" ? qm.zh : (qm.en || qm.zh)) + '</span>' +
+                        '  <span class="search-item-area">任务 · ' + grpLbl + ' · ' + qm.flow.length + ' 步</span>' +
+                        '</div>';
+        row.addEventListener("click", function () {
+          resBox.hidden = true;
+          input.value = "";
+          if (window.OOT_QUESTS_API) window.OOT_QUESTS_API.selectQuest(qm.key);
+        });
+        resBox.appendChild(row);
+      });
       regionMatches.forEach(function (r) {
         var row = document.createElement("div");
         row.className = "search-item";
@@ -3035,34 +3121,66 @@
       });
     });
 
-    // 左下角设置面板
+    // 左下角地图设置面板（与定位导航面板互斥）
     var settingsBtn = $("settingsBtn");
     var settingsPanel = $("settingsPanel");
     var settingsClose = $("settingsClose");
     if (settingsBtn && settingsPanel) {
       settingsBtn.addEventListener("click", function (e) {
         e.stopPropagation();
-        settingsPanel.hidden = !settingsPanel.hidden;
+        var willOpen = settingsPanel.hidden;
+        if (willOpen && window.OOT_NAVI && window.OOT_NAVI.togglePanel) {
+          window.OOT_NAVI.togglePanel(false);
+        }
+        settingsPanel.hidden = !willOpen;
+        settingsBtn.classList.toggle("active", willOpen);
       });
       settingsPanel.addEventListener("click", function (e) { e.stopPropagation(); });
       document.addEventListener("click", function () {
-        if (!settingsPanel.hidden) settingsPanel.hidden = true;
+        if (!settingsPanel.hidden) {
+          settingsPanel.hidden = true;
+          settingsBtn.classList.remove("active");
+        }
       });
-      if (settingsClose) settingsClose.addEventListener("click", function () { settingsPanel.hidden = true; });
+      if (settingsClose) {
+        settingsClose.addEventListener("click", function () {
+          settingsPanel.hidden = true;
+          settingsBtn.classList.remove("active");
+        });
+      }
     }
 
-    // 本区图标面板折叠
+    // 本区内容底部向上弹窗（与全收集进度互斥）
     var catPanelToggle = $("catPanelToggle");
-    if (catPanelToggle) {
+    var areaDrawer = $("areaDrawer");
+    var areaDrawerClose = $("areaDrawerClose");
+    if (catPanelToggle && areaDrawer) {
       catPanelToggle.addEventListener("click", function () {
-        var list = $("catList");
-        var caret = $("catCaret");
-        var isHidden = list.hidden;
-        list.hidden = !isHidden;
-        catPanelToggle.setAttribute("aria-expanded", isHidden ? "true" : "false");
-        if (caret) caret.textContent = isHidden ? "▾" : "▴";
+        setAreaDrawerOpen(areaDrawer.hidden);
       });
     }
+    if (areaDrawerClose) {
+      areaDrawerClose.addEventListener("click", function (e) {
+        e.stopPropagation();
+        setAreaDrawerOpen(false);
+      });
+    }
+
+    // 侧栏大地图 / 迷宫分组折叠（对齐任务大分类）
+    function bindSidebarGroupToggle(toggleId, listId, caretId) {
+      var tBtn = $(toggleId);
+      var lBox = $(listId);
+      var cEl = $(caretId);
+      if (!tBtn || !lBox) return;
+      tBtn.addEventListener("click", function () {
+        var open = lBox.hidden;
+        lBox.hidden = !open;
+        tBtn.setAttribute("aria-expanded", open ? "true" : "false");
+        if (cEl) cEl.textContent = open ? "▾" : "▸";
+      });
+    }
+    bindSidebarGroupToggle("fieldGroupToggle", "regionFieldList", "fieldGroupCaret");
+    bindSidebarGroupToggle("dungeonGroupToggle", "regionDungeonList", "dungeonGroupCaret");
 
     // 区域列表折叠（TOTKmap 式收起/展开）
     var regionToggle = $("regionToggle");
@@ -3091,12 +3209,18 @@
         updateProgress();
         syncRegionForEra();
         updateUrl();
+        window.dispatchEvent(new CustomEvent("oot:stateChanged", { detail: { area: state.area, era: state.era, mode: state.mode } }));
       });
     });
 
     var navBtn = $("navBtn");
     if (navBtn) {
-      navBtn.addEventListener("click", function () {
+      navBtn.addEventListener("click", function (e) {
+        e.stopPropagation();
+        if (settingsPanel && !settingsPanel.hidden) {
+          settingsPanel.hidden = true;
+          if (settingsBtn) settingsBtn.classList.remove("active");
+        }
         if (window.OOT_NAVI) window.OOT_NAVI.togglePanel();
       });
     }
@@ -3348,6 +3472,7 @@
       var p = PINS.find(function (pin) { return pin.id === state.selectedPinId; });
       if (p) selectPin(p);
     }
+    window.dispatchEvent(new CustomEvent("oot:stateChanged", { detail: { area: state.area, era: state.era, mode: state.mode } }));
   }
 
   // 高亮特定传送门出入口及连线
@@ -3416,8 +3541,11 @@
   // 版本徽章 / 移动端侧栏初始态
   // -------------------------------------------------------------
   function renderVersion() {
+    var txt = "OOTMAP V" + APP_VERSION + " © 2026 yalincc";
     var el = $("verBadge");
-    if (el) el.textContent = "OOTMAP V" + APP_VERSION + " © 2026 yalincc";
+    if (el) el.textContent = txt;
+    var sEl = $("settingsVerBadge");
+    if (sEl) sEl.textContent = txt;
   }
 
   function initResponsiveShell() {
@@ -3456,40 +3584,22 @@
     bindWorldEvents();
     bindUI();
     bindSearch();
-    // 探索度总览面板交互
+    // 探索度 / 全收集进度底部向上弹窗（与本区内容互斥）
     var progBox = $("progressBox");
     var expPanel = $("explorePanel");
     var expClose = $("exploreClose");
-    var expTabs = $("exploreTabs");
     if (progBox && expPanel) {
-      var toggleExp = function () {
-        expPanel.hidden = !expPanel.hidden;
-        var caret = $("progCaret");
-        if (caret) caret.textContent = expPanel.hidden ? "▴" : "▾";
-        if (!expPanel.hidden) renderExplorePanel();
-      };
-      progBox.addEventListener("click", toggleExp);
+      progBox.addEventListener("click", function () {
+        setExplorePanelOpen(expPanel.hidden);
+      });
       progBox.addEventListener("keydown", function (e) {
-        if (e.key === "Enter" || e.key === " ") { e.preventDefault(); toggleExp(); }
+        if (e.key === "Enter" || e.key === " ") { e.preventDefault(); setExplorePanelOpen(expPanel.hidden); }
       });
     }
-    if (expClose && expPanel) {
+    if (expClose) {
       expClose.addEventListener("click", function (e) {
         e.stopPropagation();
-        expPanel.hidden = true;
-        var caret = $("progCaret");
-        if (caret) caret.textContent = "▴";
-      });
-    }
-    if (expTabs) {
-      expTabs.querySelectorAll(".explore-tab").forEach(function (btn) {
-        btn.addEventListener("click", function () {
-          exploreTab = btn.getAttribute("data-etab") || "region";
-          expTabs.querySelectorAll(".explore-tab").forEach(function (b) {
-            b.classList.toggle("on", b === btn);
-          });
-          renderExplorePanel();
-        });
+        setExplorePanelOpen(false);
       });
     }
     renderVersion();
@@ -3577,6 +3687,30 @@
     window.OOT_MAP_API = {
       openRegion: openRegion,
       jumpToPin: jumpToPinById,
+      selectPin: selectPin,
+      setMode: setMode,
+      setEra: function (era) {
+        if (era !== "All" && era !== "Child" && era !== "Adult") return;
+        state.era = era;
+        document.querySelectorAll("#eraSeg .era-btn").forEach(function (b) {
+          b.classList.toggle("on", b.getAttribute("data-era") === era);
+        });
+        saveStorage();
+        updateEraTextures();
+        renderAllPins();
+        updateCategoriesCount();
+        updateProgress();
+        syncRegionForEra();
+        updateUrl();
+        window.dispatchEvent(new CustomEvent("oot:stateChanged", { detail: { area: state.area, era: state.era, mode: state.mode } }));
+      },
+      closeDetailCard: closeDetailCard,
+      setCatPanelOpen: setAreaDrawerOpen,
+      makeDraggable: makeDetailCardDraggable,
+      positionDetailCard: positionDetailCard,
+      getPins: function () { return PINS; },
+      getPinById: function (id) { return PIN_BY_ID[id] || null; },
+      getRegions: function () { return REGIONS; },
       getState: function () { return state; },
       mergeDonePins: function (ids) {
         var added = 0;

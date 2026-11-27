@@ -1,0 +1,1485 @@
+[
+  {
+    "key": "biggoronSwordTrading",
+    "name_zh": "大鼓隆之剑交易链",
+    "name_en": "Biggoron Sword Trading Sequence",
+    "category": "Chain",
+    "era": "adult",
+    "region": "海拉鲁全域",
+    "npc_zh": "库克夫人、工匠之子、奶奶、法朵、大师工匠、大鼓隆、卓拉王、湖畔科学家",
+    "start_zh": "成年夜晚从卡卡利科村库克夫人处借口袋蛋",
+    "steps": [
+      "口袋蛋晒太阳孵成袖珍库克鸡",
+      "叫醒塔隆，换科吉罗交工匠之子",
+      "奇菇4分钟内送奶奶换药膏",
+      "药膏换锯子，锯子换断剑",
+      "处方换眼球蛙(2:30)再制眼药水(3:30)",
+      "收据交大鼓隆，数日后领大鼓隆之剑"
+    ],
+    "deliver_zh": "口袋库克鸡→库克夫人；科吉罗→工匠之子；奇菇→奶奶；药膏→法朵；锯子→大师工匠；断剑→大鼓隆；处方→卓拉王；眼球蛙→湖畔科学家；眼药水→大鼓隆；收据→大鼓隆",
+    "reward_zh": [
+      "大鼓隆之剑"
+    ],
+    "requires": [
+      "巨人之刃（200卢比）",
+      "太阳之歌",
+      "伊波娜",
+      "钩索",
+      "百万吨锤",
+      "卓拉服"
+    ],
+    "unlocks": [
+      "双手武器",
+      "装备时不能用盾"
+    ],
+    "children": [],
+    "sources": [
+      "https://zh-cn.zeldacentral.com/games/ocarina-of-time-remake/biggoron-sword-guide/",
+      "https://zeldawiki.wiki/wiki/Trading_Quest"
+    ],
+    "note": "限时道具：奇菇4:00、眼球蛙2:30、眼药水3:30（Zelda Wiki记为3/3/4分钟，版本有差异）；使用传送歌/传送会使限时道具立即失效需重领；大鼓隆处须反复吹太阳之歌推进天数。",
+    "pin_ids": [],
+    "romfs": {
+      "challenge_ids": [
+        "SubEvent_GetSwordBigGoron"
+      ],
+      "step_nodes": [
+        "WaitEggHatch"
+      ],
+      "actors": [
+        "Npc_Navi"
+      ],
+      "save_flags": [
+        "Sun's Song"
+      ],
+      "evidence": "RSDB/Challenge.Product.111.rstbl.byml + demo_save_structure.json (romfs-derived)"
+    },
+    "status": "romfs-backed"
+  },
+  {
+    "key": "giantsKnife",
+    "name_zh": "巨人之刃",
+    "name_en": "Giant's Knife",
+    "category": "Chain",
+    "era": "adult",
+    "region": "鼓隆城",
+    "npc_zh": "梅迪鼓隆",
+    "start_zh": "成年在鼓隆城梅迪处购买巨人之刃",
+    "steps": [
+      "火之波丽露舞曲传到死亡火山口",
+      "穿链桥与洞穴进入鼓隆城",
+      "找到角落里的梅迪鼓隆",
+      "花200卢比买下巨人之刃",
+      "交易末端交给大鼓隆"
+    ],
+    "deliver_zh": "巨人之刃→大鼓隆",
+    "reward_zh": [
+      "巨人之刃"
+    ],
+    "requires": [
+      "200卢比",
+      "火之波丽露舞曲",
+      "成年"
+    ],
+    "unlocks": [
+      "大鼓隆之剑合成前置"
+    ],
+    "children": [],
+    "sources": [
+      "https://zh-cn.zeldacentral.com/games/ocarina-of-time-remake/biggoron-sword-guide/",
+      "https://zeldawiki.wiki/wiki/Trading_Quest"
+    ],
+    "note": "双手武器，装备时无法举盾；换取大鼓隆之剑时被大鼓隆取走。",
+    "pin_ids": [],
+    "romfs": {
+      "challenge_ids": [
+        "SubEvent_GetSwordBigGoron"
+      ],
+      "step_nodes": [
+        "WaitEggHatch"
+      ],
+      "actors": [
+        "Npc_Navi"
+      ],
+      "save_flags": [
+        "Bolero of Fire"
+      ],
+      "evidence": "RSDB/Challenge.Product.111.rstbl.byml + demo_save_structure.json (romfs-derived)"
+    },
+    "status": "romfs-backed"
+  },
+  {
+    "key": "maskTradingChain",
+    "name_zh": "面具交易链",
+    "name_en": "Mask Trading Sequence",
+    "category": "Chain",
+    "era": "child",
+    "region": "海拉鲁城邑、卡卡利科村、迷途森林、墓地",
+    "npc_zh": "面具店主、守卫、骷髅小子、墓地男孩、奔跑的人",
+    "start_zh": "卡卡利科村守卫提示后前往幸福面具店",
+    "steps": [
+      "奇坦面具10卢比，卖守卫得15",
+      "骷髅面具20卢比，卖骷髅小子得10",
+      "恐怖面具30卢比，卖墓地男孩得50",
+      "兔子头箍50卢比，卖奔跑者得金卢比",
+      "回店结清后获真实面具",
+      "戴真实面具可升级德库袋"
+    ],
+    "deliver_zh": "依次卖给守卫/骷髅小子/墓地男孩/奔跑的人，再回店付款",
+    "reward_zh": [
+      "真实面具",
+      "金卢比200",
+      "净赚165卢比",
+      "四款面具免费借用"
+    ],
+    "requires": [
+      "幼年",
+      "太阳之歌"
+    ],
+    "unlocks": [
+      "德库果袋/木棒袋升级",
+      "森林舞台"
+    ],
+    "children": [],
+    "sources": [
+      "https://zh-cn.zeldacentral.com/games/ocarina-of-time-remake/mask-guide/",
+      "https://zh-cn.zeldacentral.com/games/ocarina-of-time-remake/side-quests/",
+      "https://www.gamersky.com/handbook/202611/2246517.shtml"
+    ],
+    "note": "四笔交易依次收益+5/-10/+20/+150；交还兔子头箍货款后开启真实面具。",
+    "pin_ids": [],
+    "romfs": {
+      "challenge_ids": [
+        "SubEvent_MaskSalesman"
+      ],
+      "step_nodes": [
+        "Step01",
+        "Step01_Hint",
+        "Step02",
+        "Step03",
+        "Step03_Hint",
+        "Step04",
+        "Step07",
+        "Step07_Hint",
+        "Step08"
+      ],
+      "actors": [
+        "Npc_Hylia_RunningMan_Child",
+        "Npc_Hylia_Soldier_003",
+        "Npc_SkullKid_Child"
+      ],
+      "save_flags": [
+        "Sun's Song"
+      ],
+      "evidence": "RSDB/Challenge.Product.111.rstbl.byml + demo_save_structure.json (romfs-derived)"
+    },
+    "status": "romfs-backed"
+  },
+  {
+    "key": "borrowableMasks",
+    "name_zh": "可借用的族裔面具",
+    "name_en": "Borrowable Masks (Goron/Zora/Gerudo)",
+    "category": "Chain",
+    "era": "child",
+    "region": "海拉鲁城邑",
+    "npc_zh": "幸福面具店店主",
+    "start_zh": "取得真实面具后店内新增三款外借面具",
+    "steps": [
+      "完成面具链拿到真实面具",
+      "借鼓隆面具去鼓隆城对话",
+      "借卓拉面具去卓拉领地对话",
+      "借格鲁德面具与人类对话",
+      "用毕归还，换下一款"
+    ],
+    "deliver_zh": "归还面具店",
+    "reward_zh": [
+      "鼓隆面具",
+      "卓拉面具",
+      "格鲁德面具",
+      "特殊对话"
+    ],
+    "requires": [
+      "真实面具",
+      "幼年进入店内"
+    ],
+    "unlocks": [
+      "特殊NPC对话"
+    ],
+    "children": [],
+    "sources": [
+      "https://zh-cn.zeldacentral.com/games/ocarina-of-time-remake/mask-guide/",
+      "https://www.18183.com/gonglue/202611/9195653.html"
+    ],
+    "note": "非通关必需；未来线只能携带其中一枚。",
+    "pin_ids": [],
+    "romfs": {
+      "challenge_ids": [
+        "SubEvent_MaskSalesman"
+      ],
+      "step_nodes": [
+        "Step01",
+        "Step01_Hint",
+        "Step02",
+        "Step03",
+        "Step03_Hint",
+        "Step04",
+        "Step07",
+        "Step07_Hint",
+        "Step08"
+      ],
+      "actors": [
+        "Npc_Hylia_RunningMan_Child",
+        "Npc_Hylia_Soldier_003",
+        "Npc_SkullKid_Child"
+      ],
+      "save_flags": [],
+      "evidence": "RSDB/Challenge.Product.111.rstbl.byml + demo_save_structure.json (romfs-derived)"
+    },
+    "status": "romfs-backed"
+  },
+  {
+    "key": "dampeGraveDigging",
+    "name_zh": "丹佩挖坟",
+    "name_en": "Dampé's Grave Digging",
+    "category": "Minigame",
+    "era": "child",
+    "region": "卡卡利科村墓地",
+    "npc_zh": "丹佩",
+    "start_zh": "夜晚墓地与守墓人丹佩对话",
+    "steps": [
+      "夜晚在墓地找丹佩对话",
+      "选土堆付10卢比，硬地加5",
+      "土堆依次出石头/蓝卢比/红卢比",
+      "第四堆硬地20卢比藏心之碎片",
+      "自己捡起地上的心之碎片"
+    ],
+    "deliver_zh": "",
+    "reward_zh": [
+      "心之碎片#2",
+      "蓝卢比",
+      "红卢比"
+    ],
+    "requires": [
+      "夜晚",
+      "约60卢比"
+    ],
+    "unlocks": [
+      "心之碎片#2"
+    ],
+    "children": [],
+    "sources": [
+      "https://zh-cn.zeldacentral.com/games/ocarina-of-time-remake/mini-games/"
+    ],
+    "note": "掘墓结果与土堆顺序固定，建议带60卢比。",
+    "pin_ids": [],
+    "romfs": {
+      "challenge_ids": [
+        "MiniGame_DiggingHole"
+      ],
+      "step_nodes": [],
+      "actors": [],
+      "save_flags": [],
+      "evidence": "RSDB/Challenge.Product.111.rstbl.byml + demo_save_structure.json (romfs-derived)"
+    },
+    "status": "romfs-backed"
+  },
+  {
+    "key": "dampeRace",
+    "name_zh": "丹佩赛跑",
+    "name_en": "Dampé's Race",
+    "category": "Minigame",
+    "era": "adult",
+    "region": "卡卡利科村墓地",
+    "npc_zh": "丹佩幽灵",
+    "start_zh": "成年推开墓地后排墓碑，进入地道",
+    "steps": [
+      "成年推开墓碑跳入地道",
+      "沿紫隧道跟紧丹佩的灯笼",
+      "岔路口听他呼喊选方向",
+      "到终点箱中获得钩索",
+      "60秒内再跑一次得心之碎片"
+    ],
+    "deliver_zh": "",
+    "reward_zh": [
+      "钩索",
+      "心之碎片#19"
+    ],
+    "requires": [
+      "成年",
+      "不能被丹佩甩开太久"
+    ],
+    "unlocks": [
+      "钩索",
+      "计时挑战记录"
+    ],
+    "children": [],
+    "sources": [
+      "https://zh-cn.zeldacentral.com/games/ocarina-of-time-remake/mini-games/",
+      "https://zh-cn.zeldacentral.com/games/ocarina-of-time-remake/heart-pieces/"
+    ],
+    "note": "计时目标1:00.00，属于5项计时赛之一。",
+    "pin_ids": [],
+    "romfs": {
+      "challenge_ids": [
+        "MiniGame_DampeRace"
+      ],
+      "step_nodes": [
+        "Courseout",
+        "Dropout",
+        "Finish",
+        "FinishAfterTalk",
+        "Playing",
+        "PlayingSecond",
+        "Ready",
+        "RetryCheck"
+      ],
+      "actors": [
+        "Npc_Hylia_Dampe_002"
+      ],
+      "save_flags": [],
+      "evidence": "RSDB/Challenge.Product.111.rstbl.byml + demo_save_structure.json (romfs-derived)"
+    },
+    "status": "romfs-backed"
+  },
+  {
+    "key": "fishingPond",
+    "name_zh": "钓鱼池",
+    "name_en": "Fishing Pond",
+    "category": "Minigame",
+    "era": "both",
+    "region": "海利亚湖",
+    "npc_zh": "钓鱼池老板",
+    "start_zh": "海利亚湖边与钓鱼池老板对话付费",
+    "steps": [
+      "幼年付10卢比借鱼竿",
+      "绕池抛饵、轻晃引鱼上钩",
+      "逆拉力收竿，等鱼累了再拉",
+      "钓大鱼量长度，破纪录得碎片",
+      "成年付30卢比，禁用沉底饵",
+      "用普通饵钓超60厘米得金鳞"
+    ],
+    "deliver_zh": "",
+    "reward_zh": [
+      "心之碎片#6（破纪录）",
+      "黄金鳞片（成年）"
+    ],
+    "requires": [
+      "10/30卢比"
+    ],
+    "unlocks": [
+      "金鳞深潜"
+    ],
+    "children": [],
+    "sources": [
+      "https://zh-cn.zeldacentral.com/games/ocarina-of-time-remake/mini-games/",
+      "https://zh-cn.zeldacentral.com/games/ocarina-of-time-remake/bottles/"
+    ],
+    "note": "告示牌禁止沉水饵，用其钓到的鱼不计入奖励。",
+    "pin_ids": [],
+    "romfs": {
+      "challenge_ids": [
+        "MiniGame_Fishing"
+      ],
+      "step_nodes": [
+        "Ready",
+        "Step01"
+      ],
+      "actors": [
+        "Npc_Hylia_Fishman_001_Adult",
+        "Npc_Hylia_Fishman_001_Child"
+      ],
+      "save_flags": [],
+      "evidence": "RSDB/Challenge.Product.111.rstbl.byml + demo_save_structure.json (romfs-derived)"
+    },
+    "status": "romfs-backed"
+  },
+  {
+    "key": "ingoHorseRaces",
+    "name_zh": "英戈赛马",
+    "name_en": "Ingo's Horse Races",
+    "category": "Minigame",
+    "era": "adult",
+    "region": "英戈牧场",
+    "npc_zh": "英戈",
+    "start_zh": "成年付20卢比骑英戈的马",
+    "steps": [
+      "成年到英戈牧场付20卢比",
+      "吹伊波娜之歌唤来伊波娜",
+      "跃过矮栅栏，与英戈赛跑",
+      "第一场胜者获20卢比",
+      "第二场胜出赢得伊波娜",
+      "英戈锁门，跳过栅栏离开"
+    ],
+    "deliver_zh": "",
+    "reward_zh": [
+      "伊波娜",
+      "20卢比"
+    ],
+    "requires": [
+      "伊波娜之歌",
+      "20卢比"
+    ],
+    "unlocks": [
+      "伊波娜骑乘",
+      "开放牧场"
+    ],
+    "children": [],
+    "sources": [
+      "https://zh-cn.zeldacentral.com/games/ocarina-of-time-remake/mini-games/",
+      "https://zh-cn.zeldacentral.com/games/ocarina-of-time-remake/side-quests/"
+    ],
+    "note": "两场赌注均为20卢比；第二场胜利后伊波娜归林克。",
+    "pin_ids": [],
+    "romfs": {
+      "challenge_ids": [
+        "MiniGame_HorseRace",
+        "MiniGame_GambleRace"
+      ],
+      "step_nodes": [
+        "Playing",
+        "Ready"
+      ],
+      "actors": [
+        "Npc_Hylia_Ingo_001_Adult",
+        "Npc_Hylia_Malon_Adult"
+      ],
+      "save_flags": [
+        "Epona's Song"
+      ],
+      "evidence": "RSDB/Challenge.Product.111.rstbl.byml + demo_save_structure.json (romfs-derived)"
+    },
+    "status": "romfs-backed"
+  },
+  {
+    "key": "lonLonRanchLapCourse",
+    "name_zh": "荣蓉牧场环形赛道",
+    "name_en": "Lon Lon Ranch Lap Course",
+    "category": "Minigame",
+    "era": "adult",
+    "region": "荣蓉牧场",
+    "npc_zh": "玛蓉",
+    "start_zh": "拿到暗之勋章后成年骑马回牧场找玛蓉",
+    "steps": [
+      "获得暗之勋章后回牧场",
+      "玛蓉设40秒纪录挑战",
+      "骑伊波娜跑两圈越障碍",
+      "约33秒完成即破纪录",
+      "奖品牛被送到林克家"
+    ],
+    "deliver_zh": "",
+    "reward_zh": [
+      "林克家的牛",
+      "可挤牛奶的瓶子"
+    ],
+    "requires": [
+      "暗之勋章",
+      "伊波娜",
+      "成年"
+    ],
+    "unlocks": [
+      "家里的奶牛",
+      "牛奶补给"
+    ],
+    "children": [],
+    "sources": [
+      "https://zh-cn.zeldacentral.com/games/ocarina-of-time-remake/mini-games/",
+      "https://www.gamersky.com/handbook/202611/2246517.shtml"
+    ],
+    "note": "计时目标0:40.00；牛送到科奇里森林林克家。",
+    "pin_ids": [],
+    "romfs": {
+      "challenge_ids": [
+        "SubEvent_RunningRace"
+      ],
+      "step_nodes": [],
+      "actors": [],
+      "save_flags": [
+        "Shadow Medallion"
+      ],
+      "evidence": "RSDB/Challenge.Product.111.rstbl.byml + demo_save_structure.json (romfs-derived)"
+    },
+    "status": "romfs-backed"
+  },
+  {
+    "key": "bombchuBowling",
+    "name_zh": "炸弹鼠保龄球",
+    "name_en": "Bombchu Bowling",
+    "category": "Minigame",
+    "era": "child",
+    "region": "海拉鲁城邑",
+    "npc_zh": "保龄球馆服务员",
+    "start_zh": "主线取得炸弹鼠后保龄球馆开业",
+    "steps": [
+      "叫醒服务员，付10卢比",
+      "每局10只炸弹鼠撞玻璃靶",
+      "第一胜得10只炸弹鼠",
+      "第二胜得最大炸弹袋",
+      "第三胜得心之碎片#13"
+    ],
+    "deliver_zh": "",
+    "reward_zh": [
+      "炸弹鼠×10",
+      "最大炸弹袋（40枚）",
+      "心之碎片#13"
+    ],
+    "requires": [
+      "炸弹鼠",
+      "10卢比/局，共30卢比"
+    ],
+    "unlocks": [
+      "最大炸弹袋"
+    ],
+    "children": [],
+    "sources": [
+      "https://zh-cn.zeldacentral.com/games/ocarina-of-time-remake/mini-games/"
+    ],
+    "note": "三局共花费30卢比；首次到访需主线开启。",
+    "pin_ids": [],
+    "romfs": {
+      "challenge_ids": [
+        "MiniGame_BombchuBowling"
+      ],
+      "step_nodes": [
+        "Finish",
+        "Playing",
+        "Ready",
+        "Retry"
+      ],
+      "actors": [
+        "Npc_Hylia_067_Shop_Child"
+      ],
+      "save_flags": [],
+      "evidence": "RSDB/Challenge.Product.111.rstbl.byml + demo_save_structure.json (romfs-derived)"
+    },
+    "status": "romfs-backed"
+  },
+  {
+    "key": "shootingGalleryHyrule",
+    "name_zh": "海拉鲁城邑射击场",
+    "name_en": "Shooting Gallery (Hyrule Castle Town)",
+    "category": "Minigame",
+    "era": "child",
+    "region": "海拉鲁城邑",
+    "npc_zh": "射击场操作员",
+    "start_zh": "白天进入喷泉广场旁射击场付10卢比",
+    "steps": [
+      "白天进射击场付10卢比",
+      "借15颗德库种子",
+      "用弹弓击中全部10个靶",
+      "获大德库种子袋（40粒）",
+      "专家模式另有特殊奖励"
+    ],
+    "deliver_zh": "",
+    "reward_zh": [
+      "大德库种子袋（40粒）",
+      "专家模式奖励"
+    ],
+    "requires": [
+      "妖精弹弓",
+      "10卢比",
+      "白天"
+    ],
+    "unlocks": [
+      "种子上限40"
+    ],
+    "children": [],
+    "sources": [
+      "https://zh-cn.zeldacentral.com/games/ocarina-of-time-remake/mini-games/"
+    ],
+    "note": "15发打10靶，允许失手5发。",
+    "pin_ids": [],
+    "romfs": {
+      "challenge_ids": [
+        "MiniGame_HitTarget"
+      ],
+      "step_nodes": [
+        "Finish",
+        "Playing",
+        "Ready",
+        "Retry"
+      ],
+      "actors": [
+        "Npc_Hylia_019_Shop_Child"
+      ],
+      "save_flags": [],
+      "evidence": "RSDB/Challenge.Product.111.rstbl.byml + demo_save_structure.json (romfs-derived)"
+    },
+    "status": "romfs-backed"
+  },
+  {
+    "key": "kakarikoShootingGallery",
+    "name_zh": "卡卡利科村射击场",
+    "name_en": "Shooting Gallery (Kakariko Village)",
+    "category": "Minigame",
+    "era": "adult",
+    "region": "卡卡利科村",
+    "npc_zh": "射击场操作员",
+    "start_zh": "成年后射击场迁至卡卡利科村",
+    "steps": [
+      "成年到村里的射击场",
+      "付30卢比，用妖精弓射击",
+      "15箭内击碎10个靶",
+      "获更大箭筒（40支）",
+      "专家模式另有奖励"
+    ],
+    "deliver_zh": "",
+    "reward_zh": [
+      "更大箭筒（40支）",
+      "专家模式奖励"
+    ],
+    "requires": [
+      "妖精弓",
+      "30卢比",
+      "成年"
+    ],
+    "unlocks": [
+      "箭上限40"
+    ],
+    "children": [],
+    "sources": [
+      "https://zh-cn.zeldacentral.com/games/ocarina-of-time-remake/mini-games/"
+    ],
+    "note": "最大箭筒（50支）来自马背射箭。",
+    "pin_ids": [],
+    "romfs": {
+      "challenge_ids": [
+        "MiniGame_HitTarget"
+      ],
+      "step_nodes": [
+        "Finish",
+        "Playing",
+        "Ready",
+        "Retry"
+      ],
+      "actors": [
+        "Npc_Hylia_019_Shop_Child"
+      ],
+      "save_flags": [],
+      "evidence": "RSDB/Challenge.Product.111.rstbl.byml + demo_save_structure.json (romfs-derived)"
+    },
+    "status": "romfs-backed"
+  },
+  {
+    "key": "treasureChestGame",
+    "name_zh": "宝箱游戏",
+    "name_en": "Treasure Chest Game",
+    "category": "Minigame",
+    "era": "child",
+    "region": "海拉鲁城邑后巷",
+    "npc_zh": "宝箱店主",
+    "start_zh": "夜晚在后巷与宝箱店主对话付10卢比",
+    "steps": [
+      "夜晚进后巷找宝箱店",
+      "每轮付10卢比进房",
+      "真理之镜看哪箱藏钥匙",
+      "连续五次选对进奖励房",
+      "开箱得心之碎片#29"
+    ],
+    "deliver_zh": "",
+    "reward_zh": [
+      "心之碎片#29"
+    ],
+    "requires": [
+      "真理之镜",
+      "10卢比/轮",
+      "夜晚"
+    ],
+    "unlocks": [
+      "心之碎片"
+    ],
+    "children": [],
+    "sources": [
+      "https://zh-cn.zeldacentral.com/games/ocarina-of-time-remake/mini-games/"
+    ],
+    "note": "仅夜晚营业；白天需吹太阳之歌切夜。",
+    "pin_ids": [],
+    "romfs": {
+      "challenge_ids": [
+        "MiniGame_SequentialChoiceTreasure"
+      ],
+      "step_nodes": [
+        "Playing",
+        "Ready"
+      ],
+      "actors": [
+        "Npc_Hylia_022_Shop_Child"
+      ],
+      "save_flags": [
+        "Sun's Song"
+      ],
+      "evidence": "RSDB/Challenge.Product.111.rstbl.byml + demo_save_structure.json (romfs-derived)"
+    },
+    "status": "romfs-backed"
+  },
+  {
+    "key": "bigPoeHunt",
+    "name_zh": "大魄狩猎",
+    "name_en": "Big Poe Hunt",
+    "category": "Minigame",
+    "era": "adult",
+    "region": "海拉鲁平原／城邑",
+    "npc_zh": "魄收藏家",
+    "start_zh": "夜晚在海拉鲁平原猎大魄并卖给城邑收藏家",
+    "steps": [
+      "成年夜晚骑马持妖精弓出行",
+      "射倒大魄，用空瓶装起来",
+      "带回城邑卖给魄收藏家",
+      "每个100分；500分得空瓶",
+      "1000分得金卢比200"
+    ],
+    "deliver_zh": "大魄→魄收藏家",
+    "reward_zh": [
+      "空瓶子",
+      "金卢比200",
+      "卢比"
+    ],
+    "requires": [
+      "妖精弓",
+      "伊波娜",
+      "空瓶",
+      "夜晚"
+    ],
+    "unlocks": [
+      "第五个瓶子",
+      "金卢比"
+    ],
+    "children": [],
+    "sources": [
+      "https://zh-cn.zeldacentral.com/games/ocarina-of-time-remake/mini-games/",
+      "https://zh-cn.zeldacentral.com/games/ocarina-of-time-remake/bottles/"
+    ],
+    "note": "每瓶装一只；500分是第五个空瓶的来源。",
+    "pin_ids": [],
+    "romfs": {
+      "challenge_ids": [
+        "SubEvent_GhostShop"
+      ],
+      "step_nodes": [],
+      "actors": [],
+      "save_flags": [],
+      "evidence": "RSDB/Challenge.Product.111.rstbl.byml + demo_save_structure.json (romfs-derived)"
+    },
+    "status": "romfs-backed"
+  },
+  {
+    "key": "horsebackArchery",
+    "name_zh": "马背射箭",
+    "name_en": "Horseback Archery",
+    "category": "Minigame",
+    "era": "adult",
+    "region": "格鲁德要塞",
+    "npc_zh": "骑射侍者",
+    "start_zh": "成年带伊波娜与妖精弓到红色遮阳篷",
+    "steps": [
+      "成年到格鲁德要塞骑射场",
+      "付30卢比，得20支箭",
+      "骑马沿栅栏射靶取分",
+      "约1300分得心之碎片",
+      "1400分得最大箭筒50支",
+      "奖品拿尽后每轮给50卢比"
+    ],
+    "deliver_zh": "",
+    "reward_zh": [
+      "心之碎片#31",
+      "最大箭筒（50支）",
+      "50卢比"
+    ],
+    "requires": [
+      "伊波娜",
+      "妖精弓",
+      "30卢比/轮"
+    ],
+    "unlocks": [
+      "箭上限50"
+    ],
+    "children": [],
+    "sources": [
+      "https://zh-cn.zeldacentral.com/games/ocarina-of-time-remake/mini-games/"
+    ],
+    "note": "不同轮次目标分数不同；1400分可拿全奖。",
+    "pin_ids": [],
+    "romfs": {
+      "challenge_ids": [
+        "Minigame_HorsebackArchery"
+      ],
+      "step_nodes": [
+        "Finish",
+        "Playing",
+        "Ready"
+      ],
+      "actors": [
+        "Npc_Gerudo_008"
+      ],
+      "save_flags": [],
+      "evidence": "RSDB/Challenge.Product.111.rstbl.byml + demo_save_structure.json (romfs-derived)"
+    },
+    "status": "romfs-backed"
+  },
+  {
+    "key": "gerudoProvingGrounds",
+    "name_zh": "格鲁德试炼场",
+    "name_en": "Gerudo Proving Grounds",
+    "category": "Chain",
+    "era": "adult",
+    "region": "格鲁德要塞",
+    "npc_zh": "格鲁德守卫",
+    "start_zh": "救出四名木匠获格鲁德通行证后门口付费入场",
+    "steps": [
+      "救四木匠得格鲁德通行证",
+      "门口付30卢比进入试炼场",
+      "环形挑战房收集小钥匙",
+      "稻草人之歌加长钩索取高处钥匙",
+      "七把钥匙开中央宝库门",
+      "最深处宝箱拿冰箭"
+    ],
+    "deliver_zh": "",
+    "reward_zh": [
+      "冰箭",
+      "小钥匙×9",
+      "银卢比×15"
+    ],
+    "requires": [
+      "格鲁德通行证",
+      "30卢比入场",
+      "妖精弓/长钩索/百万吨锤等"
+    ],
+    "unlocks": [
+      "冰箭",
+      "100%收集要素"
+    ],
+    "children": [],
+    "sources": [
+      "https://games.gg/zh-CN/the-legend-of-zelda-ocarina-of-time-2026/guides/%E5%A1%9E%E5%B0%94%E8%BE%BE%E4%BC%A0%E8%AF%B4%E6%97%B6%E4%B9%8B%E7%AC%9B%E9%87%8D%E5%88%B6%E7%89%88%E5%86%B0%E7%AE%AD%E8%8E%B7%E5%8F%96%E6%94%BB%E7%95%A5",
+      "https://zh-cn.zeldacentral.com/games/ocarina-of-time/walkthrough/gerudo-training-ground/"
+    ],
+    "note": "重制版每次入场30卢比（原版10卢比）；场内无心之碎片与金骷髅蜘蛛。",
+    "pin_ids": [],
+    "romfs": {
+      "challenge_ids": [
+        "SubEvent_GetIceArrow"
+      ],
+      "step_nodes": [],
+      "actors": [],
+      "save_flags": [
+        "Scarecrow's Song"
+      ],
+      "evidence": "RSDB/Challenge.Product.111.rstbl.byml + demo_save_structure.json (romfs-derived)"
+    },
+    "status": "romfs-backed"
+  },
+  {
+    "key": "businessScrubHeartPieces",
+    "name_zh": "商业德库心之碎片交易",
+    "name_en": "Business Scrub Heart Piece Trades",
+    "category": "Chain",
+    "era": "child",
+    "region": "海拉鲁平原洞穴、死亡山火山口",
+    "npc_zh": "商业德库（密码灌木、火山口灌木）",
+    "start_zh": "先成年听仙女的思绪获得密码，再幼年找灌木",
+    "steps": [
+      "成年听仙女的思绪得密码",
+      "幼年进护城河旁洞穴找灌木",
+      "选'卖点东西吧，好吗？'",
+      "花100卢比买心之碎片#34",
+      "幼年到火山口打灌木",
+      "花100卢比买心之碎片#36"
+    ],
+    "deliver_zh": "向灌木说密码并付卢比",
+    "reward_zh": [
+      "心之碎片#34",
+      "心之碎片#36"
+    ],
+    "requires": [
+      "密码",
+      "100卢比×2",
+      "炸弹/百万吨锤到达"
+    ],
+    "unlocks": [
+      "两颗心之碎片"
+    ],
+    "children": [],
+    "sources": [
+      "https://zh-cn.zeldacentral.com/games/ocarina-of-time-remake/business-scrubs/"
+    ],
+    "note": "密码原文'卖点东西吧，好吗？'；'你在赚钱吗？'等回答无效。",
+    "pin_ids": [],
+    "romfs": {
+      "challenge_ids": [],
+      "step_nodes": [],
+      "actors": [],
+      "save_flags": [],
+      "evidence": "RSDB/Challenge.Product.111.rstbl.byml + demo_save_structure.json (romfs-derived)"
+    },
+    "status": "web-only"
+  },
+  {
+    "key": "greatFairyFountainsChild",
+    "name_zh": "大妖精泉（幼年三处）",
+    "name_en": "Great Fairy Fountains (Child)",
+    "category": "Chain",
+    "era": "child",
+    "region": "死亡山山顶、海拉鲁城堡、卓拉之泉",
+    "npc_zh": "大妖精",
+    "start_zh": "站泉前三角神力印记吹塞尔达摇篮曲",
+    "steps": [
+      "山顶泉：25卢比得迪荧之火",
+      "同时解锁魔法槽",
+      "城堡泉：炸石洞，50卢比",
+      "获强化旋转攻击",
+      "卓拉泉：炸黑岩壁，100卢比",
+      "得法罗尔之风传送点"
+    ],
+    "deliver_zh": "",
+    "reward_zh": [
+      "迪荧之火",
+      "魔法槽升级",
+      "强化旋转攻击",
+      "法罗尔之风"
+    ],
+    "requires": [
+      "塞尔达摇篮曲",
+      "炸弹",
+      "175卢比"
+    ],
+    "unlocks": [
+      "魔法能力",
+      "地牢传送点"
+    ],
+    "children": [],
+    "sources": [
+      "https://zh-cn.zeldacentral.com/games/ocarina-of-time-remake/great-fairy-fountains/"
+    ],
+    "note": "开启后随时可回泉接受治疗。",
+    "pin_ids": [],
+    "romfs": {
+      "challenge_ids": [
+        "Meet_GreatFairy"
+      ],
+      "step_nodes": [],
+      "actors": [],
+      "save_flags": [
+        "Zelda's Lullaby"
+      ],
+      "evidence": "RSDB/Challenge.Product.111.rstbl.byml + demo_save_structure.json (romfs-derived)"
+    },
+    "status": "romfs-backed"
+  },
+  {
+    "key": "greatFairyFountainsAdult",
+    "name_zh": "大妖精泉（成年三处）",
+    "name_en": "Great Fairy Fountains (Adult)",
+    "category": "Chain",
+    "era": "adult",
+    "region": "死亡山火山口、沙漠巨像、加侬城堡附近",
+    "npc_zh": "大妖精",
+    "start_zh": "成年站泉前三角神力印记吹塞尔达摇篮曲",
+    "steps": [
+      "火山口泉：钩索加百万吨锤破岩，200卢比",
+      "获魔法翻倍",
+      "沙漠巨像：炸岩壁，300卢比",
+      "得娜如之爱护盾",
+      "城堡附近：黄金手套举石柱，500卢比",
+      "得伤害减半"
+    ],
+    "deliver_zh": "",
+    "reward_zh": [
+      "魔法翻倍",
+      "娜如之爱",
+      "伤害减半"
+    ],
+    "requires": [
+      "黄金手套",
+      "百万吨锤",
+      "炸弹",
+      "塞尔达摇篮曲",
+      "1000卢比"
+    ],
+    "unlocks": [
+      "防御强化"
+    ],
+    "children": [],
+    "sources": [
+      "https://zh-cn.zeldacentral.com/games/ocarina-of-time-remake/great-fairy-fountains/"
+    ],
+    "note": "供品200/300/500卢比；建议进城堡前备足钱。",
+    "pin_ids": [],
+    "romfs": {
+      "challenge_ids": [
+        "Meet_GreatFairy"
+      ],
+      "step_nodes": [],
+      "actors": [],
+      "save_flags": [
+        "Zelda's Lullaby"
+      ],
+      "evidence": "RSDB/Challenge.Product.111.rstbl.byml + demo_save_structure.json (romfs-derived)"
+    },
+    "status": "romfs-backed"
+  },
+  {
+    "key": "bottlesCollection",
+    "name_zh": "五个瓶子收集",
+    "name_en": "Bottle Collection",
+    "category": "Chain",
+    "era": "both",
+    "region": "海拉鲁多地",
+    "npc_zh": "药剂店主、库克夫人、塔隆、卓拉王、魄收藏家",
+    "start_zh": "幼年抓虫时药剂店主赠瓶",
+    "steps": [
+      "药剂店抓逃跑的虫子得第一瓶",
+      "找回七只库克鸡得第二瓶",
+      "帮塔隆30秒找三鸡得牛奶瓶",
+      "带露托信潜海给卓拉王得第四瓶",
+      "成年卖5只大魄得500积分得第五瓶"
+    ],
+    "deliver_zh": "露托信→卓拉王；大魄→魄收藏家",
+    "reward_zh": [
+      "空瓶子×4",
+      "荣蓉牛奶（瓶）",
+      "装露托信的瓶子"
+    ],
+    "requires": [
+      "对应小游戏",
+      "成年需妖精弓与马"
+    ],
+    "unlocks": [
+      "装药水/牛奶/虫/鱼/蓝火"
+    ],
+    "children": [],
+    "sources": [
+      "https://zh-cn.zeldacentral.com/games/ocarina-of-time-remake/bottles/",
+      "https://zh-cn.zeldacentral.com/games/ocarina-of-time-remake/mini-games/"
+    ],
+    "note": "前四个幼年、最后一个成年获得。",
+    "pin_ids": [],
+    "romfs": {
+      "challenge_ids": [
+        "Market_Item_Bottle_TutorialEvent"
+      ],
+      "step_nodes": [],
+      "actors": [],
+      "save_flags": [],
+      "evidence": "RSDB/Challenge.Product.111.rstbl.byml + demo_save_structure.json (romfs-derived)"
+    },
+    "status": "romfs-backed"
+  },
+  {
+    "key": "magicBeansSoftSoil",
+    "name_zh": "魔豆与软土",
+    "name_en": "Magic Beans and Soft Soil",
+    "category": "Chain",
+    "era": "both",
+    "region": "卓拉河等10处软土",
+    "npc_zh": "卖豆人",
+    "start_zh": "卓拉河瀑布上格子门旁找卖豆人",
+    "steps": [
+      "卓拉河买魔豆，首颗10卢比递增",
+      "幼年在十处软土种豆或放虫",
+      "放虫引出金骷髅蜘蛛代币",
+      "成年骑长成的豆叶平台取心碎",
+      "沙漠巨像夜间骑豆叶到#90"
+    ],
+    "deliver_zh": "",
+    "reward_zh": [
+      "金骷髅蜘蛛#11/#14/#15/#17/#18/#19/#20/#28/#54/#88/#90",
+      "心之碎片#17/#21/#23/#24/#32"
+    ],
+    "requires": [
+      "空瓶子与虫",
+      "10颗豆共550卢比",
+      "成年形态"
+    ],
+    "unlocks": [
+      "成年豆叶平台",
+      "心之碎片与金骷髅蜘蛛"
+    ],
+    "children": [],
+    "sources": [
+      "https://zh-cn.zeldacentral.com/games/ocarina-of-time-remake/soft-soil-locations/",
+      "https://zh-cn.zeldacentral.com/games/ocarina-of-time-remake/bottles/"
+    ],
+    "note": "沙漠巨像豆叶需夜晚；每处虫子会被消耗。",
+    "pin_ids": [],
+    "romfs": {
+      "challenge_ids": [],
+      "step_nodes": [],
+      "actors": [],
+      "save_flags": [],
+      "evidence": "RSDB/Challenge.Product.111.rstbl.byml + demo_save_structure.json (romfs-derived)"
+    },
+    "status": "web-only"
+  },
+  {
+    "key": "skullKidMelodyGame",
+    "name_zh": "骷髅小子旋律游戏",
+    "name_en": "Skull Kid Melody Game",
+    "category": "Minigame",
+    "era": "child",
+    "region": "迷途森林",
+    "npc_zh": "骷髅小子",
+    "start_zh": "迷途森林空地与树桩上的骷髅小子对话",
+    "steps": [
+      "站树桩前用陶笛与骷髅小子对奏",
+      "复述三段乐句，第一段得蓝卢比",
+      "第二段得红卢比20",
+      "第三段得心之碎片#8",
+      "溪边第二位骷髅小子收莎莉亚之歌",
+      "他称你为朋友，给心之碎片#9"
+    ],
+    "deliver_zh": "",
+    "reward_zh": [
+      "蓝卢比",
+      "红卢比20",
+      "心之碎片#8",
+      "心之碎片#9"
+    ],
+    "requires": [
+      "妖精陶笛",
+      "莎莉亚之歌（第二位）"
+    ],
+    "unlocks": [
+      "两颗心之碎片"
+    ],
+    "children": [],
+    "sources": [
+      "https://zh-cn.zeldacentral.com/games/ocarina-of-time-remake/mini-games/"
+    ],
+    "note": "第二位骷髅小子也是面具链中骷髅面具的买家。",
+    "pin_ids": [],
+    "romfs": {
+      "challenge_ids": [
+        "Minigame_SkullKidSession"
+      ],
+      "step_nodes": [],
+      "actors": [],
+      "save_flags": [
+        "Saria's Song"
+      ],
+      "evidence": "RSDB/Challenge.Product.111.rstbl.byml + demo_save_structure.json (romfs-derived)"
+    },
+    "status": "romfs-backed"
+  },
+  {
+    "key": "fabulousFiveFroggishTenors",
+    "name_zh": "五位青蛙男高音",
+    "name_en": "Fabulous Five Froggish Tenors",
+    "category": "Minigame",
+    "era": "child",
+    "region": "卓拉河",
+    "npc_zh": "五只青蛙",
+    "start_zh": "卓拉河瀑布水潭边与青蛙对话",
+    "steps": [
+      "幼年在瀑布边与青蛙说话",
+      "吹暴风雨之歌，得心之碎片#27",
+      "再吹时光之歌，它们想吃虫",
+      "边吹陶笛看它们捕虫至吃饱",
+      "得心之碎片#28"
+    ],
+    "deliver_zh": "",
+    "reward_zh": [
+      "心之碎片#27",
+      "心之碎片#28"
+    ],
+    "requires": [
+      "妖精陶笛",
+      "暴风雨之歌",
+      "时光之歌"
+    ],
+    "unlocks": [
+      "两颗心之碎片"
+    ],
+    "children": [],
+    "sources": [
+      "https://zh-cn.zeldacentral.com/games/ocarina-of-time-remake/mini-games/"
+    ],
+    "note": "伊波娜之歌也会让青蛙欢呼但无奖励。",
+    "pin_ids": [],
+    "romfs": {
+      "challenge_ids": [
+        "MiniGame_FrogTenors"
+      ],
+      "step_nodes": [
+        "Playing"
+      ],
+      "actors": [
+        "Animal_Frog_Blue",
+        "Animal_Frog_Gray",
+        "Animal_Frog_LightBlue",
+        "Animal_Frog_Red",
+        "Animal_Frog_Yellow"
+      ],
+      "save_flags": [
+        "Song of Storms",
+        "Epona's Song"
+      ],
+      "evidence": "RSDB/Challenge.Product.111.rstbl.byml + demo_save_structure.json (romfs-derived)"
+    },
+    "status": "romfs-backed"
+  },
+  {
+    "key": "divingGame",
+    "name_zh": "潜水游戏",
+    "name_en": "Diving Game",
+    "category": "Minigame",
+    "era": "child",
+    "region": "卓拉领地",
+    "npc_zh": "潜水教练",
+    "start_zh": "卓拉领地高塔洞穴找潜水教练",
+    "steps": [
+      "与潜水教练对话开始",
+      "40秒内从平台跳入水中",
+      "捡回他扔下的五片鱼鳞",
+      "集齐后获银鳞",
+      "银鳞开启更深潜水"
+    ],
+    "deliver_zh": "",
+    "reward_zh": [
+      "银鳞"
+    ],
+    "requires": [
+      "幼年",
+      "卓拉领地"
+    ],
+    "unlocks": [
+      "银鳞深潜",
+      "金鳞更进一步"
+    ],
+    "children": [],
+    "sources": [
+      "https://zh-cn.zeldacentral.com/games/ocarina-of-time-remake/mini-games/"
+    ],
+    "note": "免费；超时未完成可重试。",
+    "pin_ids": [],
+    "romfs": {
+      "challenge_ids": [
+        "MiniGame_Diving"
+      ],
+      "step_nodes": [
+        "Ready",
+        "Step01",
+        "Step02",
+        "Step03"
+      ],
+      "actors": [
+        "Npc_Zora_001"
+      ],
+      "save_flags": [],
+      "evidence": "RSDB/Challenge.Product.111.rstbl.byml + demo_save_structure.json (romfs-derived)"
+    },
+    "status": "romfs-backed"
+  },
+  {
+    "key": "lostWoodsTargetGame",
+    "name_zh": "迷途森林靶场",
+    "name_en": "Lost Woods Target Game",
+    "category": "Minigame",
+    "era": "child",
+    "region": "迷途森林",
+    "npc_zh": "商业德库",
+    "start_zh": "迷途森林深处青苔空地，爬树桩瞄准圆靶",
+    "steps": [
+      "找到林中挂圆靶的空地",
+      "爬上正对靶子的树桩",
+      "用弹弓一发不失误全中",
+      "商业德库给最大德库种子袋"
+    ],
+    "deliver_zh": "",
+    "reward_zh": [
+      "最大德库种子袋（50粒）"
+    ],
+    "requires": [
+      "妖精弹弓",
+      "幼年"
+    ],
+    "unlocks": [
+      "种子上限50"
+    ],
+    "children": [],
+    "sources": [
+      "https://zh-cn.zeldacentral.com/games/ocarina-of-time-remake/mini-games/"
+    ],
+    "note": "免费；一次失手即失败需重来。",
+    "pin_ids": [],
+    "romfs": {
+      "challenge_ids": [
+        "MiniGame_HitTarget"
+      ],
+      "step_nodes": [
+        "Finish",
+        "Playing",
+        "Ready",
+        "Retry"
+      ],
+      "actors": [
+        "Npc_Hylia_019_Shop_Child"
+      ],
+      "save_flags": [],
+      "evidence": "RSDB/Challenge.Product.111.rstbl.byml + demo_save_structure.json (romfs-derived)"
+    },
+    "status": "romfs-backed"
+  },
+  {
+    "key": "cuccoLadysCuccos",
+    "name_zh": "库克夫人的库克鸡",
+    "name_en": "Cucco Lady's Cuccos",
+    "category": "Minigame",
+    "era": "child",
+    "region": "卡卡利科村",
+    "npc_zh": "库克夫人",
+    "start_zh": "卡卡利科村大门旁空鸡舍与库克夫人对话",
+    "steps": [
+      "主动提出帮忙找回七只鸡",
+      "在村内小路、台阶、屋顶抓鸡",
+      "逐只带回鸡舍围栏",
+      "七只全回得空瓶子",
+      "抱鸡可减缓下落拿屋顶心碎"
+    ],
+    "deliver_zh": "七只库克鸡→库克夫人",
+    "reward_zh": [
+      "空瓶子",
+      "屋顶心之碎片（抱鸡滑翔）"
+    ],
+    "requires": [
+      "幼年"
+    ],
+    "unlocks": [
+      "早期空瓶"
+    ],
+    "children": [],
+    "sources": [
+      "https://zh-cn.zeldacentral.com/games/ocarina-of-time-remake/mini-games/",
+      "https://zh-cn.zeldacentral.com/games/ocarina-of-time-remake/bottles/"
+    ],
+    "note": "抱鸡缓降可抵达村屋顶的心之碎片。",
+    "pin_ids": [],
+    "romfs": {
+      "challenge_ids": [
+        "Minigame_CatchCucco"
+      ],
+      "step_nodes": [
+        "Captured",
+        "Ready"
+      ],
+      "actors": [
+        "Animal_Cucco_CatchCucco_0",
+        "Animal_Cucco_CatchCucco_1",
+        "Animal_Cucco_CatchCucco_2",
+        "Animal_Cucco_CatchCucco_3",
+        "Animal_Cucco_CatchCucco_4",
+        "Animal_Cucco_CatchCucco_5",
+        "Animal_Cucco_CatchCucco_6",
+        "Npc_Hylia_049_Child"
+      ],
+      "save_flags": [],
+      "evidence": "RSDB/Challenge.Product.111.rstbl.byml + demo_save_structure.json (romfs-derived)"
+    },
+    "status": "romfs-backed"
+  },
+  {
+    "key": "findTalonsCuccos",
+    "name_zh": "寻找塔隆的库克鸡",
+    "name_en": "Find Talon's Cuccos",
+    "category": "Minigame",
+    "era": "child",
+    "region": "荣蓉牧场",
+    "npc_zh": "塔隆",
+    "start_zh": "幼年牧场小屋叫醒塔隆付10卢比",
+    "steps": [
+      "进屋叫醒塔隆，付10卢比",
+      "30秒内在屋内找三只库克鸡",
+      "逐只抓住带回塔隆处",
+      "时限内交差得荣蓉牛奶",
+      "喝完把瓶还塔隆可续装"
+    ],
+    "deliver_zh": "三只库克鸡→塔隆",
+    "reward_zh": [
+      "荣蓉牛奶（瓶）",
+      "空瓶子"
+    ],
+    "requires": [
+      "10卢比",
+      "30秒限制",
+      "幼年"
+    ],
+    "unlocks": [
+      "早期空瓶",
+      "牛奶回血"
+    ],
+    "children": [],
+    "sources": [
+      "https://zh-cn.zeldacentral.com/games/ocarina-of-time-remake/mini-games/",
+      "https://zh-cn.zeldacentral.com/games/ocarina-of-time-remake/bottles/"
+    ],
+    "note": "塔隆关于玛蓉的玩笑不影响奖励。",
+    "pin_ids": [],
+    "romfs": {
+      "challenge_ids": [
+        "Minigame_FindOutCucco"
+      ],
+      "step_nodes": [
+        "Finish",
+        "GetReady",
+        "Playing",
+        "Ready",
+        "Retry"
+      ],
+      "actors": [
+        "Animal_SuperCucco_Animal_SuperCucco_01",
+        "Animal_SuperCucco_Animal_SuperCucco_02",
+        "Animal_SuperCucco_Animal_SuperCucco_03",
+        "Npc_Hylia_Talon_Child"
+      ],
+      "save_flags": [],
+      "evidence": "RSDB/Challenge.Product.111.rstbl.byml + demo_save_structure.json (romfs-derived)"
+    },
+    "status": "romfs-backed"
+  },
+  {
+    "key": "hallOfFallenFoes",
+    "name_zh": "堕落敌人殿堂",
+    "name_en": "Hall of Fallen Foes",
+    "category": "Chain",
+    "era": "both",
+    "region": "卡卡利科村／海利亚湖畔废墟",
+    "npc_zh": "卡波拉·盖波拉",
+    "start_zh": "森之神殿后幼年睡卡卡利科村民宅的绿光床；成年在水之神殿后睡湖畔实验室旁废墟的绿光床。",
+    "steps": [
+      "找到发绿光的床并躺下进入梦境大厅",
+      "查看怪物雕像获取栖息地与弱点信息",
+      "调查Boss雕像进行10场头目重赛",
+      "记录最佳通关时间",
+      "完成三场连续Boss试炼",
+      "获得石像／银像／金像奖杯"
+    ],
+    "deliver_zh": "",
+    "reward_zh": [
+      "10座Boss重赛",
+      "石像",
+      "银像",
+      "金像",
+      "奖杯摆放在林克家"
+    ],
+    "requires": [
+      "森之神殿（幼年入口）或水之神殿（成年入口）"
+    ],
+    "unlocks": [
+      "Boss重赛与计时记录",
+      "三场Boss试炼"
+    ],
+    "sources": [
+      "https://zh-cn.zeldacentral.com/games/ocarina-of-time-remake/hall-of-fallen-foes/"
+    ],
+    "note": "重制版新增；大厅内受伤不影响现实，战斗间休息站可用卢比补给；三场试炼依次奖励石像/银像/金像。",
+    "pin_ids": [],
+    "romfs": {
+      "challenge_ids": [
+        "SubEvent_AllBossBattle"
+      ],
+      "step_nodes": [],
+      "actors": [],
+      "save_flags": [],
+      "evidence": "RSDB/Challenge.Product.111.rstbl.byml + demo_save_structure.json (romfs-derived)"
+    },
+    "status": "romfs-backed"
+  }
+]

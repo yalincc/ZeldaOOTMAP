@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#18110b">
 <title>塞尔达传说：时之笛 全能互动地图 · Zelda OoT Interactive Map</title>
-<link rel="stylesheet" href="css/style.css?v=24">
+<link rel="stylesheet" href="css/style.css?v=30">
 </head>
 <body>
 
@@ -78,46 +78,92 @@
       <button data-era="Adult" class="era-btn">成年</button>
     </div>
 
-    <!-- 区域列表（大地图 / 迷宫） -->
+    <!-- 区域列表（占据左侧全高度：大地图 / 迷宫 / 任务） -->
     <div class="region-panel" id="regionPanel">
       <div id="regionBody">
-        <div class="region-group-title">大地图 <span id="regionFieldCount">0</span></div>
+        <button type="button" class="region-group-toggle" id="fieldGroupToggle" aria-expanded="true">
+          <span class="region-group-title-txt">大地图</span>
+          <span class="region-group-meta" id="regionFieldCount">0</span>
+          <span class="region-group-caret" id="fieldGroupCaret">▾</span>
+        </button>
         <div class="region-list" id="regionFieldList"></div>
-        <div class="region-group-title">迷宫 <span id="regionDungeonCount">0</span></div>
+        <button type="button" class="region-group-toggle" id="dungeonGroupToggle" aria-expanded="true">
+          <span class="region-group-title-txt">迷宫</span>
+          <span class="region-group-meta" id="regionDungeonCount">0</span>
+          <span class="region-group-caret" id="dungeonGroupCaret">▾</span>
+        </button>
         <div class="region-list" id="regionDungeonList"></div>
+        <button type="button" class="region-group-toggle" id="questGroupToggle" aria-expanded="false">
+          <span class="region-group-title-txt">任务</span>
+          <span class="region-group-meta" id="questGroupCount">0/48</span>
+          <span class="region-group-caret" id="questGroupCaret">▸</span>
+        </button>
+        <div class="quest-panel" id="questPanel" hidden>
+          <button type="button" class="quest-sub-toggle" id="questMainToggle" aria-expanded="true">
+            <span class="quest-sub-txt" id="questMainLabel">主线</span>
+            <span class="quest-sub-meta" id="questMainCount">0</span>
+            <span class="quest-sub-caret" id="questMainCaret">▾</span>
+          </button>
+          <div class="quest-grid" id="questMainList"></div>
+          <button type="button" class="quest-sub-toggle" id="questSideToggle" aria-expanded="true">
+            <span class="quest-sub-txt" id="questSideLabel">支线</span>
+            <span class="quest-sub-meta" id="questSideCount">0</span>
+            <span class="quest-sub-caret" id="questSideCaret">▾</span>
+          </button>
+          <div class="quest-grid" id="questSideList"></div>
+        </div>
         <div class="region-note" id="regionEraNote"></div>
       </div>
     </div>
 
-    <!-- 当前地图图标面板（可收起/展开） -->
-    <div class="cat-section" id="catSection">
-      <button type="button" class="cat-panel-head" id="catPanelToggle" aria-expanded="true">
-        <span class="cat-section-title" id="catPanelTitle">本区图标</span>
-        <span class="cat-panel-sub" id="catPanelSub"></span>
-        <span class="cat-caret" id="catCaret">▾</span>
-      </button>
-      <div class="cat-list" id="catList"></div>
-    </div>
-
-    <!-- 地标快速跳转 -->
+    <!-- 地标快速跳转（仅拓扑图模式可见） -->
     <div class="jump-section" id="jumpSection">
       <div class="jump-header"><span>出入口节点直达</span></div>
       <div class="jump-chips" id="jumpChips"></div>
     </div>
 
-    <!-- 侧栏底部：总进度 + 探索度面板 -->
+    <!-- 侧栏底部：本区内容 & 全收集进度（互斥向上弹窗，无滚动条） + 存档 CTA -->
     <div class="side-foot">
-      <div class="explore-panel" id="explorePanel" hidden>
-        <div class="explore-head">
-          <div class="explore-tabs" id="exploreTabs">
-            <button type="button" class="explore-tab on" data-etab="region">按区域</button>
-            <button type="button" class="explore-tab" data-etab="cat">按分类</button>
-          </div>
-          <button type="button" class="explore-close" id="exploreClose" aria-label="收起探索度">×</button>
+      <!-- 向上弹窗 1：本区内容（无高度限制、无滚动条） -->
+      <div class="foot-popup area-drawer" id="areaDrawer" hidden>
+        <div class="foot-popup-head">
+          <span class="foot-popup-title" id="areaDrawerTitle">本区内容</span>
+          <span class="foot-popup-sub" id="areaDrawerSub"></span>
+          <button type="button" class="foot-popup-close" id="areaDrawerClose" aria-label="收起本区内容">×</button>
         </div>
-        <div class="explore-grid" id="exploreGrid"></div>
+        <div class="foot-popup-body" id="catBody">
+          <div class="area-quest-wrap" id="areaQuestWrap" hidden>
+            <div class="cat-subhead cat-subhead-first">
+              <span id="areaQuestHeadTxt">任务</span>
+              <span class="cat-subhead-cnt" id="areaQuestCount">0</span>
+            </div>
+            <div class="area-quest-list" id="areaQuestList"></div>
+          </div>
+          <div class="cat-list" id="catList"></div>
+        </div>
       </div>
-      <div class="progress-box" id="progressBox" title="点击展开探索度总览" role="button" tabindex="0">
+
+      <!-- 向上弹窗 2：全收集进度（取消按区域，复用与本区内容一致的双列排版，无高度限制、无滚动条） -->
+      <div class="foot-popup explore-panel" id="explorePanel" hidden>
+        <div class="foot-popup-head">
+          <span class="foot-popup-title" id="exploreTitle">全收集进度</span>
+          <span class="foot-popup-sub" id="exploreSub">按分类</span>
+          <button type="button" class="foot-popup-close" id="exploreClose" aria-label="收起全收集进度">×</button>
+        </div>
+        <div class="foot-popup-body">
+          <div class="cat-list" id="exploreGrid"></div>
+        </div>
+      </div>
+
+      <!-- 触发条 1：本区内容（位于全收集进度上方） -->
+      <button type="button" class="foot-trigger" id="catPanelToggle" aria-expanded="false">
+        <span class="foot-trigger-title" id="catPanelTitle">本区内容</span>
+        <span class="foot-trigger-sub" id="catPanelSub"></span>
+        <span class="foot-trigger-caret" id="catCaret">▴</span>
+      </button>
+
+      <!-- 触发条 2：全收集进度 -->
+      <div class="progress-box" id="progressBox" title="点击展开全收集分类进度" role="button" tabindex="0" aria-expanded="false">
         <div class="progress-info">
           <span class="prog-txt">全收集进度</span>
           <span class="prog-num" id="progNum">0 / 0</span>
@@ -132,9 +178,9 @@
         <button type="button" class="save-help-btn" id="saveHelpBtn" title="存档同步说明" aria-label="存档同步说明">?</button>
       </div>
       <div class="side-links">
-        <button type="button" class="side-link-btn" id="settingsBtn">⚙ 设置</button>
-        <button type="button" class="side-link-btn" id="navBtn">🧭 导航</button>
-        <a class="side-link-btn" href="guide.html" target="_blank" rel="noopener">📖 攻略</a>
+        <button type="button" class="side-link-btn" id="settingsBtn">⚙ 地图设置</button>
+        <button type="button" class="side-link-btn" id="navBtn">🧭 定位导航</button>
+        <a class="side-link-btn" href="guide.html">📖 攻略资料库</a>
       </div>
       <div class="side-meta">
         <div class="side-meta-copy" id="verBadge">OOTMAP V0.1.0 © 2026 yalincc</div>
@@ -162,7 +208,10 @@
         <div class="region-pins" id="regionPins"></div>
         <div class="region-head">
           <span class="region-kicker" id="regionKicker">FIELD REGION</span>
-          <h2 id="regionName">科吉里森林</h2>
+          <div class="region-title-row">
+            <h2 id="regionName">科吉里森林</h2>
+            <button type="button" class="region-guide-btn" id="regionGuideBtn" hidden>📖 迷宫攻略</button>
+          </div>
           <div class="region-sub" id="regionSub">—</div>
         </div>
         <div class="region-floor-bar" id="regionFloorBar" hidden></div>
@@ -272,64 +321,111 @@
       </div>
     </div>
 
+    <!-- 任务详情卡片（复用 TOTKmap 对齐 · 7 行槽位骨架） -->
+    <div class="detail-card" id="questCard" hidden>
+      <div class="dc-head">
+        <span class="dc-cat-chip" id="questCatTag">主线任务</span>
+        <div class="dc-head-acts">
+          <span class="dc-pager" id="questPager" hidden>
+            <button type="button" class="dc-icon-btn" id="questPrevBtn" title="上一个 (←)" aria-label="上一个">‹</button>
+            <button type="button" class="dc-icon-btn" id="questNextBtn" title="下一个 (→)" aria-label="下一个">›</button>
+          </span>
+          <button type="button" class="dc-icon-btn dc-close" id="questClose" title="关闭" aria-label="关闭任务卡">×</button>
+        </div>
+      </div>
+      <div class="dc-title-row">
+        <span class="dc-seq-badge" id="questSeqBadge">#1</span>
+        <h2 class="dc-title" id="questTitle">—</h2>
+      </div>
+      <div class="dc-slots" id="questSlots">
+        <div class="dc-slot" id="qslot-req" hidden>
+          <span class="dc-slot-k">前置</span>
+          <div class="dc-slot-v" id="qslotReqV"></div>
+        </div>
+        <div class="dc-slot" id="qslot-next" hidden>
+          <span class="dc-slot-k">后续</span>
+          <div class="dc-slot-v" id="qslotNextV"></div>
+        </div>
+        <div class="dc-slot" id="qslot-reward" hidden>
+          <span class="dc-slot-k">奖励</span>
+          <div class="dc-slot-v" id="qslotRewardV"></div>
+        </div>
+        <div class="dc-slot" id="qslot-steps" hidden>
+          <span class="dc-slot-k">流程</span>
+          <div class="dc-slot-v" id="qslotStepsV"></div>
+        </div>
+        <div class="dc-slot" id="qslot-tip" hidden>
+          <span class="dc-slot-k">提示</span>
+          <div class="dc-slot-v" id="qslotTipV"></div>
+        </div>
+      </div>
+      <div class="dc-footer">
+        <button type="button" class="dc-done-btn" id="questDoneBtn">标记已完成</button>
+      </div>
+    </div>
+
     <div class="settings-panel" id="settingsPanel" hidden>
       <div class="settings-head">
-        <span>设置</span>
-        <button id="settingsClose" aria-label="关闭设置">×</button>
+        <span>地图设置</span>
+        <button id="settingsClose" aria-label="关闭地图设置">×</button>
       </div>
-      <label class="setting-row">
-        <span>隐藏已收集</span>
-        <input type="checkbox" id="hideDoneChk">
-      </label>
-      <label class="setting-row">
-        <span>缩放自动换层</span>
-        <input type="checkbox" id="autoLevelChk" checked>
-      </label>
-      <button class="setting-row" id="langBtn">
-        <span>语言</span><em>中 / EN</em>
-      </button>
-      <button class="setting-row" id="btnEditMode">
-        <span>点位校准</span><em>高级</em>
-      </button>
-      <button class="setting-row setting-danger" id="clearDoneBtn">
-        <span>清空收集记录</span><em>重置</em>
-      </button>
-      <div class="settings-subhead">
-        <span>三层缩放换层阈值 (%)</span>
-        <button type="button" class="th-reset" id="thReset">默认</button>
+      <div class="panel-body">
+        <label class="setting-row">
+          <span>隐藏已收集</span>
+          <input type="checkbox" id="hideDoneChk">
+        </label>
+        <label class="setting-row">
+          <span>缩放自动换层</span>
+          <input type="checkbox" id="autoLevelChk" checked>
+        </label>
+        <button class="setting-row" id="langBtn">
+          <span>语言</span><em>中 / EN</em>
+        </button>
+        <button class="setting-row" id="btnEditMode">
+          <span>点位校准</span><em>高级</em>
+        </button>
+        <button class="setting-row setting-danger" id="clearDoneBtn">
+          <span>清空收集记录</span><em>重置</em>
+        </button>
+        <div class="settings-subhead">
+          <span>三层缩放换层阈值 (%)</span>
+          <button type="button" class="th-reset" id="thReset">默认</button>
+        </div>
+        <div class="setting-row setting-th">
+          <span>区域 → 拓扑</span>
+          <input type="number" id="thRegionOut" min="15" max="80" step="1">
+        </div>
+        <div class="setting-row setting-th">
+          <span>拓扑 → 区域</span>
+          <input type="number" id="thTopoIn" min="120" max="400" step="5">
+        </div>
+        <div class="setting-row setting-th">
+          <span>拓扑 → 全图</span>
+          <input type="number" id="thTopoOut" min="10" max="40" step="1">
+        </div>
+        <div class="setting-row setting-th">
+          <span>全图 → 拓扑</span>
+          <input type="number" id="thWorldIn" min="120" max="400" step="5">
+        </div>
+        <div class="settings-version" id="settingsVerBadge">ZELDA OOT MAP</div>
       </div>
-      <div class="setting-row setting-th">
-        <span>区域 → 拓扑</span>
-        <input type="number" id="thRegionOut" min="15" max="80" step="1">
-      </div>
-      <div class="setting-row setting-th">
-        <span>拓扑 → 区域</span>
-        <input type="number" id="thTopoIn" min="120" max="400" step="5">
-      </div>
-      <div class="setting-row setting-th">
-        <span>拓扑 → 全图</span>
-        <input type="number" id="thTopoOut" min="10" max="40" step="1">
-      </div>
-      <div class="setting-row setting-th">
-        <span>全图 → 拓扑</span>
-        <input type="number" id="thWorldIn" min="120" max="400" step="5">
-      </div>
-      <div class="settings-version" id="verBadge">ZELDA OOT MAP</div>
     </div>
-    <!-- 实时定位导航面板 -->
+    <!-- 定位导航面板 -->
     <div class="navi-panel" id="naviPanel" hidden>
       <div class="navi-head">
-        <span class="navi-title">🧭 实时定位</span>
-        <button type="button" class="navi-close" id="naviCloseBtn" aria-label="关闭">×</button>
+        <span class="navi-title">定位导航</span>
+        <button type="button" class="navi-close" id="naviCloseBtn" aria-label="关闭定位导航">×</button>
       </div>
-      <div class="navi-badge off" id="naviStatusBadge">未开启</div>
-      <div class="navi-coords" id="naviCoords">—</div>
-      <label class="navi-row"><span>开启定位</span><input type="checkbox" id="naviEnableChk"></label>
-      <label class="navi-row"><span>自动切区</span><input type="checkbox" id="naviAutoSwitchChk" checked></label>
-      <label class="navi-row"><span>视角跟随</span><input type="checkbox" id="naviFollowChk"></label>
-      <div class="navi-lan-box">
-        <input id="naviLanInput" readonly placeholder="启动 ootnavi-pc 后生成局域网链接">
-        <button type="button" id="naviCopyLanBtn">复制</button>
+      <div class="panel-body">
+        <div class="navi-badge off" id="naviStatusBadge">未开启</div>
+        <div class="navi-coords" id="naviCoords">—</div>
+        <label class="navi-row"><span>开启定位</span><input type="checkbox" id="naviEnableChk"></label>
+        <label class="navi-row"><span>自动切区</span><input type="checkbox" id="naviAutoSwitchChk" checked></label>
+        <label class="navi-row"><span>视角跟随</span><input type="checkbox" id="naviFollowChk"></label>
+        <div class="navi-lan-box">
+          <input id="naviLanInput" readonly placeholder="启动 ootnavi-pc 后生成局域网链接">
+          <button type="button" id="naviCopyLanBtn">复制</button>
+        </div>
       </div>
     </div>
     <!-- 重叠点位选择气泡 -->
@@ -386,8 +482,10 @@
 <script src="data/world_data.js?v=2"></script>
 <script src="data/pins_data.js?v=6"></script>
 <script src="data/save_flags.js?v=2"></script>
-<script src="js/app.js?v=20"></script>
-<script src="js/navi.js?v=8"></script>
+<script src="data/quests_data.js?v=3"></script>
+<script src="js/app.js?v=26"></script>
+<script src="js/navi.js?v=9"></script>
 <script src="js/save_sync.js?v=1"></script>
+<script src="js/quests.js?v=5"></script>
 </body>
 </html>

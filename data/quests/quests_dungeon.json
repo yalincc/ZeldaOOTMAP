@@ -1,0 +1,835 @@
+[
+  {
+    "key": "dekuTree",
+    "name_zh": "大德库树内部",
+    "name_en": "Inside the Deku Tree",
+    "category": "Dungeon",
+    "era": "child",
+    "region": "科奇里森林",
+    "npc_zh": "米多／大德库树",
+    "start_zh": "在科奇里森林取得科奇里之剑、花40卢比买德库盾，越过米多后进入大树。",
+    "steps": [
+      "击败德库巴巴，攀藤上二楼取地牢地图",
+      "举盾反弹坚果逼出商业德库，取妖精弹弓",
+      "弹弓射石脸红眼现梯，上三楼取指南针",
+      "点燃德库木棍烧蛛网，按2-3-1顺序打三胞胎",
+      "潜水踩圆石板降水位，毁哥马蛋并灭幼虫",
+      "弹弓射眼后近身砍眼，击败哥马取心之容器"
+    ],
+    "deliver_zh": "",
+    "boss_zh": "哥马（Gohma）",
+    "main_key_zh": "妖精弹弓",
+    "skulltula": 4,
+    "reward_zh": [
+      "地牢地图",
+      "指南针",
+      "妖精弹弓",
+      "心之容器",
+      "科奇里翡翠（森林精灵石）"
+    ],
+    "requires": [
+      "科奇里之剑",
+      "德库盾（40卢比）",
+      "越过米多"
+    ],
+    "unlocks": [],
+    "sources": [
+      "https://zh-cn.zeldacentral.com/games/ocarina-of-time-remake/walkthrough/great-deku-tree/",
+      "https://www.g2a.com/news/features/guide/ocarina-of-time-remake-walkthrough-main-quest-and-dungeon-order/"
+    ],
+    "note": "重制版更名为 The Great Deku Tree；无小钥匙与Boss钥匙。",
+    "pin_ids": [],
+    "romfs": {
+      "challenge_ids": [
+        "Meet_DekuTree"
+      ],
+      "step_nodes": [],
+      "actors": [],
+      "save_flags": [
+        "Kokiri's Emerald"
+      ],
+      "evidence": "RSDB/Challenge.Product.111.rstbl.byml + demo_save_structure.json (romfs-derived)"
+    },
+    "status": "romfs-backed"
+  },
+  {
+    "key": "dodongoCavern",
+    "name_zh": "多东哥洞窟",
+    "name_en": "Dodongo's Cavern",
+    "category": "Dungeon",
+    "era": "child",
+    "region": "死亡之山登山道",
+    "npc_zh": "达鲁尼亚",
+    "start_zh": "在鼓隆城为达鲁尼亚演奏莎莉亚之歌获握手镯，前往死亡之山径进入洞窟。",
+    "steps": [
+      "炸开裂墙，击败幼年多东哥与利扎尔福斯",
+      "取地牢地图，用炸弹花炸石像开指南针房",
+      "上二楼炸墙取炸弹袋，射藤蔓墙骷髅蜘蛛",
+      "摆炸弹于多东哥尾部引爆，击败多东哥王",
+      "达鲁尼亚在贤者之室授予鼓隆红宝石"
+    ],
+    "deliver_zh": "",
+    "boss_zh": "多东哥王（King Dodongo）",
+    "main_key_zh": "炸弹袋",
+    "skulltula": 4,
+    "reward_zh": [
+      "地牢地图",
+      "指南针",
+      "炸弹袋",
+      "心之容器",
+      "鼓隆红宝石（火之精灵石）"
+    ],
+    "requires": [
+      "莎莉亚之歌",
+      "鼓隆手环（达鲁尼亚赠）",
+      "妖精弹弓",
+      "炸弹"
+    ],
+    "unlocks": [],
+    "sources": [
+      "https://zh-cn.zeldacentral.com/games/ocarina-of-time-remake/walkthrough/dodongo-cavern/",
+      "https://www.g2a.com/news/features/guide/ocarina-of-time-remake-walkthrough-main-quest-and-dungeon-order/"
+    ],
+    "note": "无小钥匙与Boss钥匙。",
+    "pin_ids": [],
+    "romfs": {
+      "challenge_ids": [
+        "Get_StoneOfFire"
+      ],
+      "step_nodes": [
+        "BossBattle",
+        "DarniaRoomKokiriTalk",
+        "DeathMtTrailNpc",
+        "DodongoCavernOpne",
+        "DungeonStart",
+        "EscapeDungeon",
+        "GoronCityDarniaTalk",
+        "GoronCityDarniaroomNpcTalk01",
+        "KakarikoVillageLetter",
+        "KakarikoVillageNpc",
+        "KokiriForestFire",
+        "KokiriForestIn",
+        "KokiriForestNPCTalk",
+        "SariaMelodyGet",
+        "SariaMelodyPlay"
+      ],
+      "actors": [
+        "Npc_Goron_003_Child",
+        "Npc_Goron_005_Child",
+        "Npc_Goron_007_Child",
+        "Npc_Goron_Darunia_Child",
+        "Npc_Hylia_Soldier_003"
+      ],
+      "save_flags": [
+        "Saria's Song",
+        "Goron's Ruby"
+      ],
+      "evidence": "RSDB/Challenge.Product.111.rstbl.byml + demo_save_structure.json (romfs-derived)"
+    },
+    "status": "romfs-backed"
+  },
+  {
+    "key": "jabuJabusBelly",
+    "name_zh": "加卜加卜大人腹中",
+    "name_en": "Inside Jabu-Jabu's Belly",
+    "category": "Dungeon",
+    "era": "child",
+    "region": "卓拉之泉",
+    "npc_zh": "露托",
+    "start_zh": "在卓拉之泉把装鱼的瓶子投入水中，被加卜加卜吞入体内。",
+    "steps": [
+      "用空瓶舀鱼，击破比里水母并背露托同行",
+      "潜水到贝壳平台取地牢地图，砍破泡泡",
+      "回旋镖击退发光触手，取回旋镖与指南针",
+      "把露托抛上高柱，触发巨型章鱼战",
+      "回旋镖击晕章鱼砍绿核心，放方块开门",
+      "击破巴里纳得的水母护盾，射橙色核心取胜"
+    ],
+    "deliver_zh": "",
+    "boss_zh": "巴里纳得（Barinade）",
+    "main_key_zh": "回旋镖",
+    "skulltula": 4,
+    "reward_zh": [
+      "回旋镖",
+      "地牢地图",
+      "指南针",
+      "心之容器",
+      "卓拉蓝宝石（水之精灵石）",
+      "法罗尔之风"
+    ],
+    "requires": [
+      "幼年形态",
+      "装鱼的瓶子与空瓶",
+      "妖精弹弓",
+      "炸弹",
+      "卓拉王开通泉的道路"
+    ],
+    "unlocks": [],
+    "sources": [
+      "https://zh-cn.zeldacentral.com/games/ocarina-of-time-remake/walkthrough/lord-jabu-jabus-belly/",
+      "https://www.g2a.com/news/features/guide/ocarina-of-time-remake-walkthrough-main-quest-and-dungeon-order/"
+    ],
+    "note": "本章骷髅蜘蛛共6枚，其中腹内4枚、泉周边2枚；无小钥匙与Boss钥匙。",
+    "pin_ids": [],
+    "romfs": {
+      "challenge_ids": [
+        "Get_StoneOfWater"
+      ],
+      "step_nodes": [
+        "Ready",
+        "Step01",
+        "Step02",
+        "Step03",
+        "Step03_Impa",
+        "Step04",
+        "Step05",
+        "Step05_01",
+        "Step06",
+        "Step07",
+        "Step08",
+        "Step09",
+        "Step10",
+        "Step11",
+        "Step12",
+        "Step13",
+        "Step14"
+      ],
+      "actors": [
+        "Npc_Zora_KingZora_child",
+        "Npc_Zora_Ruto_Child_001",
+        "Npc_Zora_Ruto_Child_001_Step1",
+        "Npc_Zora_Ruto_Child_001_Step2"
+      ],
+      "save_flags": [
+        "Zora's Sapphire"
+      ],
+      "evidence": "RSDB/Challenge.Product.111.rstbl.byml + demo_save_structure.json (romfs-derived)"
+    },
+    "status": "romfs-backed"
+  },
+  {
+    "key": "templeOfTime",
+    "name_zh": "时之神殿",
+    "name_en": "Temple of Time",
+    "category": "Dungeon",
+    "era": "both",
+    "region": "海拉鲁城邑",
+    "npc_zh": "塞尔达公主／希克／劳鲁",
+    "start_zh": "集齐三颗精灵石并学会时光之歌，在时间门前演奏开门。",
+    "steps": [
+      "沿红毯走到时间门前，阅读石碑提示",
+      "演奏时光之歌，三精灵石嵌入上方壁龛",
+      "三角神力亮起，巨石门开启",
+      "登基座拔出大师剑，被传送至圣域",
+      "加侬多夫登场，过场中无法操作",
+      "劳鲁讲述七年后局势，授光之勋章",
+      "希克现身，开启唤醒五贤者任务"
+    ],
+    "deliver_zh": "",
+    "boss_zh": "",
+    "main_key_zh": "大师剑",
+    "skulltula": 0,
+    "reward_zh": [
+      "大师剑",
+      "光之勋章",
+      "进入成年时代"
+    ],
+    "requires": [
+      "时之笛",
+      "时光之歌",
+      "三颗精灵石（科奇里翡翠/鼓隆红宝石/卓拉蓝宝石）"
+    ],
+    "unlocks": [],
+    "sources": [
+      "https://zh-cn.zeldacentral.com/games/ocarina-of-time-remake/walkthrough/temple-of-time/",
+      "https://www.g2a.com/news/features/guide/ocarina-of-time-remake-walkthrough-main-quest-and-dungeon-order/"
+    ],
+    "note": "主线过渡节点而非战斗迷宫；无小钥匙、Boss钥匙、头目战与骷髅蜘蛛。",
+    "pin_ids": [],
+    "romfs": {
+      "challenge_ids": [
+        "DoorOfTime"
+      ],
+      "step_nodes": [
+        "Step01"
+      ],
+      "actors": [
+        "Npc_Hylia_Impa_Child"
+      ],
+      "save_flags": [
+        "Kokiri's Emerald",
+        "Goron's Ruby",
+        "Zora's Sapphire",
+        "Light Medallion"
+      ],
+      "evidence": "RSDB/Challenge.Product.111.rstbl.byml + demo_save_structure.json (romfs-derived)"
+    },
+    "status": "romfs-backed"
+  },
+  {
+    "key": "forestTemple",
+    "name_zh": "森之神殿",
+    "name_en": "Forest Temple",
+    "category": "Dungeon",
+    "era": "adult",
+    "region": "森之圣域",
+    "npc_zh": "希克",
+    "start_zh": "成年后取得钩索与森之小步舞曲，从森之圣域攀藤进入神殿。",
+    "steps": [
+      "庭院攀藤取小钥匙，排干水井",
+      "击败骷髅战士取妖精弓，射红蓝波伊姐妹画像",
+      "三楼取得Boss钥匙，融化冰冻之眼",
+      "稻草人之歌配合钩索，射绿紫姐妹画像",
+      "乘升降梯下B2，用Boss钥匙开链门",
+      "镜中分身战幻影加侬，莎莉亚觉醒授森之勋章"
+    ],
+    "deliver_zh": "",
+    "boss_zh": "幻影加侬（Phantom Ganon）",
+    "main_key_zh": "妖精弓",
+    "skulltula": 5,
+    "reward_zh": [
+      "妖精弓",
+      "地牢地图",
+      "指南针",
+      "5把小钥匙",
+      "Boss钥匙",
+      "心之容器",
+      "森之勋章"
+    ],
+    "requires": [
+      "成年形态",
+      "大师剑",
+      "钩索",
+      "迪荧之火",
+      "时光之歌",
+      "稻草人之歌",
+      "森之小步舞曲"
+    ],
+    "unlocks": [],
+    "sources": [
+      "https://zh-cn.zeldacentral.com/games/ocarina-of-time-remake/walkthrough/forest-temple/",
+      "https://game8.co/games/Zelda-Ocarina-of-Time/archives/480424"
+    ],
+    "note": "重制版整体改进了迷宫导航。",
+    "pin_ids": [],
+    "romfs": {
+      "challenge_ids": [
+        "SageOfForest"
+      ],
+      "step_nodes": [],
+      "actors": [],
+      "save_flags": [
+        "Scarecrow's Song",
+        "Minuet of Forest",
+        "Forest Medallion"
+      ],
+      "evidence": "RSDB/Challenge.Product.111.rstbl.byml + demo_save_structure.json (romfs-derived)"
+    },
+    "status": "romfs-backed"
+  },
+  {
+    "key": "fireTemple",
+    "name_zh": "火之神殿",
+    "name_en": "Fire Temple",
+    "category": "Dungeon",
+    "era": "adult",
+    "region": "死亡之山火山口",
+    "npc_zh": "达鲁尼亚",
+    "start_zh": "成年后穿鼓隆服、演奏火之波丽露舞曲抵达火山口，进入火之神殿。",
+    "steps": [
+      "踩牢房开关救首名鼓隆，取小钥匙开雕花门",
+      "时光之歌现蓝方块，炸裂墙救第三名鼓隆",
+      "过火墙取地牢地图与指南针，救第四名鼓隆",
+      "稻草人之歌借钩索，五层取百万吨锤",
+      "锤击金色地板开关救第八名鼓隆，回一层救第九名",
+      "第九名鼓隆后开箱取Boss钥匙，开龙纹门",
+      "锤击沃尔瓦吉亚头骨，趁眩晕用剑砍头"
+    ],
+    "deliver_zh": "",
+    "boss_zh": "沃尔瓦吉亚（Volvagia）",
+    "main_key_zh": "百万吨锤",
+    "skulltula": 5,
+    "reward_zh": [
+      "百万吨锤",
+      "地牢地图",
+      "指南针",
+      "8把小钥匙",
+      "Boss钥匙",
+      "心之容器",
+      "火之勋章"
+    ],
+    "requires": [
+      "成年形态",
+      "鼓隆服",
+      "火之波丽露舞曲",
+      "时光之歌",
+      "稻草人之歌",
+      "妖精弓",
+      "钩索",
+      "炸弹",
+      "空瓶"
+    ],
+    "unlocks": [],
+    "sources": [
+      "https://zh-cn.zeldacentral.com/games/ocarina-of-time-remake/walkthrough/fire-temple/",
+      "https://game8.co/games/Zelda-Ocarina-of-Time/archives/480424"
+    ],
+    "note": "小头目为火焰舞者；重制版未逐房间列出与原版的差异。",
+    "pin_ids": [],
+    "romfs": {
+      "challenge_ids": [
+        "SageOfFire"
+      ],
+      "step_nodes": [
+        "Ready",
+        "StopDaruniaJr",
+        "TalkDaruniaJr"
+      ],
+      "actors": [
+        "Npc_Goron_DaruniaJr_Adult",
+        "Npc_Goron_DaruniaJr_Adult_demo1",
+        "Npc_Goron_DaruniaJr_Adult_demo2"
+      ],
+      "save_flags": [
+        "Scarecrow's Song",
+        "Bolero of Fire",
+        "Fire Medallion"
+      ],
+      "evidence": "RSDB/Challenge.Product.111.rstbl.byml + demo_save_structure.json (romfs-derived)"
+    },
+    "status": "romfs-backed"
+  },
+  {
+    "key": "iceCavern",
+    "name_zh": "冰之洞窟",
+    "name_en": "Ice Cavern",
+    "category": "Dungeon",
+    "era": "adult",
+    "region": "卓拉之泉／冰封卓拉领地",
+    "npc_zh": "希克",
+    "start_zh": "成年后经卓拉河穿过冰封的卓拉领地，从长冰桥进入冰之洞窟。",
+    "steps": [
+      "夜晚用钩索射悬崖骷髅蜘蛛，沿冰桥入洞",
+      "空瓶装蓝火，融粉冰取地牢地图",
+      "融巨大粉晶取指南针，妖精弓射冰靶",
+      "时光之歌升起时间方块，跳台取红卢比",
+      "击败白狼开铁门，宝箱取铁靴",
+      "希克授水之小夜曲，蓝火救国王得卓拉服"
+    ],
+    "deliver_zh": "",
+    "boss_zh": "白狼（White Wolfos）",
+    "main_key_zh": "铁靴",
+    "skulltula": 3,
+    "reward_zh": [
+      "铁靴",
+      "地牢地图",
+      "指南针",
+      "水之小夜曲",
+      "卓拉服"
+    ],
+    "requires": [
+      "成年形态",
+      "钩索",
+      "妖精弓",
+      "空瓶",
+      "时光之歌",
+      "太阳之歌"
+    ],
+    "unlocks": [],
+    "sources": [
+      "https://zh-cn.zeldacentral.com/games/ocarina-of-time-remake/walkthrough/ice-cavern/",
+      "https://game8.co/games/Zelda-Ocarina-of-Time/archives/480424"
+    ],
+    "note": "章节共5枚骷髅蜘蛛（洞内3枚，河与领地各1枚）；无小钥匙/Boss钥匙。",
+    "pin_ids": [],
+    "romfs": {
+      "challenge_ids": [
+        "SageOfWater"
+      ],
+      "step_nodes": [
+        "Ready",
+        "Step01",
+        "Step03",
+        "Step04",
+        "Step05",
+        "Step06",
+        "Step07",
+        "Step07_1",
+        "Step07_2",
+        "Step08"
+      ],
+      "actors": [
+        "Npc_Zora_KingZora_adult",
+        "Npc_Zora_Ruto_Adult_001"
+      ],
+      "save_flags": [
+        "Sun's Song",
+        "Serenade of Water"
+      ],
+      "evidence": "RSDB/Challenge.Product.111.rstbl.byml + demo_save_structure.json (romfs-derived)"
+    },
+    "status": "romfs-backed"
+  },
+  {
+    "key": "waterTemple",
+    "name_zh": "水之神殿",
+    "name_en": "Water Temple",
+    "category": "Dungeon",
+    "era": "adult",
+    "region": "海利亚湖",
+    "npc_zh": "露托／希克",
+    "start_zh": "穿铁靴与卓拉服潜入海利亚湖水下，用钩索射圆环开栅门入殿。",
+    "steps": [
+      "取地牢地图，在三角神力门前奏摇篮曲降水位",
+      "迪荧之火点灯清怪，取第1把小钥匙",
+      "炸裂墙后取指南针与第2把小钥匙",
+      "反复调水位，经亭子与3F取第3、4把小钥匙",
+      "击败暗黑林克，宝箱取长钩索",
+      "锤砸裂墙、踩石开关，金色房间取Boss钥匙",
+      "长钩拉出莫尔法核心，大师剑砍击取胜"
+    ],
+    "deliver_zh": "",
+    "boss_zh": "莫尔法（Morpha）",
+    "main_key_zh": "长钩索（Longshot）",
+    "skulltula": 6,
+    "reward_zh": [
+      "长钩索",
+      "地牢地图",
+      "指南针",
+      "4把小钥匙",
+      "Boss钥匙",
+      "心之容器",
+      "水之勋章",
+      "火焰箭"
+    ],
+    "requires": [
+      "水之小夜曲",
+      "塞尔达摇篮曲",
+      "太阳之歌",
+      "稻草人之歌",
+      "铁靴",
+      "卓拉服",
+      "大师剑",
+      "钩索",
+      "妖精弓",
+      "炸弹",
+      "迪荧之火",
+      "百万吨锤"
+    ],
+    "unlocks": [],
+    "sources": [
+      "https://zh-cn.zeldacentral.com/games/ocarina-of-time-remake/walkthrough/water-temple/",
+      "https://games.gg/zh-Hant/the-legend-of-zelda-ocarina-of-time-2026/guides/ocarina-of-time-remake-%E5%9C%B0%E7%89%A2%E6%94%BB%E7%95%A5%E5%AE%8C%E6%95%B4%E6%B8%85%E5%96%AE%E9%A0%86%E5%BA%8F%E8%88%87%E6%94%B9%E5%8B%95%E7%B8%BD%E6%95%B4%E7%90%86"
+    ],
+    "note": "重制版调整了水之神殿谜题并改进导航；骷髅蜘蛛核心6枚（68–73），含湖畔实验室。",
+    "pin_ids": [],
+    "romfs": {
+      "challenge_ids": [
+        "SageOfWater"
+      ],
+      "step_nodes": [
+        "Ready",
+        "Step01",
+        "Step03",
+        "Step04",
+        "Step05",
+        "Step06",
+        "Step07",
+        "Step07_1",
+        "Step07_2",
+        "Step08"
+      ],
+      "actors": [
+        "Npc_Zora_KingZora_adult",
+        "Npc_Zora_Ruto_Adult_001"
+      ],
+      "save_flags": [
+        "Sun's Song",
+        "Scarecrow's Song",
+        "Zelda's Lullaby",
+        "Serenade of Water",
+        "Water Medallion"
+      ],
+      "evidence": "RSDB/Challenge.Product.111.rstbl.byml + demo_save_structure.json (romfs-derived)"
+    },
+    "status": "romfs-backed"
+  },
+  {
+    "key": "bottomOfTheWell",
+    "name_zh": "井底",
+    "name_en": "Bottom of the Well",
+    "category": "Dungeon",
+    "era": "child",
+    "region": "卡卡利科村",
+    "npc_zh": "",
+    "start_zh": "童年对卡卡利科村风车乐师演奏暴风雨之歌，井水干涸后下井。",
+    "steps": [
+      "推倒假墙跌落B2，炸巨石取地牢地图",
+      "回B1在三角神力瓷砖奏摇篮曲降水位",
+      "击败死手，宝箱取真理之镜",
+      "戴镜走隐藏通道，棺材厅取首把小钥匙",
+      "太阳之歌冻结吉波得，隐藏宝箱取指南针",
+      "镜中隐藏宝箱取第2把小钥匙",
+      "用两把小钥匙开两道锁门，返回井口"
+    ],
+    "deliver_zh": "",
+    "boss_zh": "死手（Dead Hand，小头目）",
+    "main_key_zh": "真理之镜",
+    "skulltula": 3,
+    "reward_zh": [
+      "真理之镜",
+      "地牢地图",
+      "指南针",
+      "2把小钥匙"
+    ],
+    "requires": [
+      "儿童形态",
+      "暴风雨之歌",
+      "塞尔达摇篮曲",
+      "太阳之歌",
+      "回旋镖",
+      "炸弹",
+      "科奇里剑",
+      "德库盾"
+    ],
+    "unlocks": [],
+    "sources": [
+      "https://zh-cn.zeldacentral.com/games/ocarina-of-time-remake/walkthrough/bottom-of-the-well/",
+      "https://game8.co/games/Zelda-Ocarina-of-Time/archives/480424"
+    ],
+    "note": "重制版可将真理之镜直接绑定十字键；无Boss钥匙。",
+    "pin_ids": [],
+    "romfs": {
+      "challenge_ids": [
+        "SubEvent_GetGlassTruth"
+      ],
+      "step_nodes": [],
+      "actors": [],
+      "save_flags": [
+        "Sun's Song",
+        "Song of Storms",
+        "Zelda's Lullaby"
+      ],
+      "evidence": "RSDB/Challenge.Product.111.rstbl.byml + demo_save_structure.json (romfs-derived)"
+    },
+    "status": "romfs-backed"
+  },
+  {
+    "key": "shadowTemple",
+    "name_zh": "暗之神殿",
+    "name_en": "Shadow Temple",
+    "category": "Dungeon",
+    "era": "adult",
+    "region": "卡卡利科墓地",
+    "npc_zh": "希克／英帕",
+    "start_zh": "成年在时间神殿演奏暗之梦幻曲传至墓地，用真理之镜与迪荧之火开启入口。",
+    "steps": [
+      "圆形地板施放迪荧之火点燃火炬开门",
+      "B1取地牢地图，击败死手得悬浮靴",
+      "B2取指南针，百万吨锤砸板、钩索过缺口",
+      "B3投炸弹入石骷髅头，穿风廊取小钥匙",
+      "幽灵船奏摇篮曲启航，B4取第5把小钥匙",
+      "开蓝金箱得Boss钥匙，开金骷髅链门",
+      "火箭射邦戈邦戈双手与眼睛，剑砍取胜"
+    ],
+    "deliver_zh": "",
+    "boss_zh": "邦戈邦戈（Bongo Bongo）",
+    "main_key_zh": "悬浮靴",
+    "skulltula": 5,
+    "reward_zh": [
+      "悬浮靴",
+      "地牢地图",
+      "指南针",
+      "5把小钥匙",
+      "Boss钥匙",
+      "心之容器",
+      "暗之勋章"
+    ],
+    "requires": [
+      "成年形态",
+      "真理之镜",
+      "迪荧之火",
+      "妖精弓+火焰箭",
+      "百万吨锤",
+      "长钩索",
+      "铁靴",
+      "暗之梦幻曲",
+      "摇篮曲",
+      "稻草人之歌"
+    ],
+    "unlocks": [],
+    "sources": [
+      "https://zh-cn.zeldacentral.com/games/ocarina-of-time-remake/walkthrough/shadow-temple/",
+      "https://game8.co/games/Zelda-Ocarina-of-Time/archives/480424"
+    ],
+    "note": "神殿本体骷髅蜘蛛5枚（79–83），另1枚（96）在夜晚的英帕屋顶；需先取得真理之镜。",
+    "pin_ids": [],
+    "romfs": {
+      "challenge_ids": [
+        "SageOfShadow"
+      ],
+      "step_nodes": [],
+      "actors": [],
+      "save_flags": [
+        "Scarecrow's Song",
+        "Nocturne of Shadow",
+        "Shadow Medallion"
+      ],
+      "evidence": "RSDB/Challenge.Product.111.rstbl.byml + demo_save_structure.json (romfs-derived)"
+    },
+    "status": "romfs-backed"
+  },
+  {
+    "key": "spiritTemple",
+    "name_zh": "魂之神殿",
+    "name_en": "Spirit Temple",
+    "category": "Dungeon",
+    "era": "both",
+    "region": "沙漠巨像",
+    "npc_zh": "纳波鲁",
+    "start_zh": "演奏魂之慰灵曲传送至沙漠巨像，童年与成年各需进入一次。",
+    "steps": [
+      "童年入殿，纳波鲁请求取回银手套",
+      "钻儿童洞爬至顶层，出外取银手套",
+      "纳波鲁被双子妖婆带走，回时间神殿变成年",
+      "成年过灯室与镜室机关，取得镜盾",
+      "击败铁拳纳波鲁，取得Boss钥匙",
+      "镜盾反射击败双子妖婆，获魂之勋章"
+    ],
+    "deliver_zh": "",
+    "boss_zh": "双子妖婆（Twinrova）",
+    "main_key_zh": "银手套／镜盾",
+    "skulltula": 5,
+    "reward_zh": [
+      "银手套",
+      "镜盾",
+      "地牢地图",
+      "指南针",
+      "5把小钥匙",
+      "Boss钥匙",
+      "5只炸弹鼠",
+      "心之容器",
+      "魂之勋章"
+    ],
+    "requires": [
+      "魂之慰灵曲",
+      "光之序曲",
+      "塞尔达摇篮曲",
+      "时光之歌",
+      "稻草人之歌",
+      "长钩索",
+      "妖精弹弓",
+      "回旋镖",
+      "妖精弓",
+      "百万吨锤",
+      "炸弹",
+      "迪荧之火",
+      "儿童与成年各一次"
+    ],
+    "unlocks": [],
+    "sources": [
+      "https://zh-cn.zeldacentral.com/games/ocarina-of-time-remake/walkthrough/spirit-temple/",
+      "https://game8.co/games/Zelda-Ocarina-of-Time/archives/480424"
+    ],
+    "note": "骷髅蜘蛛5枚（91–95）；需在儿童侧取得银手套、成年侧取得镜盾。",
+    "pin_ids": [],
+    "romfs": {
+      "challenge_ids": [
+        "SageOfSpirit"
+      ],
+      "step_nodes": [
+        "Ready",
+        "Step01",
+        "Step02",
+        "Step05",
+        "Step05_01",
+        "Step05_02",
+        "Step05_03",
+        "Step06"
+      ],
+      "actors": [
+        "Npc_Gerudo_001",
+        "Npc_Gerudo_001_FortressCleared",
+        "Npc_Gerudo_Nabooru_Child",
+        "Npc_Hylia_012_Adult",
+        "Npc_Hylia_013_Adult_GerudoFortress",
+        "Npc_Hylia_014_Adult_GerudoFortress",
+        "Npc_Hylia_015_Adult_GerudoFortress",
+        "Npc_Hylia_016_Adult_GerudoFortress"
+      ],
+      "save_flags": [
+        "Scarecrow's Song",
+        "Zelda's Lullaby",
+        "Requiem of Spirit",
+        "Prelude of Light",
+        "Spirit Medallion"
+      ],
+      "evidence": "RSDB/Challenge.Product.111.rstbl.byml + demo_save_structure.json (romfs-derived)"
+    },
+    "status": "romfs-backed"
+  },
+  {
+    "key": "ganonsCastle",
+    "name_zh": "加侬多夫城堡",
+    "name_en": "Ganondorf's Castle",
+    "category": "Dungeon",
+    "era": "adult",
+    "region": "海拉鲁城堡",
+    "npc_zh": "塞尔达公主／希克／劳鲁",
+    "start_zh": "六贤者苏醒、塞尔达赐予光箭后，沿光路进入加侬多夫城堡。",
+    "steps": [
+      "灵障：钩索、炸弹鼠与镜盾反光，光箭射黑球",
+      "森林障：真理之镜与悬浮靴过隐藏平台",
+      "水障：蓝火融红冰，百万吨锤开箱取炸弹鼠",
+      "暗影障：点燃火炬现石阶，宝箱取黄金手套",
+      "出城向勇气大妖精献500卢比，得伤害减半",
+      "火焰障穿鼓隆服过熔岩，推倒金柱搭桥",
+      "光障用小钥匙开门，光箭射黑球解最后屏障",
+      "六障尽除，穿过竞技场登塔至红毯大厅"
+    ],
+    "deliver_zh": "",
+    "boss_zh": "加侬多夫／加农（Ganondorf / Ganon）",
+    "main_key_zh": "黄金手套",
+    "skulltula": 0,
+    "reward_zh": [
+      "黄金手套",
+      "光箭（塞尔达赠）",
+      "勇气大妖精减伤礼物"
+    ],
+    "requires": [
+      "六贤者苏醒",
+      "光箭",
+      "妖精弓",
+      "长钩索",
+      "悬浮靴",
+      "百万吨锤",
+      "镜盾",
+      "真理之镜",
+      "鼓隆服",
+      "空瓶",
+      "炸弹鼠",
+      "时光之歌",
+      "塞尔达摇篮曲",
+      "500卢比"
+    ],
+    "unlocks": [],
+    "sources": [
+      "https://zeldacentral.com/games/ocarina-of-time-remake/walkthrough/ganondorfs-castle/",
+      "https://games.gg/zh-Hant/the-legend-of-zelda-ocarina-of-time-2026/guides/ocarina-of-time-remake-%E5%9C%B0%E7%89%A2%E6%94%BB%E7%95%A5%E5%AE%8C%E6%95%B4%E6%B8%85%E5%96%AE%E9%A0%86%E5%BA%8F%E8%88%87%E6%94%B9%E5%8B%95%E7%B8%BD%E6%95%B4%E7%90%86"
+    ],
+    "note": "重制版称 Ganondorf's Castle；本章仅六道屏障，Boss战在下一章；无骷髅蜘蛛。官方仅提供城外底图（含蜘蛛/大妖精），城内六障无 2D 地图，可切换顶部「城内六道结界（示意）」对照步骤通关。",
+    "pin_ids": [],
+    "romfs": {
+      "challenge_ids": [
+        "Defeat_Ganon"
+      ],
+      "step_nodes": [],
+      "actors": [],
+      "save_flags": [
+        "Zelda's Lullaby"
+      ],
+      "evidence": "RSDB/Challenge.Product.111.rstbl.byml + demo_save_structure.json (romfs-derived)"
+    },
+    "status": "romfs-backed"
+  }
+]

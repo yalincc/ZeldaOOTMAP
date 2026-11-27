@@ -289,6 +289,44 @@ def check_regions(pins: list[dict]) -> None:
         else (p.get("map") == r["id"]) for p in pins)]
     check("每个区域至少 1 个点位", not empty, f"空区域 {empty}")
 
+    # 任务板块 data/quests_data.js 校验
+    q_path = APP / "data" / "quests_data.js"
+    if not q_path.exists():
+        check("任务数据 quests_data.js 存在", False)
+    else:
+        qtxt = q_path.read_text(encoding="utf-8")
+        mq = re.search(r"window\.OOT_QUESTS\s*=\s*(\[.*\]);", qtxt, re.S)
+        quests = json.loads(mq.group(1)) if mq else []
+        check("任务总数 = 60", len(quests) == 60, f"实际 {len(quests)}")
+        q_keys = {q["key"] for q in quests}
+        check("任务 key 唯一且 60 条", len(q_keys) == 60)
+        q_groups: dict[str, int] = {}
+        for q in quests:
+            g = q.get("group", "")
+            q_groups[g] = q_groups.get(g, 0) + 1
+        check("任务分组 = 主线20 / 支线28 / 迷宫12",
+              q_groups.get("main") == 20 and q_groups.get("side") == 28 and q_groups.get("dungeon") == 12,
+              str(dict(q_groups)))
+        area_id_set = field_ids | dungeon_ids
+        pin_id_set = {p["id"] for p in pins}
+        bad_q_areas = []
+        bad_q_pins = []
+        empty_flow = []
+        for q in quests:
+            if not q.get("areas") or not q.get("flow"):
+                empty_flow.append(q["key"])
+            for a in (q.get("areas") or []):
+                if a not in area_id_set:
+                    bad_q_areas.append(f"{q['key']}->{a}")
+            for st in (q.get("flow") or []):
+                if st.get("area") not in area_id_set:
+                    bad_q_areas.append(f"{q['key']}#{st.get('no')}->{st.get('area')}")
+                if st.get("pinId") and st["pinId"] not in pin_id_set:
+                    bad_q_pins.append(f"{q['key']}#{st.get('no')}->{st['pinId']}")
+        check("全部任务含有效区域与流程步骤", not empty_flow and not bad_q_areas,
+              f"空={empty_flow[:3]} 无效={bad_q_areas[:5]}")
+        check("任务步骤关联 pinId 100% 有效", not bad_q_pins, f"无效 {bad_q_pins[:5]}")
+
 
 def check_assets() -> None:
     print("[2/3] 资源断链")

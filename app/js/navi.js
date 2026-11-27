@@ -310,12 +310,19 @@
   }
 
   function initNavi() {
+    var panel = $("naviPanel");
     var enChk = $("naviEnableChk");
     var folChk = $("naviFollowChk");
     var swChk = $("naviAutoSwitchChk");
     var closeBtn = $("naviCloseBtn");
     var copyBtn = $("naviCopyLanBtn");
 
+    if (panel) {
+      panel.addEventListener("click", function (e) { e.stopPropagation(); });
+      document.addEventListener("click", function () {
+        if (!panel.hidden) togglePanel(false);
+      });
+    }
     if (enChk) enChk.addEventListener("change", function () { setEnabled(enChk.checked); });
     if (folChk) folChk.addEventListener("change", function () {
       naviState.followCam = folChk.checked;

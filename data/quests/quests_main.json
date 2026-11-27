@@ -1,0 +1,1200 @@
+[
+  {
+    "key": "linkWakesUp",
+    "name_zh": "林克苏醒",
+    "name_en": "Link Wakes Up",
+    "category": "Main",
+    "era": "child",
+    "region": "科奇里森林",
+    "npc_zh": "娜薇、莎莉亚、米多",
+    "start_zh": "开场动画结束后林克在自己家中醒来，出门与莎莉亚对话后即可自由探索科奇里森林。",
+    "steps": [
+      "离开家门与莎莉亚对话",
+      "在遗迹屋顶取得科奇里之剑",
+      "攒40卢比购买德库盾",
+      "向米多出示剑盾获准通行",
+      "穿过隧道抵达大德库树"
+    ],
+    "deliver_zh": "",
+    "reward_zh": [
+      "科奇里之剑",
+      "德库盾"
+    ],
+    "requires": [],
+    "unlocks": [
+      "greatDekuTree"
+    ],
+    "children": [],
+    "sources": [
+      "https://www.neoseeker.com/the-legend-of-zelda-ocarina-of-time-2026/Link_Wakes_Up",
+      "https://gamerant.com/zelda-ocarina-of-time-remake-all-missions-quests-chapter-list-oot-switch-2/"
+    ],
+    "note": "本任务完成时「时光之线」菜单尚未解锁，离开科奇里森林遇猫头鹰后才开启。",
+    "pin_ids": [],
+    "romfs": {
+      "challenge_ids": [],
+      "step_nodes": [],
+      "actors": [],
+      "save_flags": [],
+      "evidence": "RSDB/Challenge.Product.111.rstbl.byml + demo_save_structure.json (romfs-derived)"
+    },
+    "status": "web-only"
+  },
+  {
+    "key": "greatDekuTree",
+    "name_zh": "大德库树",
+    "name_en": "The Great Deku Tree",
+    "category": "Main",
+    "era": "child",
+    "region": "科奇里森林／大德库树",
+    "npc_zh": "大德库树、娜薇、米多、莎莉亚",
+    "start_zh": "带剑盾通过米多后，德库树张口让林克进入体内，开启首个迷宫。",
+    "steps": [
+      "进入德库树体内迷宫",
+      "用妖精弹弓射开蛛网",
+      "按2-3-1顺序击败德库椰子",
+      "弹弓射哥马之眼并近身攻击",
+      "取心之容器后获科奇里翡翠",
+      "离村途中获妖精陶笛"
+    ],
+    "deliver_zh": "",
+    "reward_zh": [
+      "科奇里翡翠（森林精灵石）",
+      "妖精弹弓",
+      "心之容器",
+      "妖精陶笛"
+    ],
+    "requires": [
+      "linkWakesUp"
+    ],
+    "unlocks": [
+      "princessOfHyruleCastle",
+      "threeSpiritualStones"
+    ],
+    "children": [],
+    "sources": [
+      "https://www.neoseeker.com/the-legend-of-zelda-ocarina-of-time-2026/The_Great_Deku_Tree",
+      "https://zeldacentral.com/games/ocarina-of-time-remake/medallions-and-spiritual-stones/"
+    ],
+    "note": "森林精灵石在本任务中取得，故不作为「三颗精灵石」的子任务。",
+    "pin_ids": [],
+    "romfs": {
+      "challenge_ids": [
+        "Meet_DekuTree"
+      ],
+      "step_nodes": [],
+      "actors": [],
+      "save_flags": [
+        "Kokiri's Emerald"
+      ],
+      "evidence": "RSDB/Challenge.Product.111.rstbl.byml + demo_save_structure.json (romfs-derived)"
+    },
+    "status": "romfs-backed"
+  },
+  {
+    "key": "princessOfHyruleCastle",
+    "name_zh": "海拉鲁城堡的公主",
+    "name_en": "Princess of Hyrule Castle",
+    "category": "Main",
+    "era": "child",
+    "region": "海拉鲁平原／海拉鲁城邑／海拉鲁城堡",
+    "npc_zh": "卡波拉·盖波拉、玛蓉、塔隆、塞尔达公主、英帕",
+    "start_zh": "离开科奇里森林时猫头鹰卡波拉预告「会遇到一位公主」，任务开启。",
+    "steps": [
+      "穿过海拉鲁平原抵达城邑",
+      "向玛蓉取得怪蛋",
+      "攀藤潜入城堡庭院",
+      "用唤醒小鸡叫醒塔隆",
+      "躲守卫潜入城堡见塞尔达",
+      "获塞尔达的信与摇篮曲"
+    ],
+    "deliver_zh": "",
+    "reward_zh": [
+      "塞尔达的信",
+      "塞尔达摇篮曲"
+    ],
+    "requires": [
+      "greatDekuTree"
+    ],
+    "unlocks": [
+      "threeSpiritualStones",
+      "malonsFriend"
+    ],
+    "children": [],
+    "sources": [
+      "https://www.neoseeker.com/the-legend-of-zelda-ocarina-of-time-2026/Princess_of_Hyrule_Castle",
+      "https://www.neoseeker.com/the-legend-of-zelda-ocarina-of-time-2026/Princess_of_Hyrule_Castle_-_Hyrule_Castle"
+    ],
+    "note": "重制版城门在夜间不再关闭，与原版不同。",
+    "pin_ids": [],
+    "romfs": {
+      "challenge_ids": [
+        "Goto_HyruleCastle"
+      ],
+      "step_nodes": [
+        "Step03_01"
+      ],
+      "actors": [
+        "Npc_Navi"
+      ],
+      "save_flags": [
+        "Zelda's Lullaby"
+      ],
+      "evidence": "RSDB/Challenge.Product.111.rstbl.byml + demo_save_structure.json (romfs-derived)"
+    },
+    "status": "romfs-backed"
+  },
+  {
+    "key": "threeSpiritualStones",
+    "name_zh": "三颗精灵石",
+    "name_en": "Three Spiritual Stones",
+    "category": "Main",
+    "era": "child",
+    "region": "海拉鲁城堡／海拉鲁城邑／时之神殿",
+    "npc_zh": "塞尔达公主、英帕、劳鲁",
+    "start_zh": "塞尔达在城堡委托林克集齐三颗精灵石，以开启时之神殿的时之门。",
+    "steps": [
+      "前往鼓隆城取得火之精灵石",
+      "前往卓拉领地取得水之精灵石",
+      "带齐三石返回海拉鲁城堡",
+      "护城河潜水取得时之笛",
+      "习得时之歌并前往神殿",
+      "奏歌开门并拔出大师之剑"
+    ],
+    "deliver_zh": "将三颗精灵石嵌入时之神殿祭坛，吹奏时之歌开启时之门。",
+    "reward_zh": [
+      "时之笛",
+      "时之歌",
+      "大师之剑"
+    ],
+    "requires": [
+      "princessOfHyruleCastle"
+    ],
+    "unlocks": [
+      "awakeningTheFiveSages",
+      "happyMaskShopkeeper"
+    ],
+    "children": [
+      "spiritualStoneOfFire",
+      "spiritualStoneOfWater"
+    ],
+    "sources": [
+      "https://www.neoseeker.com/the-legend-of-zelda-ocarina-of-time-2026/Three_Spiritual_Stones_-_Part_2",
+      "https://zeldacentral.com/games/ocarina-of-time-remake/medallions-and-spiritual-stones/"
+    ],
+    "note": "官方日志仅把火、水两颗列为子任务；森林精灵石（科奇里翡翠）归在大德库树任务。",
+    "pin_ids": [],
+    "romfs": {
+      "challenge_ids": [
+        "DoorOfTime"
+      ],
+      "step_nodes": [
+        "Step01"
+      ],
+      "actors": [
+        "Npc_Hylia_Impa_Child"
+      ],
+      "save_flags": [
+        "Song of Time",
+        "Kokiri's Emerald"
+      ],
+      "evidence": "RSDB/Challenge.Product.111.rstbl.byml + demo_save_structure.json (romfs-derived)"
+    },
+    "status": "romfs-backed"
+  },
+  {
+    "key": "spiritualStoneOfFire",
+    "name_zh": "火之精灵石",
+    "name_en": "Spiritual Stone of Fire",
+    "category": "Main",
+    "era": "child",
+    "region": "死亡之山登山道／鼓隆城／多东哥洞窟",
+    "npc_zh": "达鲁尼亚",
+    "start_zh": "向死亡之山守门人出示塞尔达的信后上山，达鲁尼亚正为大王多东哥发愁。",
+    "steps": [
+      "在达鲁尼亚门口吹塞尔达摇篮曲",
+      "吹莎莉亚之歌使他跳舞",
+      "获鼓隆手环并炸开洞窟入口",
+      "在多东哥洞窟取得炸弹袋",
+      "击败多东哥王",
+      "回洞口获鼓隆红宝石"
+    ],
+    "deliver_zh": "",
+    "reward_zh": [
+      "鼓隆红宝石（火之精灵石）",
+      "鼓隆手环",
+      "炸弹袋",
+      "心之容器"
+    ],
+    "requires": [
+      "threeSpiritualStones"
+    ],
+    "unlocks": [
+      "toTheGreatFairy",
+      "spiritualStoneOfWater"
+    ],
+    "children": [],
+    "sources": [
+      "https://zeldacentral.com/games/ocarina-of-time-remake/medallions-and-spiritual-stones/",
+      "https://www.neoseeker.com/the-legend-of-zelda-ocarina-of-time-2026/Hyrule_Exploration_-_Bombs"
+    ],
+    "note": "",
+    "pin_ids": [],
+    "romfs": {
+      "challenge_ids": [
+        "Get_StoneOfFire"
+      ],
+      "step_nodes": [
+        "BossBattle",
+        "DarniaRoomKokiriTalk",
+        "DeathMtTrailNpc",
+        "DodongoCavernOpne",
+        "DungeonStart",
+        "EscapeDungeon",
+        "GoronCityDarniaTalk",
+        "GoronCityDarniaroomNpcTalk01",
+        "KakarikoVillageLetter",
+        "KakarikoVillageNpc",
+        "KokiriForestFire",
+        "KokiriForestIn",
+        "KokiriForestNPCTalk",
+        "SariaMelodyGet",
+        "SariaMelodyPlay"
+      ],
+      "actors": [
+        "Npc_Goron_003_Child",
+        "Npc_Goron_005_Child",
+        "Npc_Goron_007_Child",
+        "Npc_Goron_Darunia_Child",
+        "Npc_Hylia_Soldier_003"
+      ],
+      "save_flags": [
+        "Zelda's Lullaby",
+        "Saria's Song",
+        "Goron's Ruby"
+      ],
+      "evidence": "RSDB/Challenge.Product.111.rstbl.byml + demo_save_structure.json (romfs-derived)"
+    },
+    "status": "romfs-backed"
+  },
+  {
+    "key": "spiritualStoneOfWater",
+    "name_zh": "水之精灵石",
+    "name_en": "Spiritual Stone of Water",
+    "category": "Main",
+    "era": "child",
+    "region": "卓拉河／卓拉领地／海利亚湖／加卜加卜大人腹中",
+    "npc_zh": "卓拉王、露托",
+    "start_zh": "卓拉王告知露托失踪且持有水之精灵石，请林克设法救出她。",
+    "steps": [
+      "炸开卓拉河道路岩石",
+      "瀑布前吹塞尔达摇篮曲入领地",
+      "空瓶装鱼并换得露托的信",
+      "把信交给卓拉王开启卓拉之泉",
+      "喂鱼进入加卜加卜腹中救露托",
+      "击败巴里纳得获卓拉蓝宝石"
+    ],
+    "deliver_zh": "",
+    "reward_zh": [
+      "卓拉蓝宝石（水之精灵石）",
+      "回旋镖",
+      "银鳞",
+      "心之容器"
+    ],
+    "requires": [
+      "spiritualStoneOfFire"
+    ],
+    "unlocks": [],
+    "children": [],
+    "sources": [
+      "https://questduo.com/?p=19347",
+      "https://zeldacentral.com/games/ocarina-of-time-remake/medallions-and-spiritual-stones/"
+    ],
+    "note": "",
+    "pin_ids": [],
+    "romfs": {
+      "challenge_ids": [
+        "Get_StoneOfWater"
+      ],
+      "step_nodes": [
+        "Ready",
+        "Step01",
+        "Step02",
+        "Step03",
+        "Step03_Impa",
+        "Step04",
+        "Step05",
+        "Step05_01",
+        "Step06",
+        "Step07",
+        "Step08",
+        "Step09",
+        "Step10",
+        "Step11",
+        "Step12",
+        "Step13",
+        "Step14"
+      ],
+      "actors": [
+        "Npc_Zora_KingZora_child",
+        "Npc_Zora_Ruto_Child_001",
+        "Npc_Zora_Ruto_Child_001_Step1",
+        "Npc_Zora_Ruto_Child_001_Step2"
+      ],
+      "save_flags": [
+        "Zelda's Lullaby",
+        "Zora's Sapphire"
+      ],
+      "evidence": "RSDB/Challenge.Product.111.rstbl.byml + demo_save_structure.json (romfs-derived)"
+    },
+    "status": "romfs-backed"
+  },
+  {
+    "key": "malonsFriend",
+    "name_zh": "玛蓉的朋友",
+    "name_en": "Malon's Friend",
+    "category": "Main",
+    "era": "child",
+    "region": "荣蓉牧场",
+    "npc_zh": "玛蓉",
+    "start_zh": "幼年林克在荣蓉牧场与玛蓉对话，她介绍爱马伊波娜后开启任务。",
+    "steps": [
+      "与玛蓉对话，展示陶笛",
+      "学伊波娜之歌并吹奏",
+      "白天帮塔隆30秒内找回三只库克鸡",
+      "成年后付20卢比骑英戈的马",
+      "吹伊波娜之歌，两次赛马胜英戈"
+    ],
+    "deliver_zh": "",
+    "reward_zh": [
+      "伊波娜之歌",
+      "伊波娜",
+      "朗朗牛奶一瓶（第二个空瓶）",
+      "林克家的牛"
+    ],
+    "requires": [
+      "princessOfHyruleCastle",
+      "陶笛",
+      "成年需伊波娜之歌",
+      "赛马需20卢比"
+    ],
+    "unlocks": [
+      "骑乘伊波娜",
+      "林克家的牛可挤奶"
+    ],
+    "children": [],
+    "sources": [
+      "https://game8.co/games/Zelda-Ocarina-of-Time/archives/638058",
+      "https://www.neoseeker.com/the-legend-of-zelda-ocarina-of-time-2026/Princess_of_Hyrule_Castle_-_Hyrule_Castle",
+      "https://www.gamersky.com/handbook/202611/2246517.shtml",
+      "https://www.18183.com/gonglue/202611/9195653.html",
+      "https://zh-cn.zeldacentral.com/games/ocarina-of-time-remake/side-quests/"
+    ],
+    "note": "可选任务；跳过仍可通关，但成年后无法早得伊波娜。 | Game8原页403，内容经游民星空/18183转载核对。40秒内完成环形赛道才获赠牛。",
+    "pin_ids": [],
+    "romfs": {
+      "challenge_ids": [
+        "Get_Epona"
+      ],
+      "step_nodes": [
+        "AfterTalkMalon",
+        "AfterWonGambleRace",
+        "GambleRacePlaying",
+        "GuideToLonLonRanchAdult",
+        "ReadyForGambleRace"
+      ],
+      "actors": [
+        "Animal_Epona_Adult",
+        "Npc_Hylia_Ingo_002_Adult",
+        "Npc_Hylia_Malon_Adult"
+      ],
+      "save_flags": [
+        "Epona's Song"
+      ],
+      "evidence": "RSDB/Challenge.Product.111.rstbl.byml + demo_save_structure.json (romfs-derived)"
+    },
+    "status": "romfs-backed"
+  },
+  {
+    "key": "aSongOfTheRoyalFamily",
+    "name_zh": "献给王族的诗",
+    "name_en": "A Song of the Royal Family",
+    "category": "Main",
+    "era": "child",
+    "region": "卡卡利科村墓地",
+    "npc_zh": "作曲家兄弟（夏普、弗拉特）",
+    "start_zh": "在墓地王室墓碑前的三角神力标志上吹奏塞尔达摇篮曲，墓碑裂开露出阶梯。",
+    "steps": [
+      "夜晚进入卡卡利科村墓地",
+      "在王族墓碑前吹塞尔达摇篮曲",
+      "墓碑碎裂，跳入墓穴",
+      "用弹弓击败四只蝙蝠",
+      "避开死亡僵尸与毒池，读墓志铭",
+      "跟奏学会太阳之歌"
+    ],
+    "deliver_zh": "",
+    "reward_zh": [
+      "太阳之歌",
+      "金骷髅蜘蛛#8",
+      "心之碎片#4",
+      "心之碎片#5"
+    ],
+    "requires": [
+      "princessOfHyruleCastle",
+      "塞尔达摇篮曲",
+      "妖精弹弓"
+    ],
+    "unlocks": [
+      "太阳之歌可切换昼夜、定住吉波得与死亡僵尸"
+    ],
+    "children": [],
+    "sources": [
+      "https://howtovideogame.com/ocarina-of-time-remake-royal-familys-tomb",
+      "https://zeldawiki.wiki/wiki/A_Song_of_the_Royal_Family",
+      "https://game8.co/games/Zelda-Ocarina-of-Time/archives/638058",
+      "https://www.gamersky.com/handbook/202611/2246517.shtml",
+      "https://www.18183.com/gonglue/202611/9195653.html"
+    ],
+    "note": "可选；进入墓室内部需妖精弹弓，但开门只需陶笛与摇篮曲。 | 官方7支线之一；ZeldaCentral重制版支线页仅列6条，未收录本条。",
+    "pin_ids": [],
+    "romfs": {
+      "challenge_ids": [
+        "SubEvent_GetMelodySun"
+      ],
+      "step_nodes": [],
+      "actors": [],
+      "save_flags": [
+        "Sun's Song",
+        "Zelda's Lullaby"
+      ],
+      "evidence": "RSDB/Challenge.Product.111.rstbl.byml + demo_save_structure.json (romfs-derived)"
+    },
+    "status": "romfs-backed"
+  },
+  {
+    "key": "happyMaskShopkeeper",
+    "name_zh": "幸福面具店主",
+    "name_en": "Happy Mask Shopkeeper",
+    "category": "Main",
+    "era": "child",
+    "region": "海拉鲁城邑／卡卡利科村／迷途森林",
+    "npc_zh": "幸福面具店主",
+    "start_zh": "把塞尔达的信交给卡卡利科村守门人后面具店开张，与店主对话成为「幸福推销员」。",
+    "steps": [
+      "白天到店借面具，售出后回店付款",
+      "奇坦面具10卢比，卖守卫得15",
+      "骷髅面具20卢比，卖骷髅小子得10",
+      "恐怖面具30卢比，卖墓地男孩得50",
+      "兔子头箍50卢比，卖奔跑的人得金卢比",
+      "付清后获真实面具，任务完成"
+    ],
+    "deliver_zh": "把售面具所得卢比交回面具店，再借下一张面具。",
+    "reward_zh": [
+      "奇坦面具",
+      "骷髅面具",
+      "恐怖面具",
+      "兔子头箍",
+      "真实面具",
+      "格鲁德面具",
+      "卓拉面具",
+      "鼓隆面具",
+      "金卢比200"
+    ],
+    "requires": [
+      "princessOfHyruleCastle",
+      "幼年林克",
+      "太阳之歌"
+    ],
+    "unlocks": [
+      "可借用全部面具",
+      "触发特殊对话与容量升级"
+    ],
+    "children": [],
+    "sources": [
+      "https://game8.co/games/Zelda-Ocarina-of-Time/archives/638058",
+      "https://www.neoseeker.com/the-legend-of-zelda-ocarina-of-time-2026/Hyrule_Exploration_-_Bombs",
+      "https://www.gamersky.com/handbook/202611/2246517.shtml",
+      "https://www.18183.com/gonglue/202611/9195653.html",
+      "https://zh-cn.zeldacentral.com/games/ocarina-of-time-remake/mask-guide/"
+    ],
+    "note": "可选；真实面具可听懂流言石与NPC真心话。 | 译名音译差异较大；成年线只能携带一枚借出的面具。",
+    "pin_ids": [],
+    "name_alias_zh": "幸福面具店",
+    "romfs": {
+      "challenge_ids": [
+        "SubEvent_MaskSalesman"
+      ],
+      "step_nodes": [
+        "Step01",
+        "Step01_Hint",
+        "Step02",
+        "Step03",
+        "Step03_Hint",
+        "Step04",
+        "Step07",
+        "Step07_Hint",
+        "Step08"
+      ],
+      "actors": [
+        "Npc_Hylia_RunningMan_Child",
+        "Npc_Hylia_Soldier_003",
+        "Npc_SkullKid_Child"
+      ],
+      "save_flags": [
+        "Sun's Song"
+      ],
+      "evidence": "RSDB/Challenge.Product.111.rstbl.byml + demo_save_structure.json (romfs-derived)"
+    },
+    "status": "romfs-backed"
+  },
+  {
+    "key": "toTheGreatFairy",
+    "name_zh": "前往大妖精",
+    "name_en": "To the Great Fairy",
+    "category": "Main",
+    "era": "both",
+    "region": "死亡之山顶峰／海拉鲁城堡／卓拉之泉／死亡之山火山口／沙漠巨像／加侬城",
+    "npc_zh": "力量大妖精、智慧大妖精、勇气大妖精",
+    "start_zh": "完成火之精灵石后达鲁尼亚提示「去山顶拜见大妖精」，任务开启。",
+    "steps": [
+      "带炸弹上死亡之山顶峰",
+      "炸开裂纹墙进入妖精泉",
+      "站标志上吹塞尔达摇篮曲",
+      "付25卢比获迪荧之火与魔力槽",
+      "按泉水顺序付卢比取各项强化"
+    ],
+    "deliver_zh": "",
+    "reward_zh": [
+      "迪荧之火",
+      "魔力槽",
+      "强化回旋斩",
+      "法罗尔之风",
+      "魔力翻倍",
+      "娜如的爱",
+      "伤害减半",
+      "魔法槽升级",
+      "花柔之风",
+      "娜如之爱",
+      "魔法翻倍",
+      "强化旋转攻击"
+    ],
+    "requires": [
+      "spiritualStoneOfFire",
+      "塞尔达摇篮曲",
+      "炸弹/百万吨锤/黄金手套",
+      "共1175卢比"
+    ],
+    "unlocks": [
+      "魔法能力",
+      "传送点",
+      "防御强化"
+    ],
+    "children": [],
+    "sources": [
+      "https://www.playnews.gg/en/guides/great-fairies-in-ocarina-of-time-remake-where-to-find-all-6-and-what-power-each-one-grants",
+      "https://games.gg/zh-Hant/the-legend-of-zelda-ocarina-of-time-2026/guides/ocarina-of-time-remake-%E5%A4%A7%E5%A6%96%E7%B2%BE%E4%BD%8D%E7%BD%AE%E7%8D%8E%E5%8B%B5%E8%88%87%E6%B6%88%E8%80%97%E4%B8%80%E8%A6%BD",
+      "https://game8.co/games/Zelda-Ocarina-of-Time/archives/638058",
+      "https://www.gamersky.com/handbook/202611/2246517.shtml",
+      "https://zh-cn.zeldacentral.com/games/ocarina-of-time-remake/great-fairy-fountains/"
+    ],
+    "note": "重制版六泉均需付卢比；首位必须是死亡之山或海拉鲁城堡的妖精。奖励按全六泉汇总。 | 共6泉，供品依次为25/50/100/200/300/500卢比。",
+    "pin_ids": [],
+    "name_alias_zh": "拜访大妖精",
+    "romfs": {
+      "challenge_ids": [
+        "Meet_GreatFairy"
+      ],
+      "step_nodes": [],
+      "actors": [],
+      "save_flags": [
+        "Zelda's Lullaby"
+      ],
+      "evidence": "RSDB/Challenge.Product.111.rstbl.byml + demo_save_structure.json (romfs-derived)"
+    },
+    "status": "romfs-backed"
+  },
+  {
+    "key": "awakeningTheFiveSages",
+    "name_zh": "唤醒五贤者",
+    "name_en": "Awakening the Five Sages",
+    "category": "Main",
+    "era": "adult",
+    "region": "时之神殿／海拉鲁全域／五座神殿",
+    "npc_zh": "劳鲁、希克",
+    "start_zh": "拔出大师剑后被封印七年，劳鲁给予光之徽章，希克在时之神殿外说明五座神殿之事。",
+    "steps": [
+      "见劳鲁获光之徽章",
+      "回海拉鲁遇希克得指引",
+      "前往卡卡利科村取钩索",
+      "依序攻略五座神殿",
+      "唤醒五位贤者"
+    ],
+    "deliver_zh": "",
+    "reward_zh": [
+      "光之勋章"
+    ],
+    "requires": [
+      "threeSpiritualStones"
+    ],
+    "unlocks": [
+      "lightAndDarkness"
+    ],
+    "children": [
+      "forestTempleMysteries",
+      "disasterInGoronCity",
+      "disasterInZoraDomain",
+      "creatureOfDarkness",
+      "missingInTheDesert"
+    ],
+    "sources": [
+      "https://www.neoseeker.com/the-legend-of-zelda-ocarina-of-time-2026/Awakening_the_Five_Sages",
+      "https://zeldacentral.com/games/ocarina-of-time-remake/medallions-and-spiritual-stones/"
+    ],
+    "note": "五个子任务按顺序串联，不能像旷野之息那样自由选择顺序。",
+    "pin_ids": [],
+    "romfs": {
+      "challenge_ids": [
+        "AllSage"
+      ],
+      "step_nodes": [],
+      "actors": [],
+      "save_flags": [
+        "Light Medallion"
+      ],
+      "evidence": "RSDB/Challenge.Product.111.rstbl.byml + demo_save_structure.json (romfs-derived)"
+    },
+    "status": "romfs-backed"
+  },
+  {
+    "key": "forestTempleMysteries",
+    "name_zh": "森之神殿之谜",
+    "name_en": "Forest Temple Mysteries",
+    "category": "Main",
+    "era": "adult",
+    "region": "卡卡利科村／迷途森林／森之圣域／森之神殿",
+    "npc_zh": "希克、米多、莎莉亚",
+    "start_zh": "希克指定首站为森之神殿，需先在卡卡利科村取得钩索并通过迷途森林。",
+    "steps": [
+      "墓地追逐丹培取得钩索",
+      "风车屋学暴风雨之歌",
+      "对米多吹莎莉亚之歌过森林",
+      "用钩索进入森之神殿",
+      "射四波伊姐妹画取首领钥匙",
+      "击败幻影加侬救莎莉亚"
+    ],
+    "deliver_zh": "",
+    "reward_zh": [
+      "森之勋章",
+      "妖精之弓",
+      "心之容器",
+      "森之小步舞曲"
+    ],
+    "requires": [
+      "awakeningTheFiveSages"
+    ],
+    "unlocks": [
+      "disasterInGoronCity"
+    ],
+    "children": [],
+    "sources": [
+      "https://zeldacentral.com/games/ocarina-of-time-remake/walkthrough/forest-temple/",
+      "https://questfern.com/zh/oot/guides/walkthrough"
+    ],
+    "note": "",
+    "pin_ids": [],
+    "romfs": {
+      "challenge_ids": [
+        "SageOfForest"
+      ],
+      "step_nodes": [],
+      "actors": [],
+      "save_flags": [
+        "Song of Storms",
+        "Saria's Song",
+        "Minuet of Forest",
+        "Forest Medallion"
+      ],
+      "evidence": "RSDB/Challenge.Product.111.rstbl.byml + demo_save_structure.json (romfs-derived)"
+    },
+    "status": "romfs-backed"
+  },
+  {
+    "key": "disasterInGoronCity",
+    "name_zh": "鼓隆城的灾难",
+    "name_en": "Disaster in Goron City",
+    "category": "Main",
+    "era": "adult",
+    "region": "死亡之山／鼓隆城／火之神殿",
+    "npc_zh": "达鲁尼亚",
+    "start_zh": "森之神殿后希克指引前往死亡之山，鼓隆城因火山异变而开启任务。",
+    "steps": [
+      "穿鼓隆服进入火山口",
+      "用炸弹停住小鼓隆问路",
+      "进火之神殿救出九名鼓隆",
+      "取百万吨锤与首领钥匙",
+      "击败沃尔瓦吉亚救达鲁尼亚"
+    ],
+    "deliver_zh": "",
+    "reward_zh": [
+      "火之勋章",
+      "百万吨锤",
+      "鼓隆服",
+      "火之波丽露舞曲"
+    ],
+    "requires": [
+      "forestTempleMysteries"
+    ],
+    "unlocks": [
+      "disasterInZoraDomain"
+    ],
+    "children": [],
+    "sources": [
+      "https://zeldacentral.com/games/ocarina-of-time-remake/walkthrough/fire-temple/",
+      "https://questfern.com/zh/oot/guides/walkthrough"
+    ],
+    "note": "",
+    "pin_ids": [],
+    "romfs": {
+      "challenge_ids": [
+        "SageOfFire"
+      ],
+      "step_nodes": [
+        "Ready",
+        "StopDaruniaJr",
+        "TalkDaruniaJr"
+      ],
+      "actors": [
+        "Npc_Goron_DaruniaJr_Adult",
+        "Npc_Goron_DaruniaJr_Adult_demo1",
+        "Npc_Goron_DaruniaJr_Adult_demo2"
+      ],
+      "save_flags": [
+        "Bolero of Fire",
+        "Fire Medallion"
+      ],
+      "evidence": "RSDB/Challenge.Product.111.rstbl.byml + demo_save_structure.json (romfs-derived)"
+    },
+    "status": "romfs-backed"
+  },
+  {
+    "key": "disasterInZoraDomain",
+    "name_zh": "卓拉领地的灾难",
+    "name_en": "Disaster in Zora Domain",
+    "category": "Main",
+    "era": "adult",
+    "region": "卓拉河／卓拉领地／冰之洞窟／水之神殿",
+    "npc_zh": "卓拉王、露托、希克",
+    "start_zh": "火之神殿后卓拉领地被冰封，需从冰之洞窟取得蓝色火焰解除冰冻。",
+    "steps": [
+      "从卓拉河进入冰之洞窟",
+      "取蓝色火焰与重铁靴",
+      "用蓝火解冻卓拉领地",
+      "穿卓拉服调水位进水之神殿",
+      "击败莫尔法救露托"
+    ],
+    "deliver_zh": "",
+    "reward_zh": [
+      "水之勋章",
+      "长钩索",
+      "重铁靴",
+      "卓拉服",
+      "水之小夜曲"
+    ],
+    "requires": [
+      "disasterInGoronCity"
+    ],
+    "unlocks": [
+      "creatureOfDarkness"
+    ],
+    "children": [],
+    "sources": [
+      "https://zeldacentral.com/games/ocarina-of-time-remake/walkthrough/water-temple/",
+      "https://questfern.com/zh/oot/guides/walkthrough"
+    ],
+    "note": "重制版击败莫尔法后卓拉领地即解冻，修正了原版逻辑矛盾。",
+    "pin_ids": [],
+    "romfs": {
+      "challenge_ids": [
+        "SageOfWater"
+      ],
+      "step_nodes": [
+        "Ready",
+        "Step01",
+        "Step03",
+        "Step04",
+        "Step05",
+        "Step06",
+        "Step07",
+        "Step07_1",
+        "Step07_2",
+        "Step08"
+      ],
+      "actors": [
+        "Npc_Zora_KingZora_adult",
+        "Npc_Zora_Ruto_Adult_001"
+      ],
+      "save_flags": [
+        "Serenade of Water",
+        "Water Medallion"
+      ],
+      "evidence": "RSDB/Challenge.Product.111.rstbl.byml + demo_save_structure.json (romfs-derived)"
+    },
+    "status": "romfs-backed"
+  },
+  {
+    "key": "creatureOfDarkness",
+    "name_zh": "暗之生物",
+    "name_en": "Creature of Darkness",
+    "category": "Main",
+    "era": "adult",
+    "region": "卡卡利科村／墓地／井底／暗之神殿",
+    "npc_zh": "希克、英帕",
+    "start_zh": "水之神殿后希克在卡卡利科村遭怪物袭击，给予暗之梦幻曲并开启任务。",
+    "steps": [
+      "吹暗之梦幻曲传送墓地",
+      "吹暴风雨之歌放干井水",
+      "下井取真实眼镜",
+      "戴眼镜进暗之神殿",
+      "乘幽灵船取首领钥匙",
+      "击败邦戈邦戈救英帕"
+    ],
+    "deliver_zh": "",
+    "reward_zh": [
+      "暗之勋章",
+      "真实眼镜",
+      "浮空靴",
+      "心之容器"
+    ],
+    "requires": [
+      "disasterInZoraDomain"
+    ],
+    "unlocks": [
+      "missingInTheDesert"
+    ],
+    "children": [],
+    "sources": [
+      "https://zeldacentral.com/games/ocarina-of-time-remake/walkthrough/shadow-temple/",
+      "https://questfern.com/zh/oot/guides/walkthrough"
+    ],
+    "note": "暗之神殿点亮火把需迪荧之火，故与前往大妖精任务相关。",
+    "pin_ids": [],
+    "romfs": {
+      "challenge_ids": [
+        "SageOfShadow"
+      ],
+      "step_nodes": [],
+      "actors": [],
+      "save_flags": [
+        "Song of Storms",
+        "Nocturne of Shadow",
+        "Shadow Medallion"
+      ],
+      "evidence": "RSDB/Challenge.Product.111.rstbl.byml + demo_save_structure.json (romfs-derived)"
+    },
+    "status": "romfs-backed"
+  },
+  {
+    "key": "missingInTheDesert",
+    "name_zh": "沙漠失踪事件",
+    "name_en": "Missing in the Desert",
+    "category": "Main",
+    "era": "both",
+    "region": "格鲁德要塞／幻影沙漠／沙漠巨像／魂之神殿",
+    "npc_zh": "希克、纳波鲁",
+    "start_zh": "暗之神殿后希克指引前往格鲁德沙漠，纳波鲁在魂之神殿失踪。",
+    "steps": [
+      "救出四名木匠获通行资格",
+      "穿越幻影沙漠取魂之慰灵曲",
+      "幼年进神殿前半取银手套",
+      "成年进神殿后半取镜盾",
+      "击败双子妖婆救纳波鲁"
+    ],
+    "deliver_zh": "",
+    "reward_zh": [
+      "魂之勋章",
+      "银手套",
+      "镜盾",
+      "魂之慰灵曲"
+    ],
+    "requires": [
+      "creatureOfDarkness"
+    ],
+    "unlocks": [
+      "lightAndDarkness"
+    ],
+    "children": [],
+    "sources": [
+      "https://zeldacentral.com/games/ocarina-of-time-remake/walkthrough/spirit-temple/",
+      "https://questfern.com/zh/oot/guides/walkthrough"
+    ],
+    "note": "唯一需要幼年与成年两段路线都走的神殿。",
+    "pin_ids": [],
+    "romfs": {
+      "challenge_ids": [
+        "SageOfSpirit"
+      ],
+      "step_nodes": [
+        "Ready",
+        "Step01",
+        "Step02",
+        "Step05",
+        "Step05_01",
+        "Step05_02",
+        "Step05_03",
+        "Step06"
+      ],
+      "actors": [
+        "Npc_Gerudo_001",
+        "Npc_Gerudo_001_FortressCleared",
+        "Npc_Gerudo_Nabooru_Child",
+        "Npc_Hylia_012_Adult",
+        "Npc_Hylia_013_Adult_GerudoFortress",
+        "Npc_Hylia_014_Adult_GerudoFortress",
+        "Npc_Hylia_015_Adult_GerudoFortress",
+        "Npc_Hylia_016_Adult_GerudoFortress"
+      ],
+      "save_flags": [
+        "Requiem of Spirit",
+        "Spirit Medallion"
+      ],
+      "evidence": "RSDB/Challenge.Product.111.rstbl.byml + demo_save_structure.json (romfs-derived)"
+    },
+    "status": "romfs-backed"
+  },
+  {
+    "key": "stirTheScarecrowsSoul",
+    "name_zh": "震撼稻草人的灵魂！",
+    "name_en": "Stir the Scarecrow's Soul!",
+    "category": "Main",
+    "era": "both",
+    "region": "海利亚湖",
+    "npc_zh": "波努鲁、皮埃尔",
+    "start_zh": "幼年林克在海利亚湖畔农田与绿围巾稻草人波努鲁对话即可开启。",
+    "steps": [
+      "在海利亚湖畔找到波努鲁",
+      "吹奏自编的八音符旋律",
+      "待波努鲁完全记住旋律",
+      "成年后回湖畔重奏同曲",
+      "习得稻草人之歌"
+    ],
+    "deliver_zh": "",
+    "reward_zh": [
+      "稻草人之歌",
+      "召唤皮埃尔以钩索抵达隐藏区域",
+      "金骷髅蜘蛛#52"
+    ],
+    "requires": [
+      "greatDekuTree",
+      "时之笛",
+      "成年需伊波娜或马"
+    ],
+    "unlocks": [
+      "火之神殿、格鲁德要塞等钩索心之碎片"
+    ],
+    "children": [],
+    "sources": [
+      "https://game8.co/games/Zelda-Ocarina-of-Time/archives/637861",
+      "https://www.entertainment14.net/blog/post/111013871-%E8%96%A9%E7%88%BE%E9%81%94%E5%82%B3%E8%AA%AA-%E6%99%82%E4%B9%8B%E7%AC%9B-%E9%87%8D%E8%A3%BD%E7%89%88-%E7%A8%BB%E8%8D%89%E4%BA%BA%E4%B9%8B%E6%AD%8C%E7%BF%92%E5%BE%97%E6%96%B9%E6%B3%95",
+      "https://game8.co/games/Zelda-Ocarina-of-Time/archives/638058",
+      "https://www.gamersky.com/handbook/202611/2246517.shtml",
+      "https://zh-cn.zeldacentral.com/games/ocarina-of-time-remake/side-quests/"
+    ],
+    "note": "可选；旋律由玩家自定。Zelda Wiki 将发起人标为皮埃尔，中文攻略作波努鲁。 | 稻草人之歌亦可配合长钩索使用。",
+    "pin_ids": [],
+    "romfs": {
+      "challenge_ids": [
+        "SubEvent_GetScarecrow"
+      ],
+      "step_nodes": [],
+      "actors": [],
+      "save_flags": [
+        "Scarecrow's Song"
+      ],
+      "evidence": "RSDB/Challenge.Product.111.rstbl.byml + demo_save_structure.json (romfs-derived)"
+    },
+    "status": "romfs-backed"
+  },
+  {
+    "key": "brokenWindmillDryWell",
+    "name_zh": "破碎的风车与枯井",
+    "name_en": "Broken Windmill, Dry Well",
+    "category": "Main",
+    "era": "adult",
+    "region": "卡卡利科村",
+    "npc_zh": "风车屋的音乐人",
+    "start_zh": "成年林克进入卡卡利科村风车屋，音乐人抱怨天气被歌曲弄坏，任务开启。",
+    "steps": [
+      "音乐叔叔抱怨风车失控、井被封",
+      "成年向他学暴风雨之歌",
+      "归还大师剑变回幼年，爬上风车",
+      "对叔叔吹暴风雨之歌，井水抽干",
+      "下井探索，击败死亡之手",
+      "开箱获真理之镜"
+    ],
+    "deliver_zh": "",
+    "reward_zh": [
+      "暴风雨之歌",
+      "真实眼镜",
+      "真理之镜",
+      "通往井底"
+    ],
+    "requires": [
+      "awakeningTheFiveSages",
+      "暴风雨之歌",
+      "幼年形态",
+      "大师剑归还"
+    ],
+    "unlocks": [
+      "井底探索",
+      "识破假墙与隐形敌人"
+    ],
+    "children": [],
+    "sources": [
+      "https://zeldawiki.wiki/wiki/Broken_Windmill,_Dry_Well",
+      "https://www.neoseeker.com/the-legend-of-zelda-ocarina-of-time-2026/Ocarina_Songs",
+      "https://game8.co/games/Zelda-Ocarina-of-Time/archives/638058",
+      "https://www.gamersky.com/handbook/202611/2246517.shtml",
+      "https://zh-cn.zeldacentral.com/games/ocarina-of-time-remake/side-quests/"
+    ],
+    "note": "可选，但真实眼镜（真理之镜）是暗之神殿必需品。 | 抽干井水是《暗之梦幻曲》最后一幕。",
+    "pin_ids": [],
+    "name_alias_zh": "坏掉的风车和干枯的水井",
+    "romfs": {
+      "challenge_ids": [
+        "SubEvent_GetStormSong"
+      ],
+      "step_nodes": [],
+      "actors": [],
+      "save_flags": [
+        "Song of Storms",
+        "Nocturne of Shadow"
+      ],
+      "evidence": "RSDB/Challenge.Product.111.rstbl.byml + demo_save_structure.json (romfs-derived)"
+    },
+    "status": "romfs-backed"
+  },
+  {
+    "key": "fromAPocketEggComes",
+    "name_zh": "从口袋蛋中孵化",
+    "name_en": "From a Pocket Egg Comes...",
+    "category": "Main",
+    "era": "adult",
+    "region": "卡卡利科村／迷途森林／格鲁德谷／死亡之山／卓拉领地／海利亚湖",
+    "npc_zh": "母鸡夫人、塔隆、法多、大鼓隆",
+    "start_zh": "成年林克在卡卡利科村鸡舍前向母鸡夫人取得口袋蛋，她请林克让贪睡者醒过来。",
+    "steps": [
+      "用太阳之歌孵出口袋小鸡",
+      "叫醒村中熟睡的塔隆",
+      "向母鸡夫人换得柯吉罗",
+      "沿交易链逐项交换十二件物品",
+      "限时配送不能传送",
+      "三天后向大鼓隆取大鼓隆之剑"
+    ],
+    "deliver_zh": "把当前物品交给指定NPC换取下一件，最终向大鼓隆交付特制眼药水并凭收据领剑。",
+    "reward_zh": [
+      "大鼓隆之剑",
+      "心之碎片",
+      "交易链各阶段道具"
+    ],
+    "requires": [
+      "awakeningTheFiveSages",
+      "成年林克",
+      "太阳之歌",
+      "伊波娜"
+    ],
+    "unlocks": [
+      "双手武器",
+      "大鼓隆之剑交易链"
+    ],
+    "children": [],
+    "sources": [
+      "https://game8.co/games/Zelda-Ocarina-of-Time/archives/637286",
+      "https://www.zeldadungeon.net/wiki/From_a_Pocket_Egg_Comes",
+      "https://game8.co/games/Zelda-Ocarina-of-Time/archives/638058",
+      "https://www.gamersky.com/handbook/202611/2246517.shtml",
+      "https://zh-cn.zeldacentral.com/games/ocarina-of-time-remake/biggoron-sword-guide/"
+    ],
+    "note": "可选；即大鼓隆之剑交易长链，部分段落限时且禁用传送曲。 | 与大鼓隆之剑交易链为同一任务线，此处为官方支线入口。",
+    "pin_ids": [],
+    "name_alias_zh": "袖珍鸡蛋能变成什么？",
+    "romfs": {
+      "challenge_ids": [
+        "SubEvent_GetSwordBigGoron"
+      ],
+      "step_nodes": [
+        "WaitEggHatch"
+      ],
+      "actors": [
+        "Npc_Navi"
+      ],
+      "save_flags": [
+        "Sun's Song"
+      ],
+      "evidence": "RSDB/Challenge.Product.111.rstbl.byml + demo_save_structure.json (romfs-derived)"
+    },
+    "status": "romfs-backed"
+  },
+  {
+    "key": "lightAndDarkness",
+    "name_zh": "光与暗",
+    "name_en": "Light and Darkness",
+    "category": "Main",
+    "era": "adult",
+    "region": "加侬多夫城堡",
+    "npc_zh": "塞尔达公主、六贤者",
+    "start_zh": "取得光箭并进入加侬多夫城堡后，任务日志新增「光与暗」。",
+    "steps": [
+      "进入加侬城破除六道结界",
+      "用光箭击破各结界暗球",
+      "六贤者依次解除封印",
+      "击败加侬多夫",
+      "与塞尔达逃出城堡",
+      "击败加侬完成结局"
+    ],
+    "deliver_zh": "",
+    "reward_zh": [
+      "通关",
+      "完整时光之线挂毯"
+    ],
+    "requires": [
+      "awakeningTheFiveSages",
+      "missingInTheDesert"
+    ],
+    "unlocks": [],
+    "children": [],
+    "sources": [
+      "https://zeldacentral.com/games/ocarina-of-time-remake/walkthrough/ganondorfs-castle/",
+      "https://zeldawiki.wiki/wiki/Light_and_Darkness"
+    ],
+    "note": "最终任务，需击败最终Boss；通关存档中挂毯保持完整可查看。",
+    "pin_ids": [],
+    "romfs": {
+      "challenge_ids": [
+        "Defeat_Ganon",
+        "EscapeFromCrumblingGanonCastle"
+      ],
+      "step_nodes": [
+        "Reset",
+        "Step01",
+        "Step02",
+        "Step03",
+        "Step04",
+        "Step05",
+        "Step06",
+        "Step07",
+        "Step08",
+        "Step09",
+        "Step10",
+        "Step11",
+        "Step12",
+        "Step13"
+      ],
+      "actors": [
+        "Npc_Hylia_Zelda_Adult"
+      ],
+      "save_flags": [],
+      "evidence": "RSDB/Challenge.Product.111.rstbl.byml + demo_save_structure.json (romfs-derived)"
+    },
+    "status": "romfs-backed"
+  }
+]
