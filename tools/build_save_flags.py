@@ -96,11 +96,12 @@ def main() -> None:
         if pid not in lst:
             lst.append(pid)
 
-    # 1. Scan Banc/*.bcett.byml for Enemy_Skulltula_Gold, Obj_Heart_Piece, Obj_Heart_Container, HidingHoleCover
+    # 1. Scan Banc/*.bcett.byml for Enemy_Skulltula_Gold, Obj_Heart_Piece, Obj_Heart_Container, HidingHoleCover, Enemy_Poe_Big
     skulls: list[tuple[list[float], int, str]] = []
     hearts: list[tuple[list[float], int, str]] = []
     containers: list[tuple[list[float], int, str]] = []
     covers: list[tuple[list[float], int, str]] = []
+    poes: list[tuple[list[float], str]] = []
     seen_skull_h: set[int] = set()
     seen_heart_h: set[int] = set()
     seen_cont_h: set[int] = set()
@@ -114,7 +115,14 @@ def main() -> None:
             g = a.get("Gyaml", "")
             tr = a.get("Translate")
             h = a.get("Hash", 0)
-            if not tr or not h:
+            if not tr:
+                continue
+            if g == "Enemy_Poe_Big":
+                gd_poe = (a.get("Dynamic") or {}).get("PoeBig_IsCleared", "")
+                if gd_poe:
+                    poes.append((tr, gd_poe))
+                continue
+            if not h:
                 continue
             if g == "Enemy_Skulltula_Gold" and h not in seen_skull_h:
                 seen_skull_h.add(h)
@@ -215,6 +223,10 @@ def main() -> None:
             best_cov = min(((dist3(w, c[0]), c[1]) for c in covers), key=lambda x: x[0], default=None)
             if best_cov and best_cov[0] < 8.0:
                 add_actor64(best_cov[1], p["id"])
+        elif p["cat"] == "poe":
+            best_poe = min(((dist3(w, x[0]), x[1]) for x in poes), key=lambda x: x[0], default=None)
+            if best_poe and best_poe[0] < 3.0:
+                add_gd32(best_poe[1], p["id"])
 
     # 5. Curated GameData mappings (Songs, Medallions/Stones, Masks, Upgrades, KeyItems, Bottles, Dungeon)
     curated_gd: dict[str, list[str]] = {

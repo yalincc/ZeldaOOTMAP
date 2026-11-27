@@ -46,6 +46,7 @@ from decode_map_tex import decode as decode_bntx  # noqa: E402
 ROMFS = Path(r"F:\SWITCH2\ZeldaOOT-RomFS")
 PROJ_PATH = ROOT / "data" / "map_projections.json"
 CURATED_PATH = ROOT / "data" / "curated_points.json"
+GUIDES_PATH = ROOT / "data" / "pin_guides.json"
 PINS_OUT = ROOT / "app" / "data" / "pins_data.js"
 TOPO_PATH = ROOT / "app" / "data" / "topology_data.js"
 
@@ -167,14 +168,16 @@ FACILITY_MAP = {
     38: ("item", "被囚木匠 #4", "Imprisoned Carpenter #4", "解救全部木匠后获得格鲁德会员证。", "Rescue all carpenters to receive the Gerudo's Membership Card."),
 }
 
-# Great Fairy specific names by GameDataHashName
+# Great Fairy specific names by GameDataHashName (Switch 2 Remake)
 GREAT_FAIRY_NAMES = {
-    "Dm_FairyFountain_Din": ("大妖精之泉 · 旋转斩", "Great Fairy: Spin Attack", "海拉鲁城堡/死亡山顶大妖精，传授蓄力旋转斩。"),
-    "Dm_FairyFountain_Power": ("大妖精之泉 · 迪荧之火", "Great Fairy: Din's Fire", "海拉鲁城堡大妖精，传授范围火焰魔法「迪荧之火」。"),
+    "Dm_FairyFountain_Din": ("大妖精之泉 · 迪荧之火", "Great Fairy: Din's Fire", "死亡山顶大妖精，传授魔法槽与范围火焰魔法「迪荧之火」。"),
+    "Dm_FairyFountain_Power": ("大妖精之泉 · 强化回旋斩", "Great Fairy: Spin Attack", "海拉鲁城堡大妖精，传授魔力强化回旋斩。"),
     "Dm_FairyFountain_Wisdom": ("大妖精之泉 · 魔力槽翻倍", "Great Fairy: Double Magic", "死亡山火山口大妖精，使魔力槽上限翻倍。"),
-    "Dm_FairyFountain_Courage": ("大妖精之泉 · 法洛雷之风", "Great Fairy: Farore's Wind", "佐拉之泉大妖精，传授迷宫传送魔法「法洛雷之风」。"),
-    "Dm_FairyFountain_Love": ("大妖精之泉 · 奈露之爱", "Great Fairy: Nayru's Love", "沙漠巨像大妖精，传授无敌护盾魔法「奈露之爱」。"),
-    "Dm_FairyFountain_Defense": ("大妖精之泉 · 双倍防御", "Great Fairy: Double Defense", "加侬城外大妖精，使林克受到的伤害减半。"),
+    "Dm_FairyFountain_Frore": ("大妖精之泉 · 花柔之风", "Great Fairy: Farore's Wind", "卓拉之泉大妖精，传授迷宫传送魔法「花柔之风」。"),
+    "Dm_FairyFountain_Courage": ("大妖精之泉 · 伤害减半", "Great Fairy: Double Defense", "加侬城堡外大妖精，使林克受到的伤害减半。"),
+    "Dm_FairyFountain_Nayru": ("大妖精之泉 · 娜如之爱", "Great Fairy: Nayru's Love", "巨大邪神像大妖精，传授无敌护盾魔法「娜如之爱」。"),
+    "Dm_FairyFountain_Love": ("大妖精之泉 · 娜如之爱", "Great Fairy: Nayru's Love", "巨大邪神像大妖精，传授无敌护盾魔法「娜如之爱」。"),
+    "Dm_FairyFountain_Defense": ("大妖精之泉 · 伤害减半", "Great Fairy: Double Defense", "加侬城堡外大妖精，使林克受到的伤害减半。"),
 }
 
 # Chest drop actor -> (zh, en, is_key_item)
@@ -843,6 +846,25 @@ def main() -> int:
         cat_counters["heartc"] += 1
 
     # ------------------------------------------------------------------
+    # 6.8 精炼攻略覆写 (data/pin_guides.json)
+    # ------------------------------------------------------------------
+    guides_applied = 0
+    if GUIDES_PATH.exists():
+        gdoc = json.loads(GUIDES_PATH.read_text(encoding="utf-8"))
+        gmap = gdoc.get("guides", {})
+        for p in pins:
+            g = gmap.get(p["id"])
+            if not g:
+                continue
+            for k in ("zh", "loc", "howto", "req", "reward", "note", "era", "time", "links"):
+                if k in g and g[k] is not None:
+                    p[k] = g[k]
+            if g.get("howto"):
+                p.pop("descZh", None)
+                p.pop("descEn", None)
+            guides_applied += 1
+
+    # ------------------------------------------------------------------
     # 7. WRITE app/data/pins_data.js (with pin_gateway_overrides.json)
     # ------------------------------------------------------------------
     ov_path = ROOT / "data" / "pin_gateway_overrides.json"
@@ -871,7 +893,7 @@ def main() -> int:
     )
     PINS_OUT.write_text(js_out, encoding="utf-8")
 
-    print(f"\n=== Extracted {len(pins)} 100%-accurate pins (romfs + curated {curated_added}) ===")
+    print(f"\n=== Extracted {len(pins)} 100%-accurate pins (romfs + curated {curated_added}, guides {guides_applied}) ===")
     for c, cnt in sorted(cat_counters.items()):
         print(f"  {c:12s}: {cnt}")
 

@@ -90,6 +90,62 @@ def check_data() -> None:
     check_regions(pins)
     check_world_anchors()
     check_save_flags(pins)
+    check_phase1_guides(pins)
+
+
+def check_phase1_guides(pins: list[dict]) -> None:
+    """阶段 1 核心点位攻略质量、4 宝箱、PIN_MAP 100% 命中与位置图数量校验。"""
+    pin_ids = {p["id"] for p in pins}
+
+    # 1. 核心收集与设施/Boss 点位 0 模板句、0 空 howto
+    core_cats = {"heart", "skull", "poe", "fairy", "item", "boss", "dungeon"}
+    core_pins = [p for p in pins if p["cat"] in core_cats]
+    empty_howto = [p["id"] for p in core_pins if not (p.get("howto") or "").strip()]
+    check("核心点位（166 点）均有怎么拿", not empty_howto, f"缺失 {empty_howto[:6]}")
+
+    bad_templates = (
+        "按点位搜索：可能在屋顶",
+        "按点位排查树上、墙缝",
+        "用弹弓/钩索/炸弹清掉蛛网与角落",
+        "遇大怨灵下马射箭击败",
+    )
+    tpl_left = [
+        p["id"] for p in core_pins
+        if any(t in (p.get("howto") or "") for t in bad_templates)
+    ]
+    check("核心点位 0 条残留旧模板句", not tpl_left, f"残留 {tpl_left[:6]}")
+
+    # 2. 100 个宝箱不再出现「未标注」
+    unlabeled_chests = [
+        p["id"] for p in pins
+        if p["cat"] == "chest" and ("未标注" in p.get("zh", "") or "未标注" in p.get("reward", ""))
+    ]
+    check("全部 100 宝箱内容已标注（无「未标注」）", not unlabeled_chests, f"未标注 {unlabeled_chests}")
+
+    # 3. 关联芯片 pinId 全部有效
+    bad_links = [
+        f"{p['id']}->{lk.get('pinId')}"
+        for p in pins
+        for lk in (p.get("links") or [])
+        if lk.get("pinId") not in pin_ids
+    ]
+    check("点位前置关联链接 100% 有效", not bad_links, f"无效 {bad_links[:6]}")
+
+    # 4. PIN_MAP 100% 命中 pins_data.js 且 >= 200
+    sys.path.insert(0, str(ROOT / "tools"))
+    from guide_pin_map import PIN_MAP
+    missing_pm = [f"{k}:{v}" for k, v in PIN_MAP.items() if v not in pin_ids]
+    check("guide_pin_map 配对数 ≥ 200", len(PIN_MAP) >= 200, f"实际 {len(PIN_MAP)}")
+    check("guide_pin_map 100% 命中 pins_data.js", not missing_pm, f"失效 {missing_pm[:6]}")
+
+    # 5. guide.html 位置图 >= 200
+    gp = APP / "guide.html"
+    if gp.exists():
+        gtxt = gp.read_text(encoding="utf-8")
+        m_pi = re.search(r"const PIN_IMAGES=(\{.*?\});", gtxt, re.S)
+        pi_cnt = len(json.loads(m_pi.group(1))) if m_pi else 0
+        check("guide.html 位置图 ≥ 200 张", pi_cnt >= 200, f"实际 {pi_cnt}")
+        check("guide.html 接入地图进度双向同步", "oot_map_done_pins_v3" in gtxt)
 
 
 def check_save_flags(pins: list[dict]) -> None:

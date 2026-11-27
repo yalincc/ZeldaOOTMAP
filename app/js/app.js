@@ -770,6 +770,13 @@
     });
 
     renderRegionGateways(r, box);
+
+    if (pendingSelectPinId) {
+      var pendId = pendingSelectPinId;
+      pendingSelectPinId = null;
+      var pendPin = PINS.find(function (x) { return x.id === pendId; });
+      if (pendPin) selectPin(pendPin);
+    }
   }
 
   function renderRegionGateways(r, box) {
@@ -2047,14 +2054,18 @@
 
     $("cardTitle").textContent = state.lang === "zh" ? pin.zh : pin.en;
 
-    // 位置：区域名 + 楼层 + 世界坐标，替代原来只显示 area / 楼层
+    // 位置：区域名 + 楼层 + 精确地标 loc
     var hostId = (pin.map && pin.map !== "hyrule") ? pin.map : pin.area;
     var hostRegion = REGIONS.find(function (r) { return r.id === hostId; });
     var regionName = hostRegion ? (state.lang === "zh" ? hostRegion.zh : hostRegion.en) : hostId;
     var floorTxt = (pin.map && pin.map !== "hyrule" && pin.area) ? pin.area : "";
     $("cardArea").textContent = "📍 " + regionName + (floorTxt ? " · " + floorTxt : "");
-    $("cardLocRow").hidden = !floorTxt;
-    $("cardLocVal").textContent = floorTxt ? ((state.lang === "zh" ? "楼层 " : "Floor ") + floorTxt) : "";
+    var locParts = [];
+    if (floorTxt) locParts.push((state.lang === "zh" ? "楼层 " : "Floor ") + floorTxt);
+    if (state.lang === "zh" && pin.loc) locParts.push(pin.loc);
+    var locCombined = locParts.join(" · ");
+    $("cardLocRow").hidden = !locCombined;
+    $("cardLocVal").textContent = locCombined;
 
     // 怎么拿：优先结构化 howto，没写则回落到官方点位说明
     var hasHowto = !!(pin.howto || pin.howtoEn);
@@ -2080,6 +2091,26 @@
     var showDesc = !!descTxt && hasHowto;
     $("cardDesc").hidden = !showDesc;
     $("cardDesc").textContent = showDesc ? descTxt : "";
+
+    var linksRow = $("cardLinksRow");
+    if (linksRow) {
+      var links = Array.isArray(pin.links) ? pin.links.filter(function (lk) {
+        return lk && lk.pinId && PINS.some(function (x) { return x.id === lk.pinId; });
+      }) : [];
+      linksRow.innerHTML = "";
+      linksRow.hidden = !links.length;
+      links.forEach(function (lk) {
+        var btn = document.createElement("button");
+        btn.type = "button";
+        btn.className = "card-link-chip";
+        btn.textContent = "🔗 " + (lk.label || lk.pinId) + " →";
+        btn.addEventListener("click", function (ev) {
+          ev.stopPropagation();
+          jumpToPinById(lk.pinId);
+        });
+        linksRow.appendChild(btn);
+      });
+    }
 
     var world = pin.world || [];
     $("cardCoordVal").textContent = world.length >= 3
@@ -2110,6 +2141,44 @@
     card.hidden = false;
     positionDetailCard(card, (state.mode === "region" ? rcur : cur) || rcur || cur);
     updateUrl(pin.id);
+  }
+
+  var pendingSelectPinId = null;
+
+  function jumpToPinById(pinId) {
+    var targetPin = PINS.find(function (pin) { return pin.id === pinId; });
+    if (!targetPin) return false;
+    if (targetPin.era && targetPin.era !== "Both" && state.era !== "All" && state.era !== targetPin.era) {
+      state.era = targetPin.era;
+      document.querySelectorAll("#eraSeg .era-btn").forEach(function (b) {
+        b.classList.toggle("on", b.getAttribute("data-era") === state.era);
+      });
+      saveStorage();
+      updateEraTextures();
+      updateCategoriesCount();
+      updateProgress();
+    }
+    if (!state.activeCats.has(targetPin.cat)) {
+      state.activeCats.add(targetPin.cat);
+      renderCategoriesSidebar();
+    }
+    var hostId = (targetPin.map && targetPin.map !== "hyrule") ? targetPin.map : targetPin.area;
+    var floor = (targetPin.map && targetPin.map !== "hyrule") ? (targetPin.area === "0F" ? "1F" : targetPin.area) : "All";
+    if (state.mode === "topology") {
+      focusNode(hostId, 1.0);
+      renderAllPins();
+      setTimeout(function () { selectPin(targetPin); }, 60);
+    } else {
+      pendingSelectPinId = targetPin.id;
+      if (state.mode !== "region") setMode("region");
+      openRegion(hostId, { floor: floor });
+      // 若底图已在当前区域/楼层未触发重绘或已同步完成，兜底确认打开
+      if (pendingSelectPinId === targetPin.id && $("rpin-" + targetPin.id)) {
+        pendingSelectPinId = null;
+        selectPin(targetPin);
+      }
+    }
+    return true;
   }
 
   function positionDetailCard(card, anchorEl) {
@@ -2993,24 +3062,32 @@
         setTimeout(function () { focusNode(qNode, 0.85); }, 150);
       }
       if (qPin) {
-        var targetPin = PINS.find(function (pin) { return pin.id === qPin; });
-        if (targetPin) {
-          var hostId = (targetPin.map && targetPin.map !== "hyrule") ? targetPin.map : targetPin.area;
-          var floor = (targetPin.map && targetPin.map !== "hyrule") ? (targetPin.area === "0F" ? "1F" : targetPin.area) : "All";
-          setTimeout(function () {
-            if (state.mode === "region") {
-              openRegion(hostId, { floor: floor });
-            } else {
-              focusNode(hostId, 1.0);
-            }
-            selectPin(targetPin);
-          }, 220);
-        }
+        setTimeout(function () {
+          jumpToPinById(qPin);
+        }, 160);
       }
     } catch (e) {}
+    window.addEventListener("storage", function (ev) {
+      if (ev.key === KEY_DONE) {
+        try {
+          var d = JSON.parse(localStorage.getItem(KEY_DONE) || "{}");
+          if (d && typeof d === "object") {
+            state.donePins = d;
+            renderAllPins();
+            renderRegionList();
+            updateCategoriesCount();
+            updateProgress();
+            if (state.selectedPinId && $("cardDoneChk")) {
+              $("cardDoneChk").checked = !!state.donePins[state.selectedPinId];
+            }
+          }
+        } catch (err) {}
+      }
+    });
     prefetchWorldImage();
     window.OOT_MAP_API = {
       openRegion: openRegion,
+      jumpToPin: jumpToPinById,
       getState: function () { return state; },
       mergeDonePins: function (ids) {
         var added = 0;

@@ -37,13 +37,14 @@ def build_pin_images():
     regions = json.loads(re.search(r"window\.OOT_REGIONS\s*=\s*(\{.*\})\s*;", reg_txt, re.S).group(1))
     area_by_id = {a["id"]: a for a in regions["areas"]}
 
-    # 迷宫地图配置（非严格 JSON，键无引号）——用正则提取每个迷宫的 id / zh / 楼层图
-    maps_txt = (ROOT / "app" / "data" / "maps_config.js").read_text(encoding="utf-8")
+    # 迷宫底图与楼层信息优先从 regions.js 读取（与 app/index.html 单一口径一致）
     dungeon_by_id = {}
-    for blk in re.findall(r'\{\s*id:\s*"([^"]+)",\s*zh:\s*"([^"]+)",\s*en:\s*"[^"]+",\s*type:\s*"dungeon"(.*?)\n\s*\}', maps_txt, re.S):
-        did, dzh, body = blk
-        floors = re.findall(r'\{\s*id:\s*"([^"]+)",\s*zh:\s*"[^"]+",\s*en:\s*"[^"]+",\s*file:\s*"([^"]+)"\s*\}', body)
-        dungeon_by_id[did] = {"zh": dzh, "floors": [{"id": fid, "file": f} for fid, f in floors]}
+    for a in regions["areas"]:
+        if a.get("kind") == "dungeon":
+            floors = []
+            for f in (a.get("floors") or []):
+                floors.append({"id": f.get("label"), "file": f.get("file")})
+            dungeon_by_id[a["id"]] = {"zh": a.get("zh", a["id"]), "floors": floors}
 
     out = {}
     for item_id, pin_id in PIN_MAP.items():
@@ -72,16 +73,17 @@ def build_pin_images():
                 continue
             area_name = dungeon.get("zh", p.get("map"))
             floors = dungeon.get("floors", [])
-            # 优先用点位所在楼层图，否则用总览图
-            fl = next((f for f in floors if f["id"] == p["area"]), None) or next(
+            fl_key = "1F" if p.get("area") == "0F" else p.get("area")
+            fl = next((f for f in floors if f["id"] == fl_key), None) or next(
                 (f for f in floors if f["id"] == "All"), None)
             if fl:
                 file = fl["file"]
+                if fl["id"] not in ("All", ""):
+                    area_name = f"{area_name} ({fl['id']})"
         if not file:
             continue
         img_rel = "assets/" + file.replace("assets/", "", 1)
-        # 配置文件里个别楼层图名与实际不符，回退到迷宫总览图（坐标仍近似可用）
-        if not (ROOT / "app" / img_rel).exists() and not p.get("map") == "hyrule":
+        if not (ROOT / "app" / img_rel).exists() and p.get("map") != "hyrule":
             dungeon = dungeon_by_id.get(p.get("map"), {})
             overview = next((f for f in dungeon.get("floors", []) if f["id"] == "All"), None)
             if overview:
@@ -608,6 +610,10 @@ HTML_TEMPLATE = r"""<!DOCTYPE html>
   .mg-locimg .pin::before{content:"";position:absolute;left:50%;top:50%;width:15px;height:15px;transform:translate(-50%,-50%);background:var(--gold);border:2px solid #171208;border-radius:50%;box-shadow:0 0 0 2px var(--gold2),0 0 10px rgba(212,175,55,.8)}
   .mg-locimg .pin::after{content:"";position:absolute;left:50%;top:50%;width:5px;height:5px;transform:translate(-50%,-50%);background:#171208;border-radius:50%;z-index:2}
   .mg-locimg .lbl{position:absolute;left:6px;top:6px;line-height:1.3;font-size:10px;color:var(--gold2);background:rgba(23,18,8,.88);border:1px solid var(--line);border-radius:6px;padding:2px 7px}
+  .mg-locimg .mapjump{position:absolute;right:6px;bottom:6px;line-height:1.3;font-size:10.5px;color:#171208;background:var(--gold);border:1px solid var(--gold2);border-radius:6px;padding:3px 8px;text-decoration:none;font-weight:700}
+  .mg-locimg .mapjump:hover{background:var(--gold2)}
+  .card-mapjump{display:inline-flex;align-items:center;gap:3px;font-size:10.5px;color:var(--gold2);border:1px solid var(--line);border-radius:6px;padding:1px 7px;text-decoration:none;background:rgba(212,175,55,.08);margin-left:auto}
+  .card-mapjump:hover{border-color:var(--gold);background:rgba(212,175,55,.2)}
   .mg-locimg img.broken{display:none}
   .mg-lines{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:1;overflow:visible}
   .mg-jump{margin-top:14px;border-top:1px dashed var(--line2);padding-top:11px;display:flex;flex-wrap:wrap;gap:7px;align-items:center}
@@ -764,7 +770,7 @@ HTML_TEMPLATE = r"""<!DOCTYPE html>
 
   <footer>
     数据来源：QuestFern 100% 清单（2026-11-14）、Zelda Central 重制版清单、游侠网中文攻略、GAMES.GG，四源交叉核对。<br>
-    勾选进度仅存于当前浏览器 localStorage，与地图进度相互独立。如个别点位与实机不符，以实机为准。全站素材版权归任天堂所有，非官方粉丝项目。
+    勾选进度与互动地图（含存档同步）实时互通，仅存于本地浏览器 localStorage。如个别点位与实机不符，以实机为准。全站素材版权归任天堂所有，非官方粉丝项目。
   </footer>
 </div>
 
@@ -774,15 +780,55 @@ const TRACKS=__TRACKS__;
 const PHASES=__PHASES__;
 const PHASE_LOCS=__PHASE_LOCS__;
 const PIN_IMAGES=__PIN_IMAGES__;
+const PIN_MAP=__PIN_MAP__;
 const ITEMS=__ITEMS__;
 
 const STORE_KEY='oot-100-guide-v1';
+const MAP_STORE_KEY='oot_map_done_pins_v3';
+const REV_PIN_MAP={};
+Object.entries(PIN_MAP).forEach(([iid,pid])=>{if(!REV_PIN_MAP[pid])REV_PIN_MAP[pid]=[];REV_PIN_MAP[pid].push(iid)});
+
+function readJsonStore(k){try{return JSON.parse(localStorage.getItem(k))||{}}catch(e){return{}}}
+function loadMergedChecked(){
+  const g=readJsonStore(STORE_KEY);
+  const m=readJsonStore(MAP_STORE_KEY);
+  let mChanged=false;
+  Object.entries(PIN_MAP).forEach(([iid,pid])=>{
+    if(m[pid]&&!g[iid])g[iid]=true;
+    else if(g[iid]&&!m[pid]){m[pid]=true;mChanged=true;}
+  });
+  if(mChanged){try{localStorage.setItem(MAP_STORE_KEY,JSON.stringify(m))}catch(e){}}
+  try{localStorage.setItem(STORE_KEY,JSON.stringify(g))}catch(e){}
+  return g;
+}
+
 const state={view:'map',mapPhase:0,openLocs:{},search:'',region:'',age:'',time:'',catFocus:[],
-  checked:(()=>{try{return JSON.parse(localStorage.getItem(STORE_KEY))||{}}catch(e){return{}}})()};
+  checked:loadMergedChecked()};
 const catMap=Object.fromEntries(CATEGORIES.map(c=>[c.id,c]));
 const itemById=Object.fromEntries(ITEMS.map(i=>[i.id,i]));
 const regions=[...new Set(ITEMS.map(i=>i.region))].filter(Boolean).sort();
-function save(){localStorage.setItem(STORE_KEY,JSON.stringify(state.checked))}
+function save(){
+  localStorage.setItem(STORE_KEY,JSON.stringify(state.checked));
+  const m=readJsonStore(MAP_STORE_KEY);
+  Object.entries(PIN_MAP).forEach(([iid,pid])=>{
+    if(state.checked[iid])m[pid]=true;
+    else delete m[pid];
+  });
+  try{localStorage.setItem(MAP_STORE_KEY,JSON.stringify(m))}catch(e){}
+}
+window.addEventListener('storage',e=>{
+  if(e.key===MAP_STORE_KEY||e.key===STORE_KEY){
+    const m=readJsonStore(MAP_STORE_KEY);
+    const g=readJsonStore(STORE_KEY);
+    Object.entries(PIN_MAP).forEach(([iid,pid])=>{
+      if(m[pid])g[iid]=true;
+      else delete g[iid];
+    });
+    state.checked=g;
+    try{localStorage.setItem(STORE_KEY,JSON.stringify(g))}catch(err){}
+    render();
+  }
+});
 function ageLabel(a){return a==='child'?'幼年':a==='adult'?'成年':'均可'}
 function eraLabel(e){return e==='child'?'童年':e==='adult'?'成年':'跨时代'}
 function doneOf(ids){return ids.filter(id=>state.checked[id]).length}
@@ -847,7 +893,8 @@ function renderMap(){
           const mini=geo?`<div class="mg-locimg" title="该地点的局部地图，金色圆点为收集位置">
             <img src="${geo.img}" alt="${geo.area}" loading="lazy" onerror="this.classList.add('broken')">
             <span class="pin" style="left:${geo.x}%;top:${geo.y}%"></span>
-            <span class="lbl">📍 ${geo.area}</span></div>`:'';
+            <span class="lbl">📍 ${geo.area}</span>
+            <a class="mapjump" href="index.html?pin=${encodeURIComponent(geo.pinId)}" target="_blank" rel="noopener">🗺️ 在地图中查看 →</a></div>`:'';
           return `<div class="mg-drow ${done?'done':''}" data-did="${id}">
             <div class="mg-dcheck" role="checkbox" aria-checked="${done}">${done?'✔':''}</div>
             <div class="mg-dmeta"><div class="mg-dname"><span class="dno">#${it.no}</span>${it.name}${ageTag}${nightTag}</div>
@@ -962,9 +1009,12 @@ function renderList(){
 function cardHtml(it){
   const done=!!state.checked[it.id];
   const showRegion=state.view!=='timeline'?it.region:'';
+  const geo=PIN_IMAGES[it.id];
+  const mapBtn=geo?`<a class="card-mapjump" href="index.html?pin=${encodeURIComponent(geo.pinId)}" target="_blank" rel="noopener" title="${geo.area}">🗺️ 地图定位</a>`:'';
   const tags=[`<span class="tag age-${it.age}">${ageLabel(it.age)}</span>`,
     it.time==='night'?`<span class="tag time-night">夜晚</span>`:'',
-    showRegion?`<span class="tag group">${showRegion}</span>`:''].join('');
+    showRegion?`<span class="tag group">${showRegion}</span>`:'',
+    mapBtn].join('');
   const reward=it.reward?`<div class="reward">🎁 ${it.reward}</div>`:'';
   return `<div class="card ${done?'done':''}" data-id="${it.id}">
     <div class="check" role="checkbox" aria-checked="${done}">${done?'✔':''}</div>
@@ -1025,6 +1075,7 @@ document.getElementById('list').addEventListener('click',e=>{
     ids.forEach(id=>{if(allDone)delete state.checked[id];else state.checked[id]=true});
     save();render();return;
   }
+  if(e.target.closest('a.card-mapjump, a.mapjump'))return;
   const card=e.target.closest('.card');if(!card)return;
   const id=card.dataset.id;
   if(state.checked[id])delete state.checked[id];else state.checked[id]=true;
@@ -1070,6 +1121,7 @@ def main():
     html = html.replace("__PHASE_LOCS__", json.dumps(PHASE_LOCS, ensure_ascii=False))
     pin_images = build_pin_images()
     html = html.replace("__PIN_IMAGES__", json.dumps(pin_images, ensure_ascii=False))
+    html = html.replace("__PIN_MAP__", json.dumps(PIN_MAP, ensure_ascii=False))
     html = html.replace("__ITEMS__", json.dumps(items, ensure_ascii=False))
     print(f"  位置图配对: {len(pin_images)} 条")
     html = html.replace("__MAP_LINK__", "index.html")
