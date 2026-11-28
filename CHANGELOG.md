@@ -1,9 +1,9 @@
 # CHANGELOG
 
 > 只追加，不散落成新文件。版本号语义见 `开发手册.md` §3.2。
-> 当前状态：**内测 V0.1.0 · 已上线**（`https://oot.yalin.site`；无 tag、无 Release）。
+> 当前状态：**正式版 V1.0.0 · 已上线**（`https://oot.yalin.site`）。
 
-## [未发布] · 2026-11-28 · 体验优化与 Bug 清零（移动端手势重写 + 存档直选/帮助 + 搜索升级）
+## [V1.0.0] · 2026-11-28 · 正式版上线（含更新公告机制 + 移动端手势重写 + 存档直选/帮助 + 搜索升级）
 
 **修复与重构**
 - **移动端三层手势重写**（`app/js/app.js`、`app/css/style.css`）：补齐 `.map-stage` / `.region-board` 的 `touch-action: none` 并移除 `#regionImg` 拖拽滤镜；区域图 / 拓扑图 / 全图统一改用 Pointer Events 多指跟踪（`pointerId` Map + `rAF` 合帧 + 双指中心同步捏合 + 无缝重锚 + `pointercancel` 兜底 + 双指直通缩放），根治手机端拖动中断与双指乱跳。

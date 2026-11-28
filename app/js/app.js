@@ -6,8 +6,8 @@
 (function () {
   "use strict";
 
-  // 版本号单一真源：页脚徽章由此渲染，不在 index.html 另写一处
-  var APP_VERSION = "0.1.0";
+  // 版本号单一真源：页脚徽章与更新公告由此驱动，不在 index.html 另写一处
+  var APP_VERSION = "1.0.0";
 
   var TOPOLOGY = window.OOT_TOPOLOGY;
   var NODES = TOPOLOGY.nodes;
@@ -3728,7 +3728,9 @@
     var navBtn = $("navBtn");
     if (navBtn) navBtn.textContent = isZh ? "🧭 定位导航" : "🧭 Navi";
     var guideLink = document.querySelector(".side-links a.side-link-btn");
-    if (guideLink) guideLink.textContent = isZh ? "📖 攻略资料库" : "📖 Guide";
+    if (guideLink) guideLink.textContent = isZh ? "📖 攻略库" : "📖 Guide";
+    var clBtn = $("changelogBtn");
+    if (clBtn) clBtn.textContent = isZh ? "📢 更新公告" : "📢 Updates";
     var setHead = document.querySelector("#settingsPanel .settings-head span");
     if (setHead) setHead.textContent = isZh ? "地图设置" : "Map Settings";
     var setRowTexts = [
@@ -3811,6 +3813,67 @@
     if (sEl) sEl.textContent = txt;
   }
 
+  function initChangelogModal() {
+    var modal = $("changelogModal");
+    var body = $("changelogBody");
+    var btn = $("changelogBtn");
+    var closeBtn = $("changelogClose");
+    var ackBtn = $("changelogAckBtn");
+    if (!modal || !body) return;
+
+    var LS_VER = "oot_map_seen_version";
+    function esc(s) {
+      return String(s || "").replace(/[&<>"]/g, function (c) {
+        return c === "&" ? "&amp;" : (c === "<" ? "&lt;" : (c === ">" ? "&gt;" : "&quot;"));
+      });
+    }
+    function render() {
+      var list = Array.isArray(window.OOT_CHANGELOG) ? window.OOT_CHANGELOG.slice(0, 3) : [];
+      var isZh = state.lang === "zh";
+      var titleEl = $("changelogTitle");
+      if (titleEl) titleEl.textContent = isZh ? "📢 版本更新公告" : "📢 Release Notes";
+      if (ackBtn) ackBtn.textContent = isZh ? "知道了" : "Got it";
+      body.innerHTML = list.map(function (v) {
+        var title = isZh ? (v.title || "") : (v.titleEn || v.title || "");
+        var items = isZh ? (v.items || []) : (v.itemsEn || v.items || []);
+        var lis = items.map(function (it) { return "<li>" + esc(it) + "</li>"; }).join("");
+        return '<div class="cl-ver-block">' +
+          '<div class="cl-ver-head">' +
+            '<span class="cl-ver-tag">' + esc(v.version) + '</span>' +
+            '<span class="cl-ver-date">' + esc(v.date) + '</span>' +
+          '</div>' +
+          (title ? '<div class="cl-ver-title">' + esc(title) + '</div>' : '') +
+          '<ul class="cl-list">' + lis + '</ul>' +
+        '</div>';
+      }).join("");
+    }
+    function open() {
+      render();
+      modal.hidden = false;
+    }
+    function close(markSeen) {
+      modal.hidden = true;
+      if (markSeen) {
+        try { localStorage.setItem(LS_VER, APP_VERSION); } catch (_) {}
+      }
+    }
+    if (btn) btn.addEventListener("click", open);
+    if (closeBtn) closeBtn.addEventListener("click", function () { close(true); });
+    if (ackBtn) ackBtn.addEventListener("click", function () { close(true); });
+    modal.addEventListener("click", function (e) {
+      if (e.target === modal) close(true);
+    });
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape" && !modal.hidden) close(true);
+    });
+
+    var seen = null;
+    try { seen = localStorage.getItem(LS_VER); } catch (_) {}
+    if (seen !== APP_VERSION) {
+      open();
+    }
+  }
+
   function initResponsiveShell() {
     var sb = $("sidebar");
     if (!sb) return;
@@ -3867,6 +3930,7 @@
     }
     renderVersion();
     if (state.lang !== "zh") applyStaticLanguageUI();
+    initChangelogModal();
     renderCategoriesSidebar();
     renderJumpChips();
     buildTopologyBoard();

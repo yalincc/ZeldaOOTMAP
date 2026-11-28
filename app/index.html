@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#18110b">
 <title>塞尔达传说：时之笛 全能互动地图 · Zelda OoT Interactive Map</title>
-<link rel="stylesheet" href="css/style.css?v=32">
+<link rel="stylesheet" href="css/style.css?v=33">
 </head>
 <body>
 
@@ -180,10 +180,11 @@
       <div class="side-links">
         <button type="button" class="side-link-btn" id="settingsBtn">⚙ 地图设置</button>
         <button type="button" class="side-link-btn" id="navBtn">🧭 定位导航</button>
-        <a class="side-link-btn" href="guide.html">📖 攻略资料库</a>
+        <a class="side-link-btn" href="guide.html">📖 攻略库</a>
+        <button type="button" class="side-link-btn" id="changelogBtn" title="查看最近版本更新内容">📢 更新公告</button>
       </div>
       <div class="side-meta">
-        <div class="side-meta-copy" id="verBadge">OOTMAP V0.1.0 © 2026 yalincc</div>
+        <div class="side-meta-copy" id="verBadge">OOTMAP V1.0.0 © 2026 yalincc</div>
         <div class="side-meta-repo">GitHub <a href="https://github.com/yalincc/ZeldaOOTMAP" target="_blank" rel="noopener">https://github.com/yalincc/ZeldaOOTMAP</a></div>
       </div>
     </div>
@@ -483,6 +484,20 @@
         </div>
       </div>
     </div>
+
+    <!-- 版本更新公告弹窗（对齐 TOTKmap） -->
+    <div class="save-modal-backdrop" id="changelogModal" hidden>
+      <div class="save-modal changelog-modal" role="dialog" aria-labelledby="changelogTitle">
+        <div class="save-modal-head">
+          <h3 id="changelogTitle">📢 版本更新公告</h3>
+          <button type="button" class="save-modal-close" id="changelogClose" aria-label="关闭">×</button>
+        </div>
+        <div class="save-modal-body changelog-body" id="changelogBody"></div>
+        <div class="save-modal-foot save-help-foot">
+          <button type="button" class="save-primary-btn" id="changelogAckBtn">知道了</button>
+        </div>
+      </div>
+    </div>
   </main>
 </div>
 
@@ -495,7 +510,8 @@
 <script src="data/pins_data.js?v=7"></script>
 <script src="data/save_flags.js?v=2"></script>
 <script src="data/quests_data.js?v=3"></script>
-<script src="js/app.js?v=28"></script>
+<script src="data/changelog.js?v=1"></script>
+<script src="js/app.js?v=29"></script>
 <script src="js/navi.js?v=9"></script>
 <script src="js/save_sync.js?v=2"></script>
 <script src="js/quests.js?v=7"></script>
