@@ -3,6 +3,17 @@
 > 只追加，不散落成新文件。版本号语义见 `开发手册.md` §3.2。
 > 当前状态：**内测 V0.1.0 · 已上线**（`https://oot.yalin.site`；无 tag、无 Release）。
 
+## [未发布] · 2026-11-28 · 体验优化与 Bug 清零（移动端手势重写 + 存档直选/帮助 + 搜索升级）
+
+**修复与重构**
+- **移动端三层手势重写**（`app/js/app.js`、`app/css/style.css`）：补齐 `.map-stage` / `.region-board` 的 `touch-action: none` 并移除 `#regionImg` 拖拽滤镜；区域图 / 拓扑图 / 全图统一改用 Pointer Events 多指跟踪（`pointerId` Map + `rAF` 合帧 + 双指中心同步捏合 + 无缝重锚 + `pointercancel` 兜底 + 双指直通缩放），根治手机端拖动中断与双指乱跳。
+- **存档同步重构与崩溃修复**（`app/js/save_sync.js`、`app/js/app.js`、`app/index.html`）：修复 `mergeDonePins` / `clearDonePins` 调用 `renderWorldMarkers` 导致的 `ReferenceError`；移除旧占位监听；「加载存档」直接唤起 `progress.sav` 文件选择（去掉中间弹窗，保留拖拽与 `ootnavi-pc` 自动同步），`?` 按钮弹出对齐 TOTKmap 的纯说明「同步存档 · 帮助」弹窗。
+- **任务气泡 / 弹窗 / 重叠与细节清零**（`app/js/quests.js`、`app/js/app.js`、`tools/extract_romfs_pins.py`、`data/pin_gateway_overrides.json`）：修复区域图任务气泡误用 `--zoom-inv` 缩小；50 处同坐标多步骤气泡合并胶囊轮切；空白处统一关闭全部浮层且关闭详情卡清 URL `?pin=`；清理重复出入口跳转函数与拓扑图标/窗口缩放/翻页 tooltip/搜索区域名 Bug；18 处未折叠近距重叠点位经管线聚合与微错开后降为 **0**。
+- **界面卫生与搜索升级**（`app/index.html`、`app/js/app.js`、`app/css/style.css`）：移除任务下方 `#regionEraNote` 小字行、修正残余旧译名、补齐中英文切换与任务卡实时重绘、清理 `style.css` 约 520 行历史死样式；搜索栏新增 `/` 快捷键、`↑/↓/Enter/Esc` 键盘选择、一键清空与最近 8 条历史记录。
+
+**验收**
+- `python tools/verify_all.py` 全项 **PASS**；Headless Chrome CDP PC（`1600×950`）与手机（`390×844`）双端实测 0 报错通过；已提交推送双端（`0aa999e`）。
+
 ## [未发布] · 2026-11-28 · 核心攻略扩展 + 详情卡重构 + 60 任务流程 + 侧栏重构与加侬六障示意
 
 **新增与完善**
