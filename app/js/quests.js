@@ -529,17 +529,35 @@
       box.appendChild(svg);
     }
 
+    // 同一坐标（或极近距离）的多个步骤合并为一个胶囊气泡，避免互相遮挡无法点击
+    var groups = [];
     pts.forEach(function (it) {
+      var hit = groups.find(function (g) {
+        return Math.hypot(g.x - it.pin.x, g.y - it.pin.y) < 0.8;
+      });
+      if (hit) hit.items.push(it);
+      else groups.push({ x: it.pin.x, y: it.pin.y, items: [it] });
+    });
+
+    groups.forEach(function (g) {
       var b = document.createElement("button");
       b.type = "button";
-      b.className = "quest-step-bubble" + (state.focusedStepNo === it.step.no ? " is-cur" : "");
-      b.style.left = it.pin.x + "%";
-      b.style.top = it.pin.y + "%";
-      b.textContent = String(it.step.no);
-      b.title = "#" + it.step.no + " " + it.step.text;
+      var isMulti = g.items.length > 1;
+      var curInGroup = g.items.some(function (it) { return state.focusedStepNo === it.step.no; });
+      b.className = "quest-step-bubble" + (isMulti ? " is-multi" : "") + (curInGroup ? " is-cur" : "");
+      b.style.left = g.x + "%";
+      b.style.top = g.y + "%";
+      b.textContent = g.items.map(function (it) { return String(it.step.no); }).join("·");
+      b.title = g.items.map(function (it) { return "#" + it.step.no + " " + it.step.text; }).join("\n");
       b.addEventListener("click", function (ev) {
         ev.stopPropagation();
-        state.focusedStepNo = it.step.no;
+        if (isMulti) {
+          var idx = g.items.findIndex(function (it) { return it.step.no === state.focusedStepNo; });
+          var next = g.items[(idx + 1) % g.items.length];
+          state.focusedStepNo = next.step.no;
+        } else {
+          state.focusedStepNo = g.items[0].step.no;
+        }
         renderQuestCard(q);
         renderRegionQuestFlow();
       });
@@ -711,6 +729,10 @@
       renderAreaQuests();
       renderRegionGuideBtn();
       renderRegionQuestFlow();
+      var card = $("questCard");
+      if (state.activeKey && QUEST_BY_KEY[state.activeKey] && card && !card.hidden) {
+        renderQuestCard(QUEST_BY_KEY[state.activeKey]);
+      }
     });
 
     renderSidebarQuestGroup();

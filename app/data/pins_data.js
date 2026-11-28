@@ -532,6 +532,7 @@
         "pinId": "song-sun"
       }
     ],
+    "hostPinId": "GR-013",
     "tpl": "collect",
     "shortZh": "心之碎片（王室亡灵墓穴）",
     "seq": 12
@@ -650,6 +651,7 @@
     "reward": "心之碎片（1/4 颗心）",
     "note": "洞口藏在路口南侧围栏内的树旁。",
     "loc": "东北近卡卡利科路口围栏旁地洞",
+    "hostPinId": "GR-020",
     "tpl": "collect",
     "shortZh": "心之碎片（东北地洞商贩果）",
     "seq": 16
@@ -915,6 +917,9 @@
         "label": "前置：莎莉亚之歌",
         "pinId": "song-saria"
       }
+    ],
+    "subPins": [
+      "npc-skullkid"
     ],
     "tpl": "collect",
     "shortZh": "心之碎片（独坐骷髅小子）",
@@ -1864,6 +1869,7 @@
         "pinId": "song-storms"
       }
     ],
+    "hostPinId": "GR-014",
     "tpl": "collect",
     "shortZh": "黄金蜘蛛（城堡东墙地洞）",
     "seq": 23
@@ -1916,6 +1922,7 @@
     "reward": "黄金骷髅蜘蛛徽章 ×1",
     "note": "对应 100% 清单中的地洞蜘蛛。",
     "loc": "牧场东南角近湖畔路口双树旁隐蔽地洞",
+    "hostPinId": "GR-021",
     "tpl": "collect",
     "shortZh": "黄金蜘蛛（东南蜘蛛网洞）",
     "seq": 25
@@ -1942,6 +1949,7 @@
     "reward": "黄金骷髅蜘蛛徽章 ×1",
     "note": "对应 100% 清单中的西部地洞蜘蛛。",
     "loc": "格鲁德之谷入口前枯树旁隐蔽地洞",
+    "hostPinId": "GR-016",
     "tpl": "collect",
     "shortZh": "黄金蜘蛛（格鲁德路口树洞）",
     "seq": 26
@@ -4476,6 +4484,7 @@
     "howto": "潜行进入要塞主楼底层（被巡逻守卫抓到会被关进牢，可用钩索脱困），用弓箭射晕守卫进入牢房打败白衣女战士拿牢门钥匙救出木匠 #1。",
     "reward": "救出木匠 1/4",
     "note": "全救出 4 人可得「格鲁德许可证」与骑射场开放。",
+    "hostPinId": "GR-006",
     "tpl": "landmark",
     "shortZh": "被囚木匠 #1（底层牢房）",
     "seq": 1
@@ -4643,7 +4652,8 @@
     "howto": "成年拉开丹培墓碑跳入地下赛道追随幽灵丹培到达终点：首次通关必得「钩索」，再次挑战 1 分钟内完赛奖心之碎片！",
     "reward": "钩索 + 心之碎片 #20",
     "subPins": [
-      "HP-014"
+      "HP-014",
+      "GR-010"
     ],
     "tpl": "minigame",
     "shortZh": "丹培幽灵赛跑",
@@ -4871,6 +4881,9 @@
     "loc": "科奇里森林中北部商店",
     "howto": "出售德库盾（40 卢比，进德库树前必买）、德库坚果、德库木棒、弹弓种子与回复心。",
     "reward": "德库盾 / 早期消耗品",
+    "subPins": [
+      "soil-kokiri-shop"
+    ],
     "tpl": "shop",
     "shortZh": "科奇里商店",
     "seq": 5
@@ -5023,6 +5036,7 @@
         "pinId": "mask-truth"
       }
     ],
+    "hostPinId": "GR-027",
     "tpl": "minigame",
     "shortZh": "森林舞台（面具展示）",
     "seq": 10
@@ -5554,6 +5568,9 @@
     "en": "Death Mountain Crater: Ocarina Warp Pad",
     "howto": "成年学会对应传送曲后，在时之神殿吹奏即可传送到此。",
     "reward": "快速移动点",
+    "subPins": [
+      "soil-crater-warp"
+    ],
     "tpl": "landmark",
     "shortZh": "时之歌传送点",
     "seq": 1
@@ -5770,6 +5787,9 @@
     "reward": "[[IT-001|被囚木匠 #1]] / 小钥匙",
     "note": "进洞前备好炸弹与火把，部分洞穴有蜘蛛或敌人。",
     "loc": "要塞底层牢房区入口",
+    "subPins": [
+      "IT-001"
+    ],
     "tpl": "landmark",
     "shortZh": "秘密洞穴（底层地牢）",
     "seq": 6
@@ -5969,6 +5989,7 @@
         "pinId": "MG-003"
       }
     ],
+    "hostPinId": "MG-003",
     "tpl": "landmark",
     "shortZh": "秘密洞穴（丹培之墓）",
     "seq": 10
@@ -6044,6 +6065,9 @@
     "reward": "[[HP-012|心之碎片]]",
     "note": "进洞前备好炸弹与火把，部分洞穴有蜘蛛或敌人。",
     "loc": "墓地东侧独立墓碑",
+    "subPins": [
+      "HP-012"
+    ],
     "tpl": "landmark",
     "shortZh": "秘密洞穴（亡灵心碎墓穴）",
     "seq": 13
@@ -6123,6 +6147,9 @@
     "reward": "[[GS-023|黄金蜘蛛]] / 妖精",
     "note": "进洞前备好炸弹与火把，部分洞穴有蜘蛛或敌人。",
     "loc": "城堡外庭东墙独树旁",
+    "subPins": [
+      "GS-023"
+    ],
     "tpl": "landmark",
     "shortZh": "秘密洞穴（城堡东墙蜘蛛洞）",
     "seq": 14
@@ -6576,6 +6603,9 @@
     "reward": "[[GS-026|黄金蜘蛛]]",
     "note": "进洞前备好炸弹与火把，部分洞穴有蜘蛛或敌人。",
     "loc": "平原西南格鲁德路口孤树下",
+    "subPins": [
+      "GS-026"
+    ],
     "tpl": "landmark",
     "shortZh": "秘密洞穴（格鲁德路口蜘蛛洞）",
     "seq": 16
@@ -6676,6 +6706,9 @@
     "reward": "[[HP-016|心之碎片]]",
     "note": "进洞前备好炸弹与火把，部分洞穴有蜘蛛或敌人。",
     "loc": "平原东北近护城河孤树下",
+    "subPins": [
+      "HP-016"
+    ],
     "tpl": "landmark",
     "shortZh": "秘密洞穴（东北商贩心碎洞）",
     "seq": 20
@@ -6701,6 +6734,9 @@
     "reward": "[[GS-025|黄金蜘蛛]] / 妖精",
     "note": "进洞前备好炸弹与火把，部分洞穴有蜘蛛或敌人。",
     "loc": "平原东南角巨石旁",
+    "subPins": [
+      "GS-025"
+    ],
     "tpl": "landmark",
     "shortZh": "秘密洞穴（东南蜘蛛网洞）",
     "seq": 21
@@ -7130,6 +7166,10 @@
     "reward": "[[MG-010|森林舞台]] / [[upg-nut-40|德库坚果袋（40）]]",
     "note": "进洞前备好炸弹与火把，部分洞穴有蜘蛛或敌人。",
     "loc": "迷途森林西南蝶群草丛下",
+    "subPins": [
+      "MG-010",
+      "soil-lostwood-stage"
+    ],
     "tpl": "landmark",
     "shortZh": "秘密洞穴（森林舞台）",
     "seq": 27
@@ -7221,7 +7261,7 @@
     "area": "Market",
     "cat": "stone",
     "x": 73.41,
-    "y": 37.83,
+    "y": 36.8,
     "world": [
       39.38,
       103.11,
@@ -7252,7 +7292,7 @@
     "area": "Market",
     "cat": "stone",
     "x": 73.43,
-    "y": 39.3,
+    "y": 38.6,
     "world": [
       39.42,
       102.99,
@@ -7283,7 +7323,7 @@
     "area": "Market",
     "cat": "stone",
     "x": 73.44,
-    "y": 40.87,
+    "y": 40.4,
     "world": [
       39.44,
       103.11,
@@ -7314,7 +7354,7 @@
     "area": "Market",
     "cat": "stone",
     "x": 73.38,
-    "y": 42.24,
+    "y": 42.2,
     "world": [
       39.34,
       103.2,
@@ -11076,8 +11116,8 @@
     "map": "hyrule",
     "area": "Market",
     "cat": "song",
-    "x": 86.0,
-    "y": 22.0,
+    "x": 85.0,
+    "y": 21.4,
     "world": null,
     "era": "Adult",
     "time": "Any",
@@ -11810,6 +11850,7 @@
     "descEn": "",
     "howto": "幼年在科奇里商店后方的土地播豆；成年乘豆叶取物。",
     "reward": "豆叶上的卢比 / 补给",
+    "hostPinId": "SH-005",
     "tpl": "landmark",
     "shortZh": "商店后",
     "seq": 5
@@ -11860,6 +11901,7 @@
     "descEn": "",
     "howto": "幼年在森林舞台洞口的土地播豆；成年乘豆叶取物。",
     "reward": "豆叶上的卢比",
+    "hostPinId": "GR-027",
     "tpl": "landmark",
     "shortZh": "森林舞台洞口",
     "seq": 8
@@ -11935,6 +11977,7 @@
     "descEn": "",
     "howto": "幼年在火山口传送台旁的土地播豆；成年乘豆叶取物。",
     "reward": "豆叶上的卢比",
+    "hostPinId": "WP-001",
     "tpl": "landmark",
     "shortZh": "传送台旁",
     "seq": 1
@@ -12192,6 +12235,9 @@
         "pinId": "MG-003"
       }
     ],
+    "subPins": [
+      "npc-dampe"
+    ],
     "tpl": "collect",
     "shortZh": "钩索",
     "seq": 19
@@ -12250,8 +12296,8 @@
     "map": "hyrule",
     "area": "Market",
     "cat": "keyitem",
-    "x": 86.0,
-    "y": 23.2,
+    "x": 87.0,
+    "y": 23.6,
     "world": null,
     "era": "Adult",
     "time": "Any",
@@ -12491,6 +12537,7 @@
     "howto": "墓地小屋，白天可玩掘墓之旅，成年后与其赛跑赢钩索。",
     "reward": "钩索、心之碎片",
     "note": "与「松软土地」同点，已右移错开。",
+    "hostPinId": "ki-hookshot",
     "tpl": "landmark",
     "shortZh": "丹培",
     "seq": 4
@@ -12671,6 +12718,7 @@
     "howto": "迷失森林深处，吹陶笛可与他合奏；戴面具会触发不同反应。",
     "reward": "心之碎片（合奏）",
     "note": "森林舞台（面具展示）在另一处，已分开标注。",
+    "hostPinId": "HP-025",
     "tpl": "landmark",
     "shortZh": "骷髅小子",
     "seq": 20

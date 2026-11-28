@@ -923,12 +923,13 @@ def main() -> int:
 
     # 设施 / 商店 / 小游戏主卡收编同址奖励与重复店员 NPC
     FACILITY_GROUPS = {
+        "SH-005": ["soil-kokiri-shop"],
         "SH-008": ["bottle-potion"],
         "SH-006": ["mask-truth", "npc-mask-salesman"],
         "SH-010": ["bottle-poe", "npc-poe-collector"],
         "SH-012": ["ki-bean", "soil-zora-river"],
         "MG-001": ["HP-007", "upg-quiver-50"],
-        "MG-003": ["HP-014"],
+        "MG-003": ["HP-014", "GR-010"],
         "MG-004": ["HP-013"],
         "MG-005": ["upg-quiver-40"],
         "MG-006": ["HP-022", "upg-scale-gold"],
@@ -941,6 +942,16 @@ def main() -> int:
         "MG-015": ["HP-034", "HP-036"],
         "IT-005": ["HP-020", "upg-wallet-500", "upg-wallet-1000"],
         "DG-001": ["ki-ice-arrow"],
+        "GR-006": ["IT-001"],
+        "GR-013": ["HP-012"],
+        "GR-014": ["GS-023"],
+        "GR-016": ["GS-026"],
+        "GR-020": ["HP-016"],
+        "GR-021": ["GS-025"],
+        "GR-027": ["MG-010", "soil-lostwood-stage"],
+        "WP-001": ["soil-crater-warp"],
+        "HP-025": ["npc-skullkid"],
+        "ki-hookshot": ["npc-dampe"],
     }
     for hid, sids in FACILITY_GROUPS.items():
         _bind_group(hid, sids)

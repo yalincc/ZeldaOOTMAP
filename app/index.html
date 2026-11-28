@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#18110b">
 <title>塞尔达传说：时之笛 全能互动地图 · Zelda OoT Interactive Map</title>
-<link rel="stylesheet" href="css/style.css?v=30">
+<link rel="stylesheet" href="css/style.css?v=32">
 </head>
 <body>
 
@@ -35,7 +35,8 @@
       <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
         <circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/>
       </svg>
-      <input type="search" id="searchInput" placeholder="搜索点位、物品、地点..." autocomplete="off">
+      <input type="text" id="searchInput" placeholder="搜索点位、物品、任务… ( / )" autocomplete="off">
+      <button type="button" class="search-clear" id="searchClear" hidden aria-label="清空搜索" title="清空">×</button>
       <div class="search-results" id="searchResults" hidden></div>
     </div>
 
@@ -112,7 +113,6 @@
           </button>
           <div class="quest-grid" id="questSideList"></div>
         </div>
-        <div class="region-note" id="regionEraNote"></div>
       </div>
     </div>
 
@@ -174,8 +174,8 @@
       </div>
       <div class="save-cta-row">
         <input type="file" id="saveFileInput" accept=".sav" hidden>
-        <button type="button" class="save-cta-btn" id="saveSyncBtn">加载存档</button>
-        <button type="button" class="save-help-btn" id="saveHelpBtn" title="存档同步说明" aria-label="存档同步说明">?</button>
+        <button type="button" class="save-cta-btn" id="saveSyncBtn" title="直接选择 Switch 2 / Longshot 的 progress.sav 同步收集进度（仅本机内存解析）">加载存档</button>
+        <button type="button" class="save-help-btn" id="saveHelpBtn" title="同步存档 · 帮助" aria-label="同步存档帮助">?</button>
       </div>
       <div class="side-links">
         <button type="button" class="side-link-btn" id="settingsBtn">⚙ 地图设置</button>
@@ -209,7 +209,7 @@
         <div class="region-head">
           <span class="region-kicker" id="regionKicker">FIELD REGION</span>
           <div class="region-title-row">
-            <h2 id="regionName">科吉里森林</h2>
+            <h2 id="regionName">科奇里森林</h2>
             <button type="button" class="region-guide-btn" id="regionGuideBtn" hidden>📖 迷宫攻略</button>
           </div>
           <div class="region-sub" id="regionSub">—</div>
@@ -254,8 +254,8 @@
         <span class="edge-tt-badge" id="edgeTtBadge">近道暗道</span>
         <span class="edge-tt-title" id="edgeTtTitle">水下潜水近道</span>
       </div>
-      <div class="edge-tt-route" id="edgeTtRoute">迷失森林 ⟷ 卓拉河</div>
-      <div class="edge-tt-desc" id="edgeTtDesc">迷失森林水池深潜直通卓拉河（需银之鳞片）</div>
+      <div class="edge-tt-route" id="edgeTtRoute">迷途森林 ⟷ 卓拉河</div>
+      <div class="edge-tt-desc" id="edgeTtDesc">迷途森林水池深潜直通卓拉河（需银之鳞片）</div>
       <div class="edge-tt-hint">💡 点击连线即可在两地之间来回跳转</div>
     </div>
 
@@ -431,43 +431,55 @@
     <!-- 重叠点位选择气泡 -->
     <div class="pin-cluster-menu" id="pinClusterMenu" hidden></div>
 
-    <!-- 存档拖入遮罩 / 同步提示 / 存档同步 GUI 面板 -->
+    <!-- 存档拖入遮罩 / 同步提示 / 同步存档帮助弹窗（对齐 TOTKmap） -->
     <div class="save-drop-overlay" id="saveDropOverlay" hidden>
       <div class="save-drop-box">松手导入 <code>progress.sav</code> 同步收集进度</div>
     </div>
     <div class="save-toast" id="saveToast" hidden></div>
     <div class="save-modal-backdrop" id="saveHelpModal" hidden>
-      <div class="save-modal save-gui-modal" role="dialog" aria-labelledby="saveHelpTitle">
+      <div class="save-modal save-help-modal" role="dialog" aria-labelledby="saveHelpTitle">
         <div class="save-modal-head">
-          <h3 id="saveHelpTitle">存档只读同步</h3>
+          <h3 id="saveHelpTitle">同步存档 · 帮助</h3>
           <button type="button" class="save-modal-close" id="saveHelpClose" aria-label="关闭">×</button>
         </div>
-        <div class="save-modal-body">
-          <div class="save-status-bar">
-            <span class="save-status-pill off" id="saveStatusPill">⚪ 尚未同步存档</span>
-            <span class="save-status-time" id="saveStatusTime">—</span>
+        <div class="save-modal-body save-help-body">
+          <div class="hq">
+            <h4>这是什么</h4>
+            <p>《塞尔达传说：时之笛》Switch 2 重制版全能互动地图，支持区域单图 / 拓扑导图 / 海拉鲁全图三层联动，集成 60 条任务流程、全收集追踪与实时定位导航。</p>
           </div>
-          <div class="save-drop-zone" id="saveModalDropZone">
-            <div class="save-drop-zone-txt">将 Switch 2 / Longshot 的 <code>progress.sav</code> 拖到这里</div>
-            <div class="save-action-row">
-              <button type="button" class="save-primary-btn" id="savePickFileBtn">选择 progress.sav 文件</button>
-              <button type="button" class="save-secondary-btn" id="saveRefreshAutoBtn">立即从 ootnavi-pc 同步</button>
-            </div>
+          <div class="hq">
+            <h4>① 存档文件在哪</h4>
+            <p>文件名为 <code>progress.sav</code>，<code>slot_00</code> ~ <code>slot_02</code> 对应游戏内的存档槽：</p>
+            <p>PC 移植版（Longshot）：游戏目录下 <code>LongshotLauncher-data\user\save\*\slot_00\progress.sav</code></p>
+            <p>启动 <b class="hl">ootnavi-pc</b> 后无需手动找路径——程序会自动扫描最新存档槽并推送给地图。</p>
           </div>
-          <div class="save-cat-title">当前已点亮收集进度（合并模式）</div>
-          <div class="save-cat-grid" id="saveCatGrid"></div>
-          <details class="save-help-details">
-            <summary>存档路径与支持说明</summary>
+          <div class="hq">
+            <h4>② 两种加载方式</h4>
             <ul>
-              <li><strong>自动同步：</strong>双击 <code>tools/ootnavi-pc/serve.bat</code> 后自动探测 <code>LongshotLauncher-data\user\save\*\slot_*\progress.sav</code> 最新槽位，每 5 秒静默同步。</li>
-              <li><strong>纯本地解析：</strong>文件仅在浏览器内存中读取，不上传服务器。</li>
-              <li><strong>已支持：</strong>黄金骷髅蜘蛛 (100)、心之碎片 (36)、心之容器 &amp; Boss (8)、歌曲 (13)、精灵石与勋章 (9)、大妖精 (6)、面具 (5)、升级 (16)、主要关键道具与瓶子。</li>
+              <li><b class="hl">自动（推荐）</b>：运行 <code>tools/ootnavi-pc/serve.bat</code> 后，游戏内一存档，地图自动静默同步，无需手动选文件。</li>
+              <li><b class="hl">手动</b>：点击「加载存档」直接选中 <code>progress.sav</code>，或直接把文件拖入地图窗口。</li>
             </ul>
-          </details>
+          </div>
+          <div class="hq">
+            <h4>③ 能读到什么</h4>
+            <p>自动合并点亮 <b class="hl">290 项</b>真实进度：黄金骷髅蜘蛛 (100)、心之碎片 (36)、大怨灵 (10)、心之容器 &amp; Boss (8)、歌曲 (13)、精灵石与勋章 (9)、大妖精之泉 (6)、面具 (5)、强化升级 (16)、主要关键道具与空瓶。</p>
+            <p>读不到的是 <b>八卦石单石已读状态</b> 与 <b>任务单步勾选</b>——存档本身不记录这些布尔位；如需重置进度，可在「⚙ 地图设置」中清空收集记录。</p>
+          </div>
+          <div class="hq">
+            <h4>④ 隐私</h4>
+            <p>存档文件只在你的本机浏览器内存中解析，<b class="hl">不上传任何数据</b>，也不会修改你的原始游戏存档。</p>
+          </div>
+          <div class="hq">
+            <h4>⑤ 更多</h4>
+            <ul>
+              <li>完整源码、实时定位程序与更新日志：<a href="https://github.com/yalincc/ZeldaOOTMAP" target="_blank" rel="noopener">github.com/yalincc/ZeldaOOTMAP</a></li>
+              <li>在线地图：<a href="https://oot.yalin.site" target="_blank" rel="noopener">oot.yalin.site</a></li>
+              <li>国内镜像：<a href="https://gitee.com/yalincc/zeldaootmap" target="_blank" rel="noopener">gitee.com/yalincc/zeldaootmap</a></li>
+            </ul>
+          </div>
         </div>
-        <div class="save-modal-foot">
-          <button type="button" class="save-clear-btn" id="saveClearDoneBtn">清空本地收集记录</button>
-          <button type="button" class="save-secondary-btn" id="saveHelpDoneBtn">完成</button>
+        <div class="save-modal-foot save-help-foot">
+          <button type="button" class="save-primary-btn" id="saveHelpDoneBtn">知道了</button>
         </div>
       </div>
     </div>
@@ -480,12 +492,12 @@
 <script src="data/regions.js?v=3"></script>
 <script src="data/projections.js?v=1"></script>
 <script src="data/world_data.js?v=2"></script>
-<script src="data/pins_data.js?v=6"></script>
+<script src="data/pins_data.js?v=7"></script>
 <script src="data/save_flags.js?v=2"></script>
 <script src="data/quests_data.js?v=3"></script>
-<script src="js/app.js?v=26"></script>
+<script src="js/app.js?v=28"></script>
 <script src="js/navi.js?v=9"></script>
-<script src="js/save_sync.js?v=1"></script>
-<script src="js/quests.js?v=5"></script>
+<script src="js/save_sync.js?v=2"></script>
+<script src="js/quests.js?v=7"></script>
 </body>
 </html>

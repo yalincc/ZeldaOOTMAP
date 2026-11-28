@@ -364,45 +364,87 @@
 
   function bindCameraEvents() {
     var stage = $("mapStage");
+    var topoPointers = new Map();
+    var topoPinchDist = 0;
+    var topoPinchMidX = 0;
+    var topoPinchMidY = 0;
 
-    stage.addEventListener("mousedown", function (e) {
-      if (state.mode !== "topology") return;
-      if (e.button !== 0) return;
-      if (e.target.closest(".map-pin") || e.target.closest(".detail-card") || e.target.closest(".zoom-controls") || e.target.closest(".floor-btn")) return;
+    function topoReanchorSingle() {
+      var first = topoPointers.values().next().value;
+      if (!first) {
+        state.isDragging = false;
+        return;
+      }
       state.isDragging = true;
-      state.dragMoved = false;
-      state.dragStartX = e.clientX;
-      state.dragStartY = e.clientY;
+      state.dragStartX = first.x;
+      state.dragStartY = first.y;
       state.camStartX = state.tx;
       state.camStartY = state.ty;
+    }
+
+    stage.addEventListener("pointerdown", function (e) {
+      if (state.mode !== "topology") return;
+      if (e.pointerType === "mouse" && e.button !== 0) return;
+      if (e.target.closest(".map-pin") || e.target.closest(".detail-card") || e.target.closest(".zoom-controls") || e.target.closest(".floor-btn") || e.target.closest(".settings-panel") || e.target.closest(".navi-panel") || e.target.closest(".pin-cluster-menu")) return;
+      topoPointers.set(e.pointerId, { x: e.clientX, y: e.clientY });
+      if (stage.setPointerCapture) {
+        try { stage.setPointerCapture(e.pointerId); } catch (_) {}
+      }
+      if (topoPointers.size === 1) {
+        state.dragMoved = false;
+        topoReanchorSingle();
+      } else if (topoPointers.size === 2) {
+        state.isDragging = false;
+        state.dragMoved = true;
+        var pts = Array.from(topoPointers.values());
+        topoPinchDist = Math.hypot(pts[0].x - pts[1].x, pts[0].y - pts[1].y);
+        topoPinchMidX = (pts[0].x + pts[1].x) / 2;
+        topoPinchMidY = (pts[0].y + pts[1].y) / 2;
+      }
     });
 
-    window.addEventListener("mousemove", function (e) {
+    window.addEventListener("pointermove", function (e) {
       if (calState.active && calState.draggingPin && calState.targetBox) {
         var rect = calState.targetBox.getBoundingClientRect();
         var px = Math.max(0, Math.min(100, ((e.clientX - rect.left) / rect.width) * 100));
         var py = Math.max(0, Math.min(100, ((e.clientY - rect.top) / rect.height) * 100));
         calState.draggingPin.x = Math.round(px * 10) / 10;
         calState.draggingPin.y = Math.round(py * 10) / 10;
-        var pel = $("pin-" + calState.draggingPin.id);
+        var pel = $("pin-" + calState.draggingPin.id) || $("rpin-" + calState.draggingPin.id);
         if (pel) {
           pel.style.left = calState.draggingPin.x + "%";
           pel.style.top = calState.draggingPin.y + "%";
         }
         return;
       }
-      if (!state.isDragging) return;
-      var dx = e.clientX - state.dragStartX;
-      var dy = e.clientY - state.dragStartY;
-      if (Math.hypot(dx, dy) > 5) {
-        state.dragMoved = true;
+      if (!topoPointers.has(e.pointerId)) return;
+      topoPointers.set(e.pointerId, { x: e.clientX, y: e.clientY });
+      if (topoPointers.size === 1 && state.isDragging) {
+        var dx = e.clientX - state.dragStartX;
+        var dy = e.clientY - state.dragStartY;
+        if (Math.hypot(dx, dy) > 5) state.dragMoved = true;
+        state.tx = state.camStartX + dx;
+        state.ty = state.camStartY + dy;
+        requestCameraPan();
+      } else if (topoPointers.size === 2) {
+        var pts = Array.from(topoPointers.values());
+        var newDist = Math.hypot(pts[0].x - pts[1].x, pts[0].y - pts[1].y);
+        var midX = (pts[0].x + pts[1].x) / 2;
+        var midY = (pts[0].y + pts[1].y) / 2;
+        state.tx += (midX - topoPinchMidX);
+        state.ty += (midY - topoPinchMidY);
+        if (topoPinchDist > 8 && newDist > 8) {
+          zoomAt(newDist / topoPinchDist, midX, midY);
+        } else {
+          requestCameraPan();
+        }
+        topoPinchDist = newDist;
+        topoPinchMidX = midX;
+        topoPinchMidY = midY;
       }
-      state.tx = state.camStartX + dx;
-      state.ty = state.camStartY + dy;
-      requestCameraPan();
     });
 
-    window.addEventListener("mouseup", function () {
+    function endTopoPointer(e) {
       if (calState.active && calState.draggingPin) {
         console.log("📍 已校准点位 [" + calState.draggingPin.id + "]: x=" + calState.draggingPin.x + "%, y=" + calState.draggingPin.y + "% (" + calState.draggingPin.zh + ")");
         saveCustomPinCoords(calState.draggingPin.id, calState.draggingPin.x, calState.draggingPin.y);
@@ -410,11 +452,20 @@
         calState.targetBox = null;
         return;
       }
-      state.isDragging = false;
-      setTimeout(function () {
-        state.dragMoved = false;
-      }, 50);
-    });
+      if (!topoPointers.has(e.pointerId)) return;
+      topoPointers.delete(e.pointerId);
+      if (topoPointers.size === 1) {
+        topoPinchDist = 0;
+        topoReanchorSingle();
+      } else if (topoPointers.size === 0) {
+        state.isDragging = false;
+        topoPinchDist = 0;
+        setTimeout(function () { state.dragMoved = false; }, 50);
+      }
+    }
+
+    window.addEventListener("pointerup", endTopoPointer);
+    window.addEventListener("pointercancel", endTopoPointer);
 
     stage.addEventListener("wheel", function (e) {
       if (state.mode !== "topology") return;
@@ -427,58 +478,6 @@
       if (state.mode !== "topology") return;
       if (e.target.closest(".map-pin") || e.target.closest(".node-card") || e.target.closest(".detail-card")) return;
       zoomAt(1.5, e.clientX, e.clientY);
-    });
-
-    // 触屏手势
-    var touchDist = 0;
-    stage.addEventListener("touchstart", function (e) {
-      if (state.mode !== "topology") return;
-      if (e.touches.length === 1) {
-        if (e.target.closest(".map-pin") || e.target.closest(".detail-card")) return;
-        state.isDragging = true;
-        state.dragStartX = e.touches[0].clientX;
-        state.dragStartY = e.touches[0].clientY;
-        state.camStartX = state.tx;
-        state.camStartY = state.ty;
-      } else if (e.touches.length === 2) {
-        state.isDragging = false;
-        var dx = e.touches[0].clientX - e.touches[1].clientX;
-        var dy = e.touches[0].clientY - e.touches[1].clientY;
-        touchDist = Math.hypot(dx, dy);
-      }
-    }, { passive: true });
-
-    stage.addEventListener("touchmove", function (e) {
-      if (state.mode !== "topology") return;
-      if (e.touches.length === 1 && state.isDragging) {
-        var dx = e.touches[0].clientX - state.dragStartX;
-        var dy = e.touches[0].clientY - state.dragStartY;
-        if (Math.hypot(dx, dy) > 5) {
-          state.dragMoved = true;
-        }
-        state.tx = state.camStartX + dx;
-        state.ty = state.camStartY + dy;
-        requestCameraPan();
-      } else if (e.touches.length === 2) {
-        var dx = e.touches[0].clientX - e.touches[1].clientX;
-        var dy = e.touches[0].clientY - e.touches[1].clientY;
-        var newDist = Math.hypot(dx, dy);
-        if (touchDist > 0) {
-          var factor = newDist / touchDist;
-          var midX = (e.touches[0].clientX + e.touches[1].clientX) / 2;
-          var midY = (e.touches[0].clientY + e.touches[1].clientY) / 2;
-          zoomAt(factor, midX, midY);
-        }
-        touchDist = newDist;
-      }
-    }, { passive: true });
-
-    stage.addEventListener("touchend", function () {
-      state.isDragging = false;
-      touchDist = 0;
-      setTimeout(function () {
-        state.dragMoved = false;
-      }, 50);
     });
 
     $("btnZoomIn").addEventListener("click", function () {
@@ -603,13 +602,6 @@
     }
     field.forEach(function (r) { buildOne(r, fieldBox); });
     dungeon.forEach(function (r) { buildOne(r, dungBox); });
-
-    var note = $("regionEraNote");
-    if (hiddenCount > 0) {
-      note.textContent = "已隐藏 " + hiddenCount + " 个仅" + (state.era === "Child" ? "成年" : "童年") + "可进入的区域，切换时代可见。";
-    } else {
-      note.textContent = "当前时代 31 个区域全部可进入。";
-    }
   }
 
   function updateRegionHead(r) {
@@ -763,7 +755,16 @@
     applyRegionCam();
   }
 
-  function regionZoomAt(factor, clientX, clientY) {
+  var regionCamRaf = 0;
+  function requestRegionCam() {
+    if (regionCamRaf) return;
+    regionCamRaf = requestAnimationFrame(function () {
+      regionCamRaf = 0;
+      applyRegionCam();
+    });
+  }
+
+  function regionZoomAt(factor, clientX, clientY, skipLevelCheck) {
     var board = $("regionBoard");
     if (!board) return;
     var rect = board.getBoundingClientRect();
@@ -779,8 +780,8 @@
     state.regionTy = py - regionBase.top - wy * newZoom;
     state.levelFocusX = clientX;
     state.levelFocusY = clientY;
-    applyRegionCam();
-    scheduleLevelCheck();
+    requestRegionCam();
+    if (!skipLevelCheck) scheduleLevelCheck();
   }
 
   function pinOnFloor(pin, floor) {
@@ -1064,36 +1065,96 @@
   function bindRegionEvents() {
     var board = $("regionBoard");
     if (!board) return;
+    var pointers = new Map();
+    var pinchDist = 0;
+    var pinchMidX = 0;
+    var pinchMidY = 0;
 
-    board.addEventListener("pointerdown", function (e) {
-      if (e.button !== undefined && e.button !== 0) return;
-      if (e.target.closest(".map-pin") || e.target.closest(".detail-card") || e.target.closest(".zoom-controls") || e.target.closest(".region-floor-bar")) return;
+    function reanchorSingle() {
+      var first = pointers.values().next().value;
+      if (!first) {
+        state.regionDragging = false;
+        board.classList.remove("dragging");
+        return;
+      }
       state.regionDragging = true;
-      state.regionDragMoved = false;
-      state.regionDragStartX = e.clientX;
-      state.regionDragStartY = e.clientY;
+      state.regionDragStartX = first.x;
+      state.regionDragStartY = first.y;
       state.regionCamStartX = state.regionTx;
       state.regionCamStartY = state.regionTy;
       board.classList.add("dragging");
+    }
+
+    board.addEventListener("pointerdown", function (e) {
+      if (state.mode !== "region") return;
+      if (e.pointerType === "mouse" && e.button !== 0) return;
+      if (e.target.closest(".map-pin") || e.target.closest(".region-gw") || e.target.closest(".quest-step-bubble") ||
+          e.target.closest(".detail-card") || e.target.closest(".zoom-controls") || e.target.closest(".region-floor-bar") ||
+          e.target.closest(".region-guide-btn") || e.target.closest(".settings-panel") || e.target.closest(".navi-panel") ||
+          e.target.closest(".pin-cluster-menu")) return;
+      pointers.set(e.pointerId, { x: e.clientX, y: e.clientY });
+      if (board.setPointerCapture) {
+        try { board.setPointerCapture(e.pointerId); } catch (_) {}
+      }
+      if (pointers.size === 1) {
+        state.regionDragMoved = false;
+        reanchorSingle();
+      } else if (pointers.size === 2) {
+        state.regionDragging = false;
+        state.regionDragMoved = true;
+        var pts = Array.from(pointers.values());
+        pinchDist = Math.hypot(pts[0].x - pts[1].x, pts[0].y - pts[1].y);
+        pinchMidX = (pts[0].x + pts[1].x) / 2;
+        pinchMidY = (pts[0].y + pts[1].y) / 2;
+      }
     });
 
     window.addEventListener("pointermove", function (e) {
-      if (!state.regionDragging) return;
-      var dx = e.clientX - state.regionDragStartX;
-      var dy = e.clientY - state.regionDragStartY;
-      if (Math.hypot(dx, dy) > 4) state.regionDragMoved = true;
-      state.regionTx = state.regionCamStartX + dx;
-      state.regionTy = state.regionCamStartY + dy;
-      applyRegionCam();
+      if (!pointers.has(e.pointerId)) return;
+      pointers.set(e.pointerId, { x: e.clientX, y: e.clientY });
+      if (pointers.size === 1 && state.regionDragging) {
+        var dx = e.clientX - state.regionDragStartX;
+        var dy = e.clientY - state.regionDragStartY;
+        if (Math.hypot(dx, dy) > 4) state.regionDragMoved = true;
+        state.regionTx = state.regionCamStartX + dx;
+        state.regionTy = state.regionCamStartY + dy;
+        requestRegionCam();
+      } else if (pointers.size === 2) {
+        var pts = Array.from(pointers.values());
+        var d = Math.hypot(pts[0].x - pts[1].x, pts[0].y - pts[1].y);
+        var mx = (pts[0].x + pts[1].x) / 2;
+        var my = (pts[0].y + pts[1].y) / 2;
+        state.regionTx += (mx - pinchMidX);
+        state.regionTy += (my - pinchMidY);
+        if (pinchDist > 8 && d > 8) {
+          regionZoomAt(d / pinchDist, mx, my, true);
+        } else {
+          requestRegionCam();
+        }
+        pinchDist = d;
+        pinchMidX = mx;
+        pinchMidY = my;
+      }
     });
 
-    window.addEventListener("pointerup", function () {
-      if (state.regionDragging) {
+    function endRegionPointer(e) {
+      if (!pointers.has(e.pointerId)) return;
+      var wasPinch = pointers.size >= 2;
+      pointers.delete(e.pointerId);
+      if (pointers.size === 1) {
+        pinchDist = 0;
+        reanchorSingle();
+      } else if (pointers.size === 0) {
         state.regionDragging = false;
+        pinchDist = 0;
         board.classList.remove("dragging");
+        if (wasPinch) scheduleLevelCheck();
+        setTimeout(function () { state.regionDragMoved = false; }, 50);
       }
-      setTimeout(function () { state.regionDragMoved = false; }, 50);
-    });
+    }
+
+    window.addEventListener("pointerup", endRegionPointer);
+    window.addEventListener("pointercancel", endRegionPointer);
 
     board.addEventListener("wheel", function (e) {
       e.preventDefault();
@@ -1101,32 +1162,9 @@
     }, { passive: false });
 
     board.addEventListener("dblclick", function (e) {
-      if (e.target.closest(".map-pin")) return;
+      if (e.target.closest(".map-pin") || e.target.closest(".region-gw") || e.target.closest(".quest-step-bubble")) return;
       regionZoomAt(1.5, e.clientX, e.clientY);
     });
-
-    var pinchDist = 0;
-    board.addEventListener("touchstart", function (e) {
-      if (e.touches.length === 2) {
-        pinchDist = Math.hypot(e.touches[0].clientX - e.touches[1].clientX, e.touches[0].clientY - e.touches[1].clientY);
-      }
-    }, { passive: true });
-
-    board.addEventListener("touchmove", function (e) {
-      if (e.touches.length === 2) {
-        e.preventDefault();
-        var d = Math.hypot(e.touches[0].clientX - e.touches[1].clientX, e.touches[0].clientY - e.touches[1].clientY);
-        if (pinchDist > 0) {
-          var rect = board.getBoundingClientRect();
-          var mx = (e.touches[0].clientX + e.touches[1].clientX) / 2;
-          var my = (e.touches[0].clientY + e.touches[1].clientY) / 2;
-          regionZoomAt(d / pinchDist, mx, my);
-        }
-        pinchDist = d;
-      }
-    }, { passive: false });
-
-    board.addEventListener("touchend", function () { pinchDist = 0; }, { passive: true });
   }
 
   // -------------------------------------------------------------
@@ -1237,7 +1275,16 @@
     worldZoomRaf = requestAnimationFrame(step);
   }
 
-  function worldZoomAt(factor, clientX, clientY) {
+  var worldCamRaf = 0;
+  function requestWorldCam() {
+    if (worldCamRaf) return;
+    worldCamRaf = requestAnimationFrame(function () {
+      worldCamRaf = 0;
+      applyWorldCam();
+    });
+  }
+
+  function worldZoomAt(factor, clientX, clientY, instant) {
     var board = $("worldBoard");
     if (!board) return;
     var rect = board.getBoundingClientRect();
@@ -1253,8 +1300,16 @@
     var ny = py - worldBase.top - wy * newZoom;
     state.levelFocusX = clientX;
     state.levelFocusY = clientY;
-    animateWorldCam(newZoom, nx, ny);
-    scheduleLevelCheck();
+    if (instant) {
+      if (worldZoomRaf) { cancelAnimationFrame(worldZoomRaf); worldZoomRaf = 0; }
+      state.worldZoom = newZoom;
+      state.worldTx = nx;
+      state.worldTy = ny;
+      requestWorldCam();
+    } else {
+      animateWorldCam(newZoom, nx, ny);
+      scheduleLevelCheck();
+    }
   }
 
   function renderWorldPins() {
@@ -1333,38 +1388,96 @@
   function bindWorldEvents() {
     var board = $("worldBoard");
     if (!board) return;
+    var pointers = new Map();
+    var pinchDist = 0;
+    var pinchMidX = 0;
+    var pinchMidY = 0;
 
-    board.addEventListener("pointerdown", function (e) {
-      if (state.mode !== "world") return;
-      if (e.button !== undefined && e.button !== 0) return;
-      if (e.target.closest(".world-seal") || e.target.closest(".world-entry") ||
-          e.target.closest(".zoom-controls") || e.target.closest(".world-caption")) return;
-      if (worldZoomRaf) { cancelAnimationFrame(worldZoomRaf); worldZoomRaf = 0; }
+    function reanchorSingle() {
+      var first = pointers.values().next().value;
+      if (!first) {
+        state.worldDragging = false;
+        board.classList.remove("dragging");
+        return;
+      }
       state.worldDragging = true;
-      state.worldDragMoved = false;
-      state.worldDragStartX = e.clientX;
-      state.worldDragStartY = e.clientY;
+      state.worldDragStartX = first.x;
+      state.worldDragStartY = first.y;
       state.worldCamStartX = state.worldTx;
       state.worldCamStartY = state.worldTy;
       board.classList.add("dragging");
+    }
+
+    board.addEventListener("pointerdown", function (e) {
+      if (state.mode !== "world") return;
+      if (e.pointerType === "mouse" && e.button !== 0) return;
+      if (e.target.closest(".world-seal") || e.target.closest(".world-entry") || e.target.closest(".quest-step-bubble") ||
+          e.target.closest(".zoom-controls") || e.target.closest(".world-caption") || e.target.closest(".detail-card") ||
+          e.target.closest(".settings-panel") || e.target.closest(".navi-panel")) return;
+      if (worldZoomRaf) { cancelAnimationFrame(worldZoomRaf); worldZoomRaf = 0; }
+      pointers.set(e.pointerId, { x: e.clientX, y: e.clientY });
+      if (board.setPointerCapture) {
+        try { board.setPointerCapture(e.pointerId); } catch (_) {}
+      }
+      if (pointers.size === 1) {
+        state.worldDragMoved = false;
+        reanchorSingle();
+      } else if (pointers.size === 2) {
+        state.worldDragging = false;
+        state.worldDragMoved = true;
+        var pts = Array.from(pointers.values());
+        pinchDist = Math.hypot(pts[0].x - pts[1].x, pts[0].y - pts[1].y);
+        pinchMidX = (pts[0].x + pts[1].x) / 2;
+        pinchMidY = (pts[0].y + pts[1].y) / 2;
+      }
     });
 
     window.addEventListener("pointermove", function (e) {
-      if (!state.worldDragging) return;
-      var dx = e.clientX - state.worldDragStartX;
-      var dy = e.clientY - state.worldDragStartY;
-      if (Math.hypot(dx, dy) > 4) state.worldDragMoved = true;
-      state.worldTx = state.worldCamStartX + dx;
-      state.worldTy = state.worldCamStartY + dy;
-      applyWorldCam();
-    });
-
-    window.addEventListener("pointerup", function () {
-      if (state.worldDragging) {
-        state.worldDragging = false;
-        board.classList.remove("dragging");
+      if (!pointers.has(e.pointerId)) return;
+      pointers.set(e.pointerId, { x: e.clientX, y: e.clientY });
+      if (pointers.size === 1 && state.worldDragging) {
+        var dx = e.clientX - state.worldDragStartX;
+        var dy = e.clientY - state.worldDragStartY;
+        if (Math.hypot(dx, dy) > 4) state.worldDragMoved = true;
+        state.worldTx = state.worldCamStartX + dx;
+        state.worldTy = state.worldCamStartY + dy;
+        requestWorldCam();
+      } else if (pointers.size === 2) {
+        var pts = Array.from(pointers.values());
+        var d = Math.hypot(pts[0].x - pts[1].x, pts[0].y - pts[1].y);
+        var mx = (pts[0].x + pts[1].x) / 2;
+        var my = (pts[0].y + pts[1].y) / 2;
+        state.worldTx += (mx - pinchMidX);
+        state.worldTy += (my - pinchMidY);
+        if (pinchDist > 8 && d > 8) {
+          worldZoomAt(d / pinchDist, mx, my, true);
+        } else {
+          requestWorldCam();
+        }
+        pinchDist = d;
+        pinchMidX = mx;
+        pinchMidY = my;
       }
     });
+
+    function endWorldPointer(e) {
+      if (!pointers.has(e.pointerId)) return;
+      var wasPinch = pointers.size >= 2;
+      pointers.delete(e.pointerId);
+      if (pointers.size === 1) {
+        pinchDist = 0;
+        reanchorSingle();
+      } else if (pointers.size === 0) {
+        state.worldDragging = false;
+        pinchDist = 0;
+        board.classList.remove("dragging");
+        if (wasPinch) scheduleLevelCheck();
+        setTimeout(function () { state.worldDragMoved = false; }, 50);
+      }
+    }
+
+    window.addEventListener("pointerup", endWorldPointer);
+    window.addEventListener("pointercancel", endWorldPointer);
 
     board.addEventListener("wheel", function (e) {
       if (state.mode !== "world") return;
@@ -1374,33 +1487,11 @@
 
     board.addEventListener("dblclick", function (e) {
       if (state.mode !== "world") return;
-      if (e.target.closest(".world-seal") || e.target.closest(".world-entry")) return;
+      if (e.target.closest(".world-seal") || e.target.closest(".world-entry") || e.target.closest(".quest-step-bubble")) return;
       var hit = nearestWorldFieldAt(e.clientX, e.clientY, 120);
       if (hit) { openRegion(hit.id); return; }
       worldZoomAt(1.3, e.clientX, e.clientY);
     });
-
-    var pinchDist = 0;
-    board.addEventListener("touchstart", function (e) {
-      if (state.mode !== "world") return;
-      if (e.touches.length === 2) {
-        pinchDist = Math.hypot(e.touches[0].clientX - e.touches[1].clientX, e.touches[0].clientY - e.touches[1].clientY);
-      }
-    }, { passive: true });
-
-    board.addEventListener("touchmove", function (e) {
-      if (state.mode !== "world" || e.touches.length !== 2) return;
-      e.preventDefault();
-      var d = Math.hypot(e.touches[0].clientX - e.touches[1].clientX, e.touches[0].clientY - e.touches[1].clientY);
-      if (pinchDist > 0) {
-        var mx = (e.touches[0].clientX + e.touches[1].clientX) / 2;
-        var my = (e.touches[0].clientY + e.touches[1].clientY) / 2;
-        worldZoomAt(d / pinchDist, mx, my);
-      }
-      pinchDist = d;
-    }, { passive: false });
-
-    board.addEventListener("touchend", function () { pinchDist = 0; }, { passive: true });
   }
 
   // -------------------------------------------------------------
@@ -1630,7 +1721,7 @@
           // 点击平滑飞跃到目标区域
           gwEl.addEventListener("click", function (e) {
             e.stopPropagation();
-            jumpToGatewayTarget(gw);
+            jumpToGatewayTarget(gw, node.id);
           });
 
           gatewaysBox.appendChild(gwEl);
@@ -1930,7 +2021,7 @@
   }
 
   // 点击传送门直接平滑飞跃至目标地图
-  function jumpToGatewayTarget(gw) {
+  function jumpToGatewayTarget(gw, sourceNodeId) {
     if (!gw.target) return;
     focusNode(gw.target, Math.max(state.zoom, 1.0));
 
@@ -1946,7 +2037,7 @@
     // 目标端传送门呼吸动画
     var targetNode = NODES.find(function (n) { return n.id === gw.target; });
     if (targetNode && targetNode.gateways) {
-      var oppGw = targetNode.gateways.find(function (g) { return g.target === gw.target; });
+      var oppGw = sourceNodeId ? targetNode.gateways.find(function (g) { return g.target === sourceNodeId; }) : null;
       if (!oppGw && targetNode.gateways.length > 0) oppGw = targetNode.gateways[0];
       if (oppGw) {
         var oppEl = $("gw-" + oppGw.id);
@@ -2087,7 +2178,7 @@
       el.style.top = pin.y + "%";
 
       var gCnt = visibleSubPinCount(pin);
-      el.innerHTML = ICONS.html(pin.cat, pinIconSize(false), !!state.donePins[pin.id], pin.id) +
+      el.innerHTML = ICONS.html(pin.cat, pinIconSize(true), !!state.donePins[pin.id], pin.id) +
         (gCnt > 0 ? '<span class="pin-group-badge">' + (gCnt + 1) + '</span>' : '');
 
       // 点位拖拽微调支持
@@ -2311,9 +2402,11 @@
         if (curIdx < 0) curIdx = 0;
         var prevTarget = catList[(curIdx - 1 + catList.length) % catList.length];
         var nextTarget = catList[(curIdx + 1) % catList.length];
+        var prevNum = curIdx === 0 ? catList.length : curIdx;
+        var nextNum = curIdx + 2 > catList.length ? 1 : curIdx + 2;
         pager.hidden = false;
-        prevBtn.title = (isZh ? "上一个 (" : "Prev (") + curIdx + "/" + catList.length + ")：" + (isZh ? (prevTarget.shortZh || prevTarget.zh) : prevTarget.en);
-        nextBtn.title = (isZh ? "下一个 (" : "Next (") + (curIdx + 2 > catList.length ? 1 : curIdx + 2) + "/" + catList.length + ")：" + (isZh ? (nextTarget.shortZh || nextTarget.zh) : nextTarget.en);
+        prevBtn.title = (isZh ? "上一个 (" : "Prev (") + prevNum + "/" + catList.length + ")：" + (isZh ? (prevTarget.shortZh || prevTarget.zh) : prevTarget.en);
+        nextBtn.title = (isZh ? "下一个 (" : "Next (") + nextNum + "/" + catList.length + ")：" + (isZh ? (nextTarget.shortZh || nextTarget.zh) : nextTarget.en);
         prevBtn.onclick = function (ev) {
           ev.stopPropagation();
           jumpToPinById(prevTarget.id);
@@ -2731,7 +2824,7 @@
     card.style.top = Math.round(chosen.t) + "px";
   }
 
-  function closeDetailCard() {
+  function closeDetailCard(skipUrlUpdate) {
     var dc = $("detailCard");
     if (dc) {
       dc.hidden = true;
@@ -2739,6 +2832,7 @@
     }
     state.selectedPinId = null;
     document.querySelectorAll(".map-pin.selected").forEach(function (el) { el.classList.remove("selected"); });
+    if (!skipUrlUpdate) updateUrl();
   }
 
   // -------------------------------------------------------------
@@ -2972,20 +3066,135 @@
   }
 
   // -------------------------------------------------------------
-  // 搜索功能实现
+  // 搜索功能实现（含最近历史 / 键盘 ↑↓ Enter / 清空 / 快捷键 /）
   // -------------------------------------------------------------
+  var KEY_SEARCH_HISTORY = "oot_map_search_history_v1";
+  var MAX_SEARCH_HISTORY = 8;
+
+  function loadSearchHistory() {
+    try {
+      var raw = JSON.parse(localStorage.getItem(KEY_SEARCH_HISTORY) || "[]");
+      return Array.isArray(raw) ? raw.slice(0, MAX_SEARCH_HISTORY) : [];
+    } catch (_) { return []; }
+  }
+
+  function saveSearchHistory(list) {
+    try { localStorage.setItem(KEY_SEARCH_HISTORY, JSON.stringify(list.slice(0, MAX_SEARCH_HISTORY))); } catch (_) {}
+  }
+
+  function pushSearchHistory(entry) {
+    if (!entry || !entry.type || !entry.id) return;
+    var list = loadSearchHistory().filter(function (x) {
+      return !(x.type === entry.type && x.id === entry.id);
+    });
+    list.unshift(entry);
+    saveSearchHistory(list);
+  }
+
+  function removeSearchHistory(type, id) {
+    var list = loadSearchHistory().filter(function (x) {
+      return !(x.type === type && x.id === id);
+    });
+    saveSearchHistory(list);
+  }
+
   function bindSearch() {
     var input = $("searchInput");
     var resBox = $("searchResults");
+    var clearBtn = $("searchClear");
+    var activeIdx = -1;
 
-    input.addEventListener("input", function () {
-      var q = input.value.trim().toLowerCase();
-      if (!q) {
+    function syncClearBtn() {
+      if (clearBtn) clearBtn.hidden = !input.value;
+    }
+
+    function setActive(idx) {
+      var items = resBox.querySelectorAll(".search-item");
+      items.forEach(function (el) { el.classList.remove("is-active"); });
+      if (!items.length || idx < 0) {
+        activeIdx = -1;
+        return;
+      }
+      activeIdx = (idx + items.length) % items.length;
+      items[activeIdx].classList.add("is-active");
+      if (items[activeIdx].scrollIntoView) {
+        items[activeIdx].scrollIntoView({ block: "nearest" });
+      }
+    }
+
+    function executeEntry(entry) {
+      resBox.hidden = true;
+      input.value = "";
+      syncClearBtn();
+      activeIdx = -1;
+      pushSearchHistory(entry);
+      if (entry.type === "quest") {
+        if (window.OOT_QUESTS_API) window.OOT_QUESTS_API.selectQuest(entry.id);
+      } else if (entry.type === "region") {
+        openRegion(entry.id);
+      } else if (entry.type === "pin") {
+        jumpToPinById(entry.id);
+      }
+    }
+
+    function renderHistory() {
+      var list = loadSearchHistory();
+      activeIdx = -1;
+      if (!list.length) {
         resBox.hidden = true;
         resBox.innerHTML = "";
         return;
       }
+      var isZh = state.lang === "zh";
+      resBox.innerHTML = "";
+      var head = document.createElement("div");
+      head.className = "search-hist-head";
+      head.innerHTML = '<span>' + (isZh ? "最近搜索" : "Recent") + '</span><button type="button" class="search-hist-clear">' + (isZh ? "清空" : "Clear") + '</button>';
+      head.querySelector(".search-hist-clear").addEventListener("click", function (ev) {
+        ev.stopPropagation();
+        saveSearchHistory([]);
+        resBox.hidden = true;
+        resBox.innerHTML = "";
+      });
+      resBox.appendChild(head);
 
+      list.forEach(function (item) {
+        var row = document.createElement("div");
+        row.className = "search-item";
+        var ico = item.type === "quest"
+          ? '<div style="flex:0 0 24px;color:#eac27e;text-align:center;font-weight:700;">⚑</div>'
+          : (item.type === "region"
+            ? '<div style="flex:0 0 24px;color:#eab308;text-align:center;">▣</div>'
+            : '<div style="flex:0 0 24px;">' + ICONS.html(item.cat || "item", 18) + '</div>');
+        row.innerHTML = ico +
+          '<div class="search-item-info">' +
+          '  <span class="search-item-title"></span>' +
+          '  <span class="search-item-area"></span>' +
+          '</div>' +
+          '<button type="button" class="search-hist-del" aria-label="删除">×</button>';
+        row.querySelector(".search-item-title").textContent = isZh ? (item.zh || item.en) : (item.en || item.zh);
+        row.querySelector(".search-item-area").textContent = item.sub || "";
+        row.addEventListener("click", function () { executeEntry(item); });
+        row.querySelector(".search-hist-del").addEventListener("click", function (ev) {
+          ev.stopPropagation();
+          removeSearchHistory(item.type, item.id);
+          renderHistory();
+        });
+        resBox.appendChild(row);
+      });
+      resBox.hidden = false;
+    }
+
+    function runSearch() {
+      syncClearBtn();
+      activeIdx = -1;
+      var q = input.value.trim().toLowerCase();
+      if (!q) {
+        renderHistory();
+        return;
+      }
+
+      var isZh = state.lang === "zh";
       var regionMatches = REGIONS.filter(function (r) {
         if (!isRegionAvailable(r)) return false;
         return (r.zh && r.zh.toLowerCase().indexOf(q) !== -1) ||
@@ -3022,7 +3231,7 @@
       }).slice(0, 6);
 
       if (!matches.length && !regionMatches.length && !questMatches.length) {
-        resBox.innerHTML = '<div style="padding:10px;font-size:12px;color:#7d725d;text-align:center;">未找到匹配点位</div>';
+        resBox.innerHTML = '<div style="padding:10px;font-size:12px;color:#7d725d;text-align:center;">' + (isZh ? "未找到匹配点位" : "No matching results") + '</div>';
         resBox.hidden = false;
         return;
       }
@@ -3031,31 +3240,31 @@
       questMatches.forEach(function (qm) {
         var row = document.createElement("div");
         row.className = "search-item";
-        var grpLbl = qm.group === "main" ? "主线" : (qm.group === "dungeon" ? "迷宫" : "支线");
+        var grpLbl = isZh
+          ? (qm.group === "main" ? "主线" : (qm.group === "dungeon" ? "迷宫" : "支线"))
+          : (qm.group === "main" ? "Main" : (qm.group === "dungeon" ? "Dungeon" : "Side"));
+        var sub = isZh ? ("任务 · " + grpLbl + " · " + qm.flow.length + " 步") : ("Quest · " + grpLbl + " · " + qm.flow.length + " steps");
         row.innerHTML = '<div style="flex:0 0 24px;color:#eac27e;text-align:center;font-weight:700;">⚑</div>' +
                         '<div class="search-item-info">' +
-                        '  <span class="search-item-title">#' + qm.seq + ' ' + (state.lang === "zh" ? qm.zh : (qm.en || qm.zh)) + '</span>' +
-                        '  <span class="search-item-area">任务 · ' + grpLbl + ' · ' + qm.flow.length + ' 步</span>' +
+                        '  <span class="search-item-title">#' + qm.seq + ' ' + (isZh ? qm.zh : (qm.en || qm.zh)) + '</span>' +
+                        '  <span class="search-item-area">' + sub + '</span>' +
                         '</div>';
         row.addEventListener("click", function () {
-          resBox.hidden = true;
-          input.value = "";
-          if (window.OOT_QUESTS_API) window.OOT_QUESTS_API.selectQuest(qm.key);
+          executeEntry({ type: "quest", id: qm.key, zh: "#" + qm.seq + " " + qm.zh, en: "#" + qm.seq + " " + (qm.en || qm.zh), sub: sub });
         });
         resBox.appendChild(row);
       });
       regionMatches.forEach(function (r) {
         var row = document.createElement("div");
         row.className = "search-item";
+        var sub = isZh ? ("区域 · " + regionPinsForEra(r).length + " 点") : ("Region · " + regionPinsForEra(r).length + " pins");
         row.innerHTML = '<div style="flex:0 0 24px;color:#eab308;text-align:center;">▣</div>' +
                         '<div class="search-item-info">' +
-                        '  <span class="search-item-title">' + (state.lang === "zh" ? r.zh : r.en) + '</span>' +
-                        '  <span class="search-item-area">区域 · ' + regionPinsForEra(r).length + ' 点</span>' +
+                        '  <span class="search-item-title">' + (isZh ? r.zh : r.en) + '</span>' +
+                        '  <span class="search-item-area">' + sub + '</span>' +
                         '</div>';
         row.addEventListener("click", function () {
-          resBox.hidden = true;
-          input.value = "";
-          openRegion(r.id);
+          executeEntry({ type: "region", id: r.id, zh: r.zh, en: r.en, sub: sub });
         });
         resBox.appendChild(row);
       });
@@ -3065,23 +3274,81 @@
         var hostSuffix = "";
         if (m.hostPinId && PIN_BY_ID[m.hostPinId]) {
           var hp = PIN_BY_ID[m.hostPinId];
-          hostSuffix = state.lang === "zh"
+          hostSuffix = isZh
             ? (" · 聚合于 " + (hp.shortZh || hp.zh))
             : (" · via " + (hp.en || hp.shortZh || hp.zh));
         }
+        var mHostId = (m.map && m.map !== "hyrule") ? m.map : m.area;
+        var mReg = REGIONS.find(function (r) { return r.id === mHostId; });
+        var mAreaLabel = mReg ? (isZh ? mReg.zh : mReg.en) : (m.area || m.map);
+        if (m.map && m.map !== "hyrule" && m.area) mAreaLabel += " · " + m.area;
+        var sub = mAreaLabel + hostSuffix;
         row.innerHTML = '<div style="flex:0 0 24px;">' + ICONS.html(m.cat, 18) + '</div>' +
                         '<div class="search-item-info">' +
-                        '  <span class="search-item-title">' + (state.lang === "zh" ? m.zh : m.en) + '</span>' +
-                        '  <span class="search-item-area">' + (m.area || m.map) + hostSuffix + '</span>' +
+                        '  <span class="search-item-title">' + (isZh ? (m.shortZh || m.zh) : (m.en || m.zh)) + '</span>' +
+                        '  <span class="search-item-area">' + sub + '</span>' +
                         '</div>';
         row.addEventListener("click", function () {
-          resBox.hidden = true;
-          input.value = "";
-          jumpToPinById(m.id);
+          executeEntry({ type: "pin", id: m.id, cat: m.cat, zh: m.shortZh || m.zh, en: m.en || m.zh, sub: mAreaLabel });
         });
         resBox.appendChild(row);
       });
       resBox.hidden = false;
+    }
+
+    input.addEventListener("input", runSearch);
+    input.addEventListener("focus", function () {
+      if (!input.value.trim()) renderHistory();
+      else if (resBox.children.length) resBox.hidden = false;
+    });
+    input.addEventListener("keydown", function (ev) {
+      if (ev.key === "ArrowDown") {
+        if (!resBox.hidden) {
+          ev.preventDefault();
+          setActive(activeIdx + 1);
+        }
+      } else if (ev.key === "ArrowUp") {
+        if (!resBox.hidden) {
+          ev.preventDefault();
+          setActive(activeIdx <= 0 ? resBox.querySelectorAll(".search-item").length - 1 : activeIdx - 1);
+        }
+      } else if (ev.key === "Enter") {
+        if (!resBox.hidden) {
+          var items = resBox.querySelectorAll(".search-item");
+          var target = items[activeIdx >= 0 ? activeIdx : 0];
+          if (target) {
+            ev.preventDefault();
+            target.click();
+          }
+        }
+      } else if (ev.key === "Escape") {
+        resBox.hidden = true;
+        input.blur();
+      }
+    });
+
+    if (clearBtn) {
+      clearBtn.addEventListener("click", function (ev) {
+        ev.stopPropagation();
+        input.value = "";
+        syncClearBtn();
+        renderHistory();
+        input.focus();
+      });
+    }
+
+    document.addEventListener("keydown", function (ev) {
+      if (ev.key !== "/" || ev.ctrlKey || ev.metaKey || ev.altKey) return;
+      var tag = (document.activeElement && document.activeElement.tagName) || "";
+      if (tag === "INPUT" || tag === "TEXTAREA" || tag === "SELECT") return;
+      ev.preventDefault();
+      var sb = $("sidebar");
+      if (sb && sb.classList.contains("collapsed")) {
+        sb.classList.remove("collapsed");
+        document.body.classList.remove("side-collapsed");
+      }
+      input.focus();
+      input.select();
     });
 
     document.addEventListener("click", function (e) {
@@ -3225,22 +3492,6 @@
       });
     }
 
-    var saveSyncBtn = $("saveSyncBtn");
-    if (saveSyncBtn) {
-      saveSyncBtn.addEventListener("click", function () {
-        var orig = saveSyncBtn.textContent;
-        saveSyncBtn.textContent = state.lang === "zh" ? "存档同步即将上线" : "Coming soon";
-        setTimeout(function () { saveSyncBtn.textContent = orig; }, 1200);
-      });
-    }
-
-    var saveHelpBtn = $("saveHelpBtn");
-    if (saveHelpBtn) {
-      saveHelpBtn.addEventListener("click", function () {
-        if (saveSyncBtn) saveSyncBtn.click();
-      });
-    }
-
     // 所有画布点击空白处关闭打开的卡片/面板
     var mapStageEl = $("mapStage");
     if (mapStageEl) {
@@ -3248,19 +3499,28 @@
         if (state.dragMoved || state.regionDragMoved || state.worldDragMoved) return;
         if (e.target.closest(".detail-card") || e.target.closest(".map-pin") ||
             e.target.closest(".region-gw") || e.target.closest(".world-seal") ||
-            e.target.closest(".world-entry") || e.target.closest(".settings-panel") ||
+            e.target.closest(".world-entry") || e.target.closest(".quest-step-bubble") ||
+            e.target.closest(".settings-panel") || e.target.closest(".navi-panel") ||
             e.target.closest(".zoom-controls") || e.target.closest("button")) return;
         var dc = $("detailCard");
         if (dc && !dc.hidden) closeDetailCard();
+        var qc = $("questCard");
+        if (qc && !qc.hidden && window.OOT_QUESTS_API && window.OOT_QUESTS_API.closeQuest) {
+          window.OOT_QUESTS_API.closeQuest(true);
+        }
         closeClusterMenu();
         var sp = $("settingsPanel");
-        if (sp && !sp.hidden) sp.hidden = true;
-        var ep = $("explorePanel");
-        if (ep && !ep.hidden) {
-          ep.hidden = true;
-          var caret = $("progCaret");
-          if (caret) caret.textContent = "▴";
+        if (sp && !sp.hidden) {
+          sp.hidden = true;
+          if (settingsBtn) settingsBtn.classList.remove("active");
         }
+        if (window.OOT_NAVI && window.OOT_NAVI.togglePanel) {
+          window.OOT_NAVI.togglePanel(false);
+        }
+        var ad = $("areaDrawer");
+        if (ad && !ad.hidden) setAreaDrawerOpen(false);
+        var ep = $("explorePanel");
+        if (ep && !ep.hidden) setExplorePanelOpen(false);
       });
     }
 
@@ -3349,7 +3609,7 @@
     }
 
     makeDetailCardDraggable($("detailCard"));
-    $("cardClose").addEventListener("click", closeDetailCard);
+    $("cardClose").addEventListener("click", function () { closeDetailCard(); });
 
     var copyBtn = $("cardCopyCoord");
     if (copyBtn) {
@@ -3360,7 +3620,7 @@
         var txt = (pin.zh || pin.id) + (w.length >= 3 ? "  X " + w[0] + " Y " + w[1] + " Z " + w[2] : "");
         function doneCopy() {
           copyBtn.textContent = state.lang === "zh" ? "已复制" : "Copied";
-          setTimeout(function () { copyBtn.textContent = state.lang === "zh" ? "复制坐标" : "Copy"; }, 1200);
+          setTimeout(function () { copyBtn.textContent = state.lang === "zh" ? "复制" : "Copy"; }, 1200);
         }
         if (navigator.clipboard && navigator.clipboard.writeText) {
           navigator.clipboard.writeText(txt).then(doneCopy, doneCopy);
@@ -3426,11 +3686,72 @@
     window.addEventListener("resize", function () {
       // 保持当前视口平移缩放，仅更新相机
       if (state.mode === "region") { layoutRegionBase(); applyRegionCam(); }
+      else if (state.mode === "world") { layoutWorldBase(); applyWorldCam(); }
       else updateCamera();
     });
   }
 
+  function applyStaticLanguageUI() {
+    var isZh = state.lang === "zh";
+    var si = $("searchInput");
+    if (si) si.placeholder = isZh ? "搜索点位、物品、任务… ( / )" : "Search pins, items, quests… ( / )";
+    var viewLabels = { region: [isZh ? "区域地图" : "Region"], topology: [isZh ? "拓扑图" : "Topology"], world: [isZh ? "全图" : "World"] };
+    document.querySelectorAll("#viewTabs .view-tab").forEach(function (btn) {
+      var v = btn.getAttribute("data-view");
+      var b = btn.querySelector(".vt-copy b");
+      if (b && viewLabels[v]) b.textContent = viewLabels[v][0];
+    });
+    var eraLabels = { All: isZh ? "全部" : "All", Child: isZh ? "童年" : "Child", Adult: isZh ? "成年" : "Adult" };
+    document.querySelectorAll("#eraSeg .era-btn").forEach(function (btn) {
+      var e = btn.getAttribute("data-era");
+      if (eraLabels[e]) btn.textContent = eraLabels[e];
+    });
+    var grpMap = [
+      ["fieldGroupToggle", isZh ? "大地图" : "Fields"],
+      ["dungeonGroupToggle", isZh ? "迷宫" : "Dungeons"],
+      ["questGroupToggle", isZh ? "任务" : "Quests"]
+    ];
+    grpMap.forEach(function (pair) {
+      var el = $(pair[0]);
+      var t = el && el.querySelector(".region-group-title-txt");
+      if (t) t.textContent = pair[1];
+    });
+    var progTxt = document.querySelector("#progressBox .prog-txt");
+    if (progTxt) progTxt.textContent = isZh ? "全收集进度" : "All Collectibles";
+    var saveBtn = $("saveSyncBtn");
+    if (saveBtn) {
+      saveBtn.textContent = isZh ? "加载存档" : "Load Save";
+      saveBtn.dataset.origTxt = saveBtn.textContent;
+    }
+    var setBtn = $("settingsBtn");
+    if (setBtn) setBtn.textContent = isZh ? "⚙ 地图设置" : "⚙ Settings";
+    var navBtn = $("navBtn");
+    if (navBtn) navBtn.textContent = isZh ? "🧭 定位导航" : "🧭 Navi";
+    var guideLink = document.querySelector(".side-links a.side-link-btn");
+    if (guideLink) guideLink.textContent = isZh ? "📖 攻略资料库" : "📖 Guide";
+    var setHead = document.querySelector("#settingsPanel .settings-head span");
+    if (setHead) setHead.textContent = isZh ? "地图设置" : "Map Settings";
+    var setRowTexts = [
+      ["hideDoneChk", isZh ? "隐藏已收集" : "Hide Collected"],
+      ["autoLevelChk", isZh ? "缩放自动换层" : "Auto Zoom Level"]
+    ];
+    setRowTexts.forEach(function (pair) {
+      var inp = $(pair[0]);
+      var sp = inp && inp.parentElement && inp.parentElement.querySelector("span");
+      if (sp) sp.textContent = pair[1];
+    });
+    var langSp = $("langBtn") && $("langBtn").querySelector("span");
+    if (langSp) langSp.textContent = isZh ? "语言" : "Language";
+    var editSp = $("btnEditMode") && $("btnEditMode").querySelector("span");
+    if (editSp) editSp.textContent = isZh ? "点位校准" : "Pin Calibration";
+    var clrSp = $("clearDoneBtn") && $("clearDoneBtn").querySelector("span");
+    if (clrSp) clrSp.textContent = isZh ? "清空收集记录" : "Reset Progress";
+    var naviTitle = document.querySelector("#naviPanel .navi-title");
+    if (naviTitle) naviTitle.textContent = isZh ? "定位导航" : "Live Navigation";
+  }
+
   function updateLanguageUI() {
+    applyStaticLanguageUI();
     // 刷新节点标签
     NODES.forEach(function (node) {
       var header = $("header-" + node.id);
@@ -3462,79 +3783,21 @@
     });
 
     renderCategoriesSidebar();
+    renderExplorePanel();
     renderJumpChips();
     renderRegionList();
     renderWorldPins();
     var rHead = currentRegion();
-    if (rHead) updateRegionHead(rHead);
+    if (rHead) {
+      updateRegionHead(rHead);
+      buildRegionFloorBar(rHead);
+    }
 
     if (state.selectedPinId) {
       var p = PINS.find(function (pin) { return pin.id === state.selectedPinId; });
       if (p) selectPin(p);
     }
     window.dispatchEvent(new CustomEvent("oot:stateChanged", { detail: { area: state.area, era: state.era, mode: state.mode } }));
-  }
-
-  // 高亮特定传送门出入口及连线
-  function highlightGatewayPortal(gw, sourceNodeId, enable) {
-    var gwEl = $("gw-" + gw.id);
-    if (gwEl) {
-      if (enable) gwEl.classList.add("highlight");
-      else gwEl.classList.remove("highlight");
-    }
-
-    // 寻找目标节点对应出入口
-    var targetNode = NODES.find(function (n) { return n.id === gw.target; });
-    if (targetNode && targetNode.gateways) {
-      var oppositeGw = targetNode.gateways.find(function (g) { return g.target === sourceNodeId; });
-      if (oppositeGw) {
-        var oppEl = $("gw-" + oppositeGw.id);
-        if (oppEl) {
-          if (enable) oppEl.classList.add("highlight");
-          else oppEl.classList.remove("highlight");
-        }
-      }
-    }
-
-    // 高亮相连连线
-    EDGES.forEach(function (e) {
-      if ((e.from === sourceNodeId && e.to === gw.target) || (e.from === gw.target && e.to === sourceNodeId)) {
-        var path = $("edge-" + e.from + "-" + e.to);
-        if (path) {
-          if (enable) path.classList.add("highlight");
-          else path.classList.remove("highlight");
-        }
-      }
-    });
-  }
-
-  // 点击传送门直接平滑飞跃至目标地图
-  function jumpToGatewayTarget(gw) {
-    if (!gw.target) return;
-    focusNode(gw.target, Math.max(state.zoom, 1.0));
-
-    var targetCard = $("node-" + gw.target);
-    if (targetCard) {
-      targetCard.style.transition = "box-shadow 0.25s, transform 0.25s";
-      targetCard.style.boxShadow = "0 0 35px #38bdf8, 0 0 15px #38bdf8";
-      setTimeout(function () {
-        targetCard.style.boxShadow = "";
-      }, 1200);
-    }
-
-    // 目标端传送门呼吸动画
-    var targetNode = NODES.find(function (n) { return n.id === gw.target; });
-    if (targetNode && targetNode.gateways) {
-      var oppGw = targetNode.gateways.find(function (g) { return g.target === gw.target; });
-      if (!oppGw && targetNode.gateways.length > 0) oppGw = targetNode.gateways[0];
-      if (oppGw) {
-        var oppEl = $("gw-" + oppGw.id);
-        if (oppEl) {
-          oppEl.classList.add("highlight");
-          setTimeout(function () { oppEl.classList.remove("highlight"); }, 1800);
-        }
-      }
-    }
   }
 
   // -------------------------------------------------------------
@@ -3603,6 +3866,7 @@
       });
     }
     renderVersion();
+    if (state.lang !== "zh") applyStaticLanguageUI();
     renderCategoriesSidebar();
     renderJumpChips();
     buildTopologyBoard();
@@ -3729,7 +3993,7 @@
           updateProgress();
           updateCategoriesCount();
           renderRegionList();
-          renderWorldMarkers();
+          renderWorldPins();
           renderJumpChips();
           if (currentRegion()) updateRegionHead(currentRegion());
           renderExplorePanel();
@@ -3741,12 +4005,15 @@
       },
       clearDonePins: function () {
         state.donePins = {};
+        if (window.OOT_SAVE_SYNC && window.OOT_SAVE_SYNC.resetAutoMtime) {
+          window.OOT_SAVE_SYNC.resetAutoMtime();
+        }
         saveStorage();
         renderAllPins();
         updateProgress();
         updateCategoriesCount();
         renderRegionList();
-        renderWorldMarkers();
+        renderWorldPins();
         renderJumpChips();
         if (currentRegion()) updateRegionHead(currentRegion());
         renderExplorePanel();
